@@ -15,6 +15,7 @@ import { Exclude } from 'class-transformer';
 import { Encuesta } from './encuesta.entity';
 // Importación de la entidad relacionada "Opcion"
 import { Opcion } from './opcion.entity';
+//import { RespuestaAbierta } from 'src/modules/respuestas/entities/respuesta-abierta.entity';
 
 @Entity({ name: 'preguntas' }) // Define la clase como una entidad de la base de datos con el nombre "preguntas"
 export class Pregunta {
@@ -37,4 +38,9 @@ export class Pregunta {
 
   @OneToMany(() => Opcion, (opcion) => opcion.pregunta, { cascade: ['insert'] }) // Relación uno a muchos con la entidad "Opcion"
   opciones: Opcion[]; // Lista de opciones asociadas a la pregunta
+
+  // EXTRA POR EL MÓDULO DE RESPUESTAS
+  // @Exclude() // Excluye esta propiedad al serializar la entidad (por ejemplo, al devolverla en una API)
+  // @OneToMany(() => RespuestaAbierta, (r) => r.pregunta)
+  // respuestasAbiertas: RespuestaAbierta[];
 }

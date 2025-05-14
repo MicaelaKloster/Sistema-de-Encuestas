@@ -24,4 +24,8 @@ export class Encuesta {
   @Column({ name: 'codigo_resultados' }) // Define la columna "codigo_resultados" en la tabla
   @Exclude() // Excluye esta propiedad al serializar la entidad (por ejemplo, al devolverla en una API)
   codigoResultados: string;
+
+  // Funcionalidad Extra para deshabilitar una encuesta (MICA)
+  @Column({ default: true })
+  habilitada: boolean; // Columna que indica si la encuesta está habilitada o no
 }

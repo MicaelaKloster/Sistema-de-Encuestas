@@ -84,4 +84,27 @@ export class EncuestasService {
     // Retorna la encuesta encontrada
     return encuesta;
   }
+
+  // Funcionalidad Extra para deshabilitar una encuesta (MICA)
+  async actualizarEstadoEncuesta(
+    id: number,
+    habilitada: boolean,
+  ): Promise<{ mensaje: string }> {
+    // Busca la encuesta por su ID
+    const encuesta = await this.encuestaRepository.findOne({ where: { id } });
+
+    // Si no se encuentra la encuesta, lanza una excepción
+    if (!encuesta) {
+      throw new BadRequestException('Encuesta no encontrada');
+    }
+
+    // Actualiza el estado de la encuesta
+    encuesta.habilitada = habilitada;
+    await this.encuestaRepository.save(encuesta);
+
+    // Retorna un mensaje de éxito
+    return {
+      mensaje: `La encuesta fue ${habilitada ? 'habilitada' : 'deshabilitada'} correctamente`,
+    };
+  }
 }

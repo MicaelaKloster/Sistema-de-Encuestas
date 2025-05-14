@@ -3,11 +3,13 @@ import { ConfigModule, ConfigService } from '@nestjs/config'; // Módulo y servi
 import configuration from './config/configuration'; // Archivo de configuración personalizado
 import { EncuestasModule } from './modules/encuestas/encuestas.module'; // Módulo de encuestas
 import { TypeOrmModule } from '@nestjs/typeorm'; // Módulo para la integración con TypeORM
+//import { RespuestasModule } from './modules/respuestas/respuestas.module';
 
 @Module({
   imports: [
     // Importa el módulo de encuestas
     EncuestasModule,
+    //RespuestasModule,
 
     // Configuración global del módulo de configuración
     ConfigModule.forRoot({

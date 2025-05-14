@@ -1,5 +1,13 @@
 // Importación de decoradores y módulos necesarios de NestJS
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 // Importación del servicio de encuestas
 import { EncuestasService } from '../services/encuestas.service';
 // Importación del DTO para crear encuestas
@@ -36,7 +44,12 @@ export class EncuestasController {
     );
   }
 
-  // PUT
-
-  // DELETE
+  // Funcionalidad Extra para deshabilitar una encuesta (MICA)
+  @Patch(':id/habilitar') // Define un endpoint PATCH para habilitar/deshabilitar una encuesta
+  async cambiarEstadoEncuesta(
+    @Param('id') id: number, // Obtiene el parámetro "id" de la URL
+    @Body('habilitada') habilitada: boolean, // Obtiene el cuerpo de la solicitud para saber si se habilita o deshabilita
+  ): Promise<{ mensaje: string }> {
+    return await this.encuestasService.actualizarEstadoEncuesta(id, habilitada);
+  }
 }
