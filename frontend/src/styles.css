@@ -1,0 +1,14 @@
+@import "primeicons/primeicons.css"; /* Importa los iconos de PrimeNG para su uso en la app */
+
+/* Estilos globales para el body */
+body{
+    margin: 0; /* Elimina el margen por defecto del body */
+    height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+    display: flex; /* Usa flexbox para el layout */
+    justify-content: center; /* Centra horizontalmente el contenido */
+}
+
+/* Ajusta el tamaño base de la fuente para todo el HTML */
+html {
+    font-size: 1.2rem; /* Tamaño de fuente base aumentado */
+}

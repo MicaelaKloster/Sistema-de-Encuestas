@@ -1,0 +1,15 @@
+/* Aplica margen alrededor del cuadro de diálogo de confirmación de PrimeNG */
+::ng-deep .p-confirmdialog {
+  margin: 1rem;
+}
+
+/* Aplica margen y limita el ancho máximo de los diálogos de PrimeNG */
+::ng-deep .p-dialog {
+  margin: 1rem;
+  max-width: 90vw; /* El ancho máximo es el 90% del viewport */
+}
+
+/* Limita el ancho máximo de las notificaciones toast de PrimeNG */
+::ng-deep .p-toast {
+  max-width: 80%; /* El ancho máximo es el 80% del contenedor */
+}
