@@ -217,7 +217,7 @@ import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;; // Módulo para la in
     ConfigModule.forRoot({
       load: [configuration], // Carga la configuración personalizada desde un archivo
       isGlobal: true, // Hace que el módulo de configuración sea accesible globalmente
-      ignoreEnvFile: process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#x27;production&#x27;, // Ignora el archivo .env si el entorno es producción
+      //ignoreEnvFile: process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#x27;production&#x27;, // Ignora el archivo .env si el entorno es producción
     }),
 
     // Configuración de TypeORM para la conexión con la base de datos

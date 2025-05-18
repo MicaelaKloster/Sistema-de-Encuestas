@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common'; // Decorador para definir un módulo en
 import { ConfigModule, ConfigService } from '@nestjs/config'; // Módulo y servicio para manejar configuraciones
 import configuration from './config/configuration'; // Archivo de configuración personalizado
 import { EncuestasModule } from './modules/encuestas/encuestas.module'; // Módulo de encuestas
+import { RespuestasModule } from './modules/respuestas/respuestas.module'; // Módulo de respuestas
 import { TypeOrmModule } from '@nestjs/typeorm'; // Módulo para la integración con TypeORM
 //import { RespuestasModule } from './modules/respuestas/respuestas.module';
 
@@ -9,13 +10,14 @@ import { TypeOrmModule } from '@nestjs/typeorm'; // Módulo para la integración
   imports: [
     // Importa el módulo de encuestas
     EncuestasModule,
-    //RespuestasModule,
+    // Importa el módulo de respuestas
+    RespuestasModule,
 
     // Configuración global del módulo de configuración
     ConfigModule.forRoot({
       load: [configuration], // Carga la configuración personalizada desde un archivo
       isGlobal: true, // Hace que el módulo de configuración sea accesible globalmente
-      ignoreEnvFile: process.env.NODE_ENV === 'production', // Ignora el archivo .env si el entorno es producción
+      //ignoreEnvFile: process.env.NODE_ENV === 'production', // Ignora el archivo .env si el entorno es producción
     }),
 
     // Configuración de TypeORM para la conexión con la base de datos
