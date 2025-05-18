@@ -28,7 +28,7 @@ export class Pregunta {
   @Column() // Define la columna "texto" en la tabla
   texto: string;
 
-  @Column({ type: 'enum', enum: TiposRespuestaEnum }) // Define la columna "tipo" como un enumerador
+  @Column({ name: 'tipo', type: 'enum', enum: TiposRespuestaEnum }) // Define la columna "tipo" como un enumerador
   tipo_respuesta: TiposRespuestaEnum; // Especifica el tipo de respuesta permitido para la pregunta
 
   @ManyToOne(() => Encuesta) // Relación muchos a uno con la entidad "Encuesta"
@@ -36,7 +36,7 @@ export class Pregunta {
   @Exclude() // Excluye esta propiedad al serializar la entidad (por ejemplo, al devolverla en una API)
   encuesta: Encuesta; // Referencia a la encuesta a la que pertenece esta pregunta
 
-  @OneToMany(() => Opcion, (opcion) => opcion.pregunta, { cascade: ['insert'] }) // Relación uno a muchos con la entidad "Opcion"
+  @OneToMany(() => Opcion, (opcion) => opcion.pregunta, { cascade: true }) // Relación uno a muchos con la entidad "Opcion"
   opciones: Opcion[]; // Lista de opciones asociadas a la pregunta
 
   // EXTRA POR EL MÓDULO DE RESPUESTAS
