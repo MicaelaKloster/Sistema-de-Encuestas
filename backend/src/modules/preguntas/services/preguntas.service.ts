@@ -1,4 +1,3 @@
-
 // Importación de decoradores y excepciones de NestJS
 import { NotFoundException, Injectable } from '@nestjs/common';
 // Decorador para inyectar repositorios de TypeORM
@@ -63,4 +62,3 @@ export class PreguntasService {
     return { mensaje: 'Opción eliminada correctamente' }; // Retorna un mensaje de éxito
   }
 }
-
