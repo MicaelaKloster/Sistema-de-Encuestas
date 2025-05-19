@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import {
   Column,
   Entity,
@@ -20,5 +21,6 @@ export class Opcion {
 
   @ManyToOne(() => Pregunta, (pregunta) => pregunta.opciones)
   @JoinColumn({ name: 'id_pregunta' })
+  @Exclude()
   pregunta: Pregunta;
 }

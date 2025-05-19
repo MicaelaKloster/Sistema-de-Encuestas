@@ -1,46 +1,27 @@
-// Importación de decoradores y módulos necesarios de NestJS
-import {
-  Body,
-  Controller,
-  Param,
-  Patch,
-  Delete,
-  ParseIntPipe,
-} from '@nestjs/common';
-// Importación del servicio de preguntas
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { PreguntasService } from '../services/preguntas.service';
-// Importación del DTO para actualizar una pregunta
-import { ActualizarPreguntaDto } from '../../encuestas/dtos/actualizar-pregunta.dto';
+import { CreatePreguntaDto } from '../dtos/create-pregunta.dto';
+import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { Pregunta } from '../entities/pregunta.entity';
 
-@Controller('preguntas') // Define el controlador para manejar las rutas relacionadas con "/preguntas"
+@ApiTags('preguntas')
+@Controller('preguntas')
 export class PreguntasController {
-  constructor(private readonly preguntasService: PreguntasService) {} // Inyección del servicio de preguntas
+  constructor(private readonly preguntasService: PreguntasService) {}
 
-  @Patch(':id') // Define un endpoint PATCH para actualizar una pregunta por su ID
-  async actualizarPregunta(
-    @Param('id', ParseIntPipe) id: number, // Obtiene el parámetro "id" de la URL y lo convierte en número.
-    @Body() actualizarDto: ActualizarPreguntaDto, // Extrae el cuerpo de la petición y lo valida según ActualizarPreguntaDto.
-  ) {
-    // Llama al método actualizarPregunta del servicio, pasándole el id y los nuevos datos.
-    return this.preguntasService.actualizarPregunta(
-      id, 
-      actualizarDto
-    ); 
+  @Post()
+  @ApiOperation({ summary: 'Crear una nueva pregunta' })
+  @ApiResponse({ status: 201, description: 'Pregunta creada exitosamente' })
+  async crearPregunta(
+    @Body() createPreguntaDto: CreatePreguntaDto,
+  ): Promise<Pregunta> {
+    return await this.preguntasService.crearPregunta(createPreguntaDto);
   }
 
-  @Delete(':id') // Define un endpoint DELETE para eliminar una pregunta y sus opciones
-  async eliminarPregunta(
-    @Param('id', ParseIntPipe) id: number, // Obtiene el parámetro "id" de la URL y lo convierte en número.
-  ) {
-    // Llama al método del servicio que elimina la pregunta junto con sus opciones
-    return this.preguntasService.eliminarPreguntaConOpciones(id);
-  }
-
-  @Delete('opciones/:id') // Define un endpoint DELETE para eliminar una opcion de una pregunta
-  async eliminarOpcion(
-    @Param('id', ParseIntPipe) id: number, // Obtiene el parámetro "id" de la URL y lo convierte en número.
-  ) {
-    // Llama al método del servicio que elimina una opcion de una pregunta
-    return this.preguntasService.eliminarOpcion(id);
+  @Get(':id')
+  @ApiOperation({ summary: 'Obtener una pregunta por ID' })
+  @ApiResponse({ status: 200, description: 'Pregunta encontrada' })
+  async obtenerPregunta(@Param('id') id: number): Promise<Pregunta> {
+    return await this.preguntasService.obtenerPregunta(id);
   }
 }
