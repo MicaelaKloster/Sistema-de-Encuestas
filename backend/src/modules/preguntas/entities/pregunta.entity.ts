@@ -6,9 +6,9 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { TiposRespuestaEnum } from '../enums/tipos-respuesta.enum';
-import { Encuesta } from './encuesta.entity';
-import { Opcion } from './opcion.entity';
+import { TiposRespuestaEnum } from '../../encuestas/enums/tipos-respuesta.enum';
+import { Encuesta } from '../../encuestas/entities/encuesta.entity';
+import { Opcion } from '../../opciones/entities/option.entity';
 
 @Entity({ name: 'preguntas' })
 export class Pregunta {
@@ -21,8 +21,8 @@ export class Pregunta {
   @Column()
   texto: string;
 
-  @Column({ type: 'enum', enum: TiposRespuestaEnum, name: 'tipo_respuesta' })
-  tipoRespuesta: TiposRespuestaEnum;
+  @Column({ type: 'enum', enum: TiposRespuestaEnum })
+  tipo_respuesta: TiposRespuestaEnum;
 
   @ManyToOne(() => Encuesta, (encuesta) => encuesta.preguntas)
   @JoinColumn({ name: 'id_encuesta' })
