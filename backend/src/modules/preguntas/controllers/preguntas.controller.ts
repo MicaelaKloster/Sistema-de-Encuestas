@@ -20,7 +20,7 @@ export class PreguntasController {
   async actualizarPregunta(
     @Param('id', ParseIntPipe) id: number, // Obtiene el parámetro "id" de la URL y lo convierte en número.
     @Body() actualizarDto: ActualizarPreguntaDto, // Extrae el cuerpo de la petición y lo valida según ActualizarPreguntaDto.
-  ) {
+  ): Promise<{ mensaje: string }> {
     // Llama al método actualizarPregunta del servicio, pasándole el id y los nuevos datos.
     return this.preguntasService.actualizarPregunta(
       id, 
@@ -31,7 +31,7 @@ export class PreguntasController {
   @Delete(':id') // Define un endpoint DELETE para eliminar una pregunta y sus opciones
   async eliminarPregunta(
     @Param('id', ParseIntPipe) id: number, // Obtiene el parámetro "id" de la URL y lo convierte en número.
-  ) {
+  ): Promise<{ mensaje: string }> {
     // Llama al método del servicio que elimina la pregunta junto con sus opciones
     return this.preguntasService.eliminarPreguntaConOpciones(id);
   }
@@ -39,7 +39,7 @@ export class PreguntasController {
   @Delete('opciones/:id') // Define un endpoint DELETE para eliminar una opcion de una pregunta
   async eliminarOpcion(
     @Param('id', ParseIntPipe) id: number, // Obtiene el parámetro "id" de la URL y lo convierte en número.
-  ) {
+  ): Promise<{ mensaje: string }> {
     // Llama al método del servicio que elimina una opcion de una pregunta
     return this.preguntasService.eliminarOpcion(id);
   }
