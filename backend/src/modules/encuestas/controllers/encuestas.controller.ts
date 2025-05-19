@@ -17,7 +17,6 @@ import { ObtenerEncuestaDto } from '../dtos/obtener-encuesta.dto';
 // Importación de la entidad Encuesta
 import { Encuesta } from '../entities/encuesta.entity';
 
-
 @Controller('encuestas') // Define el controlador para manejar las rutas relacionadas con "encuestas"
 export class EncuestasController {
   constructor(private readonly encuestasService: EncuestasService) {} // Inyección del servicio de encuestas
