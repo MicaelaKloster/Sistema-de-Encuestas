@@ -1,6 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Opcion } from '../../opciones/entities/option.entity';
 import { Respuesta } from './respuesta.entity';
-import { Opcion } from 'src/modules/encuestas/entities/opcion.entity';
 
 @Entity('respuestas_opciones')
 export class RespuestaOpcion {
@@ -20,4 +26,4 @@ export class RespuestaOpcion {
   @ManyToOne(() => Opcion)
   @JoinColumn({ name: 'id_opcion' })
   opcion: Opcion;
-} 
+}

@@ -1,11 +1,11 @@
 import {
-  Column,
   Entity,
-  JoinColumn,
-  ManyToOne,
   PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
-import { Pregunta } from './pregunta.entity';
+import { Pregunta } from '../../preguntas/entities/pregunta.entity';
 
 @Entity({ name: 'opciones' })
 export class Opcion {

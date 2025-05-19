@@ -27,7 +27,7 @@ export class CreatePreguntaDto {
   @ApiProperty({ enum: TiposRespuestaEnum }) // Documenta la propiedad "tipo" en Swagger como un enumerador
   @IsEnum(TiposRespuestaEnum) // Valida que el valor sea uno de los valores definidos en el enumerador
   @IsNotEmpty() // Valida que el valor no esté vacío
-  tipo: TiposRespuestaEnum; // Tipo de respuesta permitido para la pregunta
+  tipo_respuesta: TiposRespuestaEnum; // Tipo de respuesta permitido para la pregunta
 
   @ApiProperty({ type: [CreateOpcionDto], required: false }) // Documenta la propiedad "opciones" en Swagger como un arreglo de CreateOpcionDto
   @IsArray() // Valida que el valor sea un arreglo
