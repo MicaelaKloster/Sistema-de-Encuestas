@@ -46,8 +46,7 @@ export class RespuestasService {
     const respuesta = this.respuestaRepository.create({
       id_encuesta: encuesta.id,
     });
-    const respuestaGuardada =
-      await this.respuestaOpcionRepository.save(respuesta);
+    const respuestaGuardada = await this.respuestaRepository.save(respuesta);
 
     for (const respuestaPregunta of registarRespuestasDto.respuestas) {
       const pregunta = await this.preguntaRepository.findOne({
@@ -64,7 +63,7 @@ export class RespuestasService {
       }
 
       if (respuestaPregunta.tipo === TiposRespuestaEnum.ABIERTA) {
-        if (respuestaPregunta.texto) {
+        if (!respuestaPregunta.texto) {
           throw new BadRequestException(
             'Respuesta de texto requerida para preguntas abiertas',
           );

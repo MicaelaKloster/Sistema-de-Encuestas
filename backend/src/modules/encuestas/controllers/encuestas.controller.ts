@@ -16,6 +16,9 @@ import { CreateEncuestaDto } from '../dtos/create-encuesta.dto';
 import { ObtenerEncuestaDto } from '../dtos/obtener-encuesta.dto';
 // Importación de la entidad Encuesta
 import { Encuesta } from '../entities/encuesta.entity';
+import { BadRequestException } from '@nestjs/common';
+import { CodigoTipoEnum } from '../enums/codigo-tipo.enum';
+
 
 @Controller('encuestas') // Define el controlador para manejar las rutas relacionadas con "encuestas"
 export class EncuestasController {
@@ -43,7 +46,17 @@ export class EncuestasController {
       dto.tipo, // Tipo de código (respuesta o resultados)
     );
   }
-
+  @Get(':id/resultados')
+async obtenerResultados(
+  @Param('id') id: number,
+  @Query() dto: ObtenerEncuestaDto,
+): Promise<any> {
+  if (dto.tipo !== CodigoTipoEnum.RESULTADOS) {
+    throw new BadRequestException('Código inválido para ver resultados');
+  }
+  
+  return this.encuestasService.obtenerResultados(id, dto.codigo);
+}
   // Funcionalidad Extra para deshabilitar una encuesta (MICA)
   @Patch(':id/habilitar') // Define un endpoint PATCH para habilitar/deshabilitar una encuesta
   async cambiarEstadoEncuesta(

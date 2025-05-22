@@ -5,6 +5,7 @@ import { EncuestasModule } from './modules/encuestas/encuestas.module'; // Módu
 import { TypeOrmModule } from '@nestjs/typeorm'; // Módulo para la integración con TypeORM
 import { PreguntasModule } from './modules/preguntas/preguntas.module';
 import { RespuestasModule } from 'src/modules/respuestas/respuestas.module';
+import { OpcionesModule } from './modules/opciones/opciones.module';
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { RespuestasModule } from 'src/modules/respuestas/respuestas.module';
     EncuestasModule,
     PreguntasModule,
     RespuestasModule,
-
+    OpcionesModule,
     // Configuración global del módulo de configuración
     ConfigModule.forRoot({
       load: [configuration], // Carga la configuración personalizada desde un archivo

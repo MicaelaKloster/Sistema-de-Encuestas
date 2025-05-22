@@ -3,12 +3,12 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  OneToMany,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { Encuesta } from '../../encuestas/entities/encuesta.entity';
-import { RespuestaAbierta } from './respuesta-abierta.entity';
-import { RespuestaOpcion } from './respuesta-opcion.entity';
+import { RespuestaAbierta } from '../../respuestas/entities/respuesta-abierta.entity';
+import { RespuestaOpcion } from '../../respuestas/entities/respuesta-opcion.entity';
 
 @Entity('respuestas')
 export class Respuesta {
@@ -18,19 +18,13 @@ export class Respuesta {
   @Column('int')
   id_encuesta: number;
 
-  @ManyToOne(() => Encuesta, (encuesta) => encuesta.respuestas)
+  @ManyToOne(() => Encuesta)
   @JoinColumn({ name: 'id_encuesta' })
   encuesta: Encuesta;
 
-  @OneToMany(
-    () => RespuestaAbierta,
-    (respuestaAbierta) => respuestaAbierta.respuesta,
-  )
+  @OneToMany(() => RespuestaAbierta, (ra) => ra.respuesta)
   respuestasAbiertas: RespuestaAbierta[];
 
-  @OneToMany(
-    () => RespuestaOpcion,
-    (respuestaOpcion) => respuestaOpcion.respuesta,
-  )
+  @OneToMany(() => RespuestaOpcion, (ro) => ro.respuesta)
   respuestasOpciones: RespuestaOpcion[];
 }

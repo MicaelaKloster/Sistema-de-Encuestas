@@ -12,6 +12,9 @@ import { CreateEncuestaDto } from '../dtos/create-encuesta.dto';
 import { v4 } from 'uuid';
 // Importación del enumerador para los tipos de código
 import { CodigoTipoEnum } from '../enums/codigo-tipo.enum';
+import { NotFoundException } from '@nestjs/common';
+import { TiposRespuestaEnum } from '../enums/tipos-respuesta.enum';
+import { Respuesta } from '../../respuestas/entities/respuesta.entity';
 
 @Injectable() // Decorador que marca esta clase como un servicio inyectable
 export class EncuestasService {
@@ -19,6 +22,8 @@ export class EncuestasService {
     // Inyección del repositorio de la entidad Encuesta
     @InjectRepository(Encuesta)
     private encuestaRepository: Repository<Encuesta>,
+    @InjectRepository(Respuesta)
+    private respuestaRepository: Repository<Respuesta>,
   ) {}
 
   // Método para crear una nueva encuesta
@@ -27,6 +32,16 @@ export class EncuestasService {
     codigoRespuesta: string;
     codigoResultados: string;
   }> {
+    for (const pregunta of dto.preguntas) {
+      if (
+        pregunta.tipo_respuesta !== TiposRespuestaEnum.ABIERTA &&
+        (!pregunta.opciones || pregunta.opciones.length === 0)
+      ) {
+        throw new BadRequestException(
+          `Las preguntas de opción múltiple deben tener opciones`,
+        );
+      }
+    }
     // Creación de una nueva instancia de Encuesta con los datos del DTO
     const encuesta: Encuesta = this.encuestaRepository.create({
       ...dto, // Copia las propiedades del DTO
@@ -56,8 +71,8 @@ export class EncuestasService {
       .createQueryBuilder('encuesta') // Alias para la tabla Encuesta
       .innerJoinAndSelect('encuesta.preguntas', 'pregunta') // Une las preguntas relacionadas
       .leftJoinAndSelect('pregunta.opciones', 'preguntaOpcion') // Une las opciones de las preguntas
-      .where('encuesta.id = :id', { id }); // Filtra por el ID de la encuesta
-
+      .where('encuesta.id = :id', { id }) // Filtra por el ID de la encuesta
+      .andWhere('encuesta.habilitada = true');
     // Filtra según el tipo de código proporcionado
     switch (codigoTipo) {
       case CodigoTipoEnum.RESPUESTA:
@@ -84,7 +99,63 @@ export class EncuestasService {
     // Retorna la encuesta encontrada
     return encuesta;
   }
+  async obtenerResultados(id: number, codigoResultados: string): Promise<any> {
+    // Verificar primero que el código sea válido
+    const encuesta = await this.encuestaRepository.findOne({
+      where: { id, codigoResultados: codigoResultados },
+      relations: [
+        'preguntas',
+        'preguntas.opciones',
+        'respuestas',
+        'respuestas.respuestasAbiertas',
+        'respuestas.respuestasOpciones',
+        'respuestas.respuestasOpciones.opcion',
+      ],
+    });
 
+    if (!encuesta) {
+      throw new NotFoundException('Encuesta no encontrada o código inválido');
+    }
+
+    // Procesar resultados
+    const resultados = encuesta.preguntas.map((pregunta) => {
+      if (pregunta.tipo_respuesta === TiposRespuestaEnum.ABIERTA) {
+        const respuestasTexto = encuesta.respuestas
+          .flatMap((r) => r.respuestasAbiertas)
+          .filter((ra) => ra.id_pregunta === pregunta.id)
+          .map((ra) => ra.texto);
+
+        return {
+          pregunta: pregunta.texto,
+          tipo: 'ABIERTA',
+          respuestas: respuestasTexto,
+        };
+      } else {
+        const opcionesConteo = pregunta.opciones.map((opcion) => {
+          const conteo = encuesta.respuestas
+            .flatMap((r) => r.respuestasOpciones)
+            .filter((ro) => ro.opcion?.id === opcion.id).length;
+
+          return {
+            opcion: opcion.texto,
+            conteo,
+          };
+        });
+
+        return {
+          pregunta: pregunta.texto,
+          tipo: pregunta.tipo_respuesta,
+          opciones: opcionesConteo,
+        };
+      }
+    });
+
+    return {
+      encuesta: encuesta.nombre,
+      totalRespuestas: encuesta.respuestas.length,
+      resultados,
+    };
+  }
   // Funcionalidad Extra para deshabilitar una encuesta (MICA)
   async actualizarEstadoEncuesta(
     id: number,

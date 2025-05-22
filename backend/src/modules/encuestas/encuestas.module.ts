@@ -6,12 +6,13 @@ import { TypeOrmModule } from '@nestjs/typeorm'; // Módulo de TypeORM para la i
 import { Encuesta } from './entities/encuesta.entity'; // Entidad que representa la tabla "Encuesta" en la base de datos
 import { Pregunta } from './entities/pregunta.entity'; // Entidad que representa la tabla "Pregunta" en la base de datos
 import { Opcion } from './entities/opcion.entity'; // Entidad que representa la tabla "Opción" en la base de datos
+import { Respuesta } from '../respuestas/entities/respuesta.entity'; // Entidad que representa la tabla "Respuesta" en la base de datos
 
 @Module({
   // Importación de módulos necesarios para este módulo
   imports: [
     // Configuración de TypeORM para trabajar con las entidades relacionadas
-    TypeOrmModule.forFeature([Encuesta, Pregunta, Opcion]),
+    TypeOrmModule.forFeature([Encuesta, Pregunta, Opcion, Respuesta]),
   ],
   // Declaración de los controladores que manejarán las rutas de este módulo
   controllers: [EncuestasController],
