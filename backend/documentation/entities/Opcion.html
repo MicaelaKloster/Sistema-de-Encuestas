@@ -196,7 +196,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/modules/encuestas/entities/opcion.entity.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/encuestas/entities/opcion.entity.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -232,7 +232,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/modules/encuestas/entities/opcion.entity.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/modules/encuestas/entities/opcion.entity.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -270,7 +270,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modules/encuestas/entities/opcion.entity.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/modules/encuestas/entities/opcion.entity.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -306,7 +306,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/modules/encuestas/entities/opcion.entity.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/modules/encuestas/entities/opcion.entity.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -326,10 +326,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  //OneToMany,
   PrimaryGeneratedColumn,
 } from &#x27;typeorm&#x27;;
 // Importación de la entidad relacionada &quot;Pregunta&quot;
 import { Pregunta } from &#x27;./pregunta.entity&#x27;;
+//import { RespuestaOpcion } from &#x27;src/modules/respuestas/entities/respuesta-opcion.entity&#x27;;
 
 @Entity({ name: &#x27;opciones&#x27; }) // Define la clase como una entidad de la base de datos con el nombre &quot;opciones&quot;
 export class Opcion {
@@ -346,6 +348,10 @@ export class Opcion {
   @JoinColumn({ name: &#x27;id_pregunta&#x27; }) // Define la columna &quot;id_pregunta&quot; como la clave foránea
   @Exclude() // Excluye esta propiedad al serializar la entidad (por ejemplo, al devolverla en una API)
   pregunta: Pregunta; // Referencia a la pregunta a la que pertenece esta opción
+
+  // EXTRA POR MÓDULO RESPUESTAS
+  // @OneToMany(() &#x3D;&gt; RespuestaOpcion, (r) &#x3D;&gt; r.opcion)
+  // respuestas: RespuestaOpcion[];
 }
 </code></pre>
     </div>
