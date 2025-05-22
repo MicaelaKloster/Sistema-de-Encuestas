@@ -34,5 +34,5 @@ export class CreatePreguntaDto {
   @IsOptional() // Valida que esta propiedad sea opcional
   @ValidateNested({ each: true }) // Valida que cada elemento del arreglo sea un objeto válido según CreateOpcionDto
   @Type(() => CreateOpcionDto) // Transforma cada elemento del arreglo en una instancia de CreateOpcionDto
-  opciones?: CreateOpcionDto[]; // Opciones asociadas a la pregunta (opcional)
+  opciones: CreateOpcionDto[]; // Opciones asociadas a la pregunta (opcional)
 }

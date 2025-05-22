@@ -63,4 +63,4 @@ async function bootstrap() {
 }
 
 // Llamada a la función principal para iniciar la aplicación
-bootstrap();
+void bootstrap();
