@@ -35,11 +35,4 @@ export class EncuestasService {
     );
   }
 
-  // Método de prueba para traer una encuesta y mostrar el resultado por consola
-  test() {
-    this.traerEncuesta(1, 'codigo-test', CodigoTipoEnum.RESPUESTA).subscribe({
-      next: (res) => console.log(res), // Muestra la respuesta si es exitosa
-      error: (err) => console.log(err), // Muestra el error si ocurre
-    });
-  }
 }

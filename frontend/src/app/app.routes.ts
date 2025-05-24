@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { ComienzoComponent } from './components/comienzo/comienzo.component';
-import { CreacionComponent } from './components/creacion/creacion.component';
+import { CreacionEncuestaComponent } from './components/creacion-encuesta/creacion-encuesta.component';
 
 // Definición de las rutas principales de la aplicación Angular
 export const routes: Routes = [
@@ -10,7 +10,7 @@ export const routes: Routes = [
   },
   {
     path: 'creacion', // Ruta para la creación de encuestas
-    component: CreacionComponent // Componente que se muestra en la ruta 'creacion'
+    component: CreacionEncuestaComponent, // Componente que se muestra en la ruta 'creacion'
   },
   {
     path: '**', // Ruta comodín (cualquier ruta no definida)
