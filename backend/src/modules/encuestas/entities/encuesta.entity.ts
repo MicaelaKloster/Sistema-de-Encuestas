@@ -14,7 +14,7 @@ export class Encuesta {
 
   @Column() // Define la columna "nombre" en la tabla
   nombre: string;
-
+  fechaActualizacion: Date;
   @OneToMany(() => Pregunta, (pregunta) => pregunta.encuesta, {
     cascade: ['insert'], // Permite insertar automáticamente las preguntas relacionadas
   })

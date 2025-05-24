@@ -18,7 +18,9 @@ export class OpcionesService {
     preguntaId: number,
     createOpcionDto: CreateOpcionDto,
   ): Promise<{ mensaje: string; opcion: Opcion }> {
-    const pregunta = await this.preguntaRepository.findOneBy({ id: preguntaId });
+    const pregunta = await this.preguntaRepository.findOneBy({
+      id: preguntaId,
+    });
     if (!pregunta) {
       throw new NotFoundException('Pregunta no encontrada');
     }

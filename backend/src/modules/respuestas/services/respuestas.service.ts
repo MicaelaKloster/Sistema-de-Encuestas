@@ -36,13 +36,70 @@ export class RespuestasService {
   async registrarRespuestas(
     codigoParticipacion: string,
     registarRespuestasDto: RegistrarRespuestasDto,
+    encuestaId?: number,
   ): Promise<void> {
+    // Construir la condición de búsqueda con un tipo específico
+    const whereCondition: {
+      codigoRespuesta: string;
+      habilitada: boolean;
+      id?: number;
+    } = {
+      codigoRespuesta: codigoParticipacion,
+      habilitada: true,
+    };
+
+    // Si se proporciona el ID de la encuesta, añadirlo a la condición
+    if (encuestaId) {
+      whereCondition.id = encuestaId;
+    }
+
     const encuesta = await this.encuestaRepository.findOne({
-      where: { codigoRespuesta: codigoParticipacion }, //busca la encuesta con el codigo de participacion
+      where: whereCondition, //busca la encuesta con el codigo de participacion y opcionalmente el ID
+      relations: ['preguntas', 'preguntas.opciones'],
     });
 
     if (!encuesta) {
       throw new NotFoundException('Encuesta no encontrada o enlace invalido'); //sino existe el codigo mensaje de error
+    }
+
+    const preguntasObligatorias = encuesta.preguntas;
+    const preguntasRespondidas = registarRespuestasDto.respuestas.map(
+      (r) => r.id_pregunta,
+    );
+
+    // Verificar si todas las preguntas obligatorias están respondidas
+    const preguntasFaltantes = preguntasObligatorias.filter(
+      (p) => !preguntasRespondidas.includes(p.id),
+    );
+
+    if (preguntasFaltantes.length > 0) {
+      console.log(
+        'Preguntas obligatorias:',
+        preguntasObligatorias.map((p) => p.id),
+      );
+      console.log('Preguntas respondidas:', preguntasRespondidas);
+      console.log(
+        'Preguntas faltantes:',
+        preguntasFaltantes.map((p) => p.id),
+      );
+      // Imprimir información detallada de las preguntas y opciones
+      encuesta.preguntas.forEach((pregunta) => {
+        console.log(
+          `Pregunta ID: ${pregunta.id}, Número: ${pregunta.numero}, Texto: "${pregunta.texto}"`,
+        );
+        if (pregunta.opciones && pregunta.opciones.length > 0) {
+          console.log('Opciones:');
+          pregunta.opciones.forEach((opcion) => {
+            console.log(
+              `  Opción ID: ${opcion.id}, Número: ${opcion.numero}, Texto: "${opcion.texto}"`,
+            );
+          });
+        }
+      });
+
+      throw new BadRequestException(
+        `Debe responder todas las preguntas obligatorias. Faltan las preguntas: ${preguntasFaltantes.map((p) => p.numero).join(', ')}`,
+      );
     }
     //crea una nueva respuesta vinculada a la encuesta
     const respuesta = this.respuestaRepository.create({
@@ -50,9 +107,8 @@ export class RespuestasService {
     });
     const respuestaGuardada = await this.respuestaRepository.save(respuesta);
 
-
-    const respuestaGuardada =
-      await this.respuestaOpcionRepository.save(respuesta); //guarda las respuestas en la base de datos
+    //onst respuestaGuardada =
+    //wait this.respuestaOpcionRepository.save(respuesta); //guarda las respuestas en la base de datos
     //itera sobre las respuestas enviadas
 
     for (const respuestaPregunta of registarRespuestasDto.respuestas) {
@@ -111,8 +167,22 @@ export class RespuestasService {
           });
 
           if (!opcion) {
+            // Obtener todas las opciones disponibles para esta pregunta para depuración
+            const opcionesDisponibles = await this.opcionRepository.find({
+              where: { pregunta: { id: pregunta.id } },
+              select: ['id', 'texto', 'numero'],
+            });
+
+            console.log(
+              `Error: Opción ${idOpcion} no encontrada para la pregunta ${pregunta.id}`,
+            );
+            console.log(
+              'Opciones disponibles para esta pregunta:',
+              opcionesDisponibles,
+            );
+
             throw new BadRequestException(
-              `Opcion ${idOpcion} no encontrada o no pertenece a esta pregunta`,
+              `Opcion ${idOpcion} no encontrada o no pertenece a esta pregunta. Opciones disponibles: ${JSON.stringify(opcionesDisponibles)}`,
             );
           }
           const respuestaOpcion = this.respuestaOpcionRepository.create({
@@ -137,6 +207,22 @@ export class RespuestasService {
     if (!encuesta) {
       throw new NotFoundException('Encuesta no encontrada o enlace inválido'); //si no existe mensaje de error.
     }
+
+    // Imprimir información detallada de las preguntas y opciones para depuración
+    console.log('Información de la encuesta para depuración:');
+    encuesta.preguntas.forEach((pregunta) => {
+      console.log(
+        `Pregunta ID: ${pregunta.id}, Número: ${pregunta.numero}, Texto: "${pregunta.texto}"`,
+      );
+      if (pregunta.opciones && pregunta.opciones.length > 0) {
+        console.log('Opciones:');
+        pregunta.opciones.forEach((opcion) => {
+          console.log(
+            `  Opción ID: ${opcion.id}, Número: ${opcion.numero}, Texto: "${opcion.texto}"`,
+          );
+        });
+      }
+    });
 
     // Construir el objeto
     const resultado: VisualizarRespuestasDto = {
