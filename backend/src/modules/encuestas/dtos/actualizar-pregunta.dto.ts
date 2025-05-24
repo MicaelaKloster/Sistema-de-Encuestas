@@ -5,7 +5,7 @@ import { TiposRespuestaEnum } from '../enums/tipos-respuesta.enum'; // Enum con 
 export class ActualizarPreguntaDto {
   @IsOptional() // Indica que esta propiedad es opcional
   @IsString() // Valida que el valor sea una cadena de texto
-  texto?: string; // Nuevo texto de la pregunta 
+  texto?: string; // Nuevo texto de la pregunta
 
   @IsOptional() // Indica que esta propiedad es opcional
   @IsEnum(TiposRespuestaEnum) // Valida que sea un valor válido del enum TiposRespuestaEnum

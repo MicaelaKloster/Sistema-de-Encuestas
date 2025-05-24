@@ -137,6 +137,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#actualizarEstadoEncuesta" >actualizarEstadoEncuesta</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#crearEncuesta" >crearEncuesta</a>
                             </li>
                             <li>
@@ -209,6 +213,87 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="actualizarEstadoEncuesta"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>actualizarEstadoEncuesta</b></span>
+                        <a href="#actualizarEstadoEncuesta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>actualizarEstadoEncuesta(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, habilitada: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>habilitada</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -461,6 +546,29 @@ export class EncuestasService {
 
     // Retorna la encuesta encontrada
     return encuesta;
+  }
+
+  // Funcionalidad Extra para deshabilitar una encuesta (MICA)
+  async actualizarEstadoEncuesta(
+    id: number,
+    habilitada: boolean,
+  ): Promise&lt;{ mensaje: string }&gt; {
+    // Busca la encuesta por su ID
+    const encuesta &#x3D; await this.encuestaRepository.findOne({ where: { id } });
+
+    // Si no se encuentra la encuesta, lanza una excepción
+    if (!encuesta) {
+      throw new BadRequestException(&#x27;Encuesta no encontrada&#x27;);
+    }
+
+    // Actualiza el estado de la encuesta
+    encuesta.habilitada &#x3D; habilitada;
+    await this.encuestaRepository.save(encuesta);
+
+    // Retorna un mensaje de éxito
+    return {
+      mensaje: &#x60;La encuesta fue ${habilitada ? &#x27;habilitada&#x27; : &#x27;deshabilitada&#x27;} correctamente&#x60;,
+    };
   }
 }
 </code></pre>

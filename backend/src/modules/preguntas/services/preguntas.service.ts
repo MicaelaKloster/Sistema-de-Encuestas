@@ -23,9 +23,12 @@ export class PreguntasService {
   ) {}
 
   // Método para actualizar una pregunta
-  async actualizarPregunta(idPregunta: number, updateDto: ActualizarPreguntaDto): Promise<{ mensaje: string }> {
+  async actualizarPregunta(
+    idPregunta: number,
+    updateDto: ActualizarPreguntaDto,
+  ): Promise<{ mensaje: string }> {
     const pregunta = await this.preguntaRepo.findOneBy({ id: idPregunta }); // Busca la pregunta por ID
-    if (!pregunta) throw new NotFoundException('Pregunta no encontrada');  // Si no existe, lanza una excepción 404
+    if (!pregunta) throw new NotFoundException('Pregunta no encontrada'); // Si no existe, lanza una excepción 404
 
     Object.assign(pregunta, updateDto); // Asigna los nuevos valores a la entidad pregunta
     await this.preguntaRepo.save(pregunta); // Guarda la entidad actualizada en la base de datos
@@ -34,8 +37,11 @@ export class PreguntasService {
   }
 
   // Método para eliminar una pregunta y sus opciones
-  async eliminarPreguntaConOpciones(idPregunta: number): Promise<{ mensaje: string }> {
-    const pregunta = await this.preguntaRepo.findOne({ // Busca la pregunta junto con sus opciones 
+  async eliminarPreguntaConOpciones(
+    idPregunta: number,
+  ): Promise<{ mensaje: string }> {
+    const pregunta = await this.preguntaRepo.findOne({
+      // Busca la pregunta junto con sus opciones
       where: { id: idPregunta },
       relations: ['opciones'],
     });
@@ -58,7 +64,7 @@ export class PreguntasService {
     const opcion = await this.opcionRepo.findOneBy({ id: idOpcion }); // Busca la opción por ID
     if (!opcion) throw new NotFoundException('Opción no encontrada'); // Si no existe, lanza excepción 404
 
-    await this.opcionRepo.delete(idOpcion);  // Elimina la opción
+    await this.opcionRepo.delete(idOpcion); // Elimina la opción
     return { mensaje: 'Opción eliminada correctamente' }; // Retorna un mensaje de éxito
   }
 }

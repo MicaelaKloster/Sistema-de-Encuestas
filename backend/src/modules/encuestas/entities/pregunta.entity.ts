@@ -29,7 +29,7 @@ export class Pregunta {
   texto: string;
 
   @Column({ type: 'enum', enum: TiposRespuestaEnum }) // Define la columna "tipo" como un enumerador
-  tipo_respuesta: TiposRespuestaEnum; // Especifica el tipo de respuesta permitido para la pregunta
+  tipo: TiposRespuestaEnum; // Especifica el tipo de respuesta permitido para la pregunta
 
   @ManyToOne(() => Encuesta) // Relación muchos a uno con la entidad "Encuesta"
   @JoinColumn({ name: 'id_encuesta' }) // Define la columna "id_encuesta" como la clave foránea

@@ -56,6 +56,56 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="components/AppComponent.html" data-type="entity-link" >AppComponent</a>
                             </li>
+                            <li class="link">
+                                <a href="components/ComienzoComponent.html" data-type="entity-link" >ComienzoComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/CreacionComponent.html" data-type="entity-link" >CreacionComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SeccionComponent.html" data-type="entity-link" >SeccionComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/TextoErrorComponent.html" data-type="entity-link" >TextoErrorComponent</a>
+                            </li>
+                        </ul>
+                    </li>
+                        <li class="chapter">
+                            <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#injectables-links"' :
+                                'data-bs-target="#xs-injectables-links"' }>
+                                <span class="icon ion-md-arrow-round-down"></span>
+                                <span>Injectables</span>
+                                <span class="icon ion-ios-arrow-down"></span>
+                            </div>
+                            <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
+                                <li class="link">
+                                    <a href="injectables/EncuestasService.html" data-type="entity-link" >EncuestasService</a>
+                                </li>
+                            </ul>
+                        </li>
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#interfaces-links"' :
+                            'data-bs-target="#xs-interfaces-links"' }>
+                            <span class="icon ion-md-information-circle-outline"></span>
+                            <span>Interfaces</span>
+                            <span class="icon ion-ios-arrow-down"></span>
+                        </div>
+                        <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
+                            <li class="link">
+                                <a href="interfaces/CreateEncuestaDTO.html" data-type="entity-link" >CreateEncuestaDTO</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CreatePreguntaDTO.html" data-type="entity-link" >CreatePreguntaDTO</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EncuestaDTO.html" data-type="entity-link" >EncuestaDTO</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/OpcionDTO.html" data-type="entity-link" >OpcionDTO</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/PreguntaDTO.html" data-type="entity-link" >PreguntaDTO</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="chapter">
@@ -66,6 +116,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
+                            <li class="link">
+                                <a href="miscellaneous/enumerations.html" data-type="entity-link">Enums</a>
+                            </li>
+                            <li class="link">
+                                <a href="miscellaneous/typealiases.html" data-type="entity-link">Type aliases</a>
+                            </li>
                             <li class="link">
                                 <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
                             </li>

@@ -22,10 +22,7 @@ export class PreguntasController {
     @Body() actualizarDto: ActualizarPreguntaDto, // Extrae el cuerpo de la petición y lo valida según ActualizarPreguntaDto.
   ): Promise<{ mensaje: string }> {
     // Llama al método actualizarPregunta del servicio, pasándole el id y los nuevos datos.
-    return this.preguntasService.actualizarPregunta(
-      id, 
-      actualizarDto
-    ); 
+    return this.preguntasService.actualizarPregunta(id, actualizarDto);
   }
 
   @Delete(':id') // Define un endpoint DELETE para eliminar una pregunta y sus opciones

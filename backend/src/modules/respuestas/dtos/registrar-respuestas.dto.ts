@@ -15,6 +15,7 @@ export class RespuestaPreguntaDto {
 
   @IsString()
   @IsNotEmpty()
+  @Type(() => String) // Transforma explicitamente el tipo
   tipo:
     | 'ABIERTA'
     | 'OPCION_MULTIPLE_SELECCION_SIMPLE'
@@ -27,6 +28,7 @@ export class RespuestaPreguntaDto {
   @IsOptional()
   @IsArray()
   @IsNumber({}, { each: true })
+  @Type(() => Number) // Transforma cada elemento a número
   opciones?: number[]; // preguntas de opción múltiple
 }
 
