@@ -6,7 +6,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { Respuesta } from './respuesta.entity';
-import { Opcion } from 'src/modules/encuestas/entities/opcion.entity';
+import { Opcion } from '../../encuestas/entities/opcion.entity';
 
 @Entity('respuestas_opciones')
 export class RespuestaOpcion {

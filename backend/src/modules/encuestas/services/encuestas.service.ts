@@ -12,6 +12,9 @@ import { CreateEncuestaDto } from '../dtos/create-encuesta.dto';
 import { v4 } from 'uuid';
 // Importación del enumerador para los tipos de código
 import { CodigoTipoEnum } from '../enums/codigo-tipo.enum';
+import { NotFoundException } from '@nestjs/common';
+import { TiposRespuestaEnum } from '../enums/tipos-respuesta.enum';
+import { Respuesta } from '../../respuestas/entities/respuesta.entity';
 
 @Injectable() // Decorador que marca esta clase como un servicio inyectable
 export class EncuestasService {
@@ -19,6 +22,8 @@ export class EncuestasService {
     // Inyección del repositorio de la entidad Encuesta
     @InjectRepository(Encuesta)
     private encuestaRepository: Repository<Encuesta>,
+    @InjectRepository(Respuesta)
+    private respuestaRepository: Repository<Respuesta>,
   ) {}
 
   // Método para crear una nueva encuesta
@@ -26,22 +31,58 @@ export class EncuestasService {
     id: number;
     codigoRespuesta: string;
     codigoResultados: string;
+    enlaceParticipacion: string;
+    enlaceVisualizacion: string;
   }> {
+    for (const pregunta of dto.preguntas) {
+      if (
+        pregunta.tipo !== TiposRespuestaEnum.ABIERTA &&
+        (!pregunta.opciones || pregunta.opciones.length === 0)
+      ) {
+        throw new BadRequestException(
+          `Las preguntas de opción múltiple deben tener opciones`,
+        );
+      }
+      if (
+        pregunta.tipo === TiposRespuestaEnum.ABIERTA &&
+        pregunta.opciones?.length > 0
+      ) {
+        throw new BadRequestException(
+          `Las preguntas abiertas no deben tener opciones`,
+        );
+      }
+    }
+    const codigoRespuesta = v4();
+    const codigoResultados = v4();
+
     // Creación de una nueva instancia de Encuesta con los datos del DTO
     const encuesta: Encuesta = this.encuestaRepository.create({
       ...dto, // Copia las propiedades del DTO
-      codigoRespuesta: v4(), // Genera un código único para las respuestas
-      codigoResultados: v4(), // Genera un código único para los resultados
+      codigoRespuesta, // Genera un código único para las respuestas
+      codigoResultados, // Genera un código único para los resultados
     });
 
     // Guarda la encuesta en la base de datos
     const encuestaCreada = await this.encuestaRepository.save(encuesta);
+
+    // Usamos APP_URL para que sea dinámico con el puerto que esté activo
+    const baseUrl = process.env.APP_URL || 'http://localhost:3000';
+    const apiPrefix = process.env.GLOBAL_PREFIX || 'api';
+    const apiVersion = 'v1';
+
+    // Formato: /api/v1/respuestas/participar/{id}/{codigoRespuesta}
+    const enlaceParticipacion = `${baseUrl}/${apiPrefix}/${apiVersion}/respuestas/participar/${encuestaCreada.id}/${codigoRespuesta}`;
+
+    // Formato: /api/v1/encuestas/resultados/{id}?codigo={codigoResultados}
+    const enlaceVisualizacion = `${baseUrl}/${apiPrefix}/${apiVersion}/encuestas/${encuestaCreada.id}/resultados?codigo=${codigoResultados}`;
 
     // Retorna los datos relevantes de la encuesta creada
     return {
       id: encuestaCreada.id,
       codigoRespuesta: encuestaCreada.codigoRespuesta,
       codigoResultados: encuestaCreada.codigoResultados,
+      enlaceParticipacion,
+      enlaceVisualizacion,
     };
   }
 
@@ -56,8 +97,8 @@ export class EncuestasService {
       .createQueryBuilder('encuesta') // Alias para la tabla Encuesta
       .innerJoinAndSelect('encuesta.preguntas', 'pregunta') // Une las preguntas relacionadas
       .leftJoinAndSelect('pregunta.opciones', 'preguntaOpcion') // Une las opciones de las preguntas
-      .where('encuesta.id = :id', { id }); // Filtra por el ID de la encuesta
-
+      .where('encuesta.id = :id', { id }) // Filtra por el ID de la encuesta
+      .andWhere('encuesta.habilitada = true');
     // Filtra según el tipo de código proporcionado
     switch (codigoTipo) {
       case CodigoTipoEnum.RESPUESTA:
@@ -84,7 +125,64 @@ export class EncuestasService {
     // Retorna la encuesta encontrada
     return encuesta;
   }
+  async obtenerResultados(id: number, codigoResultados: string): Promise<any> {
+    // Verificar primero que el código sea válido
+    const encuesta = await this.encuestaRepository.findOne({
+      where: { id, codigoResultados: codigoResultados, habilitada: true },
+      relations: [
+        'preguntas',
+        'preguntas.opciones',
+        'respuestas',
+        'respuestas.respuestasAbiertas',
+        'respuestas.respuestasOpciones',
+        'respuestas.respuestasOpciones.opcion',
+      ],
+    });
 
+    if (!encuesta) {
+      throw new NotFoundException('Encuesta no encontrada o código inválido');
+    }
+
+    // Procesar resultados
+    const resultados = encuesta.preguntas.map((pregunta) => {
+      if (pregunta.tipo === TiposRespuestaEnum.ABIERTA) {
+        const respuestasTexto = encuesta.respuestas
+          .flatMap((r) => r.respuestasAbiertas)
+          .filter((ra) => ra.id_pregunta === pregunta.id)
+          .map((ra) => ra.texto);
+
+        return {
+          pregunta: pregunta.texto,
+          tipo: 'ABIERTA',
+          respuestas: respuestasTexto,
+        };
+      } else {
+        const opcionesConteo = pregunta.opciones.map((opcion) => {
+          const conteo = encuesta.respuestas
+            .flatMap((r) => r.respuestasOpciones)
+            .filter((ro) => ro.opcion?.id === opcion.id).length;
+
+          return {
+            id: opcion.id,
+            opcion: opcion.texto,
+            conteo,
+          };
+        });
+
+        return {
+          pregunta: pregunta.texto,
+          tipo: pregunta.tipo,
+          opciones: opcionesConteo,
+        };
+      }
+    });
+
+    return {
+      encuesta: encuesta.nombre,
+      totalRespuestas: encuesta.respuestas.length,
+      resultados,
+    };
+  }
   // Funcionalidad Extra para deshabilitar una encuesta (MICA)
   async actualizarEstadoEncuesta(
     id: number,
@@ -106,5 +204,37 @@ export class EncuestasService {
     return {
       mensaje: `La encuesta fue ${habilitada ? 'habilitada' : 'deshabilitada'} correctamente`,
     };
+  }
+
+  // Método para obtener una encuesta por su código de respuesta
+  async obtenerEncuestaPorCodigo(
+    codigo: string,
+    codigoTipo: CodigoTipoEnum.RESPUESTA | CodigoTipoEnum.RESULTADOS,
+  ): Promise<Encuesta> {
+    // Determinar qué campo usar según el tipo de código
+    const whereCondition =
+      codigoTipo === CodigoTipoEnum.RESPUESTA
+        ? { codigoRespuesta: codigo, habilitada: true }
+        : { codigoResultados: codigo, habilitada: true };
+
+    // Buscar la encuesta que tenga este código
+    const encuesta = await this.encuestaRepository.findOne({
+      where: whereCondition,
+      relations: ['preguntas', 'preguntas.opciones'],
+    });
+
+    if (!encuesta) {
+      throw new BadRequestException('Código de encuesta no válido');
+    }
+
+    // Ordenar las preguntas y opciones
+    encuesta.preguntas.sort((a, b) => a.numero - b.numero);
+    encuesta.preguntas.forEach((pregunta) => {
+      if (pregunta.opciones) {
+        pregunta.opciones.sort((a, b) => a.numero - b.numero);
+      }
+    });
+
+    return encuesta;
   }
 }
