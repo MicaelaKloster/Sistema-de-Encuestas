@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { RespuestasService } from 'src/modules/respuestas/services/respuestas.service';
 import { RegistrarRespuestasDto } from 'src/modules/respuestas/dtos/registrar-respuestas.dto';
-import { VisualizarRespuestasDto } from '../dtos/visualizar-respuestas.dto';
+import { VisualizarRespuestasDto } from 'src/modules/respuestas/dtos/visualizar-respuestas.dtos';
 import {
   ApiTags,
   ApiOperation,

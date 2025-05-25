@@ -13,8 +13,8 @@ import { Pregunta } from 'src/modules/encuestas/entities/pregunta.entity';
 import { Opcion } from 'src/modules/encuestas/entities/opcion.entity';
 import { RegistrarRespuestasDto } from 'src/modules/respuestas/dtos/registrar-respuestas.dto';
 import { TiposRespuestaEnum } from 'src/modules/encuestas/enums/tipos-respuesta.enum';
-import { VisualizarRespuestasDto } from '../dtos/visualizar-respuestas.dto';
-import { PreguntaConRespuestasDto } from '../dtos/visualizar-respuestas.dto';
+import { VisualizarRespuestasDto } from '../dtos/visualizar-respuestas.dtos';
+import { PreguntaConRespuestasDto } from '../dtos/visualizar-respuestas.dtos';
 
 @Injectable()
 export class RespuestasService {
