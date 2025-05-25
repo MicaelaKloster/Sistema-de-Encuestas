@@ -155,7 +155,7 @@
                             </li>
                             <li>
                                     <span class="modifier"></span>
-                                <a href="#tipo_respuesta" >tipo_respuesta</a>
+                                <a href="#tipo" >tipo</a>
                             </li>
                         </ul>
                     </td>
@@ -206,7 +206,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -242,7 +242,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -278,7 +278,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -314,7 +314,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -350,7 +350,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -361,11 +361,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="tipo_respuesta"></a>
+                    <a name="tipo"></a>
                     <span class="name">
                             <span class="modifier"></span>
-                        <span ><b>tipo_respuesta</b></span>
-                        <a href="#tipo_respuesta"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>tipo</b></span>
+                        <a href="#tipo"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -386,7 +386,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -415,6 +415,7 @@ import { Exclude } from &#x27;class-transformer&#x27;;
 import { Encuesta } from &#x27;./encuesta.entity&#x27;;
 // Importación de la entidad relacionada &quot;Opcion&quot;
 import { Opcion } from &#x27;./opcion.entity&#x27;;
+//import { RespuestaAbierta } from &#x27;src/modules/respuestas/entities/respuesta-abierta.entity&#x27;;
 
 @Entity({ name: &#x27;preguntas&#x27; }) // Define la clase como una entidad de la base de datos con el nombre &quot;preguntas&quot;
 export class Pregunta {
@@ -428,7 +429,7 @@ export class Pregunta {
   texto: string;
 
   @Column({ type: &#x27;enum&#x27;, enum: TiposRespuestaEnum }) // Define la columna &quot;tipo&quot; como un enumerador
-  tipo_respuesta: TiposRespuestaEnum; // Especifica el tipo de respuesta permitido para la pregunta
+  tipo: TiposRespuestaEnum; // Especifica el tipo de respuesta permitido para la pregunta
 
   @ManyToOne(() &#x3D;&gt; Encuesta) // Relación muchos a uno con la entidad &quot;Encuesta&quot;
   @JoinColumn({ name: &#x27;id_encuesta&#x27; }) // Define la columna &quot;id_encuesta&quot; como la clave foránea
@@ -437,6 +438,11 @@ export class Pregunta {
 
   @OneToMany(() &#x3D;&gt; Opcion, (opcion) &#x3D;&gt; opcion.pregunta, { cascade: [&#x27;insert&#x27;] }) // Relación uno a muchos con la entidad &quot;Opcion&quot;
   opciones: Opcion[]; // Lista de opciones asociadas a la pregunta
+
+  // EXTRA POR EL MÓDULO DE RESPUESTAS
+  // @Exclude() // Excluye esta propiedad al serializar la entidad (por ejemplo, al devolverla en una API)
+  // @OneToMany(() &#x3D;&gt; RespuestaAbierta, (r) &#x3D;&gt; r.pregunta)
+  // respuestasAbiertas: RespuestaAbierta[];
 }
 </code></pre>
     </div>

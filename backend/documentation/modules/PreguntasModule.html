@@ -86,7 +86,7 @@
 
 <ol class="breadcrumb">
     <li class="breadcrumb-item">Modules</li>
-    <li class="breadcrumb-item" >AppModule</li>
+    <li class="breadcrumb-item" >PreguntasModule</li>
 </ol>
 
 <div class="text-center module-graph-container">
@@ -114,54 +114,30 @@
 <polygon fill="#fb8072" stroke="transparent" points="406,-10 406,-30 426,-30 426,-10 406,-10"/>
 <text text-anchor="start" x="429.73" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Exports</text>
 <g id="clust1" class="cluster">
-<title>cluster_AppModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="38,-70 38,-195 458,-195 458,-70 38,-70"/>
+<title>cluster_PreguntasModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="154,-70 154,-195 342,-195 342,-70 154,-70"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_AppModule_imports</title>
-<polygon fill="none" stroke="black" points="46,-78 46,-130 450,-130 450,-78 46,-78"/>
+<g id="clust6" class="cluster">
+<title>cluster_PreguntasModule_providers</title>
+<polygon fill="none" stroke="black" points="162,-78 162,-130 334,-130 334,-78 162,-78"/>
 </g>
-<!-- EncuestasModule -->
+<!-- PreguntasService -->
 <g id="node1" class="node">
-<title>EncuestasModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="441.53,-122 438.53,-126 417.53,-126 414.53,-122 326.47,-122 326.47,-86 441.53,-86 441.53,-122"/>
-<text text-anchor="middle" x="384" y="-99.8" font-family="Times,serif" font-size="14.00">EncuestasModule</text>
-</g>
-<!-- AppModule -->
-<g id="node4" class="node">
-<title>AppModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="292.66,-187 289.66,-191 268.66,-191 265.66,-187 209.34,-187 209.34,-151 292.66,-151 292.66,-187"/>
-<text text-anchor="middle" x="251" y="-164.8" font-family="Times,serif" font-size="14.00">AppModule</text>
-</g>
-<!-- EncuestasModule&#45;&gt;AppModule -->
-<g id="edge1" class="edge">
-<title>EncuestasModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M384,-122.11C384,-141.34 384,-169 384,-169 384,-169 302.72,-169 302.72,-169"/>
-<polygon fill="black" stroke="black" points="302.72,-165.5 292.72,-169 302.72,-172.5 302.72,-165.5"/>
+<title>PreguntasService</title>
+<ellipse fill="#fdb462" stroke="black" cx="248" cy="-104" rx="78.15" ry="18"/>
+<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">PreguntasService</text>
 </g>
 <!-- PreguntasModule -->
 <g id="node2" class="node">
 <title>PreguntasModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="308.26,-122 305.26,-126 284.26,-126 281.26,-122 193.74,-122 193.74,-86 308.26,-86 308.26,-122"/>
-<text text-anchor="middle" x="251" y="-99.8" font-family="Times,serif" font-size="14.00">PreguntasModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="305.26,-187 302.26,-191 281.26,-191 278.26,-187 190.74,-187 190.74,-151 305.26,-151 305.26,-187"/>
+<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00">PreguntasModule</text>
 </g>
-<!-- PreguntasModule&#45;&gt;AppModule -->
-<g id="edge2" class="edge">
-<title>PreguntasModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M251,-122.11C251,-122.11 251,-140.99 251,-140.99"/>
-<polygon fill="black" stroke="black" points="247.5,-140.99 251,-150.99 254.5,-140.99 247.5,-140.99"/>
-</g>
-<!-- RespuestasModule -->
-<g id="node3" class="node">
-<title>RespuestasModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="175.75,-122 172.75,-126 151.75,-126 148.75,-122 54.25,-122 54.25,-86 175.75,-86 175.75,-122"/>
-<text text-anchor="middle" x="115" y="-99.8" font-family="Times,serif" font-size="14.00">RespuestasModule</text>
-</g>
-<!-- RespuestasModule&#45;&gt;AppModule -->
-<g id="edge3" class="edge">
-<title>RespuestasModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M115,-122.11C115,-141.34 115,-169 115,-169 115,-169 199.09,-169 199.09,-169"/>
-<polygon fill="black" stroke="black" points="199.09,-172.5 209.09,-169 199.09,-165.5 199.09,-172.5"/>
+<!-- PreguntasService&#45;&gt;PreguntasModule -->
+<g id="edge1" class="edge">
+<title>PreguntasService&#45;&gt;PreguntasModule</title>
+<path fill="none" stroke="black" d="M248,-122.11C248,-122.11 248,-140.99 248,-140.99"/>
+<polygon fill="black" stroke="black" points="244.5,-140.99 248,-150.99 251.5,-140.99 244.5,-140.99"/>
 </g>
 </g>
 </svg>
@@ -199,7 +175,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app.module.ts</code>
+            <code>src/modules/preguntas/preguntas.module.ts</code>
         </p>
 
 
@@ -209,18 +185,21 @@
         <div class="container-fluid module">
             <div class="row">
                 <div class="col-sm-3">
-                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" rel="noopener noreferrer"
-                            title="Official documentation about module imports"><span
+                    <h3>Providers<a href="https://angular.io/api/core/NgModule#providers" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module providers"><span class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../injectables/PreguntasService.html">PreguntasService</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Controllers<a href="https://docs.nestjs.com/controllers" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module controllers"><span
                                 class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a href="../modules/EncuestasModule.html">EncuestasModule</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="../modules/PreguntasModule.html">PreguntasModule</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="../modules/RespuestasModule.html">RespuestasModule</a>
+                            <a href="../controllers/PreguntasController.html">PreguntasController</a>
                         </li>
                     </ul>
                 </div>
@@ -232,48 +211,27 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;; // Decorador para definir un módulo en NestJS
-import { ConfigModule, ConfigService } from &#x27;@nestjs/config&#x27;; // Módulo y servicio para manejar configuraciones
-import configuration from &#x27;./config/configuration&#x27;; // Archivo de configuración personalizado
-import { EncuestasModule } from &#x27;./modules/encuestas/encuestas.module&#x27;; // Módulo de encuestas
-import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;; // Módulo para la integración con TypeORM
-import { PreguntasModule } from &#x27;./modules/preguntas/preguntas.module&#x27;;
-import { RespuestasModule } from &#x27;src/modules/respuestas/respuestas.module&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">// Importación de decoradores y módulos necesarios de NestJS
+import { Module } from &#x27;@nestjs/common&#x27;;
+import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;; // Módulo de TypeORM para la integración con la base de datos
+import { Pregunta } from &#x27;../encuestas/entities/pregunta.entity&#x27;; // Entidad que representa la tabla &quot;Pregunta&quot; en la base de datos
+import { Opcion } from &#x27;../encuestas/entities/opcion.entity&#x27;; // Entidad que representa la tabla &quot;Opción&quot; en la base de datos
+import { PreguntasService } from &#x27;../preguntas/services/preguntas.service&#x27;; // Servicio para la lógica de negocio de preguntas
+import { PreguntasController } from &#x27;../preguntas/controllers/preguntas.controller&#x27;; // Controlador para manejar las rutas relacionadas con preguntas
 
 @Module({
+  // Importación de módulos necesarios para este módulo
   imports: [
-    // Importa el módulo de encuestas y preguntas
-    EncuestasModule,
-    PreguntasModule,
-    RespuestasModule,
-
-    // Configuración global del módulo de configuración
-    ConfigModule.forRoot({
-      load: [configuration], // Carga la configuración personalizada desde un archivo
-      isGlobal: true, // Hace que el módulo de configuración sea accesible globalmente
-      ignoreEnvFile: process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#x27;production&#x27;, // Ignora el archivo .env si el entorno es producción
-    }),
-
-    // Configuración de TypeORM para la conexión con la base de datos
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule], // Importa el módulo de configuración para acceder a las variables de entorno
-      inject: [ConfigService], // Inyecta el servicio de configuración
-      useFactory: (configService: ConfigService) &#x3D;&gt; ({
-        type: &#x27;postgres&#x27;, // Tipo de base de datos (PostgreSQL)
-        host: configService.get(&#x27;database.host&#x27;), // Host de la base de datos
-        port: configService.get(&#x27;database.port&#x27;), // Puerto de la base de datos
-        username: configService.get(&#x27;database.username&#x27;), // Usuario de la base de datos
-        password: configService.get(&#x27;database.password&#x27;), // Contraseña de la base de datos
-        database: configService.get(&#x27;database.name&#x27;), // Nombre de la base de datos
-        synchronize: false, // Desactiva la sincronización automática (recomendado en producción)
-        autoLoadEntities: true, // Carga automáticamente las entidades registradas
-        logging: configService.get(&#x27;database.logging&#x27;), // Habilita o deshabilita el registro de consultas
-        logger: configService.get(&#x27;database.logger&#x27;), // Define el tipo de logger para la base de datos
-      }),
-    }),
+    // Configuración de TypeORM para trabajar con las entidades relacionadas
+    TypeOrmModule.forFeature([Pregunta, Opcion]),
   ],
+  // Declaración de los controladores que manejarán las rutas de este módulo
+  controllers: [PreguntasController],
+  // Declaración de los proveedores que contienen la lógica de negocio
+  providers: [PreguntasService],
 })
-export class AppModule {} // Exporta la clase del módulo principal
+// Exportación del módulo de preguntas para que pueda ser utilizado en otros módulos
+export class PreguntasModule {}
 </code></pre>
     </div>
 </div>
@@ -320,7 +278,7 @@ export class AppModule {} // Exporta la clase del módulo principal
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppModule.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'PreguntasModule.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

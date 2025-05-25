@@ -88,7 +88,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Controllers</li>
-  <li class="breadcrumb-item" >EncuestasController</li>
+  <li class="breadcrumb-item" >PreguntasController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -112,14 +112,14 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/encuestas/controllers/encuestas.controller.ts</code>
+            <code>src/modules/preguntas/controllers/preguntas.controller.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Prefix</h3>
             </p>
             <p class="comment">
-                <code>encuestas</code>
+                <code>preguntas</code>
             </p>
 
 
@@ -143,17 +143,17 @@
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier">Async</span>
-                                <a href="#cambiarEstadoEncuesta" >cambiarEstadoEncuesta</a>
+                                <a href="#actualizarPregunta" >actualizarPregunta</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier">Async</span>
-                                <a href="#crearEncuesta" >crearEncuesta</a>
+                                <a href="#eliminarOpcion" >eliminarOpcion</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier">Async</span>
-                                <a href="#obtenerEncuesta" >obtenerEncuesta</a>
+                                <a href="#eliminarPregunta" >eliminarPregunta</a>
                             </li>
                         </ul>
                     </td>
@@ -176,19 +176,19 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="cambiarEstadoEncuesta"></a>
+                    <a name="actualizarPregunta"></a>
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier">Async</span>
-                        <span ><b>cambiarEstadoEncuesta</b></span>
-                        <a href="#cambiarEstadoEncuesta"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>actualizarPregunta</b></span>
+                        <a href="#actualizarPregunta"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>cambiarEstadoEncuesta(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, habilitada: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                    <code>actualizarPregunta(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, actualizarDto: <a href="../classes/ActualizarPreguntaDto.html" target="_self">ActualizarPreguntaDto</a>)</code>
                 </td>
             </tr>
 
@@ -196,14 +196,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Patch(&#x27;:id/habilitar&#x27;)<br /></code>
+                    <code>@Patch(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/modules/encuestas/controllers/encuestas.controller.ts:49</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="20"
+                                    class="link-to-prism">src/modules/preguntas/controllers/preguntas.controller.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -236,9 +236,9 @@
 
                                         </tr>
                                         <tr>
-                                                <td>habilitada</td>
+                                                <td>actualizarDto</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                            <code><a href="../classes/ActualizarPreguntaDto.html" target="_self" >ActualizarPreguntaDto</a></code>
                                             </td>
 
                                             <td>
@@ -265,19 +265,19 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="crearEncuesta"></a>
+                    <a name="eliminarOpcion"></a>
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier">Async</span>
-                        <span ><b>crearEncuesta</b></span>
-                        <a href="#crearEncuesta"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>eliminarOpcion</b></span>
+                        <a href="#eliminarOpcion"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>crearEncuesta(dto: <a href="../classes/CreateEncuestaDto.html" target="_self">CreateEncuestaDto</a>)</code>
+                    <code>eliminarOpcion(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -285,91 +285,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br /></code>
+                    <code>@Delete(&#x27;opciones/:id&#x27;)<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="25"
-                                    class="link-to-prism">src/modules/encuestas/controllers/encuestas.controller.ts:25</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>dto</td>
-                                            <td>
-                                                            <code><a href="../classes/CreateEncuestaDto.html" target="_self" >CreateEncuestaDto</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="obtenerEncuesta"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier">Async</span>
-                        <span ><b>obtenerEncuesta</b></span>
-                        <a href="#obtenerEncuesta"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>obtenerEncuesta(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, dto: <a href="../classes/ObtenerEncuestaDto.html" target="_self">ObtenerEncuestaDto</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get(&#x27;:id&#x27;)<br /></code>
-                </td>
-            </tr>
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/modules/encuestas/controllers/encuestas.controller.ts:35</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/modules/preguntas/controllers/preguntas.controller.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -401,10 +324,75 @@
 
 
                                         </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eliminarPregunta"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>eliminarPregunta</b></span>
+                        <a href="#eliminarPregunta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>eliminarPregunta(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete(&#x27;:id&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/modules/preguntas/controllers/preguntas.controller.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
                                         <tr>
-                                                <td>dto</td>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
                                             <td>
-                                                            <code><a href="../classes/ObtenerEncuestaDto.html" target="_self" >ObtenerEncuestaDto</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                             </td>
 
                                             <td>
@@ -417,7 +405,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../entitys/Encuesta.html" target="_self" >Promise&lt;Encuesta&gt;</a></code>
+                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
 
                         </div>
                             <div class="io-description">
@@ -435,55 +423,43 @@
 import {
   Body,
   Controller,
-  Get,
   Param,
   Patch,
-  Post,
-  Query,
+  Delete,
+  ParseIntPipe,
 } from &#x27;@nestjs/common&#x27;;
-// Importación del servicio de encuestas
-import { EncuestasService } from &#x27;../services/encuestas.service&#x27;;
-// Importación del DTO para crear encuestas
-import { CreateEncuestaDto } from &#x27;../dtos/create-encuesta.dto&#x27;;
-// Importación del DTO para obtener encuestas
-import { ObtenerEncuestaDto } from &#x27;../dtos/obtener-encuesta.dto&#x27;;
-// Importación de la entidad Encuesta
-import { Encuesta } from &#x27;../entities/encuesta.entity&#x27;;
+// Importación del servicio de preguntas
+import { PreguntasService } from &#x27;../services/preguntas.service&#x27;;
+// Importación del DTO para actualizar una pregunta
+import { ActualizarPreguntaDto } from &#x27;../../encuestas/dtos/actualizar-pregunta.dto&#x27;;
 
-@Controller(&#x27;encuestas&#x27;) // Define el controlador para manejar las rutas relacionadas con &quot;encuestas&quot;
-export class EncuestasController {
-  constructor(private readonly encuestasService: EncuestasService) {} // Inyección del servicio de encuestas
+@Controller(&#x27;preguntas&#x27;) // Define el controlador para manejar las rutas relacionadas con &quot;/preguntas&quot;
+export class PreguntasController {
+  constructor(private readonly preguntasService: PreguntasService) {} // Inyección del servicio de preguntas
 
-  @Post() // Define un endpoint POST para crear una nueva encuesta
-  async crearEncuesta(@Body() dto: CreateEncuestaDto): Promise&lt;{
-    id: number;
-    codigoRespuesta: string;
-    codigoResultados: string;
-  }&gt; {
-    // Llama al servicio para crear una encuesta y retorna los datos relevantes
-    return await this.encuestasService.crearEncuesta(dto);
-  }
-
-  @Get(&#x27;:id&#x27;) // Define un endpoint GET para obtener una encuesta por su ID
-  async obtenerEncuesta(
-    @Param(&#x27;id&#x27;) id: number, // Obtiene el parámetro &quot;id&quot; de la URL
-    @Query() dto: ObtenerEncuestaDto, // Obtiene los parámetros de consulta (query params)
-  ): Promise&lt;Encuesta&gt; {
-    // Llama al servicio para obtener la encuesta y la retorna
-    return await this.encuestasService.obtenerEncuesta(
-      id,
-      dto.codigo, // Código de respuesta o resultados
-      dto.tipo, // Tipo de código (respuesta o resultados)
-    );
-  }
-
-  // Funcionalidad Extra para deshabilitar una encuesta (MICA)
-  @Patch(&#x27;:id/habilitar&#x27;) // Define un endpoint PATCH para habilitar/deshabilitar una encuesta
-  async cambiarEstadoEncuesta(
-    @Param(&#x27;id&#x27;) id: number, // Obtiene el parámetro &quot;id&quot; de la URL
-    @Body(&#x27;habilitada&#x27;) habilitada: boolean, // Obtiene el cuerpo de la solicitud para saber si se habilita o deshabilita
+  @Patch(&#x27;:id&#x27;) // Define un endpoint PATCH para actualizar una pregunta por su ID
+  async actualizarPregunta(
+    @Param(&#x27;id&#x27;, ParseIntPipe) id: number, // Obtiene el parámetro &quot;id&quot; de la URL y lo convierte en número.
+    @Body() actualizarDto: ActualizarPreguntaDto, // Extrae el cuerpo de la petición y lo valida según ActualizarPreguntaDto.
   ): Promise&lt;{ mensaje: string }&gt; {
-    return await this.encuestasService.actualizarEstadoEncuesta(id, habilitada);
+    // Llama al método actualizarPregunta del servicio, pasándole el id y los nuevos datos.
+    return this.preguntasService.actualizarPregunta(id, actualizarDto);
+  }
+
+  @Delete(&#x27;:id&#x27;) // Define un endpoint DELETE para eliminar una pregunta y sus opciones
+  async eliminarPregunta(
+    @Param(&#x27;id&#x27;, ParseIntPipe) id: number, // Obtiene el parámetro &quot;id&quot; de la URL y lo convierte en número.
+  ): Promise&lt;{ mensaje: string }&gt; {
+    // Llama al método del servicio que elimina la pregunta junto con sus opciones
+    return this.preguntasService.eliminarPreguntaConOpciones(id);
+  }
+
+  @Delete(&#x27;opciones/:id&#x27;) // Define un endpoint DELETE para eliminar una opcion de una pregunta
+  async eliminarOpcion(
+    @Param(&#x27;id&#x27;, ParseIntPipe) id: number, // Obtiene el parámetro &quot;id&quot; de la URL y lo convierte en número.
+  ): Promise&lt;{ mensaje: string }&gt; {
+    // Llama al método del servicio que elimina una opcion de una pregunta
+    return this.preguntasService.eliminarOpcion(id);
   }
 }
 </code></pre>
@@ -531,7 +507,7 @@ export class EncuestasController {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'EncuestasController.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'PreguntasController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

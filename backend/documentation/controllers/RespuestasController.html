@@ -88,7 +88,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Controllers</li>
-  <li class="breadcrumb-item" >EncuestasController</li>
+  <li class="breadcrumb-item" >RespuestasController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -112,14 +112,14 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/encuestas/controllers/encuestas.controller.ts</code>
+            <code>src/modules/respuestas/controllers/respuestas.controller.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Prefix</h3>
             </p>
             <p class="comment">
-                <code>encuestas</code>
+                <code>respuestas</code>
             </p>
 
 
@@ -142,18 +142,24 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
-                                <a href="#cambiarEstadoEncuesta" >cambiarEstadoEncuesta</a>
+                                <a href="#registrarRespuestas" >registrarRespuestas</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
-                                    <span class="modifier">Async</span>
-                                <a href="#crearEncuesta" >crearEncuesta</a>
-                            </li>
-                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier">Async</span>
-                                <a href="#obtenerEncuesta" >obtenerEncuesta</a>
+                                <a href="#visualizarRespuestas" >visualizarRespuestas</a>
                             </li>
                         </ul>
                     </td>
@@ -176,19 +182,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="cambiarEstadoEncuesta"></a>
+                    <a name="registrarRespuestas"></a>
                     <span class="name">
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
-                        <span ><b>cambiarEstadoEncuesta</b></span>
-                        <a href="#cambiarEstadoEncuesta"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>registrarRespuestas</b></span>
+                        <a href="#registrarRespuestas"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>cambiarEstadoEncuesta(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, habilitada: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                    <code>registrarRespuestas(tokenParticipacion: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, registrarRespuestasDto: <a href="../classes/RegistrarRespuestasDto.html" target="_self">RegistrarRespuestasDto</a>)</code>
                 </td>
             </tr>
 
@@ -196,14 +209,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Patch(&#x27;:id/habilitar&#x27;)<br /></code>
+                    <code>@Post(&#x27;:tokenParticipacion&#x27;)<br />@HttpCode(HttpStatus.CREATED)<br />@ApiOperation({summary: &#x27;Registrar respuestas de una encuesta&#x27;})<br />@ApiParam({name: &#x27;tokenParticipacion&#x27;, description: &#x27;Token de participación de la encuesta&#x27;, example: &#x27;abc123def456&#x27;})<br />@ApiBody({type: RegistrarRespuestasDto})<br />@ApiResponse({status: 201, description: &#x27;Respuestas registradas exitosamente&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Encuesta no encontrada o enlace inválido&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Datos de respuesta inválidos&#x27;})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/modules/encuestas/controllers/encuestas.controller.ts:49</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/modules/respuestas/controllers/respuestas.controller.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -224,9 +237,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
+                                                <td>tokenParticipacion</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -236,9 +249,9 @@
 
                                         </tr>
                                         <tr>
-                                                <td>habilitada</td>
+                                                <td>registrarRespuestasDto</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                            <code><a href="../classes/RegistrarRespuestasDto.html" target="_self" >RegistrarRespuestasDto</a></code>
                                             </td>
 
                                             <td>
@@ -265,19 +278,23 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="crearEncuesta"></a>
+                    <a name="visualizarRespuestas"></a>
                     <span class="name">
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
-                        <span ><b>crearEncuesta</b></span>
-                        <a href="#crearEncuesta"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>visualizarRespuestas</b></span>
+                        <a href="#visualizarRespuestas"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>crearEncuesta(dto: <a href="../classes/CreateEncuestaDto.html" target="_self">CreateEncuestaDto</a>)</code>
+                    <code>visualizarRespuestas(tokenVisualizacion: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -285,14 +302,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br /></code>
+                    <code>@Get(&#x27;resultados/:tokenVisualizacion&#x27;)<br />@ApiOperation({summary: &#x27;Visualizar respuestas de una encuesta&#x27;})<br />@ApiParam({name: &#x27;tokenVisualizacion&#x27;, description: &#x27;Token de visualización de resultados&#x27;, example: &#x27;xyz789uvw012&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Respuestas obtenidas exitosamente&#x27;, type: VisualizarRespuestasDto})<br />@ApiResponse({status: 404, description: &#x27;Encuesta no encontrada o enlace inválido&#x27;})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="25"
-                                    class="link-to-prism">src/modules/encuestas/controllers/encuestas.controller.ts:25</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/modules/respuestas/controllers/respuestas.controller.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -313,9 +330,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>dto</td>
+                                                <td>tokenVisualizacion</td>
                                             <td>
-                                                            <code><a href="../classes/CreateEncuestaDto.html" target="_self" >CreateEncuestaDto</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -329,95 +346,6 @@
                             </div>
                         <div class="io-description">
                             <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="obtenerEncuesta"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier">Async</span>
-                        <span ><b>obtenerEncuesta</b></span>
-                        <a href="#obtenerEncuesta"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>obtenerEncuesta(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, dto: <a href="../classes/ObtenerEncuestaDto.html" target="_self">ObtenerEncuestaDto</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get(&#x27;:id&#x27;)<br /></code>
-                </td>
-            </tr>
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/modules/encuestas/controllers/encuestas.controller.ts:35</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>id</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>dto</td>
-                                            <td>
-                                                            <code><a href="../classes/ObtenerEncuestaDto.html" target="_self" >ObtenerEncuestaDto</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../entitys/Encuesta.html" target="_self" >Promise&lt;Encuesta&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -431,59 +359,85 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">// Importación de decoradores y módulos necesarios de NestJS
-import {
-  Body,
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   Controller,
-  Get,
-  Param,
-  Patch,
   Post,
-  Query,
+  Body,
+  Param,
+  HttpCode,
+  HttpStatus,
+  Get,
 } from &#x27;@nestjs/common&#x27;;
-// Importación del servicio de encuestas
-import { EncuestasService } from &#x27;../services/encuestas.service&#x27;;
-// Importación del DTO para crear encuestas
-import { CreateEncuestaDto } from &#x27;../dtos/create-encuesta.dto&#x27;;
-// Importación del DTO para obtener encuestas
-import { ObtenerEncuestaDto } from &#x27;../dtos/obtener-encuesta.dto&#x27;;
-// Importación de la entidad Encuesta
-import { Encuesta } from &#x27;../entities/encuesta.entity&#x27;;
+import { RespuestasService } from &#x27;src/modules/respuestas/services/respuestas.service&#x27;;
+import { RegistrarRespuestasDto } from &#x27;src/modules/respuestas/dtos/registrar-respuestas.dto&#x27;;
+import { VisualizarRespuestasDto } from &#x27;../dtos/visualizar-respuestas.dto&#x27;;
+import {
+  ApiTags,
+  ApiOperation,
+  ApiParam,
+  ApiBody,
+  ApiResponse,
+} from &#x27;@nestjs/swagger&#x27;;
 
-@Controller(&#x27;encuestas&#x27;) // Define el controlador para manejar las rutas relacionadas con &quot;encuestas&quot;
-export class EncuestasController {
-  constructor(private readonly encuestasService: EncuestasService) {} // Inyección del servicio de encuestas
+@ApiTags(&#x27;respuestas&#x27;)
+@Controller(&#x27;respuestas&#x27;)
+export class RespuestasController {
+  constructor(private readonly respuestasService: RespuestasService) {}
 
-  @Post() // Define un endpoint POST para crear una nueva encuesta
-  async crearEncuesta(@Body() dto: CreateEncuestaDto): Promise&lt;{
-    id: number;
-    codigoRespuesta: string;
-    codigoResultados: string;
-  }&gt; {
-    // Llama al servicio para crear una encuesta y retorna los datos relevantes
-    return await this.encuestasService.crearEncuesta(dto);
-  }
-
-  @Get(&#x27;:id&#x27;) // Define un endpoint GET para obtener una encuesta por su ID
-  async obtenerEncuesta(
-    @Param(&#x27;id&#x27;) id: number, // Obtiene el parámetro &quot;id&quot; de la URL
-    @Query() dto: ObtenerEncuestaDto, // Obtiene los parámetros de consulta (query params)
-  ): Promise&lt;Encuesta&gt; {
-    // Llama al servicio para obtener la encuesta y la retorna
-    return await this.encuestasService.obtenerEncuesta(
-      id,
-      dto.codigo, // Código de respuesta o resultados
-      dto.tipo, // Tipo de código (respuesta o resultados)
+  @Post(&#x27;:tokenParticipacion&#x27;) // Permite registrar respuestas para una encuesta específica.
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: &#x27;Registrar respuestas de una encuesta&#x27; })
+  @ApiParam({
+    name: &#x27;tokenParticipacion&#x27;,
+    description: &#x27;Token de participación de la encuesta&#x27;,
+    example: &#x27;abc123def456&#x27;,
+  })
+  @ApiBody({ type: RegistrarRespuestasDto })
+  @ApiResponse({
+    status: 201,
+    description: &#x27;Respuestas registradas exitosamente&#x27;,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &#x27;Encuesta no encontrada o enlace inválido&#x27;,
+  })
+  @ApiResponse({
+    status: 400,
+    description: &#x27;Datos de respuesta inválidos&#x27;,
+  })
+  async registrarRespuestas(
+    @Param(&#x27;tokenParticipacion&#x27;) tokenParticipacion: string, //Recibe el token de participación desde la URL.
+    @Body() registrarRespuestasDto: RegistrarRespuestasDto, // Recibe las respuestas en el cuerpo de la solicitud.
+  ): Promise&lt;{ message: string }&gt; {
+    await this.respuestasService.registrarRespuestas(
+      tokenParticipacion,
+      registrarRespuestasDto,
     );
+    return { message: &#x27;Respuestas registradas exitosamente&#x27; };
   }
 
-  // Funcionalidad Extra para deshabilitar una encuesta (MICA)
-  @Patch(&#x27;:id/habilitar&#x27;) // Define un endpoint PATCH para habilitar/deshabilitar una encuesta
-  async cambiarEstadoEncuesta(
-    @Param(&#x27;id&#x27;) id: number, // Obtiene el parámetro &quot;id&quot; de la URL
-    @Body(&#x27;habilitada&#x27;) habilitada: boolean, // Obtiene el cuerpo de la solicitud para saber si se habilita o deshabilita
-  ): Promise&lt;{ mensaje: string }&gt; {
-    return await this.encuestasService.actualizarEstadoEncuesta(id, habilitada);
+  @Get(&#x27;resultados/:tokenVisualizacion&#x27;) //obtiene las respuestas
+  @ApiOperation({ summary: &#x27;Visualizar respuestas de una encuesta&#x27; })
+  @ApiParam({
+    name: &#x27;tokenVisualizacion&#x27;,
+    description: &#x27;Token de visualización de resultados&#x27;,
+    example: &#x27;xyz789uvw012&#x27;,
+  })
+  @ApiResponse({
+    status: 200,
+    description: &#x27;Respuestas obtenidas exitosamente&#x27;,
+    type: VisualizarRespuestasDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &#x27;Encuesta no encontrada o enlace inválido&#x27;,
+  })
+  async visualizarRespuestas(
+    @Param(&#x27;tokenVisualizacion&#x27;) tokenVisualizacion: string, //Recibe el token para visualizar los resultados.
+  ): Promise&lt;{ message: string; data: VisualizarRespuestasDto }&gt; {
+    const resultado &#x3D;
+      await this.respuestasService.visualizarRespuestasDto(tokenVisualizacion);
+    return { message: &#x27;Éxito&#x27;, data: resultado };
   }
 }
 </code></pre>
@@ -531,7 +485,7 @@ export class EncuestasController {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'EncuestasController.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'RespuestasController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -91,7 +91,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Injectables</li>
-  <li class="breadcrumb-item" >EncuestasService</li>
+  <li class="breadcrumb-item" >RespuestasService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -115,7 +115,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/encuestas/services/encuestas.service.ts</code>
+            <code>src/modules/respuestas/services/respuestas.service.ts</code>
         </p>
 
 
@@ -137,15 +137,11 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#actualizarEstadoEncuesta" >actualizarEstadoEncuesta</a>
+                                <a href="#registrarRespuestas" >registrarRespuestas</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#crearEncuesta" >crearEncuesta</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#obtenerEncuesta" >obtenerEncuesta</a>
+                                <a href="#visualizarRespuestasDto" >visualizarRespuestasDto</a>
                             </li>
                         </ul>
                     </td>
@@ -165,12 +161,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(encuestaRepository: <a href="../entitys/Encuesta.html" target="_self">Repository&lt;Encuesta&gt;</a>)</code>
+<code>constructor(respuestaRepository: <a href="../entitys/Respuesta.html" target="_self">Repository&lt;Respuesta&gt;</a>, respuestaAbiertaRepository: Repository<RespuestaAbierta>, respuestaOpcionRepository: Repository<RespuestaOpcion>, encuestaRepository: <a href="../entitys/Encuesta.html" target="_self">Repository&lt;Encuesta&gt;</a>, preguntaRepository: <a href="../entitys/Pregunta.html" target="_self">Repository&lt;Pregunta&gt;</a>, opcionRepository: <a href="../entitys/Opcion.html" target="_self">Repository&lt;Opcion&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -188,10 +184,70 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
+                                                        <td>respuestaRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/Respuesta.html" target="_self" >Repository&lt;Respuesta&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>respuestaAbiertaRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;RespuestaAbierta&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>respuestaOpcionRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;RespuestaOpcion&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
                                                         <td>encuestaRepository</td>
                                                   
                                                         <td>
                                                                         <code><a href="../entitys/Encuesta.html" target="_self" >Repository&lt;Encuesta&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>preguntaRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/Pregunta.html" target="_self" >Repository&lt;Pregunta&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>opcionRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/Opcion.html" target="_self" >Repository&lt;Opcion&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -217,26 +273,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="actualizarEstadoEncuesta"></a>
+                    <a name="registrarRespuestas"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
-                        <span ><b>actualizarEstadoEncuesta</b></span>
-                        <a href="#actualizarEstadoEncuesta"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>registrarRespuestas</b></span>
+                        <a href="#registrarRespuestas"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>actualizarEstadoEncuesta(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, habilitada: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                    <code>registrarRespuestas(codigoParticipacion: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, registarRespuestasDto: <a href="../classes/RegistrarRespuestasDto.html" target="_self">RegistrarRespuestasDto</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="89"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:89</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -257,169 +313,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>habilitada</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="crearEncuesta"></a>
-                    <span class="name">
-                            <span class="modifier">Async</span>
-                        <span ><b>crearEncuesta</b></span>
-                        <a href="#crearEncuesta"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>crearEncuesta(dto: <a href="../classes/CreateEncuestaDto.html" target="_self">CreateEncuestaDto</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="25"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:25</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>dto</td>
-                                            <td>
-                                                            <code><a href="../classes/CreateEncuestaDto.html" target="_self" >CreateEncuestaDto</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="obtenerEncuesta"></a>
-                    <span class="name">
-                            <span class="modifier">Async</span>
-                        <span ><b>obtenerEncuesta</b></span>
-                        <a href="#obtenerEncuesta"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>obtenerEncuesta(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, codigo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, codigoTipo: <a href="../undefineds/CodigoTipoEnum.html" target="_self">CodigoTipoEnum.RESPUESTA | CodigoTipoEnum.RESULTADOS</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:49</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>id</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>codigo</td>
+                                                <td>codigoParticipacion</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
@@ -431,9 +325,9 @@
 
                                         </tr>
                                         <tr>
-                                                <td>codigoTipo</td>
+                                                <td>registarRespuestasDto</td>
                                             <td>
-                                                            <code><a href="../miscellaneous/enumerations.html#CodigoTipoEnum" target="_self" >CodigoTipoEnum.RESPUESTA | CodigoTipoEnum.RESULTADOS</a></code>
+                                                            <code><a href="../classes/RegistrarRespuestasDto.html" target="_self" >RegistrarRespuestasDto</a></code>
                                             </td>
 
                                             <td>
@@ -446,7 +340,76 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../entitys/Encuesta.html" target="_self" >Promise&lt;Encuesta&gt;</a></code>
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="visualizarRespuestasDto"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>visualizarRespuestasDto</b></span>
+                        <a href="#visualizarRespuestasDto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>visualizarRespuestasDto(codigoVisualizacion: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:124</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>codigoVisualizacion</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/VisualizarRespuestasDto.html" target="_self" >Promise&lt;VisualizarRespuestasDto&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -462,113 +425,195 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable } from &#x27;@nestjs/common&#x27;;
-// Decorador para inyectar repositorios de TypeORM
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from &#x27;@nestjs/common&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
-// Importación de la entidad Encuesta
-import { Encuesta } from &#x27;../entities/encuesta.entity&#x27;;
-// Importación del repositorio de TypeORM
 import { Repository } from &#x27;typeorm&#x27;;
-// Importación del DTO para crear encuestas
-import { CreateEncuestaDto } from &#x27;../dtos/create-encuesta.dto&#x27;;
-// Importación de la función para generar UUIDs
-import { v4 } from &#x27;uuid&#x27;;
-// Importación del enumerador para los tipos de código
-import { CodigoTipoEnum } from &#x27;../enums/codigo-tipo.enum&#x27;;
+import { Respuesta } from &#x27;src/modules/respuestas/entities/respuesta.entity&#x27;;
+import { RespuestaAbierta } from &#x27;src/modules/respuestas/entities/respuesta-abierta.entity&#x27;;
+import { RespuestaOpcion } from &#x27;src/modules/respuestas/entities/respuesta-opcion.entity&#x27;;
+import { Encuesta } from &#x27;src/modules/encuestas/entities/encuesta.entity&#x27;;
+import { Pregunta } from &#x27;src/modules/encuestas/entities/pregunta.entity&#x27;;
+import { Opcion } from &#x27;src/modules/encuestas/entities/opcion.entity&#x27;;
+import { RegistrarRespuestasDto } from &#x27;src/modules/respuestas/dtos/registrar-respuestas.dto&#x27;;
+import { TiposRespuestaEnum } from &#x27;src/modules/encuestas/enums/tipos-respuesta.enum&#x27;;
+import { VisualizarRespuestasDto } from &#x27;../dtos/visualizar-respuestas.dto&#x27;;
+import { PreguntaConRespuestasDto } from &#x27;../dtos/visualizar-respuestas.dto&#x27;;
 
-@Injectable() // Decorador que marca esta clase como un servicio inyectable
-export class EncuestasService {
+@Injectable()
+export class RespuestasService {
   constructor(
-    // Inyección del repositorio de la entidad Encuesta
+    @InjectRepository(Respuesta)
+    private respuestaRepository: Repository&lt;Respuesta&gt;,
+    @InjectRepository(RespuestaAbierta)
+    private respuestaAbiertaRepository: Repository&lt;RespuestaAbierta&gt;,
+    @InjectRepository(RespuestaOpcion)
+    private respuestaOpcionRepository: Repository&lt;RespuestaOpcion&gt;,
     @InjectRepository(Encuesta)
     private encuestaRepository: Repository&lt;Encuesta&gt;,
+    @InjectRepository(Pregunta)
+    private preguntaRepository: Repository&lt;Pregunta&gt;,
+    @InjectRepository(Opcion)
+    private opcionRepository: Repository&lt;Opcion&gt;,
   ) {}
-
-  // Método para crear una nueva encuesta
-  async crearEncuesta(dto: CreateEncuestaDto): Promise&lt;{
-    id: number;
-    codigoRespuesta: string;
-    codigoResultados: string;
-  }&gt; {
-    // Creación de una nueva instancia de Encuesta con los datos del DTO
-    const encuesta: Encuesta &#x3D; this.encuestaRepository.create({
-      ...dto, // Copia las propiedades del DTO
-      codigoRespuesta: v4(), // Genera un código único para las respuestas
-      codigoResultados: v4(), // Genera un código único para los resultados
+  //recibe las respuestas de un usuario que ha participado en una encuesta y las guarda en la base de datos
+  async registrarRespuestas(
+    codigoParticipacion: string,
+    registarRespuestasDto: RegistrarRespuestasDto,
+  ): Promise&lt;void&gt; {
+    const encuesta &#x3D; await this.encuestaRepository.findOne({
+      where: { codigoRespuesta: codigoParticipacion }, //busca la encuesta con el codigo de participacion
     });
 
-    // Guarda la encuesta en la base de datos
-    const encuestaCreada &#x3D; await this.encuestaRepository.save(encuesta);
-
-    // Retorna los datos relevantes de la encuesta creada
-    return {
-      id: encuestaCreada.id,
-      codigoRespuesta: encuestaCreada.codigoRespuesta,
-      codigoResultados: encuestaCreada.codigoResultados,
-    };
-  }
-
-  // Método para obtener una encuesta por su ID y un código específico
-  async obtenerEncuesta(
-    id: number, // ID de la encuesta
-    codigo: string, // Código de respuesta o resultados
-    codigoTipo: CodigoTipoEnum.RESPUESTA | CodigoTipoEnum.RESULTADOS, // Tipo de código
-  ): Promise&lt;Encuesta&gt; {
-    // Construcción de la consulta para obtener la encuesta
-    const query &#x3D; this.encuestaRepository
-      .createQueryBuilder(&#x27;encuesta&#x27;) // Alias para la tabla Encuesta
-      .innerJoinAndSelect(&#x27;encuesta.preguntas&#x27;, &#x27;pregunta&#x27;) // Une las preguntas relacionadas
-      .leftJoinAndSelect(&#x27;pregunta.opciones&#x27;, &#x27;preguntaOpcion&#x27;) // Une las opciones de las preguntas
-      .where(&#x27;encuesta.id &#x3D; :id&#x27;, { id }); // Filtra por el ID de la encuesta
-
-    // Filtra según el tipo de código proporcionado
-    switch (codigoTipo) {
-      case CodigoTipoEnum.RESPUESTA:
-        query.andWhere(&#x27;encuesta.codigoRespuesta &#x3D; :codigo&#x27;, { codigo });
-        break;
-
-      case CodigoTipoEnum.RESULTADOS:
-        query.andWhere(&#x27;encuesta.codigoResultados &#x3D; :codigo&#x27;, { codigo });
-        break;
-    }
-
-    // Ordena las preguntas y opciones por su número
-    query.orderBy(&#x27;pregunta.numero&#x27;, &#x27;ASC&#x27;);
-    query.addOrderBy(&#x27;preguntaOpcion.numero&#x27;, &#x27;ASC&#x27;);
-
-    // Ejecuta la consulta y obtiene la encuesta
-    const encuesta &#x3D; await query.getOne();
-
-    // Si no se encuentra la encuesta, lanza una excepción
     if (!encuesta) {
-      throw new BadRequestException(&#x27;Datos de encuesta no válidos&#x27;);
+      throw new NotFoundException(&#x27;Encuesta no encontrada o enlace invalido&#x27;); //sino existe el codigo mensaje de error
     }
+    //crea una nueva respuesta vinculada a la encuesta
+    const respuesta &#x3D; this.respuestaRepository.create({
+      id_encuesta: encuesta.id,
+    });
+    const respuestaGuardada &#x3D;
+      await this.respuestaOpcionRepository.save(respuesta); //guarda las respuestas en la base de datos
+    //itera sobre las respuestas enviadas
+    for (const respuestaPregunta of registarRespuestasDto.respuestas) {
+      const pregunta &#x3D; await this.preguntaRepository.findOne({
+        where: {
+          id: respuestaPregunta.id_pregunta,
+          encuesta: { id: encuesta.id },
+        },
+      });
 
-    // Retorna la encuesta encontrada
-    return encuesta;
+      if (!pregunta) {
+        throw new BadRequestException(
+          &#x60;Pregunta ${respuestaPregunta.id_pregunta} no encontrada o no pertenece a la encuesta&#x60;,
+        );
+      }
+
+      if (respuestaPregunta.tipo &#x3D;&#x3D;&#x3D; TiposRespuestaEnum.ABIERTA) {
+        if (respuestaPregunta.texto) {
+          throw new BadRequestException(
+            &#x27;Respuesta de texto requerida para preguntas abiertas&#x27;,
+          );
+        }
+
+        const respuestasAbiertas &#x3D; this.respuestaAbiertaRepository.create({
+          texto: respuestaPregunta.texto,
+          id_pregunta: pregunta.id,
+          id_respuesta: respuestaGuardada.id,
+        });
+        await this.respuestaAbiertaRepository.save(respuestasAbiertas);
+      } else {
+        if (
+          !respuestaPregunta.opciones ||
+          respuestaPregunta.opciones.length &#x3D;&#x3D;&#x3D; 0
+        ) {
+          throw new BadRequestException(
+            &#x27;Al menos una opcion debe ser seleccionada&#x27;,
+          );
+        }
+
+        if (
+          pregunta.tipo &#x3D;&#x3D;&#x3D;
+            TiposRespuestaEnum.OPCION_MULTIPLE_SELECCION_SIMPLE &amp;&amp;
+          respuestaPregunta.opciones.length &gt; 1
+        ) {
+          throw new BadRequestException(
+            &#x27;Solo se permite una seleccion para este tipo de pregunta&#x27;,
+          );
+        }
+
+        for (const idOpcion of respuestaPregunta.opciones) {
+          const opcion &#x3D; await this.opcionRepository.findOne({
+            where: {
+              id: idOpcion,
+              pregunta: { id: pregunta.id },
+            },
+          });
+
+          if (!opcion) {
+            throw new BadRequestException(
+              &#x60;Opcion ${idOpcion} no encontrada o no pertenece a esta pregunta&#x60;,
+            );
+          }
+          const respuestaOpcion &#x3D; this.respuestaOpcionRepository.create({
+            id_respuesta: respuestaGuardada.id,
+            id_opcion: idOpcion,
+          });
+          await this.respuestaOpcionRepository.save(respuestaOpcion);
+        }
+      }
+    }
   }
+  // obtiene las respuestas registradas de una encuesta específica para visualizarlas.
+  async visualizarRespuestasDto(
+    codigoVisualizacion: string,
+  ): Promise&lt;VisualizarRespuestasDto&gt; {
+    // Busca la encuesta con el código de visualización
+    const encuesta &#x3D; await this.encuestaRepository.findOne({
+      where: { codigoResultados: codigoVisualizacion },
+      relations: [&#x27;preguntas&#x27;, &#x27;preguntas.opciones&#x27;],
+    });
 
-  // Funcionalidad Extra para deshabilitar una encuesta (MICA)
-  async actualizarEstadoEncuesta(
-    id: number,
-    habilitada: boolean,
-  ): Promise&lt;{ mensaje: string }&gt; {
-    // Busca la encuesta por su ID
-    const encuesta &#x3D; await this.encuestaRepository.findOne({ where: { id } });
-
-    // Si no se encuentra la encuesta, lanza una excepción
     if (!encuesta) {
-      throw new BadRequestException(&#x27;Encuesta no encontrada&#x27;);
+      throw new NotFoundException(&#x27;Encuesta no encontrada o enlace inválido&#x27;); //si no existe mensaje de error.
     }
 
-    // Actualiza el estado de la encuesta
-    encuesta.habilitada &#x3D; habilitada;
-    await this.encuestaRepository.save(encuesta);
-
-    // Retorna un mensaje de éxito
-    return {
-      mensaje: &#x60;La encuesta fue ${habilitada ? &#x27;habilitada&#x27; : &#x27;deshabilitada&#x27;} correctamente&#x60;,
+    // Construir el objeto
+    const resultado: VisualizarRespuestasDto &#x3D; {
+      id: encuesta.id,
+      nombre: encuesta.nombre,
+      codigoRespuesta: encuesta.codigoRespuesta,
+      codigoResultados: encuesta.codigoResultados,
+      preguntas: [],
     };
+    //itera sobre las preguntas de la encuesta
+    for (const pregunta of encuesta.preguntas) {
+      const preguntaConRespuestas &#x3D; new PreguntaConRespuestasDto(); //crea un dto de la pregunta.
+
+      preguntaConRespuestas.id &#x3D; pregunta.id;
+      preguntaConRespuestas.numero &#x3D; pregunta.numero;
+      preguntaConRespuestas.texto &#x3D; pregunta.texto;
+      preguntaConRespuestas.tipo &#x3D; pregunta.tipo;
+      // Inicializar las listas de opciones y respuestas abiertas
+      preguntaConRespuestas.opciones &#x3D; [];
+      preguntaConRespuestas.respuestas_abiertas &#x3D; [];
+      //obtiene las preguntas abiertas
+      if (pregunta.tipo &#x3D;&#x3D;&#x3D; TiposRespuestaEnum.ABIERTA) {
+        const respuestasAbiertas &#x3D; await this.respuestaAbiertaRepository.find({
+          where: { id_pregunta: pregunta.id },
+        });
+        preguntaConRespuestas.respuestas_abiertas &#x3D; respuestasAbiertas.map(
+          (r) &#x3D;&gt; r.texto,
+        );
+      }
+
+      if (pregunta.opciones &amp;&amp; pregunta.opciones.length &gt; 0) {
+        for (const opcion of pregunta.opciones) {
+          // cuenta cuantas veces fue seleccionada cada opcion
+          const cantidadRespuestas &#x3D; await this.respuestaOpcionRepository.count(
+            {
+              where: { id_opcion: opcion.id }, // Ajusta esto a tu esquema si es diferente
+            },
+          );
+
+          //  Añade la opción con la cantidad de respuestas al DTO
+
+          preguntaConRespuestas.opciones.push({
+            id: opcion.id,
+            texto: opcion.texto,
+            numero: opcion.numero,
+            cantidad_respuestas: cantidadRespuestas,
+          });
+        }
+      }
+
+      resultado.preguntas.push(preguntaConRespuestas); //Añade la pregunta con sus respuestas al resultado fina
+    }
+
+    return resultado;
   }
 }
 </code></pre>
@@ -614,7 +659,7 @@ export class EncuestasService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'EncuestasService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'RespuestasService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

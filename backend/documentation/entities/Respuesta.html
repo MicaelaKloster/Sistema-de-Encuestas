@@ -79,7 +79,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content entity">
                    <div class="content-data">
 
 
@@ -87,15 +87,9 @@
 
 
 
-
-
-
-
-
-
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Classes</li>
-  <li class="breadcrumb-item" >CreatePreguntaDto</li>
+  <li class="breadcrumb-item">Entities</li>
+  <li class="breadcrumb-item" >Respuesta</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -119,10 +113,8 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/encuestas/dtos/create-pregunta.dto.ts</code>
+            <code>src/modules/respuestas/entities/respuesta.entity.ts</code>
         </p>
-
-
 
 
 
@@ -142,28 +134,15 @@
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#numero" >numero</a>
+                                <a href="#encuesta" >encuesta</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#opciones" >opciones</a>
+                                <a href="#id" >id</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#texto" >texto</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#tipo_respuesta" >tipo_respuesta</a>
+                                <a href="#id_encuesta" >id_encuesta</a>
                             </li>
                         </ul>
                     </td>
@@ -178,7 +157,6 @@
     </table>
 </section>
 
-
             <section data-compodoc="block-properties">
     
     <h3 id="inputs">
@@ -188,13 +166,48 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="numero"></a>
+                    <a name="encuesta"></a>
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                        <span ><b>encuesta</b></span>
+                        <a href="#encuesta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/Encuesta.html" target="_self" >Encuesta</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_encuesta&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/modules/respuestas/entities/respuesta.entity.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="id"></a>
+                    <span class="name">
                             <span class="modifier"></span>
-                        <span ><b>numero</b></span>
-                        <a href="#numero"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>id</b></span>
+                        <a href="#id"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -209,13 +222,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty()<br />@IsNumber()<br />@IsNotEmpty()<br />
+                            @PrimaryGeneratedColumn()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/modules/encuestas/dtos/create-pregunta.dto.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/modules/respuestas/entities/respuesta.entity.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -226,21 +239,17 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="opciones"></a>
+                    <a name="id_encuesta"></a>
                     <span class="name">
                             <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>opciones</b></span>
-                        <a href="#opciones"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>id_encuesta</b></span>
+                        <a href="#id_encuesta"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/CreateOpcionDto.html" target="_self" >CreateOpcionDto[]</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                     </td>
                 </tr>
@@ -249,89 +258,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({type: undefined, required: false})<br />@IsArray()<br />@IsOptional()<br />@ValidateNested({each: true})<br />@Type(undefined)<br />
+                            @Column(&#x27;int&#x27;)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/modules/encuestas/dtos/create-pregunta.dto.ts:37</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="texto"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>texto</b></span>
-                        <a href="#texto"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ApiProperty()<br />@IsString()<br />@IsNotEmpty()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/modules/encuestas/dtos/create-pregunta.dto.ts:25</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="tipo_respuesta"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>tipo_respuesta</b></span>
-                        <a href="#tipo_respuesta"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#TiposRespuestaEnum" target="_self" >TiposRespuestaEnum</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ApiProperty({enum: TiposRespuestaEnum})<br />@IsEnum(TiposRespuestaEnum)<br />@IsNotEmpty()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/modules/encuestas/dtos/create-pregunta.dto.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/modules/respuestas/entities/respuesta.entity.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -339,58 +272,40 @@
         </tbody>
     </table>
 </section>
-
-
-
-
-
-
-
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;; // Decorador para documentar propiedades en Swagger
-import {
-  IsArray,
-  IsEnum,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-  ValidateNested,
-} from &#x27;class-validator&#x27;; // Validadores para las propiedades del DTO
-import { TiposRespuestaEnum } from &#x27;../enums/tipos-respuesta.enum&#x27;; // Enumerador para los tipos de respuesta permitidos
-import { Type } from &#x27;class-transformer&#x27;; // Utilidad para transformar y validar objetos anidados
-import { CreateOpcionDto } from &#x27;./create-opcion.dto&#x27;; // DTO para las opciones de una pregunta
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from &#x27;typeorm&#x27;;
+import { Encuesta } from &#x27;src/modules/encuestas/entities/encuesta.entity&#x27;;
 
-// Clase DTO (Data Transfer Object) para crear una pregunta
-export class CreatePreguntaDto {
-  @ApiProperty() // Documenta la propiedad &quot;numero&quot; en Swagger
-  @IsNumber() // Valida que el valor sea un número
-  @IsNotEmpty() // Valida que el valor no esté vacío
-  numero: number; // Número que representa el orden o posición de la pregunta
+@Entity(&#x27;respuestas&#x27;)
+export class Respuesta {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @ApiProperty() // Documenta la propiedad &quot;texto&quot; en Swagger
-  @IsString() // Valida que el valor sea una cadena de texto
-  @IsNotEmpty() // Valida que el valor no esté vacío
-  texto: string; // Texto de la pregunta
+  @Column(&#x27;int&#x27;)
+  id_encuesta: number;
 
-  @ApiProperty({ enum: TiposRespuestaEnum }) // Documenta la propiedad &quot;tipo&quot; en Swagger como un enumerador
-  @IsEnum(TiposRespuestaEnum) // Valida que el valor sea uno de los valores definidos en el enumerador
-  @IsNotEmpty() // Valida que el valor no esté vacío
-  tipo_respuesta: TiposRespuestaEnum; // Tipo de respuesta permitido para la pregunta
-
-  @ApiProperty({ type: [CreateOpcionDto], required: false }) // Documenta la propiedad &quot;opciones&quot; en Swagger como un arreglo de CreateOpcionDto
-  @IsArray() // Valida que el valor sea un arreglo
-  @IsOptional() // Valida que esta propiedad sea opcional
-  @ValidateNested({ each: true }) // Valida que cada elemento del arreglo sea un objeto válido según CreateOpcionDto
-  @Type(() &#x3D;&gt; CreateOpcionDto) // Transforma cada elemento del arreglo en una instancia de CreateOpcionDto
-  opciones: CreateOpcionDto[]; // Opciones asociadas a la pregunta (opcional)
+  @ManyToOne(() &#x3D;&gt; Encuesta)
+  @JoinColumn({ name: &#x27;id_encuesta&#x27; })
+  encuesta: Encuesta;
 }
 </code></pre>
     </div>
 </div>
+
+
+
+
+
+
 
 
 
@@ -425,8 +340,8 @@ export class CreatePreguntaDto {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'CreatePreguntaDto.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'entity';
+            var COMPODOC_CURRENT_PAGE_URL = 'Respuesta.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
