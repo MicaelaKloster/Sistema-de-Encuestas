@@ -137,6 +137,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#obtenerEncuestaParaParticipacion" >obtenerEncuestaParaParticipacion</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#registrarRespuestas" >registrarRespuestas</a>
                             </li>
                             <li>
@@ -161,12 +165,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(respuestaRepository: <a href="../entitys/Respuesta.html" target="_self">Repository&lt;Respuesta&gt;</a>, respuestaAbiertaRepository: Repository<RespuestaAbierta>, respuestaOpcionRepository: Repository<RespuestaOpcion>, encuestaRepository: <a href="../entitys/Encuesta.html" target="_self">Repository&lt;Encuesta&gt;</a>, preguntaRepository: <a href="../entitys/Pregunta.html" target="_self">Repository&lt;Pregunta&gt;</a>, opcionRepository: <a href="../entitys/Opcion.html" target="_self">Repository&lt;Opcion&gt;</a>)</code>
+<code>constructor(respuestaRepository: Repository<Respuesta>, respuestaAbiertaRepository: Repository<RespuestaAbierta>, respuestaOpcionRepository: Repository<RespuestaOpcion>, encuestaRepository: <a href="../entitys/Encuesta.html" target="_self">Repository&lt;Encuesta&gt;</a>, preguntaRepository: Repository<Pregunta>, opcionRepository: <a href="../entitys/Opcion.html" target="_self">Repository&lt;Opcion&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -187,7 +191,7 @@
                                                         <td>respuestaRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../entitys/Respuesta.html" target="_self" >Repository&lt;Respuesta&gt;</a></code>
+                                                                    <code>Repository&lt;Respuesta&gt;</code>
                                                         </td>
                                                   
                                                     <td>
@@ -235,7 +239,7 @@
                                                         <td>preguntaRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../entitys/Pregunta.html" target="_self" >Repository&lt;Pregunta&gt;</a></code>
+                                                                    <code>Repository&lt;Pregunta&gt;</code>
                                                         </td>
                                                   
                                                     <td>
@@ -273,6 +277,87 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="obtenerEncuestaParaParticipacion"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>obtenerEncuestaParaParticipacion</b></span>
+                        <a href="#obtenerEncuestaParaParticipacion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>obtenerEncuestaParaParticipacion(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, codigoParticipacion: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="278"
+                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:278</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>codigoParticipacion</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/CreateEncuestaDto.html" target="_self" >Promise&lt;CreateEncuestaDto&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="registrarRespuestas"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
@@ -284,15 +369,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>registrarRespuestas(codigoParticipacion: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, registarRespuestasDto: <a href="../classes/RegistrarRespuestasDto.html" target="_self">RegistrarRespuestasDto</a>)</code>
+                    <code>registrarRespuestas(codigoParticipacion: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, registarRespuestasDto: <a href="../classes/RegistrarRespuestasDto.html" target="_self">RegistrarRespuestasDto</a>, encuestaId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -336,6 +421,18 @@
 
 
                                         </tr>
+                                        <tr>
+                                                <td>encuestaId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -372,8 +469,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="124"
-                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:124</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="195"
+                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:195</a></div>
                         </td>
                     </tr>
 
@@ -440,8 +537,9 @@ import { Pregunta } from &#x27;src/modules/encuestas/entities/pregunta.entity&#x
 import { Opcion } from &#x27;src/modules/encuestas/entities/opcion.entity&#x27;;
 import { RegistrarRespuestasDto } from &#x27;src/modules/respuestas/dtos/registrar-respuestas.dto&#x27;;
 import { TiposRespuestaEnum } from &#x27;src/modules/encuestas/enums/tipos-respuesta.enum&#x27;;
-import { VisualizarRespuestasDto } from &#x27;../dtos/visualizar-respuestas.dto&#x27;;
-import { PreguntaConRespuestasDto } from &#x27;../dtos/visualizar-respuestas.dto&#x27;;
+import { VisualizarRespuestasDto } from &#x27;../dtos/visualizar-respuestas.dtos&#x27;;
+import { PreguntaConRespuestasDto } from &#x27;../dtos/visualizar-respuestas.dtos&#x27;;
+import { CreateEncuestaDto } from &#x27;src/modules/encuestas/dtos/create-encuesta.dto&#x27;;
 
 @Injectable()
 export class RespuestasService {
@@ -463,21 +561,77 @@ export class RespuestasService {
   async registrarRespuestas(
     codigoParticipacion: string,
     registarRespuestasDto: RegistrarRespuestasDto,
+    encuestaId?: number,
   ): Promise&lt;void&gt; {
+    // Construir la condición de búsqueda con un tipo específico
+    const whereCondition: {
+      codigoRespuesta: string;
+      habilitada: boolean;
+      id?: number;
+    } &#x3D; {
+      codigoRespuesta: codigoParticipacion,
+      habilitada: true,
+    };
+
+    // Si se proporciona el ID de la encuesta, añadirlo a la condición
+    if (encuestaId) {
+      whereCondition.id &#x3D; encuestaId;
+    }
+
     const encuesta &#x3D; await this.encuestaRepository.findOne({
-      where: { codigoRespuesta: codigoParticipacion }, //busca la encuesta con el codigo de participacion
+      where: whereCondition, //busca la encuesta con el codigo de participacion y opcionalmente el ID
+      relations: [&#x27;preguntas&#x27;, &#x27;preguntas.opciones&#x27;],
     });
 
     if (!encuesta) {
       throw new NotFoundException(&#x27;Encuesta no encontrada o enlace invalido&#x27;); //sino existe el codigo mensaje de error
     }
+
+    const preguntasObligatorias &#x3D; encuesta.preguntas;
+    const preguntasRespondidas &#x3D; registarRespuestasDto.respuestas.map(
+      (r) &#x3D;&gt; r.id_pregunta,
+    );
+
+    // Verificar si todas las preguntas obligatorias están respondidas
+    const preguntasFaltantes &#x3D; preguntasObligatorias.filter(
+      (p) &#x3D;&gt; !preguntasRespondidas.includes(p.id),
+    );
+
+    if (preguntasFaltantes.length &gt; 0) {
+      console.log(
+        &#x27;Preguntas obligatorias:&#x27;,
+        preguntasObligatorias.map((p) &#x3D;&gt; p.id),
+      );
+      console.log(&#x27;Preguntas respondidas:&#x27;, preguntasRespondidas);
+      console.log(
+        &#x27;Preguntas faltantes:&#x27;,
+        preguntasFaltantes.map((p) &#x3D;&gt; p.id),
+      );
+      // Imprimir información detallada de las preguntas y opciones
+      encuesta.preguntas.forEach((pregunta) &#x3D;&gt; {
+        console.log(
+          &#x60;Pregunta ID: ${pregunta.id}, Número: ${pregunta.numero}, Texto: &quot;${pregunta.texto}&quot;&#x60;,
+        );
+        if (pregunta.opciones &amp;&amp; pregunta.opciones.length &gt; 0) {
+          console.log(&#x27;Opciones:&#x27;);
+          pregunta.opciones.forEach((opcion) &#x3D;&gt; {
+            console.log(
+              &#x60;  Opción ID: ${opcion.id}, Número: ${opcion.numero}, Texto: &quot;${opcion.texto}&quot;&#x60;,
+            );
+          });
+        }
+      });
+
+      throw new BadRequestException(
+        &#x60;Debe responder todas las preguntas obligatorias. Faltan las preguntas: ${preguntasFaltantes.map((p) &#x3D;&gt; p.numero).join(&#x27;, &#x27;)}&#x60;,
+      );
+    }
     //crea una nueva respuesta vinculada a la encuesta
     const respuesta &#x3D; this.respuestaRepository.create({
       id_encuesta: encuesta.id,
     });
-    const respuestaGuardada &#x3D;
-      await this.respuestaOpcionRepository.save(respuesta); //guarda las respuestas en la base de datos
-    //itera sobre las respuestas enviadas
+
+    const respuestaGuardada &#x3D; await this.respuestaRepository.save(respuesta); //guarda las respuestas en la base de datos
     for (const respuestaPregunta of registarRespuestasDto.respuestas) {
       const pregunta &#x3D; await this.preguntaRepository.findOne({
         where: {
@@ -493,7 +647,7 @@ export class RespuestasService {
       }
 
       if (respuestaPregunta.tipo &#x3D;&#x3D;&#x3D; TiposRespuestaEnum.ABIERTA) {
-        if (respuestaPregunta.texto) {
+        if (!respuestaPregunta.texto) {
           throw new BadRequestException(
             &#x27;Respuesta de texto requerida para preguntas abiertas&#x27;,
           );
@@ -534,8 +688,22 @@ export class RespuestasService {
           });
 
           if (!opcion) {
+            // Obtener todas las opciones disponibles para esta pregunta para depuración
+            const opcionesDisponibles &#x3D; await this.opcionRepository.find({
+              where: { pregunta: { id: pregunta.id } },
+              select: [&#x27;id&#x27;, &#x27;texto&#x27;, &#x27;numero&#x27;],
+            });
+
+            console.log(
+              &#x60;Error: Opción ${idOpcion} no encontrada para la pregunta ${pregunta.id}&#x60;,
+            );
+            console.log(
+              &#x27;Opciones disponibles para esta pregunta:&#x27;,
+              opcionesDisponibles,
+            );
+
             throw new BadRequestException(
-              &#x60;Opcion ${idOpcion} no encontrada o no pertenece a esta pregunta&#x60;,
+              &#x60;Opcion ${idOpcion} no encontrada o no pertenece a esta pregunta. Opciones disponibles: ${JSON.stringify(opcionesDisponibles)}&#x60;,
             );
           }
           const respuestaOpcion &#x3D; this.respuestaOpcionRepository.create({
@@ -560,6 +728,22 @@ export class RespuestasService {
     if (!encuesta) {
       throw new NotFoundException(&#x27;Encuesta no encontrada o enlace inválido&#x27;); //si no existe mensaje de error.
     }
+
+    // Imprimir información detallada de las preguntas y opciones para depuración
+    console.log(&#x27;Información de la encuesta para depuración:&#x27;);
+    encuesta.preguntas.forEach((pregunta) &#x3D;&gt; {
+      console.log(
+        &#x60;Pregunta ID: ${pregunta.id}, Número: ${pregunta.numero}, Texto: &quot;${pregunta.texto}&quot;&#x60;,
+      );
+      if (pregunta.opciones &amp;&amp; pregunta.opciones.length &gt; 0) {
+        console.log(&#x27;Opciones:&#x27;);
+        pregunta.opciones.forEach((opcion) &#x3D;&gt; {
+          console.log(
+            &#x60;  Opción ID: ${opcion.id}, Número: ${opcion.numero}, Texto: &quot;${opcion.texto}&quot;&#x60;,
+          );
+        });
+      }
+    });
 
     // Construir el objeto
     const resultado: VisualizarRespuestasDto &#x3D; {
@@ -614,6 +798,37 @@ export class RespuestasService {
     }
 
     return resultado;
+  }
+  async obtenerEncuestaParaParticipacion(
+    id: number,
+    codigoParticipacion: string,
+  ): Promise&lt;CreateEncuestaDto&gt; {
+    // Buscar la encuesta por ID y código de participación
+    const encuesta &#x3D; await this.encuestaRepository.findOne({
+      where: { id, codigoRespuesta: codigoParticipacion, habilitada: true },
+      relations: [&#x27;preguntas&#x27;, &#x27;preguntas.opciones&#x27;],
+    });
+
+    if (!encuesta) {
+      throw new NotFoundException(
+        &#x27;Encuesta no encontrada o código de participación inválido&#x27;,
+      );
+    }
+
+    // Convertir la entidad &#x60;Encuesta&#x60; a &#x60;CreateEncuestaDto&#x60;
+    return {
+      nombre: encuesta.nombre,
+      preguntas: encuesta.preguntas.map((pregunta) &#x3D;&gt; ({
+        numero: pregunta.numero,
+        texto: pregunta.texto,
+        tipo: pregunta.tipo,
+        opciones: pregunta.opciones.map((opcion) &#x3D;&gt; ({
+          id: opcion.id,
+          texto: opcion.texto,
+          numero: opcion.numero,
+        })),
+      })),
+    };
   }
 }
 </code></pre>

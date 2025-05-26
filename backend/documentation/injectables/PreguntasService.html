@@ -141,10 +141,6 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#eliminarOpcion" >eliminarOpcion</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#eliminarPreguntaConOpciones" >eliminarPreguntaConOpciones</a>
                             </li>
                         </ul>
@@ -165,7 +161,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(preguntaRepo: <a href="../entitys/Pregunta.html" target="_self">Repository&lt;Pregunta&gt;</a>, opcionRepo: <a href="../entitys/Opcion.html" target="_self">Repository&lt;Opcion&gt;</a>)</code>
+<code>constructor(preguntaRepo: Repository<Pregunta>, opcionRepo: <a href="../entitys/Opcion.html" target="_self">Repository&lt;Opcion&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -191,7 +187,7 @@
                                                         <td>preguntaRepo</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../entitys/Pregunta.html" target="_self" >Repository&lt;Pregunta&gt;</a></code>
+                                                                    <code>Repository&lt;Pregunta&gt;</code>
                                                         </td>
                                                   
                                                     <td>
@@ -284,75 +280,6 @@
                                                 <td>updateDto</td>
                                             <td>
                                                             <code><a href="../classes/ActualizarPreguntaDto.html" target="_self" >ActualizarPreguntaDto</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="eliminarOpcion"></a>
-                    <span class="name">
-                            <span class="modifier">Async</span>
-                        <span ><b>eliminarOpcion</b></span>
-                        <a href="#eliminarOpcion"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>eliminarOpcion(idOpcion: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/modules/preguntas/services/preguntas.service.ts:63</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>idOpcion</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                             </td>
 
                                             <td>
@@ -508,15 +435,6 @@ export class PreguntasService {
     await this.preguntaRepo.delete(idPregunta);
 
     return { mensaje: &#x27;Pregunta eliminada correctamente&#x27; }; // Retorna un mensaje de éxito
-  }
-
-  // Método para eliminar una opción de una pregunta
-  async eliminarOpcion(idOpcion: number): Promise&lt;{ mensaje: string }&gt; {
-    const opcion &#x3D; await this.opcionRepo.findOneBy({ id: idOpcion }); // Busca la opción por ID
-    if (!opcion) throw new NotFoundException(&#x27;Opción no encontrada&#x27;); // Si no existe, lanza excepción 404
-
-    await this.opcionRepo.delete(idOpcion); // Elimina la opción
-    return { mensaje: &#x27;Opción eliminada correctamente&#x27; }; // Retorna un mensaje de éxito
   }
 }
 </code></pre>

@@ -115,29 +115,45 @@
 <text text-anchor="start" x="429.73" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_EncuestasModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="153,-70 153,-195 343,-195 343,-70 153,-70"/>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="80,-70 80,-195 416,-195 416,-70 80,-70"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_EncuestasModule_imports</title>
+<polygon fill="none" stroke="black" points="270,-78 270,-130 408,-130 408,-78 270,-78"/>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_EncuestasModule_providers</title>
-<polygon fill="none" stroke="black" points="161,-78 161,-130 335,-130 335,-78 161,-78"/>
+<polygon fill="none" stroke="black" points="88,-78 88,-130 262,-130 262,-78 88,-78"/>
 </g>
-<!-- EncuestasService -->
+<!-- RespuestasModule -->
 <g id="node1" class="node">
-<title>EncuestasService</title>
-<ellipse fill="#fdb462" stroke="black" cx="248" cy="-104" rx="78.71" ry="18"/>
-<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">EncuestasService</text>
+<title>RespuestasModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="399.75,-122 396.75,-126 375.75,-126 372.75,-122 278.25,-122 278.25,-86 399.75,-86 399.75,-122"/>
+<text text-anchor="middle" x="339" y="-99.8" font-family="Times,serif" font-size="14.00">RespuestasModule</text>
 </g>
 <!-- EncuestasModule -->
 <g id="node2" class="node">
 <title>EncuestasModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="305.53,-187 302.53,-191 281.53,-191 278.53,-187 190.47,-187 190.47,-151 305.53,-151 305.53,-187"/>
-<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00">EncuestasModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="314.53,-187 311.53,-191 290.53,-191 287.53,-187 199.47,-187 199.47,-151 314.53,-151 314.53,-187"/>
+<text text-anchor="middle" x="257" y="-164.8" font-family="Times,serif" font-size="14.00">EncuestasModule</text>
+</g>
+<!-- RespuestasModule&#45;&gt;EncuestasModule -->
+<g id="edge1" class="edge">
+<title>RespuestasModule&#45;&gt;EncuestasModule</title>
+<path fill="none" stroke="black" d="M296.44,-122.11C296.44,-122.11 296.44,-140.99 296.44,-140.99"/>
+<polygon fill="black" stroke="black" points="292.94,-140.99 296.44,-150.99 299.94,-140.99 292.94,-140.99"/>
+</g>
+<!-- EncuestasService -->
+<g id="node3" class="node">
+<title>EncuestasService</title>
+<ellipse fill="#fdb462" stroke="black" cx="175" cy="-104" rx="78.71" ry="18"/>
+<text text-anchor="middle" x="175" y="-99.8" font-family="Times,serif" font-size="14.00">EncuestasService</text>
 </g>
 <!-- EncuestasService&#45;&gt;EncuestasModule -->
-<g id="edge1" class="edge">
+<g id="edge2" class="edge">
 <title>EncuestasService&#45;&gt;EncuestasModule</title>
-<path fill="none" stroke="black" d="M248,-122.11C248,-122.11 248,-140.99 248,-140.99"/>
-<polygon fill="black" stroke="black" points="244.5,-140.99 248,-150.99 251.5,-140.99 244.5,-140.99"/>
+<path fill="none" stroke="black" d="M226.42,-117.78C226.42,-117.78 226.42,-140.55 226.42,-140.55"/>
+<polygon fill="black" stroke="black" points="222.92,-140.55 226.42,-150.55 229.92,-140.55 222.92,-140.55"/>
 </g>
 </g>
 </svg>
@@ -203,6 +219,16 @@
                         </li>
                     </ul>
                 </div>
+                <div class="col-sm-3">
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module imports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../modules/RespuestasModule.html">RespuestasModule</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -219,12 +245,15 @@ import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;; // Módulo de TypeORM
 import { Encuesta } from &#x27;./entities/encuesta.entity&#x27;; // Entidad que representa la tabla &quot;Encuesta&quot; en la base de datos
 import { Pregunta } from &#x27;./entities/pregunta.entity&#x27;; // Entidad que representa la tabla &quot;Pregunta&quot; en la base de datos
 import { Opcion } from &#x27;./entities/opcion.entity&#x27;; // Entidad que representa la tabla &quot;Opción&quot; en la base de datos
+import { Respuesta } from &#x27;../respuestas/entities/respuesta.entity&#x27;; // Entidad que representa la tabla &quot;Respuesta&quot; en la base de datos
+import { RespuestasModule } from &#x27;../respuestas/respuestas.module&#x27;; // Importación del módulo de respuestas
 
 @Module({
   // Importación de módulos necesarios para este módulo
   imports: [
     // Configuración de TypeORM para trabajar con las entidades relacionadas
-    TypeOrmModule.forFeature([Encuesta, Pregunta, Opcion]),
+    TypeOrmModule.forFeature([Encuesta, Pregunta, Opcion, Respuesta]),
+    RespuestasModule,
   ],
   // Declaración de los controladores que manejarán las rutas de este módulo
   controllers: [EncuestasController],

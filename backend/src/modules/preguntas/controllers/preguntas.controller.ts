@@ -32,12 +32,4 @@ export class PreguntasController {
     // Llama al método del servicio que elimina la pregunta junto con sus opciones
     return this.preguntasService.eliminarPreguntaConOpciones(id);
   }
-
-  @Delete('opciones/:id') // Define un endpoint DELETE para eliminar una opcion de una pregunta
-  async eliminarOpcion(
-    @Param('id', ParseIntPipe) id: number, // Obtiene el parámetro "id" de la URL y lo convierte en número.
-  ): Promise<{ mensaje: string }> {
-    // Llama al método del servicio que elimina una opcion de una pregunta
-    return this.preguntasService.eliminarOpcion(id);
-  }
 }

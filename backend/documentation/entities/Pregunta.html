@@ -206,7 +206,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -314,7 +314,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -380,13 +380,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: &#x27;enum&#x27;, enum: TiposRespuestaEnum})<br />
+                            @Column({type: &#x27;enum&#x27;, enum: TiposRespuestaEnum, name: &#x27;tipo&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -428,7 +428,11 @@ export class Pregunta {
   @Column() // Define la columna &quot;texto&quot; en la tabla
   texto: string;
 
-  @Column({ type: &#x27;enum&#x27;, enum: TiposRespuestaEnum }) // Define la columna &quot;tipo&quot; como un enumerador
+  @Column({
+    type: &#x27;enum&#x27;,
+    enum: TiposRespuestaEnum,
+    name: &#x27;tipo&#x27;, // Nombre de la columna en la base de datos
+  }) // Define la columna &quot;tipo&quot; como un enumerador
   tipo: TiposRespuestaEnum; // Especifica el tipo de respuesta permitido para la pregunta
 
   @ManyToOne(() &#x3D;&gt; Encuesta) // Relación muchos a uno con la entidad &quot;Encuesta&quot;

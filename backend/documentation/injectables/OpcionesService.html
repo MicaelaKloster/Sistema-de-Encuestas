@@ -79,16 +79,19 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content injectable">
                    <div class="content-data">
 
 
 
 
 
+
+
+
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Controllers</li>
-  <li class="breadcrumb-item" >PreguntasController</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >OpcionesService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -112,16 +115,8 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/preguntas/controllers/preguntas.controller.ts</code>
+            <code>src/modules/opciones/services/opciones.service.ts</code>
         </p>
-
-            <p class="comment">
-                <h3>Prefix</h3>
-            </p>
-            <p class="comment">
-                <code>preguntas</code>
-            </p>
-
 
 
 
@@ -141,14 +136,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
-                                <a href="#actualizarPregunta" >actualizarPregunta</a>
+                                <a href="#crearOpcion" >crearOpcion</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
-                                <a href="#eliminarPregunta" >eliminarPregunta</a>
+                                <a href="#eliminarOpcion" >eliminarOpcion</a>
                             </li>
                         </ul>
                     </td>
@@ -162,6 +155,67 @@
     </table>
 </section>
 
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(opcionRepository: <a href="../entitys/Opcion.html" target="_self">Repository&lt;Opcion&gt;</a>, preguntaRepository: Repository<Pregunta>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/modules/opciones/services/opciones.service.ts:9</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>opcionRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/Opcion.html" target="_self" >Repository&lt;Opcion&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>preguntaRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;Pregunta&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
             <section data-compodoc="block-methods">
     
     <h3 id="methods">
@@ -171,34 +225,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="actualizarPregunta"></a>
+                    <a name="crearOpcion"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
-                        <span ><b>actualizarPregunta</b></span>
-                        <a href="#actualizarPregunta"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>crearOpcion</b></span>
+                        <a href="#crearOpcion"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>actualizarPregunta(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, actualizarDto: <a href="../classes/ActualizarPreguntaDto.html" target="_self">ActualizarPreguntaDto</a>)</code>
+                    <code>crearOpcion(preguntaId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, createOpcionDto: <a href="../classes/CreateOpcionDto.html" target="_self">CreateOpcionDto</a>)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Patch(&#x27;:id&#x27;)<br /></code>
-                </td>
-            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="20"
-                                    class="link-to-prism">src/modules/preguntas/controllers/preguntas.controller.ts:20</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="17"
+                                    class="link-to-prism">src/modules/opciones/services/opciones.service.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -219,7 +265,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
+                                                <td>preguntaId</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                             </td>
@@ -231,9 +277,9 @@
 
                                         </tr>
                                         <tr>
-                                                <td>actualizarDto</td>
+                                                <td>createOpcionDto</td>
                                             <td>
-                                                            <code><a href="../classes/ActualizarPreguntaDto.html" target="_self" >ActualizarPreguntaDto</a></code>
+                                                            <code><a href="../classes/CreateOpcionDto.html" target="_self" >CreateOpcionDto</a></code>
                                             </td>
 
                                             <td>
@@ -260,34 +306,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="eliminarPregunta"></a>
+                    <a name="eliminarOpcion"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
-                        <span ><b>eliminarPregunta</b></span>
-                        <a href="#eliminarPregunta"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>eliminarOpcion</b></span>
+                        <a href="#eliminarOpcion"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>eliminarPregunta(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>eliminarOpcion(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Delete(&#x27;:id&#x27;)<br /></code>
-                </td>
-            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="29"
-                                    class="link-to-prism">src/modules/preguntas/controllers/preguntas.controller.ts:29</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/modules/opciones/services/opciones.service.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -333,51 +371,66 @@
             </tr>
         </tbody>
     </table>
-</section>    </div>
+</section>
+
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">// Importación de decoradores y módulos necesarios de NestJS
-import {
-  Body,
-  Controller,
-  Param,
-  Patch,
-  Delete,
-  ParseIntPipe,
-} from &#x27;@nestjs/common&#x27;;
-// Importación del servicio de preguntas
-import { PreguntasService } from &#x27;../services/preguntas.service&#x27;;
-// Importación del DTO para actualizar una pregunta
-import { ActualizarPreguntaDto } from &#x27;../../encuestas/dtos/actualizar-pregunta.dto&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;;
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { Repository } from &#x27;typeorm&#x27;;
+import { Opcion } from &#x27;../../encuestas/entities/opcion.entity&#x27;;
+import { Pregunta } from &#x27;../../encuestas/entities/pregunta.entity&#x27;;
+import { CreateOpcionDto } from &#x27;../../encuestas/dtos/create-opcion.dto&#x27;;
 
-@Controller(&#x27;preguntas&#x27;) // Define el controlador para manejar las rutas relacionadas con &quot;/preguntas&quot;
-export class PreguntasController {
-  constructor(private readonly preguntasService: PreguntasService) {} // Inyección del servicio de preguntas
+@Injectable()
+export class OpcionesService {
+  constructor(
+    @InjectRepository(Opcion)
+    private opcionRepository: Repository&lt;Opcion&gt;,
+    @InjectRepository(Pregunta)
+    private preguntaRepository: Repository&lt;Pregunta&gt;,
+  ) {}
 
-  @Patch(&#x27;:id&#x27;) // Define un endpoint PATCH para actualizar una pregunta por su ID
-  async actualizarPregunta(
-    @Param(&#x27;id&#x27;, ParseIntPipe) id: number, // Obtiene el parámetro &quot;id&quot; de la URL y lo convierte en número.
-    @Body() actualizarDto: ActualizarPreguntaDto, // Extrae el cuerpo de la petición y lo valida según ActualizarPreguntaDto.
-  ): Promise&lt;{ mensaje: string }&gt; {
-    // Llama al método actualizarPregunta del servicio, pasándole el id y los nuevos datos.
-    return this.preguntasService.actualizarPregunta(id, actualizarDto);
+  async crearOpcion(
+    preguntaId: number,
+    createOpcionDto: CreateOpcionDto,
+  ): Promise&lt;{ mensaje: string; opcion: Opcion }&gt; {
+    const pregunta &#x3D; await this.preguntaRepository.findOneBy({
+      id: preguntaId,
+    });
+    if (!pregunta) {
+      throw new NotFoundException(&#x27;Pregunta no encontrada&#x27;);
+    }
+
+    const opcion &#x3D; this.opcionRepository.create({
+      ...createOpcionDto,
+      pregunta,
+    });
+
+    const opcionGuardada &#x3D; await this.opcionRepository.save(opcion);
+
+    return {
+      mensaje: &#x27;Opción creada correctamente&#x27;,
+      opcion: opcionGuardada,
+    };
   }
 
-  @Delete(&#x27;:id&#x27;) // Define un endpoint DELETE para eliminar una pregunta y sus opciones
-  async eliminarPregunta(
-    @Param(&#x27;id&#x27;, ParseIntPipe) id: number, // Obtiene el parámetro &quot;id&quot; de la URL y lo convierte en número.
-  ): Promise&lt;{ mensaje: string }&gt; {
-    // Llama al método del servicio que elimina la pregunta junto con sus opciones
-    return this.preguntasService.eliminarPreguntaConOpciones(id);
+  async eliminarOpcion(id: number): Promise&lt;{ mensaje: string }&gt; {
+    const opcion &#x3D; await this.opcionRepository.findOneBy({ id });
+    if (!opcion) {
+      throw new NotFoundException(&#x27;Opción no encontrada&#x27;);
+    }
+
+    await this.opcionRepository.delete(id);
+    return { mensaje: &#x27;Opción eliminada correctamente&#x27; };
   }
 }
 </code></pre>
     </div>
+
 </div>
-
-
-
 
 
 
@@ -416,8 +469,8 @@ export class PreguntasController {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'PreguntasController.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'OpcionesService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

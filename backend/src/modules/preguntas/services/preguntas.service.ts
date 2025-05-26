@@ -58,13 +58,4 @@ export class PreguntasService {
 
     return { mensaje: 'Pregunta eliminada correctamente' }; // Retorna un mensaje de éxito
   }
-
-  // Método para eliminar una opción de una pregunta
-  async eliminarOpcion(idOpcion: number): Promise<{ mensaje: string }> {
-    const opcion = await this.opcionRepo.findOneBy({ id: idOpcion }); // Busca la opción por ID
-    if (!opcion) throw new NotFoundException('Opción no encontrada'); // Si no existe, lanza excepción 404
-
-    await this.opcionRepo.delete(idOpcion); // Elimina la opción
-    return { mensaje: 'Opción eliminada correctamente' }; // Retorna un mensaje de éxito
-  }
 }

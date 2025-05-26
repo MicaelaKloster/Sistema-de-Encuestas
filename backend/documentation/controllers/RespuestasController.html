@@ -142,6 +142,12 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#obtenerEncuestaParaParticipacion" >obtenerEncuestaParaParticipacion</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
@@ -151,6 +157,19 @@
                                     <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#registrarRespuestas" >registrarRespuestas</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#registrarRespuestasAlternativa" >registrarRespuestasAlternativa</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
@@ -182,26 +201,19 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="registrarRespuestas"></a>
+                    <a name="obtenerEncuestaParaParticipacion"></a>
                     <span class="name">
                             <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
-                        <span ><b>registrarRespuestas</b></span>
-                        <a href="#registrarRespuestas"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>obtenerEncuestaParaParticipacion</b></span>
+                        <a href="#obtenerEncuestaParaParticipacion"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>registrarRespuestas(tokenParticipacion: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, registrarRespuestasDto: <a href="../classes/RegistrarRespuestasDto.html" target="_self">RegistrarRespuestasDto</a>)</code>
+                    <code>obtenerEncuestaParaParticipacion(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, tokenParticipacion: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -209,14 +221,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;:tokenParticipacion&#x27;)<br />@HttpCode(HttpStatus.CREATED)<br />@ApiOperation({summary: &#x27;Registrar respuestas de una encuesta&#x27;})<br />@ApiParam({name: &#x27;tokenParticipacion&#x27;, description: &#x27;Token de participación de la encuesta&#x27;, example: &#x27;abc123def456&#x27;})<br />@ApiBody({type: RegistrarRespuestasDto})<br />@ApiResponse({status: 201, description: &#x27;Respuestas registradas exitosamente&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Encuesta no encontrada o enlace inválido&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Datos de respuesta inválidos&#x27;})<br /></code>
+                    <code>@Get(&#x27;participar/:id/:tokenParticipacion&#x27;)<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/modules/respuestas/controllers/respuestas.controller.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="132"
+                                    class="link-to-prism">src/modules/respuestas/controllers/respuestas.controller.ts:132</a></div>
                         </td>
                     </tr>
 
@@ -236,6 +248,224 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>tokenParticipacion</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registrarRespuestas"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>registrarRespuestas</b></span>
+                        <a href="#registrarRespuestas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>registrarRespuestas(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, tokenParticipacion: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, registrarRespuestasDto: <a href="../classes/RegistrarRespuestasDto.html" target="_self">RegistrarRespuestasDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;:id/:tokenParticipacion&#x27;)<br />@HttpCode(HttpStatus.CREATED)<br />@ApiOperation({summary: &#x27;Registrar respuestas de una encuesta&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, description: &#x27;ID de la encuesta&#x27;, example: &#x27;1&#x27;})<br />@ApiParam({name: &#x27;tokenParticipacion&#x27;, description: &#x27;Token de participación de la encuesta&#x27;, example: &#x27;abc123def456&#x27;})<br />@ApiBody({type: RegistrarRespuestasDto})<br />@ApiResponse({status: 201, description: &#x27;Respuestas registradas exitosamente&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Encuesta no encontrada o enlace inválido&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Datos de respuesta inválidos&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/modules/respuestas/controllers/respuestas.controller.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>tokenParticipacion</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>registrarRespuestasDto</td>
+                                            <td>
+                                                            <code><a href="../classes/RegistrarRespuestasDto.html" target="_self" >RegistrarRespuestasDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registrarRespuestasAlternativa"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>registrarRespuestasAlternativa</b></span>
+                        <a href="#registrarRespuestasAlternativa"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>registrarRespuestasAlternativa(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, tokenParticipacion: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, registrarRespuestasDto: <a href="../classes/RegistrarRespuestasDto.html" target="_self">RegistrarRespuestasDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;participar/:id/:tokenParticipacion&#x27;)<br />@HttpCode(HttpStatus.CREATED)<br />@ApiOperation({summary: &#x27;Registrar respuestas de una encuesta (ruta alternativa)&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, description: &#x27;ID de la encuesta&#x27;, example: &#x27;1&#x27;})<br />@ApiParam({name: &#x27;tokenParticipacion&#x27;, description: &#x27;Token de participación de la encuesta&#x27;, example: &#x27;abc123def456&#x27;})<br />@ApiBody({type: RegistrarRespuestasDto})<br />@ApiResponse({status: 201, description: &#x27;Respuestas registradas exitosamente&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Encuesta no encontrada o enlace inválido&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Datos de respuesta inválidos&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/modules/respuestas/controllers/respuestas.controller.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
                                         <tr>
                                                 <td>tokenParticipacion</td>
                                             <td>
@@ -308,8 +538,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="74"
-                                    class="link-to-prism">src/modules/respuestas/controllers/respuestas.controller.ts:74</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/modules/respuestas/controllers/respuestas.controller.ts:124</a></div>
                         </td>
                     </tr>
 
@@ -367,10 +597,12 @@
   HttpCode,
   HttpStatus,
   Get,
+  ParseIntPipe,
 } from &#x27;@nestjs/common&#x27;;
+import { CreateEncuestaDto } from &#x27;src/modules/encuestas/dtos/create-encuesta.dto&#x27;;
 import { RespuestasService } from &#x27;src/modules/respuestas/services/respuestas.service&#x27;;
 import { RegistrarRespuestasDto } from &#x27;src/modules/respuestas/dtos/registrar-respuestas.dto&#x27;;
-import { VisualizarRespuestasDto } from &#x27;../dtos/visualizar-respuestas.dto&#x27;;
+import { VisualizarRespuestasDto } from &#x27;src/modules/respuestas/dtos/visualizar-respuestas.dtos&#x27;;
 import {
   ApiTags,
   ApiOperation,
@@ -384,9 +616,14 @@ import {
 export class RespuestasController {
   constructor(private readonly respuestasService: RespuestasService) {}
 
-  @Post(&#x27;:tokenParticipacion&#x27;) // Permite registrar respuestas para una encuesta específica.
+  @Post(&#x27;:id/:tokenParticipacion&#x27;) // Permite registrar respuestas para una encuesta específica.
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: &#x27;Registrar respuestas de una encuesta&#x27; })
+  @ApiParam({
+    name: &#x27;id&#x27;,
+    description: &#x27;ID de la encuesta&#x27;,
+    example: &#x27;1&#x27;,
+  })
   @ApiParam({
     name: &#x27;tokenParticipacion&#x27;,
     description: &#x27;Token de participación de la encuesta&#x27;,
@@ -406,12 +643,55 @@ export class RespuestasController {
     description: &#x27;Datos de respuesta inválidos&#x27;,
   })
   async registrarRespuestas(
+    @Param(&#x27;id&#x27;) id: number, // Recibe el ID de la encuesta
     @Param(&#x27;tokenParticipacion&#x27;) tokenParticipacion: string, //Recibe el token de participación desde la URL.
     @Body() registrarRespuestasDto: RegistrarRespuestasDto, // Recibe las respuestas en el cuerpo de la solicitud.
   ): Promise&lt;{ message: string }&gt; {
     await this.respuestasService.registrarRespuestas(
       tokenParticipacion,
       registrarRespuestasDto,
+      id,
+    );
+    return { message: &#x27;Respuestas registradas exitosamente&#x27; };
+  }
+
+  @Post(&#x27;participar/:id/:tokenParticipacion&#x27;) // Ruta alternativa para mayor compatibilidad
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({
+    summary: &#x27;Registrar respuestas de una encuesta (ruta alternativa)&#x27;,
+  })
+  @ApiParam({
+    name: &#x27;id&#x27;,
+    description: &#x27;ID de la encuesta&#x27;,
+    example: &#x27;1&#x27;,
+  })
+  @ApiParam({
+    name: &#x27;tokenParticipacion&#x27;,
+    description: &#x27;Token de participación de la encuesta&#x27;,
+    example: &#x27;abc123def456&#x27;,
+  })
+  @ApiBody({ type: RegistrarRespuestasDto })
+  @ApiResponse({
+    status: 201,
+    description: &#x27;Respuestas registradas exitosamente&#x27;,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &#x27;Encuesta no encontrada o enlace inválido&#x27;,
+  })
+  @ApiResponse({
+    status: 400,
+    description: &#x27;Datos de respuesta inválidos&#x27;,
+  })
+  async registrarRespuestasAlternativa(
+    @Param(&#x27;id&#x27;) id: number,
+    @Param(&#x27;tokenParticipacion&#x27;) tokenParticipacion: string,
+    @Body() registrarRespuestasDto: RegistrarRespuestasDto,
+  ): Promise&lt;{ message: string }&gt; {
+    await this.respuestasService.registrarRespuestas(
+      tokenParticipacion,
+      registrarRespuestasDto,
+      id,
     );
     return { message: &#x27;Respuestas registradas exitosamente&#x27; };
   }
@@ -438,6 +718,18 @@ export class RespuestasController {
     const resultado &#x3D;
       await this.respuestasService.visualizarRespuestasDto(tokenVisualizacion);
     return { message: &#x27;Éxito&#x27;, data: resultado };
+  }
+  @Get(&#x27;participar/:id/:tokenParticipacion&#x27;)
+  async obtenerEncuestaParaParticipacion(
+    @Param(&#x27;id&#x27;, ParseIntPipe) id: number,
+    @Param(&#x27;tokenParticipacion&#x27;) tokenParticipacion: string,
+  ): Promise&lt;{ message: string; data: CreateEncuestaDto }&gt; {
+    const encuesta &#x3D;
+      await this.respuestasService.obtenerEncuestaParaParticipacion(
+        id,
+        tokenParticipacion,
+      );
+    return { message: &#x27;Encuesta obtenida exitosamente&#x27;, data: encuesta };
   }
 }
 </code></pre>
