@@ -15,6 +15,8 @@ import { CodigoTipoEnum } from '../enums/codigo-tipo.enum';
 import { NotFoundException } from '@nestjs/common';
 import { TiposRespuestaEnum } from '../enums/tipos-respuesta.enum';
 import { Respuesta } from '../../respuestas/entities/respuesta.entity';
+import fetch from 'node-fetch';
+import * as QRCode from 'qrcode';
 
 @Injectable() // Decorador que marca esta clase como un servicio inyectable
 export class EncuestasService {
@@ -26,13 +28,15 @@ export class EncuestasService {
     private respuestaRepository: Repository<Respuesta>,
   ) {}
 
-  // Método para crear una nueva encuesta
+  // Método para crear una nueva encuesta se le agrega codigo de enlace corto y codigoqr
   async crearEncuesta(dto: CreateEncuestaDto): Promise<{
     id: number;
     codigoRespuesta: string;
     codigoResultados: string;
     enlaceParticipacion: string;
     enlaceVisualizacion: string;
+    enlaceCorto: string;
+    codigoQR: string;
   }> {
     for (const pregunta of dto.preguntas) {
       if (
@@ -76,16 +80,57 @@ export class EncuestasService {
     // Formato: /api/v1/encuestas/resultados/{id}?codigo={codigoResultados}
     const enlaceVisualizacion = `${baseUrl}/${apiPrefix}/${apiVersion}/encuestas/${encuestaCreada.id}/resultados?codigo=${codigoResultados}`;
 
+    //Generar enlace corto
+    const enlaceCorto = await this.generarEnlaceCorto(enlaceParticipacion);
+
+    //Generar QR
+    const codigoQR = await this.generarCodigoQR(enlaceCorto);
+
     // Retorna los datos relevantes de la encuesta creada
     return {
       id: encuestaCreada.id,
       codigoRespuesta: encuestaCreada.codigoRespuesta,
       codigoResultados: encuestaCreada.codigoResultados,
-      enlaceParticipacion,
+      enlaceParticipacion: enlaceCorto, // usamos el enlace corto
       enlaceVisualizacion,
+      enlaceCorto,
+      codigoQR,
     };
   }
+  async generarEnlaceCorto(url: string): Promise<string> {
+    try {
+      const response = await fetch(
+        `http://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`,
+      );
+      if (!response.ok) {
+        console.warn(
+          `Error en la API de TinyURL: ${response.statusText}, usando URL original`,
+        );
+        return url; // Se retorna la URL original
+      }
+      return await response.text();
+    } catch (error) {
+      console.error(
+        'Error al acortar enlace:',
+        error instanceof Error ? error.message : error,
+      );
+      return url; // Devuelve la URL original en caso de error
+    }
+  }
 
+  async generarCodigoQR(texto: string): Promise<string> {
+    try {
+      const qr = await QRCode.toDataURL(texto);
+      return qr;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error('Error generando QR:', error.message);
+      } else {
+        console.error('Error desconocido generando QR:', error);
+      }
+      return ''; // En caso de error, retornar cadena vacía
+    }
+  }
   // Método para obtener una encuesta por su ID y un código específico
   async obtenerEncuesta(
     id: number, // ID de la encuesta

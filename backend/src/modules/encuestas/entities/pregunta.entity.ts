@@ -31,7 +31,7 @@ export class Pregunta {
   @Column({
     type: 'enum',
     enum: TiposRespuestaEnum,
-    name: 'tipo_respuesta', // Nombre de la columna en la base de datos
+    name: 'tipo', // Nombre de la columna en la base de datos
   }) // Define la columna "tipo" como un enumerador
   tipo: TiposRespuestaEnum; // Especifica el tipo de respuesta permitido para la pregunta
 

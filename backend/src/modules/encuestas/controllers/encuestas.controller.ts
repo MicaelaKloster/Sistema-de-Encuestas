@@ -23,7 +23,7 @@ import { Encuesta } from '../entities/encuesta.entity';
 import { CodigoTipoEnum } from '../enums/codigo-tipo.enum';
 import { TiposRespuestaEnum } from '../enums/tipos-respuesta.enum';
 import { CreateEncuestaResponseDto } from '../dtos/create-encuesta-response.dto';
-import { VisualizarRespuestasDto } from '../../respuestas/dtos/visualizar-respuestas.dto';
+import { VisualizarRespuestasDto } from '../../respuestas/dtos/visualizar-respuestas.dtos';
 @Controller('encuestas') // Define el controlador para manejar las rutas relacionadas con "encuestas"
 export class EncuestasController {
   constructor(
@@ -40,8 +40,22 @@ export class EncuestasController {
   async crearEncuesta(
     @Body() dto: CreateEncuestaDto,
   ): Promise<CreateEncuestaResponseDto> {
-    // Llama al servicio para crear una encuesta y retorna los datos relevantes
-    return await this.encuestasService.crearEncuesta(dto);
+    // Crea la encuesta utilizando el servicio
+    const encuesta = await this.encuestasService.crearEncuesta(dto);
+
+    //  Generar enlace corto
+    const enlaceCorto = await this.encuestasService.generarEnlaceCorto(
+      encuesta.enlaceParticipacion,
+    );
+
+    //  Generar código QR
+    const codigoQR = await this.encuestasService.generarCodigoQR(enlaceCorto);
+
+    return {
+      ...encuesta,
+      enlaceParticipacion: enlaceCorto, // Se reemplaza el enlace con la versión corta
+      codigoQR, // Se añade el código QR
+    };
   }
 
   @Get(':id') // Define un endpoint GET para obtener una encuesta por su ID

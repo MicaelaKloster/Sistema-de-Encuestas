@@ -13,8 +13,9 @@ import { Pregunta } from 'src/modules/encuestas/entities/pregunta.entity';
 import { Opcion } from 'src/modules/encuestas/entities/opcion.entity';
 import { RegistrarRespuestasDto } from 'src/modules/respuestas/dtos/registrar-respuestas.dto';
 import { TiposRespuestaEnum } from 'src/modules/encuestas/enums/tipos-respuesta.enum';
-import { VisualizarRespuestasDto } from '../dtos/visualizar-respuestas.dto';
-import { PreguntaConRespuestasDto } from '../dtos/visualizar-respuestas.dto';
+import { VisualizarRespuestasDto } from '../dtos/visualizar-respuestas.dtos';
+import { PreguntaConRespuestasDto } from '../dtos/visualizar-respuestas.dtos';
+import { CreateEncuestaDto } from 'src/modules/encuestas/dtos/create-encuesta.dto';
 
 @Injectable()
 export class RespuestasService {
@@ -105,12 +106,8 @@ export class RespuestasService {
     const respuesta = this.respuestaRepository.create({
       id_encuesta: encuesta.id,
     });
-    const respuestaGuardada = await this.respuestaRepository.save(respuesta);
 
-    //onst respuestaGuardada =
-    //wait this.respuestaOpcionRepository.save(respuesta); //guarda las respuestas en la base de datos
-    //itera sobre las respuestas enviadas
-
+    const respuestaGuardada = await this.respuestaRepository.save(respuesta); //guarda las respuestas en la base de datos
     for (const respuestaPregunta of registarRespuestasDto.respuestas) {
       const pregunta = await this.preguntaRepository.findOne({
         where: {
@@ -277,5 +274,36 @@ export class RespuestasService {
     }
 
     return resultado;
+  }
+  async obtenerEncuestaParaParticipacion(
+    id: number,
+    codigoParticipacion: string,
+  ): Promise<CreateEncuestaDto> {
+    // Buscar la encuesta por ID y código de participación
+    const encuesta = await this.encuestaRepository.findOne({
+      where: { id, codigoRespuesta: codigoParticipacion, habilitada: true },
+      relations: ['preguntas', 'preguntas.opciones'],
+    });
+
+    if (!encuesta) {
+      throw new NotFoundException(
+        'Encuesta no encontrada o código de participación inválido',
+      );
+    }
+
+    // Convertir la entidad `Encuesta` a `CreateEncuestaDto`
+    return {
+      nombre: encuesta.nombre,
+      preguntas: encuesta.preguntas.map((pregunta) => ({
+        numero: pregunta.numero,
+        texto: pregunta.texto,
+        tipo: pregunta.tipo,
+        opciones: pregunta.opciones.map((opcion) => ({
+          id: opcion.id,
+          texto: opcion.texto,
+          numero: opcion.numero,
+        })),
+      })),
+    };
   }
 }

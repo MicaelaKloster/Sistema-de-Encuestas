@@ -6,10 +6,12 @@ import {
   HttpCode,
   HttpStatus,
   Get,
+  ParseIntPipe,
 } from '@nestjs/common';
+import { CreateEncuestaDto } from 'src/modules/encuestas/dtos/create-encuesta.dto';
 import { RespuestasService } from 'src/modules/respuestas/services/respuestas.service';
 import { RegistrarRespuestasDto } from 'src/modules/respuestas/dtos/registrar-respuestas.dto';
-import { VisualizarRespuestasDto } from '../dtos/visualizar-respuestas.dto';
+import { VisualizarRespuestasDto } from 'src/modules/respuestas/dtos/visualizar-respuestas.dtos';
 import {
   ApiTags,
   ApiOperation,
@@ -125,5 +127,17 @@ export class RespuestasController {
     const resultado =
       await this.respuestasService.visualizarRespuestasDto(tokenVisualizacion);
     return { message: 'Éxito', data: resultado };
+  }
+  @Get('participar/:id/:tokenParticipacion')
+  async obtenerEncuestaParaParticipacion(
+    @Param('id', ParseIntPipe) id: number,
+    @Param('tokenParticipacion') tokenParticipacion: string,
+  ): Promise<{ message: string; data: CreateEncuestaDto }> {
+    const encuesta =
+      await this.respuestasService.obtenerEncuestaParaParticipacion(
+        id,
+        tokenParticipacion,
+      );
+    return { message: 'Encuesta obtenida exitosamente', data: encuesta };
   }
 }

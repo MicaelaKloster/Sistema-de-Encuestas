@@ -24,4 +24,14 @@ export class CreateEncuestaDto {
   @ValidateNested({ each: true }) // Valida que cada elemento del arreglo sea un objeto válido según CreatePreguntaDto
   @Type(() => CreatePreguntaDto) // Transforma cada elemento del arreglo en una instancia de CreatePreguntaDto
   preguntas: CreatePreguntaDto[]; // Lista de preguntas asociadas a la encuesta
+
+  //Propiedad para el enlace corto
+  @ApiProperty()
+  @IsString()
+  enlaceCorto?: string; // generado automaticamente
+
+  // Propiedad para el código QR
+  @ApiProperty()
+  @IsString()
+  codigoQR?: string; // generado automáticamente
 }

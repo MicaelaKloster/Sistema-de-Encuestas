@@ -15,4 +15,10 @@ export class CreateEncuestaResponseDto {
 
   @ApiProperty({ description: 'Enlace para visualizar resultados' })
   enlaceVisualizacion: string;
+
+  @ApiProperty({ description: 'Enlace corto generado automáticamente' })
+  enlaceCorto: string;
+
+  @ApiProperty({ description: 'Código QR generado automáticamente' })
+  codigoQR: string;
 }
