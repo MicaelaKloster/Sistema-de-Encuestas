@@ -106,8 +106,13 @@ export class RespuestasService {
     const respuesta = this.respuestaRepository.create({
       id_encuesta: encuesta.id,
     });
+<<<<<<< Updated upstream
 
     const respuestaGuardada = await this.respuestaRepository.save(respuesta); //guarda las respuestas en la base de datos
+=======
+    const respuestaGuardada = await this.respuestaRepository.save(respuesta);
+
+>>>>>>> Stashed changes
     for (const respuestaPregunta of registarRespuestasDto.respuestas) {
       const pregunta = await this.preguntaRepository.findOne({
         where: {
