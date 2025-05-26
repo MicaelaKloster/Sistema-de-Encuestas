@@ -2,6 +2,8 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 // Importación de la entidad relacionada "Pregunta"
 import { Pregunta } from './pregunta.entity';
+// Importación de la entidad relacionada "Respuesta"
+import { Respuesta } from '../../respuestas/entities/respuesta.entity';
 // Importación del decorador "Exclude" para excluir propiedades en la serialización
 import { Exclude } from 'class-transformer';
 
@@ -12,7 +14,7 @@ export class Encuesta {
 
   @Column() // Define la columna "nombre" en la tabla
   nombre: string;
-
+  fechaActualizacion: Date;
   @OneToMany(() => Pregunta, (pregunta) => pregunta.encuesta, {
     cascade: ['insert'], // Permite insertar automáticamente las preguntas relacionadas
   })
@@ -28,4 +30,7 @@ export class Encuesta {
   // Funcionalidad Extra para deshabilitar una encuesta (MICA)
   @Column({ default: true })
   habilitada: boolean; // Columna que indica si la encuesta está habilitada o no
+
+  @OneToMany(() => Respuesta, (respuesta) => respuesta.encuesta)
+  respuestas: Respuesta[]; // Relación uno a muchos con la entidad "Respuesta"
 }

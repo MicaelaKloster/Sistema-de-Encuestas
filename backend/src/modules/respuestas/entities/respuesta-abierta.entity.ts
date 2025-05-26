@@ -6,7 +6,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { Pregunta } from 'src/modules/encuestas/entities/pregunta.entity';
+import { Pregunta } from '../../encuestas/entities/pregunta.entity';
 import { Respuesta } from './respuesta.entity';
 
 @Entity('respuestas_abiertas')

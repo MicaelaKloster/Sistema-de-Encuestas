@@ -28,7 +28,11 @@ export class Pregunta {
   @Column() // Define la columna "texto" en la tabla
   texto: string;
 
-  @Column({ type: 'enum', enum: TiposRespuestaEnum }) // Define la columna "tipo" como un enumerador
+  @Column({
+    type: 'enum',
+    enum: TiposRespuestaEnum,
+    name: 'tipo', // Nombre de la columna en la base de datos
+  }) // Define la columna "tipo" como un enumerador
   tipo: TiposRespuestaEnum; // Especifica el tipo de respuesta permitido para la pregunta
 
   @ManyToOne(() => Encuesta) // Relación muchos a uno con la entidad "Encuesta"

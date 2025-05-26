@@ -138,6 +138,13 @@
 
 
 
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>ConfirmationService</code>
+                            <code>MessageService</code>
+                </td>
+            </tr>
 
 
             <tr>
@@ -150,6 +157,8 @@
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
                             <code>RouterOutlet</code>
+                            <code>ConfirmDialogModule</code>
+                            <code>ToastModule</code>
                 </td>
             </tr>
 
@@ -239,7 +248,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/app.component.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/app.component.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -254,22 +263,33 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
 import { RouterOutlet } from &#x27;@angular/router&#x27;;
+import { ToastModule } from &#x27;primeng/toast&#x27;;
+import { ConfirmDialogModule } from &#x27;primeng/confirmdialog&#x27;;
+import { ConfirmationService, MessageService } from &#x27;primeng/api&#x27;;
 
+// Decorador que define los metadatos del componente principal de la aplicación
 @Component({
-  selector: &#x27;app-root&#x27;,
-  imports: [RouterOutlet],
-  templateUrl: &#x27;./app.component.html&#x27;,
-  styleUrl: &#x27;./app.component.css&#x27;
+  selector: &#x27;app-root&#x27;, // Selector utilizado en el HTML para este componente
+  imports: [RouterOutlet, ConfirmDialogModule, ToastModule], // Módulos importados para el template
+  templateUrl: &#x27;./app.component.html&#x27;, // Ruta del archivo de template HTML
+  styleUrl: &#x27;./app.component.css&#x27;, // Ruta del archivo de estilos CSS
+  providers: [ConfirmationService, MessageService], // Servicios disponibles para el componente y sus hijos
 })
 export class AppComponent {
-  title &#x3D; &#x27;frontend&#x27;;
+  title &#x3D; &#x27;frontend&#x27;; // Título de la aplicación
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">TEST
-&lt;router-outlet /&gt;</code></pre>
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Punto de inserción para las rutas hijas definidas en el router de Angular --&gt;
+&lt;router-outlet /&gt;
+
+&lt;!-- Componente de PrimeNG para mostrar notificaciones tipo toast --&gt;
+&lt;p-toast&gt;&lt;/p-toast&gt;
+
+&lt;!-- Componente de PrimeNG para mostrar cuadros de diálogo de confirmación --&gt;
+&lt;p-confirmdialog/&gt;</code></pre>
     </div>
 
 
@@ -298,8 +318,8 @@ export class AppComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>TEST<router-outlet /></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'}];
+        var COMPONENT_TEMPLATE = '<div><!-- Punto de inserción para las rutas hijas definidas en el router de Angular --><router-outlet /><!-- Componente de PrimeNG para mostrar notificaciones tipo toast --><p-toast></p-toast><!-- Componente de PrimeNG para mostrar cuadros de diálogo de confirmación --><p-confirmdialog/></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ComienzoComponent', 'selector': 'app-comienzo'},{'name': 'CreacionComponent', 'selector': 'app-creacion'},{'name': 'SeccionComponent', 'selector': 'app-seccion'},{'name': 'TextoErrorComponent', 'selector': 'app-texto-error'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};
 </script>

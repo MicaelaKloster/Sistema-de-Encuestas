@@ -17,5 +17,15 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false
-  }
+  },
+    "include": [
+    "src/**/*",
+    "documentation/js/menu-wc.js"  // Añadido para incluir ese archivo específico
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+
 }
+

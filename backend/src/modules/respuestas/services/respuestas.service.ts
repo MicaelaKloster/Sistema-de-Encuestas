@@ -15,6 +15,7 @@ import { RegistrarRespuestasDto } from 'src/modules/respuestas/dtos/registrar-re
 import { TiposRespuestaEnum } from 'src/modules/encuestas/enums/tipos-respuesta.enum';
 import { VisualizarRespuestasDto } from '../dtos/visualizar-respuestas.dtos';
 import { PreguntaConRespuestasDto } from '../dtos/visualizar-respuestas.dtos';
+import { CreateEncuestaDto } from 'src/modules/encuestas/dtos/create-encuesta.dto';
 
 @Injectable()
 export class RespuestasService {
@@ -36,20 +37,77 @@ export class RespuestasService {
   async registrarRespuestas(
     codigoParticipacion: string,
     registarRespuestasDto: RegistrarRespuestasDto,
+    encuestaId?: number,
   ): Promise<void> {
+    // Construir la condición de búsqueda con un tipo específico
+    const whereCondition: {
+      codigoRespuesta: string;
+      habilitada: boolean;
+      id?: number;
+    } = {
+      codigoRespuesta: codigoParticipacion,
+      habilitada: true,
+    };
+
+    // Si se proporciona el ID de la encuesta, añadirlo a la condición
+    if (encuestaId) {
+      whereCondition.id = encuestaId;
+    }
+
     const encuesta = await this.encuestaRepository.findOne({
-      where: { codigoRespuesta: codigoParticipacion }, //busca la encuesta con el codigo de participacion
+      where: whereCondition, //busca la encuesta con el codigo de participacion y opcionalmente el ID
+      relations: ['preguntas', 'preguntas.opciones'],
     });
 
     if (!encuesta) {
       throw new NotFoundException('Encuesta no encontrada o enlace invalido'); //sino existe el codigo mensaje de error
     }
+
+    const preguntasObligatorias = encuesta.preguntas;
+    const preguntasRespondidas = registarRespuestasDto.respuestas.map(
+      (r) => r.id_pregunta,
+    );
+
+    // Verificar si todas las preguntas obligatorias están respondidas
+    const preguntasFaltantes = preguntasObligatorias.filter(
+      (p) => !preguntasRespondidas.includes(p.id),
+    );
+
+    if (preguntasFaltantes.length > 0) {
+      console.log(
+        'Preguntas obligatorias:',
+        preguntasObligatorias.map((p) => p.id),
+      );
+      console.log('Preguntas respondidas:', preguntasRespondidas);
+      console.log(
+        'Preguntas faltantes:',
+        preguntasFaltantes.map((p) => p.id),
+      );
+      // Imprimir información detallada de las preguntas y opciones
+      encuesta.preguntas.forEach((pregunta) => {
+        console.log(
+          `Pregunta ID: ${pregunta.id}, Número: ${pregunta.numero}, Texto: "${pregunta.texto}"`,
+        );
+        if (pregunta.opciones && pregunta.opciones.length > 0) {
+          console.log('Opciones:');
+          pregunta.opciones.forEach((opcion) => {
+            console.log(
+              `  Opción ID: ${opcion.id}, Número: ${opcion.numero}, Texto: "${opcion.texto}"`,
+            );
+          });
+        }
+      });
+
+      throw new BadRequestException(
+        `Debe responder todas las preguntas obligatorias. Faltan las preguntas: ${preguntasFaltantes.map((p) => p.numero).join(', ')}`,
+      );
+    }
     //crea una nueva respuesta vinculada a la encuesta
     const respuesta = this.respuestaRepository.create({
       id_encuesta: encuesta.id,
     });
+
     const respuestaGuardada = await this.respuestaRepository.save(respuesta); //guarda las respuestas en la base de datos
-    //itera sobre las respuestas enviadas
     for (const respuestaPregunta of registarRespuestasDto.respuestas) {
       const pregunta = await this.preguntaRepository.findOne({
         where: {
@@ -65,7 +123,7 @@ export class RespuestasService {
       }
 
       if (respuestaPregunta.tipo === TiposRespuestaEnum.ABIERTA) {
-        if (respuestaPregunta.texto) {
+        if (!respuestaPregunta.texto) {
           throw new BadRequestException(
             'Respuesta de texto requerida para preguntas abiertas',
           );
@@ -106,8 +164,22 @@ export class RespuestasService {
           });
 
           if (!opcion) {
+            // Obtener todas las opciones disponibles para esta pregunta para depuración
+            const opcionesDisponibles = await this.opcionRepository.find({
+              where: { pregunta: { id: pregunta.id } },
+              select: ['id', 'texto', 'numero'],
+            });
+
+            console.log(
+              `Error: Opción ${idOpcion} no encontrada para la pregunta ${pregunta.id}`,
+            );
+            console.log(
+              'Opciones disponibles para esta pregunta:',
+              opcionesDisponibles,
+            );
+
             throw new BadRequestException(
-              `Opcion ${idOpcion} no encontrada o no pertenece a esta pregunta`,
+              `Opcion ${idOpcion} no encontrada o no pertenece a esta pregunta. Opciones disponibles: ${JSON.stringify(opcionesDisponibles)}`,
             );
           }
           const respuestaOpcion = this.respuestaOpcionRepository.create({
@@ -132,6 +204,22 @@ export class RespuestasService {
     if (!encuesta) {
       throw new NotFoundException('Encuesta no encontrada o enlace inválido'); //si no existe mensaje de error.
     }
+
+    // Imprimir información detallada de las preguntas y opciones para depuración
+    console.log('Información de la encuesta para depuración:');
+    encuesta.preguntas.forEach((pregunta) => {
+      console.log(
+        `Pregunta ID: ${pregunta.id}, Número: ${pregunta.numero}, Texto: "${pregunta.texto}"`,
+      );
+      if (pregunta.opciones && pregunta.opciones.length > 0) {
+        console.log('Opciones:');
+        pregunta.opciones.forEach((opcion) => {
+          console.log(
+            `  Opción ID: ${opcion.id}, Número: ${opcion.numero}, Texto: "${opcion.texto}"`,
+          );
+        });
+      }
+    });
 
     // Construir el objeto
     const resultado: VisualizarRespuestasDto = {
@@ -186,5 +274,36 @@ export class RespuestasService {
     }
 
     return resultado;
+  }
+  async obtenerEncuestaParaParticipacion(
+    id: number,
+    codigoParticipacion: string,
+  ): Promise<CreateEncuestaDto> {
+    // Buscar la encuesta por ID y código de participación
+    const encuesta = await this.encuestaRepository.findOne({
+      where: { id, codigoRespuesta: codigoParticipacion, habilitada: true },
+      relations: ['preguntas', 'preguntas.opciones'],
+    });
+
+    if (!encuesta) {
+      throw new NotFoundException(
+        'Encuesta no encontrada o código de participación inválido',
+      );
+    }
+
+    // Convertir la entidad `Encuesta` a `CreateEncuestaDto`
+    return {
+      nombre: encuesta.nombre,
+      preguntas: encuesta.preguntas.map((pregunta) => ({
+        numero: pregunta.numero,
+        texto: pregunta.texto,
+        tipo: pregunta.tipo,
+        opciones: pregunta.opciones.map((opcion) => ({
+          id: opcion.id,
+          texto: opcion.texto,
+          numero: opcion.numero,
+        })),
+      })),
+    };
   }
 }
