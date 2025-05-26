@@ -13,10 +13,10 @@ export class RespuestaOpcion {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('int')
+  @Column('int', { nullable: true })
   id_respuesta: number;
 
-  @Column('int')
+  @Column('int', { nullable: true })
   id_opcion: number;
 
   @ManyToOne(() => Respuesta)

@@ -14,13 +14,13 @@ export class RespuestaAbierta {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'text', nullable: false })
+  @Column({ type: 'text', nullable: true })
   texto: string;
 
-  @Column('int')
+  @Column('int', { nullable: true })
   id_pregunta: number;
 
-  @Column('int')
+  @Column('int', { nullable: true })
   id_respuesta: number;
 
   @ManyToOne(() => Pregunta)

@@ -28,7 +28,8 @@ export class RespuestaPreguntaDto {
   tipo:
     | 'ABIERTA'
     | 'OPCION_MULTIPLE_SELECCION_SIMPLE'
-    | 'OPCION_MULTIPLE_SELECCION_MULTIPLE';
+    | 'OPCION_MULTIPLE_SELECCION_MULTIPLE'
+    | 'VERDADERO_FALSO';
 
   @IsOptional()
   @IsString()

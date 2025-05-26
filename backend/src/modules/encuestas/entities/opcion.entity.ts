@@ -18,10 +18,10 @@ export class Opcion {
   @PrimaryGeneratedColumn() // Define la columna "id" como clave primaria autogenerada
   id: number;
 
-  @Column() // Define la columna "texto" en la tabla
+  @Column({ nullable: true }) // Define la columna "texto" en la tabla, permitiendo valores nulos temporalmente
   texto: string;
 
-  @Column() // Define la columna "numero" en la tabla
+  @Column({ nullable: true }) // Define la columna "numero" en la tabla, permitiendo valores nulos temporalmente
   numero: number;
 
   @ManyToOne(() => Pregunta) // Relación muchos a uno con la entidad "Pregunta"

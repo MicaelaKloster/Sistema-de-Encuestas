@@ -40,7 +40,14 @@ export class EncuestasService {
     fechaVencimiento?: Date;
   }> {
     for (const pregunta of dto.preguntas) {
-      if (
+      // FUNCIÓN EXTRA: Manejar preguntas de tipo VERDADERO_FALSO
+      if (pregunta.tipo === TiposRespuestaEnum.VERDADERO_FALSO) {
+        // Para preguntas de tipo VERDADERO_FALSO, generamos automáticamente las opciones
+        pregunta.opciones = [
+          { numero: 1, texto: 'Verdadero' },
+          { numero: 2, texto: 'Falso' },
+        ];
+      } else if (
         pregunta.tipo !== TiposRespuestaEnum.ABIERTA &&
         (!pregunta.opciones || pregunta.opciones.length === 0)
       ) {
@@ -210,6 +217,25 @@ export class EncuestasService {
           pregunta: pregunta.texto,
           tipo: 'ABIERTA',
           respuestas: respuestasTexto,
+        };
+      } else if (pregunta.tipo === TiposRespuestaEnum.VERDADERO_FALSO) {
+        // Para preguntas de tipo VERDADERO_FALSO, procesamos de manera similar a las de opción múltiple
+        const opcionesConteo = pregunta.opciones.map((opcion) => {
+          const conteo = encuesta.respuestas
+            .flatMap((r) => r.respuestasOpciones)
+            .filter((ro) => ro.opcion?.id === opcion.id).length;
+
+          return {
+            id: opcion.id,
+            opcion: opcion.texto,
+            conteo,
+          };
+        });
+
+        return {
+          pregunta: pregunta.texto,
+          tipo: TiposRespuestaEnum.VERDADERO_FALSO,
+          opciones: opcionesConteo,
         };
       } else {
         const opcionesConteo = pregunta.opciones.map((opcion) => {

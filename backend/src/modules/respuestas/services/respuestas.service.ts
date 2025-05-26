@@ -135,6 +135,37 @@ export class RespuestasService {
           id_respuesta: respuestaGuardada.id,
         });
         await this.respuestaAbiertaRepository.save(respuestasAbiertas);
+      } else if (
+        respuestaPregunta.tipo === TiposRespuestaEnum.VERDADERO_FALSO
+      ) {
+        if (
+          !respuestaPregunta.opciones ||
+          respuestaPregunta.opciones.length !== 1
+        ) {
+          throw new BadRequestException(
+            'Debe seleccionar exactamente una opción (Verdadero o Falso)',
+          );
+        }
+
+        // Verificar que la opción seleccionada pertenece a la pregunta
+        const opcion = await this.opcionRepository.findOne({
+          where: {
+            id: respuestaPregunta.opciones[0],
+            pregunta: { id: pregunta.id },
+          },
+        });
+
+        if (!opcion) {
+          throw new BadRequestException(
+            `Opción seleccionada no válida para esta pregunta de Verdadero/Falso`,
+          );
+        }
+
+        const respuestaOpcion = this.respuestaOpcionRepository.create({
+          id_respuesta: respuestaGuardada.id,
+          id_opcion: respuestaPregunta.opciones[0],
+        });
+        await this.respuestaOpcionRepository.save(respuestaOpcion);
       } else {
         if (
           !respuestaPregunta.opciones ||
