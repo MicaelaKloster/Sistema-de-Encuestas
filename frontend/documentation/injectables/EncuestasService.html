@@ -154,9 +154,6 @@
                                 <a href="#crearEncuesta" >crearEncuesta</a>
                             </li>
                             <li>
-                                <a href="#test" >test</a>
-                            </li>
-                            <li>
                                 <a href="#traerEncuesta" >traerEncuesta</a>
                             </li>
                         </ul>
@@ -240,43 +237,6 @@
                             <div class="io-description">
                                 
                             </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="test"></a>
-                    <span class="name">
-                        <span ><b>test</b></span>
-                        <a href="#test"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>test()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="39"
-                                    class="link-to-prism">src/app/services/encuestas.service.ts:39</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
                 </td>
             </tr>
         </tbody>
@@ -447,13 +407,6 @@ export class EncuestasService {
     );
   }
 
-  // Método de prueba para traer una encuesta y mostrar el resultado por consola
-  test() {
-    this.traerEncuesta(1, &#x27;codigo-test&#x27;, CodigoTipoEnum.RESPUESTA).subscribe({
-      next: (res) &#x3D;&gt; console.log(res), // Muestra la respuesta si es exitosa
-      error: (err) &#x3D;&gt; console.log(err), // Muestra el error si ocurre
-    });
-  }
 }</code></pre>
     </div>
 

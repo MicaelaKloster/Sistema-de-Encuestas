@@ -1,0 +1,1552 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  GestionPreguntaDialogComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-gestion-pregunta-dialog</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>DialogModule</code>
+                            <code>DropdownModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>InputTextModule</code>
+                            <code>FloatLabelModule</code>
+                            <code>ButtonModule</code>
+                                <code><a href="../components/TextoErrorComponent.html" target="_self" >TextoErrorComponent</a></code>
+                                <code><a href="../components/SeccionComponent.html" target="_self" >SeccionComponent</a></code>
+                                <code><a href="../components/GestionOpcionDialogComponent.html" target="_self" >GestionOpcionDialogComponent</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./gestion-pregunta-dialog.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./gestion-pregunta-dialog.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#agregarPregunta" >agregarPregunta</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#confirmationService" >confirmationService</a>
+                            </li>
+                            <li>
+                                <a href="#dialogGestionOpcionVisible" >dialogGestionOpcionVisible</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#messageService" >messageService</a>
+                            </li>
+                            <li>
+                                <a href="#opcionSeleccionada" >opcionSeleccionada</a>
+                            </li>
+                            <li>
+                                <a href="#visible" >visible</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#abrirAgregarOpcion" >abrirAgregarOpcion</a>
+                            </li>
+                            <li>
+                                <a href="#agregar" >agregar</a>
+                            </li>
+                            <li>
+                                <a href="#agregarOpcion" >agregarOpcion</a>
+                            </li>
+                            <li>
+                                <a href="#cerrar" >cerrar</a>
+                            </li>
+                            <li>
+                                <a href="#confirmarEliminarOpcion" >confirmarEliminarOpcion</a>
+                            </li>
+                            <li>
+                                <a href="#eliminarOpcion" >eliminarOpcion</a>
+                            </li>
+                            <li>
+                                <a href="#esMultipleChoice" >esMultipleChoice</a>
+                            </li>
+                            <li>
+                                <a href="#getTiposPreguntaPresentacion" >getTiposPreguntaPresentacion</a>
+                            </li>
+                            <li>
+                                <a href="#reset" >reset</a>
+                            </li>
+                            <li>
+                                <a href="#resetearOpciones" >resetearOpciones</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#visible" >visible</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#agregarPregunta" >agregarPregunta</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#texto" >texto</a>
+                                </li>
+                                <li>
+                                    <a href="#tipo" >tipo</a>
+                                </li>
+                                <li>
+                                    <a href="#opciones" >opciones</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:62</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="visible"></a>
+                        <b>visible</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:49</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="agregarPregunta"></a>
+                        <b>agregarPregunta</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:55</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="abrirAgregarOpcion"></a>
+                    <span class="name">
+                        <span ><b>abrirAgregarOpcion</b></span>
+                        <a href="#abrirAgregarOpcion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>abrirAgregarOpcion()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="154"
+                                    class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:154</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="agregar"></a>
+                    <span class="name">
+                        <span ><b>agregar</b></span>
+                        <a href="#agregar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>agregar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="agregarOpcion"></a>
+                    <span class="name">
+                        <span ><b>agregarOpcion</b></span>
+                        <a href="#agregarOpcion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>agregarOpcion(opcion: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="159"
+                                    class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:159</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>opcion</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cerrar"></a>
+                    <span class="name">
+                        <span ><b>cerrar</b></span>
+                        <a href="#cerrar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cerrar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:141</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmarEliminarOpcion"></a>
+                    <span class="name">
+                        <span ><b>confirmarEliminarOpcion</b></span>
+                        <a href="#confirmarEliminarOpcion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmarEliminarOpcion(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="173"
+                                    class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:173</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eliminarOpcion"></a>
+                    <span class="name">
+                        <span ><b>eliminarOpcion</b></span>
+                        <a href="#eliminarOpcion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>eliminarOpcion(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="168"
+                                    class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:168</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="esMultipleChoice"></a>
+                    <span class="name">
+                        <span ><b>esMultipleChoice</b></span>
+                        <a href="#esMultipleChoice"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>esMultipleChoice(tipo: <a href="../undefineds/TiposRespuestaEnum.html" target="_self">TiposRespuestaEnum</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="146"
+                                    class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:146</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tipo</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/enumerations.html#TiposRespuestaEnum" target="_self" >TiposRespuestaEnum</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTiposPreguntaPresentacion"></a>
+                    <span class="name">
+                        <span ><b>getTiposPreguntaPresentacion</b></span>
+                        <a href="#getTiposPreguntaPresentacion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTiposPreguntaPresentacion()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>literal type[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reset"></a>
+                    <span class="name">
+                        <span ><b>reset</b></span>
+                        <a href="#reset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>reset()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetearOpciones"></a>
+                    <span class="name">
+                        <span ><b>resetearOpciones</b></span>
+                        <a href="#resetearOpciones"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetearOpciones()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="agregarPregunta"></a>
+                    <span class="name">
+                        <span ><b>agregarPregunta</b></span>
+                        <a href="#agregarPregunta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmationService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>confirmationService</b></span>
+                        <a href="#confirmationService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ConfirmationService</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ConfirmationService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dialogGestionOpcionVisible"></a>
+                    <span class="name">
+                        <span ><b>dialogGestionOpcionVisible</b></span>
+                        <a href="#dialogGestionOpcionVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="messageService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>messageService</b></span>
+                        <a href="#messageService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MessageService</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(MessageService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="opcionSeleccionada"></a>
+                    <span class="name">
+                        <span ><b>opcionSeleccionada</b></span>
+                        <a href="#opcionSeleccionada"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Pick&lt;CreateOpcionDTO, &#x27;texto&#x27;&gt; | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="visible"></a>
+                    <span class="name">
+                        <span ><b>visible</b></span>
+                        <a href="#visible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="texto"></a>
+                        <span class="name"><b>texto</b><a href="#texto"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>texto()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:108</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tipo"></a>
+                        <span class="name"><b>tipo</b><a href="#tipo"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>tipo()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:113</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="opciones"></a>
+                        <span class="name"><b>opciones</b><a href="#opciones"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>opciones()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/components/gestion-pregunta-dialog/gestion-pregunta-dialog.component.ts:118</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, model, output, signal } from &#x27;@angular/core&#x27;;
+import { DialogModule } from &#x27;primeng/dialog&#x27;;
+import { DropdownModule } from &#x27;primeng/dropdown&#x27;;
+import {
+  tiposPreguntaPresentacion,
+  TiposRespuestaEnum,
+} from &#x27;../../enums/tipos-pregunta.enum&#x27;;
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from &#x27;@angular/forms&#x27;;
+import { InputTextModule } from &#x27;primeng/inputtext&#x27;;
+import { FloatLabelModule } from &#x27;primeng/floatlabel&#x27;;
+import { ButtonModule } from &#x27;primeng/button&#x27;;
+import { PreguntaDTO } from &#x27;../../interfaces/pregunta.dto&#x27;;
+import { ConfirmationService, MessageService } from &#x27;primeng/api&#x27;;
+import { TextoErrorComponent } from &#x27;../texto-error/texto-error.component&#x27;;
+import { effect } from &#x27;@angular/core&#x27;;
+import { SeccionComponent } from &#x27;../seccion/seccion.component&#x27;;
+import { GestionOpcionDialogComponent } from &#x27;../gestion-opcion-dialog/gestion-opcion-dialog.component&#x27;;
+import { CreateOpcionDTO } from &#x27;../../interfaces/create-opcion.dto&#x27;;
+import { opcionesNoVacias } from &#x27;../../validators/opciones-no-vacias.validator&#x27;;
+
+// Componente para gestionar el diálogo de creación/edición de preguntas
+@Component({
+  selector: &#x27;app-gestion-pregunta-dialog&#x27;,
+  imports: [
+    DialogModule,
+    DropdownModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    FloatLabelModule,
+    ButtonModule,
+    TextoErrorComponent,
+    SeccionComponent,
+    GestionOpcionDialogComponent,
+  ],
+  templateUrl: &#x27;./gestion-pregunta-dialog.component.html&#x27;,
+  styleUrl: &#x27;./gestion-pregunta-dialog.component.css&#x27;,
+})
+export class GestionPreguntaDialogComponent {
+  // Formulario reactivo para la pregunta
+  readonly form: FormGroup;
+
+  // Controla la visibilidad del diálogo
+  visible &#x3D; model.required&lt;boolean&gt;();
+
+  // Controla la visibilidad del diálogo para agregar opciones
+  dialogGestionOpcionVisible &#x3D; signal&lt;boolean&gt;(false);
+
+  // Evento de salida para agregar una pregunta
+  agregarPregunta &#x3D; output&lt;PreguntaDTO&gt;();
+
+  // Opción seleccionada temporalmente para agregar
+  opcionSeleccionada &#x3D; signal&lt;Pick&lt;CreateOpcionDTO, &#x27;texto&#x27;&gt; | null&gt;(null);
+
+  // Servicios de mensajes y confirmación de PrimeNG
+  private messageService: MessageService &#x3D; inject(MessageService);
+  private confirmationService: ConfirmationService &#x3D; inject(ConfirmationService);
+
+  constructor() {
+    // Inicializa el formulario con controles y validadores
+    this.form &#x3D; new FormGroup(
+      {
+        texto: new FormControl&lt;string&gt;(&#x27;&#x27;, Validators.required), // Texto de la pregunta
+        tipo: new FormControl&lt;TiposRespuestaEnum | null&gt;(
+          null,
+          Validators.required,
+        ), // Tipo de pregunta
+        opciones: new FormArray&lt;FormControl&lt;Pick&lt;CreateOpcionDTO, &#x27;texto&#x27;&gt;&gt;&gt;(
+          [],
+        ), // Opciones de respuesta (si corresponde)
+      },
+      { validators: [opcionesNoVacias] }, // Validador personalizado para opciones
+    );
+
+    // Efecto que resetea el formulario cuando el diálogo se hace visible
+    effect(() &#x3D;&gt; {
+      if (this.visible()) {
+        this.reset();
+      }
+    });
+  }
+
+  // Resetea el formulario y las opciones
+  reset() {
+    this.form.reset();
+    this.resetearOpciones();
+  }
+
+  // Elimina todas las opciones del formulario
+  resetearOpciones() {
+    this.opciones.clear();
+  }
+
+  // Devuelve los tipos de pregunta disponibles para el selector
+  getTiposPreguntaPresentacion(): {
+    tipo: TiposRespuestaEnum;
+    presentacion: string;
+  }[] {
+    return tiposPreguntaPresentacion;
+  }
+
+  // Getter para el control de texto
+  get texto(): FormControl&lt;string&gt; {
+    return this.form.get(&#x27;texto&#x27;) as FormControl&lt;string&gt;;
+  }
+
+  // Getter para el control de tipo
+  get tipo(): FormControl&lt;TiposRespuestaEnum&gt; {
+    return this.form.get(&#x27;tipo&#x27;) as FormControl&lt;TiposRespuestaEnum&gt;;
+  }
+
+  // Getter para el FormArray de opciones
+  get opciones(): FormArray&lt;FormControl&lt;Pick&lt;CreateOpcionDTO, &#x27;texto&#x27;&gt;&gt;&gt; {
+    return this.form.get(&#x27;opciones&#x27;) as FormArray&lt;
+      FormControl&lt;Pick&lt;CreateOpcionDTO, &#x27;texto&#x27;&gt;&gt;
+    &gt;;
+  }
+
+  // Agrega la pregunta si el formulario es válido, si no muestra errores
+  agregar() {
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      this.messageService.add({
+        severity: &#x27;error&#x27;,
+        summary: &#x27;Hay errores en el formulario&#x27;,
+      });
+      return;
+    }
+
+    const pregunta: PreguntaDTO &#x3D; this.form.value;
+    this.agregarPregunta.emit(pregunta); // Emite la pregunta al componente padre
+    this.cerrar();
+  }
+
+  // Cierra el diálogo
+  cerrar() {
+    this.visible.set(false);
+  }
+
+  // Determina si el tipo de pregunta es de opción múltiple o simple
+  esMultipleChoice(tipo: TiposRespuestaEnum) {
+    return [
+      TiposRespuestaEnum.OPCION_MULTIPLE_SELECCION_MULTIPLE,
+      TiposRespuestaEnum.OPCION_MULTIPLE_SELECCION_SIMPLE,
+    ].includes(tipo);
+  }
+
+  // Abre el diálogo para agregar una nueva opción
+  abrirAgregarOpcion() {
+    this.dialogGestionOpcionVisible.set(true);
+  }
+
+  // Agrega una nueva opción al FormArray de opciones
+  agregarOpcion(opcion: string) {
+    this.opciones.push(
+      new FormControl&lt;Pick&lt;CreateOpcionDTO, &#x27;texto&#x27;&gt;&gt;({
+        texto: opcion,
+      }) as FormControl&lt;Pick&lt;CreateOpcionDTO, &#x27;texto&#x27;&gt;&gt;,
+    );
+  }
+
+  // Elimina una opción por índice
+  eliminarOpcion(index: number) {
+    this.opciones.removeAt(index);
+  }
+
+  // Muestra un cuadro de confirmación antes de eliminar una opción
+  confirmarEliminarOpcion(index: number) {
+    this.confirmationService.confirm({
+      message: &#x27;Confirmar eliminación?&#x27;,
+      header: &#x27;Confirmación&#x27;,
+      closable: true,
+      closeOnEscape: true,
+      icon: &#x27;pi pi-exclamation-triangle&#x27;,
+      rejectButtonProps: {
+        label: &#x27;Cancelar&#x27;,
+        severity: &#x27;secondary&#x27;,
+        outlined: true,
+      },
+      acceptButtonProps: {
+        label: &#x27;Confirmar&#x27;,
+      },
+      accept: () &#x3D;&gt; {
+        this.eliminarOpcion(index);
+      },
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;p-dialog
+  header&#x3D;&quot;Gestión de Pregunta&quot;
+  [modal]&#x3D;&quot;true&quot;
+  [(visible)]&#x3D;&quot;visible&quot;
+  [style]&#x3D;&quot;{ width: &#x27;25rem&#x27; }&quot;
+  resizable&#x3D;&quot;false&quot;
+  (onHide)&#x3D;&quot;cerrar()&quot;
+&gt;
+  &lt;form [formGroup]&#x3D;&quot;form&quot; (ngSubmit)&#x3D;&quot;agregar()&quot;&gt;
+    &lt;div id&#x3D;&quot;contenedor-creacion-pregunta&quot;&gt;
+      &lt;p-floatlabel variant&#x3D;&quot;on&quot; id&#x3D;&quot;input-texto&quot;&gt;
+        &lt;input pInputText id&#x3D;&quot;input-texto&quot; formControlName&#x3D;&quot;texto&quot; /&gt;
+        &lt;label for&#x3D;&quot;input-nombre&quot;&gt;Texto de la pregunta&lt;/label&gt;
+        @if (texto.invalid &amp;&amp; texto.touched) {
+          &lt;app-texto-error&gt;Requerido&lt;/app-texto-error&gt;
+        }
+      &lt;/p-floatlabel&gt;
+      &lt;p-dropdown
+        [options]&#x3D;&quot;getTiposPreguntaPresentacion()&quot;
+        (onChange)&#x3D;&quot;resetearOpciones()&quot;
+        id&#x3D;&quot;dropdown-tipos-pregunta&quot;
+        formControlName&#x3D;&quot;tipo&quot;
+        appendTo&#x3D;&quot;body&quot;
+        placeholder&#x3D;&quot;Tipo de Pregunta&quot;
+        optionLabel&#x3D;&quot;presentacion&quot;
+        optionValue&#x3D;&quot;tipo&quot;
+      /&gt;
+      @if (tipo.invalid &amp;&amp; tipo.touched) {
+        &lt;app-texto-error&gt;Requerido&lt;/app-texto-error&gt;
+      }
+      @if (tipo.value &amp;&amp; esMultipleChoice(tipo.value)) {
+        &lt;app-seccion
+          maxWidth&#x3D;&quot;100vw&quot;
+          minWidth&#x3D;&quot;0vw&quot;
+          leftMargin&#x3D;&quot;0vw&quot;
+          rightMargin&#x3D;&quot;0vw&quot;
+        &gt;
+          &lt;h2 id&#x3D;&quot;heading-opciones&quot;&gt;Opciones&lt;/h2&gt;
+          @if (opciones.value.length &gt; 0) {
+            &lt;ul&gt;
+              @for (opcion of opciones.value; track $index; let idx &#x3D; $index) {
+                &lt;li&gt;
+                  &lt;div class&#x3D;&quot;contenedor-opcion&quot;&gt;
+                    &lt;p class&#x3D;&quot;texto-opcion&quot;&gt;{{ opcion.texto }}&lt;/p&gt;
+                    &lt;div id&#x3D;&quot;botonera-opciones&quot;&gt;
+                      &lt;p-button
+                        (onClick)&#x3D;&quot;confirmarEliminarOpcion(idx)&quot;
+                        id&#x3D;&quot;boton-eliminar-opcion&quot;
+                        icon&#x3D;&quot;pi pi-times&quot;
+                        severity&#x3D;&quot;danger&quot;
+                      /&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/li&gt;
+              }
+            &lt;/ul&gt;
+          } @else {
+            &lt;p id&#x3D;&quot;opciones-vacio&quot;&gt;Aún no hay opciones cargadas&lt;/p&gt;
+          }
+          &lt;p-button
+            (onClick)&#x3D;&quot;abrirAgregarOpcion()&quot;
+            label&#x3D;&quot;Agregar Opción&quot;
+            icon&#x3D;&quot;pi pi-plus&quot;
+          /&gt;
+        &lt;/app-seccion&gt;
+        @if (opciones.touched &amp;&amp; form.hasError(&quot;opcionesRequeridas&quot;)) {
+          &lt;app-texto-error&gt;Debe ingresar opciones&lt;/app-texto-error&gt;
+        }
+      }
+      &lt;div id&#x3D;&quot;contenedor-boton-finalizar-gestion&quot;&gt;
+        &lt;button
+          pButton
+          pRipple
+          type&#x3D;&quot;submit&quot;
+          severity&#x3D;&quot;contrast&quot;
+          icon&#x3D;&quot;pi pi-check&quot;
+        &gt;
+          Finalizar
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/p-dialog&gt;
+&lt;app-gestion-opcion-dialog
+  [(visible)]&#x3D;&quot;dialogGestionOpcionVisible&quot;
+  (agregarOpcion)&#x3D;&quot;agregarOpcion($event)&quot;
+/&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><p-dialog  header="Gestión de Pregunta"  [modal]="true"  [(visible)]="visible"  [style]="{ width: \'25rem\' }"  resizable="false"  (onHide)="cerrar()">  <form [formGroup]="form" (ngSubmit)="agregar()">    <div id="contenedor-creacion-pregunta">      <p-floatlabel variant="on" id="input-texto">        <input pInputText id="input-texto" formControlName="texto" />        <label for="input-nombre">Texto de la pregunta</label>        @if (texto.invalid && texto.touched) {          <app-texto-error>Requerido</app-texto-error>        }      </p-floatlabel>      <p-dropdown        [options]="getTiposPreguntaPresentacion()"        (onChange)="resetearOpciones()"        id="dropdown-tipos-pregunta"        formControlName="tipo"        appendTo="body"        placeholder="Tipo de Pregunta"        optionLabel="presentacion"        optionValue="tipo"      />      @if (tipo.invalid && tipo.touched) {        <app-texto-error>Requerido</app-texto-error>      }      @if (tipo.value && esMultipleChoice(tipo.value)) {        <app-seccion          maxWidth="100vw"          minWidth="0vw"          leftMargin="0vw"          rightMargin="0vw"        >          <h2 id="heading-opciones">Opciones</h2>          @if (opciones.value.length > 0) {            <ul>              @for (opcion of opciones.value; track $index; let idx = $index) {                <li>                  <div class="contenedor-opcion">                    <p class="texto-opcion">{{ opcion.texto }}</p>                    <div id="botonera-opciones">                      <p-button                        (onClick)="confirmarEliminarOpcion(idx)"                        id="boton-eliminar-opcion"                        icon="pi pi-times"                        severity="danger"                      />                    </div>                  </div>                </li>              }            </ul>          } @else {            <p id="opciones-vacio">Aún no hay opciones cargadas</p>          }          <p-button            (onClick)="abrirAgregarOpcion()"            label="Agregar Opción"            icon="pi pi-plus"          />        </app-seccion>        @if (opciones.touched && form.hasError("opcionesRequeridas")) {          <app-texto-error>Debe ingresar opciones</app-texto-error>        }      }      <div id="contenedor-boton-finalizar-gestion">        <button          pButton          pRipple          type="submit"          severity="contrast"          icon="pi pi-check"        >          Finalizar        </button>      </div>    </div>  </form></p-dialog><app-gestion-opcion-dialog  [(visible)]="dialogGestionOpcionVisible"  (agregarOpcion)="agregarOpcion($event)"/></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BannerComponent', 'selector': 'app-banner'},{'name': 'ComienzoComponent', 'selector': 'app-comienzo'},{'name': 'CreacionEncuestaComponent', 'selector': 'app-creacion-encuesta'},{'name': 'GestionOpcionDialogComponent', 'selector': 'app-gestion-opcion-dialog'},{'name': 'GestionPreguntaDialogComponent', 'selector': 'app-gestion-pregunta-dialog'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'SeccionComponent', 'selector': 'app-seccion'},{'name': 'TextoErrorComponent', 'selector': 'app-texto-error'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'GestionPreguntaDialogComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'GestionPreguntaDialogComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

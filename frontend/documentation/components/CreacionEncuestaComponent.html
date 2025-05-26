@@ -1,0 +1,1350 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  CreacionEncuestaComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/creacion-encuesta/creacion-encuesta.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-creacion-encuesta</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>InputTextModule</code>
+                            <code>FloatLabel</code>
+                            <code>FormsModule</code>
+                                <code><a href="../components/SeccionComponent.html" target="_self" >SeccionComponent</a></code>
+                            <code>ButtonModule</code>
+                                <code><a href="../components/GestionPreguntaDialogComponent.html" target="_self" >GestionPreguntaDialogComponent</a></code>
+                            <code>ReactiveFormsModule</code>
+                                <code><a href="../components/TextoErrorComponent.html" target="_self" >TextoErrorComponent</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./creacion-encuesta.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./creacion-encuesta.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#confirmationService" >confirmationService</a>
+                            </li>
+                            <li>
+                                <a href="#dialogGestionPreguntaVisible" >dialogGestionPreguntaVisible</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#encuestasService" >encuestasService</a>
+                            </li>
+                            <li>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#messageService" >messageService</a>
+                            </li>
+                            <li>
+                                <a href="#preguntaSeleccionada" >preguntaSeleccionada</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#router" >router</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#abrirDialog" >abrirDialog</a>
+                            </li>
+                            <li>
+                                <a href="#agregarPregunta" >agregarPregunta</a>
+                            </li>
+                            <li>
+                                <a href="#confirmarCrearEncuesta" >confirmarCrearEncuesta</a>
+                            </li>
+                            <li>
+                                <a href="#confirmarEliminarPregunta" >confirmarEliminarPregunta</a>
+                            </li>
+                            <li>
+                                <a href="#crearEncuesta" >crearEncuesta</a>
+                            </li>
+                            <li>
+                                <a href="#eliminarPregunta" >eliminarPregunta</a>
+                            </li>
+                            <li>
+                                <a href="#getTipoPreguntaPresentacion" >getTipoPreguntaPresentacion</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#preguntas" >preguntas</a>
+                                </li>
+                                <li>
+                                    <a href="#nombre" >nombre</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:55</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="abrirDialog"></a>
+                    <span class="name">
+                        <span ><b>abrirDialog</b></span>
+                        <a href="#abrirDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>abrirDialog()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="agregarPregunta"></a>
+                    <span class="name">
+                        <span ><b>agregarPregunta</b></span>
+                        <a href="#agregarPregunta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>agregarPregunta(pregunta: <a href="../interfaces/PreguntaDTO.html" target="_self">PreguntaDTO</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>pregunta</td>
+                                            <td>
+                                                            <code><a href="../interfaces/PreguntaDTO.html" target="_self" >PreguntaDTO</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmarCrearEncuesta"></a>
+                    <span class="name">
+                        <span ><b>confirmarCrearEncuesta</b></span>
+                        <a href="#confirmarCrearEncuesta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmarCrearEncuesta()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmarEliminarPregunta"></a>
+                    <span class="name">
+                        <span ><b>confirmarEliminarPregunta</b></span>
+                        <a href="#confirmarEliminarPregunta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmarEliminarPregunta(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="crearEncuesta"></a>
+                    <span class="name">
+                        <span ><b>crearEncuesta</b></span>
+                        <a href="#crearEncuesta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>crearEncuesta()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="147"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:147</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eliminarPregunta"></a>
+                    <span class="name">
+                        <span ><b>eliminarPregunta</b></span>
+                        <a href="#eliminarPregunta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>eliminarPregunta(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTipoPreguntaPresentacion"></a>
+                    <span class="name">
+                        <span ><b>getTipoPreguntaPresentacion</b></span>
+                        <a href="#getTipoPreguntaPresentacion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTipoPreguntaPresentacion(tipo: <a href="../undefineds/TiposRespuestaEnum.html" target="_self">TiposRespuestaEnum</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tipo</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/enumerations.html#TiposRespuestaEnum" target="_self" >TiposRespuestaEnum</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmationService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>confirmationService</b></span>
+                        <a href="#confirmationService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ConfirmationService</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ConfirmationService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dialogGestionPreguntaVisible"></a>
+                    <span class="name">
+                        <span ><b>dialogGestionPreguntaVisible</b></span>
+                        <a href="#dialogGestionPreguntaVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="encuestasService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>encuestasService</b></span>
+                        <a href="#encuestasService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/EncuestasService.html" target="_self" >EncuestasService</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EncuestasService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="messageService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>messageService</b></span>
+                        <a href="#messageService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MessageService</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(MessageService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="preguntaSeleccionada"></a>
+                    <span class="name">
+                        <span ><b>preguntaSeleccionada</b></span>
+                        <a href="#preguntaSeleccionada"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;PreguntaDTO | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Router</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="preguntas"></a>
+                        <span class="name"><b>preguntas</b><a href="#preguntas"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>preguntas()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:69</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="nombre"></a>
+                        <span class="name"><b>nombre</b><a href="#nombre"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>nombre()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:74</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, signal } from &#x27;@angular/core&#x27;;
+import { InputTextModule } from &#x27;primeng/inputtext&#x27;;
+import { FloatLabel } from &#x27;primeng/floatlabel&#x27;;
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from &#x27;@angular/forms&#x27;;
+import { SeccionComponent } from &#x27;../seccion/seccion.component&#x27;;
+import { ButtonModule } from &#x27;primeng/button&#x27;;
+import { GestionPreguntaDialogComponent } from &#x27;../gestion-pregunta-dialog/gestion-pregunta-dialog.component&#x27;;
+import { PreguntaDTO } from &#x27;../../interfaces/pregunta.dto&#x27;;
+import { ConfirmationService, MessageService } from &#x27;primeng/api&#x27;;
+import {
+  tiposPreguntaPresentacion,
+  TiposRespuestaEnum,
+} from &#x27;../../enums/tipos-pregunta.enum&#x27;;
+import { TextoErrorComponent } from &#x27;../texto-error/texto-error.component&#x27;;
+import { EncuestasService } from &#x27;../../services/encuestas.service&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { CreateEncuestaDTO } from &#x27;../../interfaces/create-encuesta.dto&#x27;;
+
+@Component({
+  selector: &#x27;app-creacion-encuesta&#x27;,
+  imports: [
+    InputTextModule,
+    FloatLabel,
+    FormsModule,
+    SeccionComponent,
+    ButtonModule,
+    GestionPreguntaDialogComponent,
+    ReactiveFormsModule,
+    TextoErrorComponent,
+  ],
+  templateUrl: &#x27;./creacion-encuesta.component.html&#x27;,
+  styleUrl: &#x27;./creacion-encuesta.component.css&#x27;,
+})
+export class CreacionEncuestaComponent {
+  // Formulario reactivo principal para la creación de la encuesta
+  form: FormGroup;
+
+  // Servicios y utilidades inyectados
+  private messageService: MessageService &#x3D; inject(MessageService);
+  private router: Router &#x3D; inject(Router);
+  private confirmationService: ConfirmationService &#x3D; inject(ConfirmationService);
+  private encuestasService: EncuestasService &#x3D; inject(EncuestasService);
+
+  // Controla la visibilidad del diálogo para agregar/editar preguntas
+  dialogGestionPreguntaVisible &#x3D; signal&lt;boolean&gt;(false);
+
+  // Almacena la pregunta seleccionada para edición (si corresponde)
+  preguntaSeleccionada &#x3D; signal&lt;PreguntaDTO | null&gt;(null);
+
+  constructor() {
+    // Inicializa el formulario con controles y validadores
+    this.form &#x3D; new FormGroup({
+      nombre: new FormControl&lt;string&gt;(&#x27;&#x27;, Validators.required), // Nombre de la encuesta
+      preguntas: new FormArray&lt;FormControl&lt;PreguntaDTO&gt;&gt;(
+        [],
+        [Validators.required, Validators.minLength(1)] // Al menos una pregunta requerida
+      ),
+    });
+  }
+
+  // Getter para el FormArray de preguntas
+  get preguntas(): FormArray&lt;FormControl&lt;PreguntaDTO&gt;&gt; {
+    return this.form.get(&#x27;preguntas&#x27;) as FormArray&lt;FormControl&lt;PreguntaDTO&gt;&gt;;
+  }
+
+  // Getter para el control del nombre de la encuesta
+  get nombre(): FormControl&lt;string&gt; {
+    return this.form.get(&#x27;nombre&#x27;) as FormControl&lt;string&gt;;
+  }
+
+  // Abre el diálogo para agregar una nueva pregunta
+  abrirDialog() {
+    this.dialogGestionPreguntaVisible.set(true);
+  }
+
+  // Agrega una nueva pregunta al FormArray de preguntas
+  agregarPregunta(pregunta: PreguntaDTO) {
+    this.preguntas.push(
+      new FormControl&lt;PreguntaDTO&gt;(pregunta) as FormControl&lt;PreguntaDTO&gt;
+    );
+  }
+
+  // Elimina una pregunta del FormArray por índice
+  eliminarPregunta(index: number) {
+    this.preguntas.removeAt(index);
+  }
+
+  // Devuelve la presentación textual del tipo de pregunta
+  getTipoPreguntaPresentacion(tipo: TiposRespuestaEnum): string {
+    return tiposPreguntaPresentacion.find(
+      (tipoPresentacion) &#x3D;&gt; tipoPresentacion.tipo &#x3D;&#x3D;&#x3D; tipo
+    )!?.presentacion;
+  }
+
+  // Muestra un cuadro de confirmación antes de crear la encuesta
+  confirmarCrearEncuesta() {
+    this.confirmationService.confirm({
+      message: &#x27;Confirmar creación de encuesta?&#x27;,
+      header: &#x27;Confirmación&#x27;,
+      closable: true,
+      closeOnEscape: true,
+      icon: &#x27;pi pi-exclamation-triangle&#x27;,
+      rejectButtonProps: {
+        label: &#x27;Cancelar&#x27;,
+        severity: &#x27;secondary&#x27;,
+        outlined: true,
+      },
+      acceptButtonProps: {
+        label: &#x27;Confirmar&#x27;,
+      },
+      accept: () &#x3D;&gt; {
+        this.crearEncuesta();
+      },
+    });
+  }
+
+  // Muestra un cuadro de confirmación antes de eliminar una pregunta
+  confirmarEliminarPregunta(index: number) {
+    this.confirmationService.confirm({
+      message: &#x27;Confirmar eliminación?&#x27;,
+      header: &#x27;Confirmación&#x27;,
+      closable: true,
+      closeOnEscape: true,
+      icon: &#x27;pi pi-exclamation-triangle&#x27;,
+      rejectButtonProps: {
+        label: &#x27;Cancelar&#x27;,
+        severity: &#x27;secondary&#x27;,
+        outlined: true,
+      },
+      acceptButtonProps: {
+        label: &#x27;Confirmar&#x27;,
+      },
+      accept: () &#x3D;&gt; {
+        this.eliminarPregunta(index);
+      },
+    });
+  }
+
+  // Envía la encuesta al backend para su creación
+  crearEncuesta() {
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      this.messageService.add({
+        severity: &#x27;error&#x27;,
+        summary: &#x27;Hay errores en el formulario&#x27;,
+      });
+      return;
+    }
+
+    // Obtiene los datos del formulario
+    const encuesta: CreateEncuestaDTO &#x3D; this.form.value;
+
+    // Asigna el número de orden a cada pregunta y opción antes de enviar
+    for (let i &#x3D; 0; i &lt; encuesta.preguntas.length; i++) {
+      const pregunta &#x3D; encuesta.preguntas[i];
+      pregunta.numero &#x3D; i + 1;
+
+      if (pregunta.opciones) {
+        for (let j &#x3D; 0; j &lt; pregunta.opciones.length; j++) {
+          pregunta.opciones[j].numero &#x3D; j + 1;
+        }
+      }
+    }
+
+    // Llama al servicio para crear la encuesta y maneja la respuesta
+    this.encuestasService.crearEncuesta(encuesta).subscribe({
+      next: (res) &#x3D;&gt; {
+        this.messageService.add({
+          severity: &#x27;success&#x27;,
+          summary: &#x27;La encuesta se creó con éxito&#x27;,
+        });
+
+        // Redirige a la pantalla de presentación de enlaces con los códigos generados
+        this.router.navigateByUrl(
+          &#x27;/presentacion-enlaces?id-encuesta&#x3D;&#x27; +
+            res.id +
+            &#x27;&amp;codigo-respuesta&#x3D;&#x27; +
+            res.codigoRespuesta +
+            &#x27;&amp;codigo-resultados&#x3D;&#x27; +
+            res.codigoResultados
+        );
+      },
+      error: (err) &#x3D;&gt; {
+        this.messageService.add({
+          severity: &#x27;error&#x27;,
+          summary: &#x27;Ha ocurrido un error al crear la encuesta&#x27;,
+        });
+      },
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;h1&gt;Creá una encuesta&lt;/h1&gt;
+&lt;form [formGroup]&#x3D;&quot;form&quot; (ngSubmit)&#x3D;&quot;confirmarCrearEncuesta()&quot;&gt;
+  &lt;div id&#x3D;&quot;contenedor-encuesta&quot;&gt;
+    &lt;app-seccion&gt;
+      &lt;p-floatlabel variant&#x3D;&quot;on&quot; id&#x3D;&quot;float-label-nombre-encuesta&quot;&gt;
+        &lt;input
+          pInputText
+          id&#x3D;&quot;input-nombre&quot;
+          formControlName&#x3D;&quot;nombre&quot;
+          autocomplete&#x3D;&quot;off&quot;
+        /&gt;
+        &lt;label for&#x3D;&quot;input-nombre&quot;&gt;Nombre de la encuesta&lt;/label&gt;
+      &lt;/p-floatlabel&gt;
+      @if (nombre.invalid &amp;&amp; nombre.touched) {
+        &lt;app-texto-error&gt;Requerido&lt;/app-texto-error&gt;
+      }
+    &lt;/app-seccion&gt;
+    @for (pregunta of preguntas.value; track idx; let idx &#x3D; $index) {
+      &lt;app-seccion&gt;
+        &lt;div class&#x3D;&quot;contenedor-pregunta&quot;&gt;
+          &lt;p class&#x3D;&quot;texto-pregunta&quot;&gt;
+            {{ pregunta.texto }} ({{
+              getTipoPreguntaPresentacion(pregunta.tipo)
+            }})
+          &lt;/p&gt;
+          &lt;ul&gt;
+            @for (opcion of pregunta.opciones; track i; let i &#x3D; $index) {
+              &lt;li&gt;
+                &lt;p class&#x3D;&quot;texto-opcion&quot;&gt;{{ opcion.texto }}&lt;/p&gt;
+              &lt;/li&gt;
+            }
+          &lt;/ul&gt;
+          &lt;div class&#x3D;&quot;botonera-pregunta&quot;&gt;
+            &lt;p-button
+              (onClick)&#x3D;&quot;confirmarEliminarPregunta(idx)&quot;
+              id&#x3D;&quot;boton-eliminar-pregunta&quot;
+              icon&#x3D;&quot;pi pi-times&quot;
+              label&#x3D;&quot;Eliminar&quot;
+              severity&#x3D;&quot;danger&quot;
+            &gt;&lt;/p-button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/app-seccion&gt;
+    }
+    &lt;app-seccion&gt;
+      &lt;p-button
+        label&#x3D;&quot;Agregar Pregunta&quot;
+        (onClick)&#x3D;&quot;abrirDialog()&quot;
+        icon&#x3D;&quot;pi pi-plus&quot;
+      /&gt;
+      @if (preguntas.invalid &amp;&amp; form.touched) {
+        &lt;app-texto-error&gt;Debe agregar al menos una pregunra&lt;/app-texto-error&gt;
+      }
+    &lt;/app-seccion&gt;
+    &lt;button
+      id&#x3D;&quot;boton-finalizar&quot;
+      pButton
+      pRipple
+      type&#x3D;&quot;submit&quot;
+      icon&#x3D;&quot;pi pi-check&quot;
+      severity&#x3D;&quot;contrast&quot;
+    &gt;
+      Finalizar
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+&lt;app-gestion-pregunta-dialog
+  [(visible)]&#x3D;&quot;dialogGestionPreguntaVisible&quot;
+  (agregarPregunta)&#x3D;&quot;agregarPregunta($event)&quot;
+/&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><h1>Creá una encuesta</h1><form [formGroup]="form" (ngSubmit)="confirmarCrearEncuesta()">  <div id="contenedor-encuesta">    <app-seccion>      <p-floatlabel variant="on" id="float-label-nombre-encuesta">        <input          pInputText          id="input-nombre"          formControlName="nombre"          autocomplete="off"        />        <label for="input-nombre">Nombre de la encuesta</label>      </p-floatlabel>      @if (nombre.invalid && nombre.touched) {        <app-texto-error>Requerido</app-texto-error>      }    </app-seccion>    @for (pregunta of preguntas.value; track idx; let idx = $index) {      <app-seccion>        <div class="contenedor-pregunta">          <p class="texto-pregunta">            {{ pregunta.texto }} ({{              getTipoPreguntaPresentacion(pregunta.tipo)            }})          </p>          <ul>            @for (opcion of pregunta.opciones; track i; let i = $index) {              <li>                <p class="texto-opcion">{{ opcion.texto }}</p>              </li>            }          </ul>          <div class="botonera-pregunta">            <p-button              (onClick)="confirmarEliminarPregunta(idx)"              id="boton-eliminar-pregunta"              icon="pi pi-times"              label="Eliminar"              severity="danger"            ></p-button>          </div>        </div>      </app-seccion>    }    <app-seccion>      <p-button        label="Agregar Pregunta"        (onClick)="abrirDialog()"        icon="pi pi-plus"      />      @if (preguntas.invalid && form.touched) {        <app-texto-error>Debe agregar al menos una pregunra</app-texto-error>      }    </app-seccion>    <button      id="boton-finalizar"      pButton      pRipple      type="submit"      icon="pi pi-check"      severity="contrast"    >      Finalizar    </button>  </div></form><app-gestion-pregunta-dialog  [(visible)]="dialogGestionPreguntaVisible"  (agregarPregunta)="agregarPregunta($event)"/></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BannerComponent', 'selector': 'app-banner'},{'name': 'ComienzoComponent', 'selector': 'app-comienzo'},{'name': 'CreacionEncuestaComponent', 'selector': 'app-creacion-encuesta'},{'name': 'GestionOpcionDialogComponent', 'selector': 'app-gestion-opcion-dialog'},{'name': 'GestionPreguntaDialogComponent', 'selector': 'app-gestion-pregunta-dialog'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'SeccionComponent', 'selector': 'app-seccion'},{'name': 'TextoErrorComponent', 'selector': 'app-texto-error'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CreacionEncuestaComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CreacionEncuestaComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

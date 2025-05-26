@@ -57,10 +57,22 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/AppComponent.html" data-type="entity-link" >AppComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/BannerComponent.html" data-type="entity-link" >BannerComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/ComienzoComponent.html" data-type="entity-link" >ComienzoComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/CreacionComponent.html" data-type="entity-link" >CreacionComponent</a>
+                                <a href="components/CreacionEncuestaComponent.html" data-type="entity-link" >CreacionEncuestaComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GestionOpcionDialogComponent.html" data-type="entity-link" >GestionOpcionDialogComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GestionPreguntaDialogComponent.html" data-type="entity-link" >GestionPreguntaDialogComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/NavbarComponent.html" data-type="entity-link" >NavbarComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/SeccionComponent.html" data-type="entity-link" >SeccionComponent</a>
@@ -118,6 +130,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
                             <li class="link">
                                 <a href="miscellaneous/enumerations.html" data-type="entity-link">Enums</a>
+                            </li>
+                            <li class="link">
+                                <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
                             </li>
                             <li class="link">
                                 <a href="miscellaneous/typealiases.html" data-type="entity-link">Type aliases</a>
