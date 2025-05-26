@@ -22,16 +22,18 @@ export class Pregunta {
   @PrimaryGeneratedColumn() // Define la columna "id" como clave primaria autogenerada
   id: number;
 
-  @Column() // Define la columna "numero" en la tabla
+  @Column({ nullable: true }) // Define la columna "numero" en la tabla, permitiendo valores nulos temporalmente
   numero: number;
 
-  @Column() // Define la columna "texto" en la tabla
+  @Column({ nullable: true }) // Define la columna "texto" en la tabla, permitiendo valores nulos temporalmente
   texto: string;
 
   @Column({
     type: 'enum',
     enum: TiposRespuestaEnum,
     name: 'tipo', // Nombre de la columna en la base de datos
+    nullable: true, // Permitir valores nulos temporalmente
+    default: TiposRespuestaEnum.ABIERTA, // Valor por defecto para registros existentes
   }) // Define la columna "tipo" como un enumerador
   tipo: TiposRespuestaEnum; // Especifica el tipo de respuesta permitido para la pregunta
 

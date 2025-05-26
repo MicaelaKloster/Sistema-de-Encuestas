@@ -15,7 +15,7 @@ export class Respuesta {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('int')
+  @Column('int', { nullable: true })
   id_encuesta: number;
 
   @ManyToOne(() => Encuesta, (encuesta) => encuesta.respuestas)
