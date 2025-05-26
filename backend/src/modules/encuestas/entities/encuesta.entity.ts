@@ -12,18 +12,24 @@ export class Encuesta {
   @PrimaryGeneratedColumn() // Define la columna "id" como clave primaria autogenerada
   id: number;
 
-  @Column() // Define la columna "nombre" en la tabla
+  @Column({ nullable: true }) // Define la columna "nombre" en la tabla, permitiendo valores nulos temporalmente
   nombre: string;
+
+  @Column({
+    nullable: true,
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
   fechaActualizacion: Date;
   @OneToMany(() => Pregunta, (pregunta) => pregunta.encuesta, {
     cascade: ['insert'], // Permite insertar automáticamente las preguntas relacionadas
   })
   preguntas: Pregunta[]; // Relación uno a muchos con la entidad "Pregunta"
 
-  @Column({ name: 'codigo_respuesta' }) // Define la columna "codigo_respuesta" en la tabla
+  @Column({ name: 'codigo_respuesta', nullable: true }) // Define la columna "codigo_respuesta" en la tabla, permitiendo valores nulos temporalmente
   codigoRespuesta: string;
 
-  @Column({ name: 'codigo_resultados' }) // Define la columna "codigo_resultados" en la tabla
+  @Column({ name: 'codigo_resultados', nullable: true }) // Define la columna "codigo_resultados" en la tabla, permitiendo valores nulos temporalmente
   @Exclude() // Excluye esta propiedad al serializar la entidad (por ejemplo, al devolverla en una API)
   codigoResultados: string;
 

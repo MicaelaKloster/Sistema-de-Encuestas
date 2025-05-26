@@ -32,7 +32,7 @@ import { OpcionesModule } from './modules/opciones/opciones.module';
         username: configService.get('database.username'), // Usuario de la base de datos
         password: configService.get('database.password'), // Contraseña de la base de datos
         database: configService.get('database.name'), // Nombre de la base de datos
-        synchronize: false, // Desactiva la sincronización automática (recomendado en producción)
+        synchronize: true, // Temporalmente habilitado para sincronizar la estructura de la base de datos
         autoLoadEntities: true, // Carga automáticamente las entidades registradas
         logging: configService.get('database.logging'), // Habilita o deshabilita el registro de consultas
         logger: configService.get('database.logger'), // Define el tipo de logger para la base de datos
