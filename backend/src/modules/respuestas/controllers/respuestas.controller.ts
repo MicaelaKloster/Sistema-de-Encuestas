@@ -141,3 +141,18 @@ export class RespuestasController {
     return { message: 'Encuesta obtenida exitosamente', data: encuesta };
   }
 }
+
+// Para registrar endpoint POST:
+// Recibe un parámetro de ruta tokenParticipacion (ejemplo: /respuestas/abc123def456)
+// Acepta un objeto JSON en el cuerpo de la petición que debe ajustarse al DTO RegistrarRespuestasDto
+// Devuelve un código de estado 201 (CREATED) cuando la operación es exitosa
+// Está completamente documentado con Swagger mediante decoradores como @ApiOperation, @ApiParam, etc.
+// Maneja potenciales errores como encuesta no encontrada (404) o datos inválidos (400)
+// Delega la lógica de negocio al servicio respuestasService.registrarRespuestas()
+// Devuelve un mensaje de éxito con formato JSON { message: 'Respuestas registradas exitosamente' }
+
+// * @param tokenParticipacion - Identificador único de la sesión de participación
+// * @param registrarRespuestasDto - Objeto con las respuestas del usuario
+// * @returns Mensaje de confirmación si la operación fue exitosa
+// * @throws NotFoundException - Si la encuesta no existe o el token es inválido
+// * @throws BadRequestException - Si los datos de las respuestas son inválidos

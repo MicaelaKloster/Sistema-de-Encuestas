@@ -39,6 +39,7 @@ export class EncuestasService {
     enlaceVisualizacion: string;
     enlaceCorto: string;
     codigoQR: string;
+    fechaVencimiento?: Date;
   }> {
     for (const pregunta of dto.preguntas) {
       // FUNCIÓN EXTRA: Manejar preguntas de tipo VERDADERO_FALSO
@@ -73,6 +74,7 @@ export class EncuestasService {
       ...dto, // Copia las propiedades del DTO
       codigoRespuesta, // Genera un código único para las respuestas
       codigoResultados, // Genera un código único para los resultados
+      fechaVencimiento: dto.fechaVencimiento,
     });
 
     // Guarda la encuesta en la base de datos
@@ -104,6 +106,7 @@ export class EncuestasService {
       enlaceVisualizacion,
       enlaceCorto,
       codigoQR,
+      fechaVencimiento: encuestaCreada.fechaVencimiento,
     };
   }
   async generarEnlaceCorto(url: string): Promise<string> {
@@ -174,6 +177,13 @@ export class EncuestasService {
     // Si no se encuentra la encuesta, lanza una excepción
     if (!encuesta) {
       throw new BadRequestException('Datos de encuesta no válidos');
+    }
+
+    // Validar fecha de vencimiento si existe
+    if (encuesta.fechaVencimiento && encuesta.fechaVencimiento < new Date()) {
+      throw new BadRequestException(
+        'La encuesta ha vencido y ya no está disponible',
+      );
     }
 
     // Retorna la encuesta encontrada
@@ -298,6 +308,12 @@ export class EncuestasService {
 
     if (!encuesta) {
       throw new BadRequestException('Código de encuesta no válido');
+    }
+
+    if (encuesta.fechaVencimiento && encuesta.fechaVencimiento < new Date()) {
+      throw new BadRequestException(
+        'La encuesta ha vencido y ya no está disponible',
+      );
     }
 
     // Ordenar las preguntas y opciones

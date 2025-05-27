@@ -4,7 +4,9 @@ import {
   ArrayMinSize,
   ArrayNotEmpty,
   IsArray,
+  IsDateString,
   IsNotEmpty,
+  IsOptional,
   IsString,
   ValidateNested,
 } from 'class-validator'; // Validadores para las propiedades del DTO
@@ -24,6 +26,10 @@ export class CreateEncuestaDto {
   @ValidateNested({ each: true }) // Valida que cada elemento del arreglo sea un objeto válido según CreatePreguntaDto
   @Type(() => CreatePreguntaDto) // Transforma cada elemento del arreglo en una instancia de CreatePreguntaDto
   preguntas: CreatePreguntaDto[]; // Lista de preguntas asociadas a la encuesta
+
+  @IsOptional()
+  @IsDateString()
+  fechaVencimiento?: Date;
 
   //Propiedad para el enlace corto
   @ApiProperty()
