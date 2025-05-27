@@ -266,7 +266,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column(&#x27;int&#x27;)<br />
+                            @Column(&#x27;int&#x27;, {nullable: true})<br />
                         </code>
                     </td>
                 </tr>
@@ -373,7 +373,7 @@ export class Respuesta {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column(&#x27;int&#x27;)
+  @Column(&#x27;int&#x27;, { nullable: true })
   id_encuesta: number;
 
   @ManyToOne(() &#x3D;&gt; Encuesta, (encuesta) &#x3D;&gt; encuesta.respuestas)

@@ -15,7 +15,9 @@ import { CodigoTipoEnum } from '../enums/codigo-tipo.enum';
 import { NotFoundException } from '@nestjs/common';
 import { TiposRespuestaEnum } from '../enums/tipos-respuesta.enum';
 import { Respuesta } from '../../respuestas/entities/respuesta.entity';
+// Importación de librería para generar enlace corto
 import fetch from 'node-fetch';
+// Importación de librería para generar QR
 import * as QRCode from 'qrcode';
 
 @Injectable() // Decorador que marca esta clase como un servicio inyectable

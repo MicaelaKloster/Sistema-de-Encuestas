@@ -226,7 +226,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column()<br />
+                            @Column({nullable: true})<br />
                         </code>
                     </td>
                 </tr>
@@ -300,7 +300,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column()<br />
+                            @Column({nullable: true})<br />
                         </code>
                     </td>
                 </tr>
@@ -338,10 +338,10 @@ export class Opcion {
   @PrimaryGeneratedColumn() // Define la columna &quot;id&quot; como clave primaria autogenerada
   id: number;
 
-  @Column() // Define la columna &quot;texto&quot; en la tabla
+  @Column({ nullable: true }) // Define la columna &quot;texto&quot; en la tabla, permitiendo valores nulos temporalmente
   texto: string;
 
-  @Column() // Define la columna &quot;numero&quot; en la tabla
+  @Column({ nullable: true }) // Define la columna &quot;numero&quot; en la tabla, permitiendo valores nulos temporalmente
   numero: number;
 
   @ManyToOne(() &#x3D;&gt; Pregunta) // Relación muchos a uno con la entidad &quot;Pregunta&quot;

@@ -234,7 +234,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column(&#x27;int&#x27;)<br />
+                            @Column(&#x27;int&#x27;, {nullable: true})<br />
                         </code>
                     </td>
                 </tr>
@@ -270,7 +270,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column(&#x27;int&#x27;)<br />
+                            @Column(&#x27;int&#x27;, {nullable: true})<br />
                         </code>
                     </td>
                 </tr>
@@ -380,7 +380,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: &#x27;text&#x27;, nullable: false})<br />
+                            @Column({type: &#x27;text&#x27;, nullable: true})<br />
                         </code>
                     </td>
                 </tr>
@@ -414,13 +414,13 @@ export class RespuestaAbierta {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: &#x27;text&#x27;, nullable: false })
+  @Column({ type: &#x27;text&#x27;, nullable: true })
   texto: string;
 
-  @Column(&#x27;int&#x27;)
+  @Column(&#x27;int&#x27;, { nullable: true })
   id_pregunta: number;
 
-  @Column(&#x27;int&#x27;)
+  @Column(&#x27;int&#x27;, { nullable: true })
   id_respuesta: number;
 
   @ManyToOne(() &#x3D;&gt; Pregunta)
