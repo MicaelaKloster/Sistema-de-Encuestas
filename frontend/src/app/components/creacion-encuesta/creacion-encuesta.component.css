@@ -8,8 +8,7 @@
   padding: 2rem;
   box-sizing: border-box;
   width: 100vw;
-  overflow: auto;
-  /* background-color: linar-gradient(to bottom, rgb(0, 140, 255), #ffffff); */
+  overflow: hidden;
 }
 
 .boton-volver {
@@ -73,9 +72,7 @@ p-floatlabel, button, ul, p{
 #input-nombre {
   width: 100%;
   max-width: 100%;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
+  background-color: white;
 }
 
 #float-label-nombre-encuesta {
@@ -87,6 +84,17 @@ ul {
   margin-right: 0;
   margin-top: 0.1rem;
   padding-left: 1rem;
+}
+
+::ng-deep .p-button{
+  background-color: #008cff !important;
+  color: white !important;
+}
+
+::ng-deep .p-button:hover{
+  background-color: #fff !important;
+  color: #008cff !important;
+  border: 2px solid #008cff !important;
 }
 
 .contenedor-opcion {
@@ -107,6 +115,13 @@ ul {
   margin-top: 2rem;
   font-weight: bold;
   background-color: rgb(0, 140, 255);
+  color: white;
+}
+
+#boton-finalizar:hover {
+  background: #fff;
+  color: #008cff;
+  border: 2px solid #008cff;
 }
 
 .contenedor-pregunta {
@@ -135,6 +150,7 @@ ul {
   word-wrap: break-word;
   overflow-wrap: break-word;
   margin-bottom: 0.5rem;
+  background: white;
 }
 
 .texto-opcion{
