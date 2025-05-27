@@ -20,7 +20,7 @@ import {
 } from '../../enums/tipos-pregunta.enum';
 import { TextoErrorComponent } from '../texto-error/texto-error.component';
 import { EncuestasService } from '../../services/encuestas.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CreateEncuestaDTO } from '../../interfaces/create-encuesta.dto';
 
 @Component({
@@ -34,6 +34,7 @@ import { CreateEncuestaDTO } from '../../interfaces/create-encuesta.dto';
     GestionPreguntaDialogComponent,
     ReactiveFormsModule,
     TextoErrorComponent,
+    RouterModule,
   ],
   templateUrl: './creacion-encuesta.component.html',
   styleUrl: './creacion-encuesta.component.css',

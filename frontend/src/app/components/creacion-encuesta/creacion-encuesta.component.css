@@ -1,17 +1,65 @@
 :host {
   height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #ecffdc;
+  padding: 2rem;
+  box-sizing: border-box;
   width: 100vw;
   overflow: auto;
+  /* background-color: linar-gradient(to bottom, rgb(0, 140, 255), #ffffff); */
+}
+
+.boton-volver {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 10;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: #008cff;
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0,140,255,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.boton-volver:hover {
+  background: #fff;
+  color: #008cff;
+  border: 2px solid #008cff;
 }
 
 #contenedor-encuesta {
+  position: relative;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1.5rem;
+}
+
+h1{
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+p-floatlabel, button, ul, p{
+  width: 100%;
 }
 
 .input {
@@ -23,17 +71,22 @@
 }
 
 #input-nombre {
+  width: 100%;
   max-width: 100%;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
 }
 
 #float-label-nombre-encuesta {
-  max-width: 100%;
+  width: 100%;
 }
 
 ul {
   margin-left: 0;
   margin-right: 0;
   margin-top: 0.1rem;
+  padding-left: 1rem;
 }
 
 .contenedor-opcion {
@@ -50,6 +103,10 @@ ul {
 
 #boton-finalizar {
   margin: 1rem;
+  align-self: center;
+  margin-top: 2rem;
+  font-weight: bold;
+  background-color: rgb(0, 140, 255);
 }
 
 .contenedor-pregunta {
@@ -61,13 +118,14 @@ ul {
 
 .botonera-pregunta {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   flex-wrap: wrap;
+  margin-top: 0.5rem;
 }
 
 #boton-eliminar-pregunta {
   margin-right: 1rem;
-  margin-top: 0.3rem;
+  margin-top: 0.5rem;
 }
 
 .texto-pregunta {
@@ -76,12 +134,24 @@ ul {
   max-width: 50vw;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  margin-bottom: 0.5rem;
 }
 
 .texto-opcion{
+  margin-left: 1rem;
   max-width: 30vw;
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+@media (max-width: 768px){
+  #contenedor-encuesta {
+    padding: 1.5rem;
+  }
+
+  .texto-pregunta, .texto-opcion{
+    max-width: 100%;
+  }
 }
 
 @media (min-width: 500px) {

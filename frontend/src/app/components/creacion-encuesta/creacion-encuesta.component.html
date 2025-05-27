@@ -1,3 +1,12 @@
+<!-- Botón de volver arriba a la izquierda -->
+<button
+  type="button"
+  class="boton-volver"
+  pButton
+  icon="pi pi-arrow-left"
+  [routerLink]="['']"
+  aria-label="Volver"
+></button>
 <h1>Creá una encuesta</h1>
 <form [formGroup]="form" (ngSubmit)="confirmarCrearEncuesta()">
   <div id="contenedor-encuesta">
@@ -49,7 +58,7 @@
         icon="pi pi-plus"
       />
       @if (preguntas.invalid && form.touched) {
-        <app-texto-error>Debe agregar al menos una pregunra</app-texto-error>
+        <app-texto-error>Debe agregar al menos una pregunta</app-texto-error>
       }
     </app-seccion>
     <button
@@ -59,6 +68,7 @@
       type="submit"
       icon="pi pi-check"
       severity="contrast"
+      class="p-button-rounded"
     >
       Finalizar
     </button>

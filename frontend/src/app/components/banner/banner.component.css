@@ -25,6 +25,7 @@
   position: relative;
   margin: 0;
   padding: 0;
+  overflow: auto; /* Permite el scroll si el contenido es más grande que la ventana */
 }
 
 :host, .banner-container{
