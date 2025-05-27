@@ -1,15 +1,20 @@
+::ng-deep .p-dialog{
+  background-color: rgb(199, 199, 199) !important;
+  color: #333 !important;
+}
+
 #contenedor-creacion-pregunta {
   margin-top: 0.3rem;
   display: flex;
   flex-direction: column;
-}
-
-#input-texto {
-  margin-bottom: 0.5rem;
+  background-color: rgb(199, 199, 199);
+  color: #333;
 }
 
 #dropdown-tipos-pregunta {
   margin-bottom: 0.5rem;
+  background-color: white !important;
+  color: #333 !important;
 }
 
 #contenedor-boton-finalizar-gestion {
@@ -66,4 +71,15 @@ ul {
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
+}
+
+::ng-deep .p-float-label label,
+::ng-deep .p-float-label label.p-float-label,
+::ng-deep .p-float-label label.p-float-label-active,
+::ng-deep .p-inputtext:focus ~ label,
+::ng-deep .p-inputtext.p-filled ~ label {
+  background: #fff !important;
+  color: #333 !important;
+  padding: 0 0.5rem !important;
+  border-radius: 0.4rem !important;
 }
