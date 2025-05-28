@@ -1,0 +1,96 @@
+.contenedor {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fefefe;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: #000000;
+  text-align: center;
+}
+
+.contenedor h2 {
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 1.6rem;
+}
+
+.enlace, .qr {
+  margin-bottom: 1.6rem;
+  text-align: left;
+}
+
+.enlace label, .qr label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #000000;
+  font-size: 0.95rem;
+}
+
+.enlace {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.enlace input[type="text"] {
+  flex-grow: 1;
+  min-width: 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1.8px solid #ddd;
+  border-radius: 6px;
+  background-color: #fafafa;
+  color: #464646;
+  user-select: all;
+  transition: border-color 0.3s ease;
+}
+
+.enlace input[type="text"]:focus {
+  outline: none;
+  border-color: #008cff;
+  background-color: #fff;
+}
+
+.enlace button[pButton] {
+  flex-shrink: 0;
+  white-space: nowrap;
+  background-color: #008cff;
+  color: white;
+  border: none;
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  max-width: 100px;  
+  box-sizing: border-box;
+}
+
+.enlace button[pButton]:hover {
+  background-color: #006ec7;
+}
+
+.qr {
+  text-align: center;
+}
+
+button[pButton][label="Volver al Inicio"] {
+  margin-top: 1.8rem;
+  background-color: #008cff;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.6rem;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+}
+
+button[pButton][label="Volver al Inicio"]:hover {
+  background-color: #006ec7;
+}
