@@ -13,8 +13,6 @@
 
 #dropdown-tipos-pregunta {
   margin-bottom: 0.5rem;
-  background-color: white !important;
-  color: #333 !important;
 }
 
 #contenedor-boton-finalizar-gestion {
@@ -50,6 +48,7 @@ ul {
   max-width: 60%;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  color: #333;
 }
 
 #boton-eliminar-opcion {
@@ -71,15 +70,4 @@ ul {
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
-}
-
-::ng-deep .p-float-label label,
-::ng-deep .p-float-label label.p-float-label,
-::ng-deep .p-float-label label.p-float-label-active,
-::ng-deep .p-inputtext:focus ~ label,
-::ng-deep .p-inputtext.p-filled ~ label {
-  background: #fff !important;
-  color: #333 !important;
-  padding: 0 0.5rem !important;
-  border-radius: 0.4rem !important;
 }

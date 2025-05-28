@@ -73,6 +73,7 @@ p-floatlabel, button, ul, p{
   width: 100%;
   max-width: 100%;
   background-color: white;
+  color: #333;
 }
 
 #float-label-nombre-encuesta {
@@ -136,6 +137,7 @@ ul {
   justify-content: flex-end;
   flex-wrap: wrap;
   margin-top: 0.5rem;
+  color: #333;
 }
 
 #boton-eliminar-pregunta {
@@ -151,6 +153,7 @@ ul {
   overflow-wrap: break-word;
   margin-bottom: 0.5rem;
   background: white;
+  color: #333;
 }
 
 .texto-opcion{
@@ -158,6 +161,7 @@ ul {
   max-width: 30vw;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  color: #333;
 }
 
 @media (max-width: 768px){
