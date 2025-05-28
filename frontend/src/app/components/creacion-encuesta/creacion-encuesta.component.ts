@@ -156,7 +156,11 @@ export class CreacionEncuestaComponent {
     }
 
     // Obtiene los datos del formulario
-    const encuesta: CreateEncuestaDTO = this.form.value;
+    const encuesta: CreateEncuestaDTO = {
+      ...this.form.value,
+      enlaceCorto: '',
+      codigoQR: '',
+    };
 
     // Asigna el número de orden a cada pregunta y opción antes de enviar
     for (let i = 0; i < encuesta.preguntas.length; i++) {

@@ -133,6 +133,14 @@ export class GestionPreguntaDialogComponent {
     }
 
     const pregunta: PreguntaDTO = this.form.value;
+
+    if (pregunta.tipo === TiposRespuestaEnum.VERDADERO_FALSO) {
+    pregunta.opciones = [
+          { numero: 1, texto: 'Verdadero' },
+          { numero: 2, texto: 'Falso' },
+    ];
+    }
+
     this.agregarPregunta.emit(pregunta); // Emite la pregunta al componente padre
     this.cerrar();
   }

@@ -1,0 +1,21 @@
+<div class="contenedor">
+  <h2>¡Encuesta creada con éxito!</h2>
+
+  <div class="enlace">
+    <label>Enlace de participación:</label>
+    <input type="text" [value]="enlaceParticipacion" readonly />
+    <button pButton type="button" label="Copiar" (click)="copiar(enlaceParticipacion)"></button>
+  </div>
+
+  <div class="qr">
+    <label>Código QR para participar:</label>
+    <qrcode [qrdata]="enlaceParticipacion" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+  </div>
+
+  <div class="enlace">
+    <label>Enlace para ver resultados:</label>
+    <input type="text" [value]="enlaceResultados" readonly />
+    <button pButton type="button" label="Copiar" (click)="copiar(enlaceResultados)"></button>
+  </div>
+  <button pButton type="button" label="Volver al Inicio" (click)="volverInicio()"></button>
+</div>
