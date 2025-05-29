@@ -31,6 +31,7 @@
     "class-validator": "^0.14.1",
     "helmet": "^8.1.0",
     "node-fetch": "^3.3.2",
+    "papaparse": "^5.5.3",
     "pg": "^8.14.1",
     "qrcode": "^1.5.4",
     "reflect-metadata": "^0.2.2",
