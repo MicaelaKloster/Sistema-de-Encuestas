@@ -1,4 +1,1357 @@
+/* Host styles - Configuración principal del componente */
 :host {
+
+  min-height: calc(100vh - 70px);
+  width: 100vw;
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+/* Patrón de puntos decorativo */
+:host::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2px, transparent 2px);
+  background-size: 50px 50px;
+  animation: movePattern 20s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes movePattern {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+/* Elementos decorativos de fondo */
+.background-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-shape {
+  position: absolute;
+  animation: float 8s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 60px;
+  height: 60px;
+  top: 15%;
+  left: 8%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(120, 219, 255, 0.3));
+  border-radius: 50%;
+  animation-delay: 0s;
+  box-shadow: 0 8px 32px rgba(120, 219, 255, 0.3);
+}
+
+.shape-2 {
+  width: 80px;
+  height: 80px;
+  top: 70%;
+  right: 12%;
+  background: linear-gradient(135deg, rgba(255, 119, 198, 0.2), rgba(255, 255, 255, 0.1));
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  animation-delay: 2s;
+  animation-name: floatMorph;
+  box-shadow: 0 8px 32px rgba(255, 119, 198, 0.3);
+}
+
+.shape-3 {
+  width: 45px;
+  height: 45px;
+  top: 85%;
+  left: 15%;
+  background: linear-gradient(225deg, rgba(120, 119, 198, 0.3), rgba(255, 255, 255, 0.2));
+  border-radius: 50%;
+  animation-delay: 4s;
+  box-shadow: 0 8px 32px rgba(120, 119, 198, 0.3);
+}
+
+.shape-4 {
+  width: 70px;
+  height: 70px;
+  top: 8%;
+  right: 20%;
+  background: linear-gradient(315deg, rgba(102, 126, 234, 0.2), rgba(255, 255, 255, 0.15));
+  border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+  animation-delay: 1s;
+  animation-name: floatRotate;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg) scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes floatMorph {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateY(-15px) rotate(90deg);
+    border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+  }
+  50% {
+    transform: translateY(-25px) rotate(180deg);
+    border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-15px) rotate(270deg);
+    border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+  }
+}
+
+@keyframes floatRotate {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+    border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+    opacity: 0.7;
+  }
+  33% {
+    transform: translateY(-20px) rotate(120deg) scale(1.05);
+    border-radius: 37% 63% 46% 54% / 48% 55% 45% 52%;
+  }
+  66% {
+    transform: translateY(-35px) rotate(240deg) scale(0.95);
+    border-radius: 54% 46% 63% 37% / 52% 45% 55% 48%;
+    opacity: 1;
+  }
+}
+
+/* Círculos flotantes */
+.floating-circle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: floatCircle 10s ease-in-out infinite;
+}
+
+.circle-1 {
+  width: 20px;
+  height: 20px;
+  top: 25%;
+  left: 5%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(120, 219, 255, 0.2) 100%);
+  animation-delay: 0s;
+}
+
+.circle-2 {
+  width: 28px;
+  height: 28px;
+  top: 45%;
+  right: 8%;
+  background: radial-gradient(circle, rgba(255, 119, 198, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+  animation-delay: 1.5s;
+}
+
+.circle-3 {
+  width: 15px;
+  height: 15px;
+  top: 65%;
+  left: 3%;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.4) 0%, transparent 70%);
+  animation-delay: 3s;
+}
+
+.circle-4 {
+  width: 32px;
+  height: 32px;
+  top: 80%;
+  right: 5%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(120, 119, 198, 0.3) 100%);
+  animation-delay: 4.5s;
+}
+
+.circle-5 {
+  width: 22px;
+  height: 22px;
+  top: 35%;
+  left: 85%;
+  background: radial-gradient(circle, rgba(255, 119, 198, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+  animation-delay: 6s;
+}
+
+.circle-6 {
+  width: 18px;
+  height: 18px;
+  top: 55%;
+  left: 92%;
+  background: radial-gradient(circle, rgba(120, 219, 255, 0.35) 0%, transparent 80%);
+  animation-delay: 7.5s;
+}
+
+.circle-7 {
+  width: 25px;
+  height: 25px;
+  top: 12%;
+  left: 40%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, rgba(102, 126, 234, 0.2) 100%);
+  animation-delay: 2s;
+}
+
+.circle-8 {
+  width: 30px;
+  height: 30px;
+  top: 90%;
+  left: 60%;
+  background: radial-gradient(circle, rgba(255, 119, 198, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  animation-delay: 5s;
+}
+
+@keyframes floatCircle {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateY(-15px) translateX(10px) scale(1.1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-25px) translateX(-5px) scale(0.9);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-10px) translateX(-15px) scale(1.05);
+    opacity: 0.7;
+  }
+}
+
+/* Contenido principal */
+.main-content {
+  position: relative;
+  z-index: 2;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #2d3748;
+  margin: 0 0 2rem 0;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInDown 1s ease-out;
+  width: 100%;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Elementos geométricas adicionales */
+.geometric-shape {
+  position: absolute;
+  pointer-events: none;
+}
+
+.triangle-1 {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 35px solid rgba(255, 255, 255, 0.15);
+  top: 20%;
+  left: 75%;
+  animation: floatSlow 12s ease-in-out infinite;
+  filter: blur(1px);
+}
+
+.triangle-2 {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 21px solid rgba(120, 219, 255, 0.2);
+  top: 75%;
+  left: 85%;
+  animation: floatSlow 10s ease-in-out infinite reverse;
+  animation-delay: 3s;
+}
+
+.hexagon-1 {
+  width: 30px;
+  height: 17px;
+  background: rgba(255, 119, 198, 0.2);
+  position: relative;
+  top: 30%;
+  right: 3%;
+  animation: spin 15s linear infinite;
+}
+
+.hexagon-1::before,
+.hexagon-1::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+}
+
+.hexagon-1::before {
+  bottom: 100%;
+  border-bottom: 9px solid rgba(255, 119, 198, 0.2);
+}
+
+.hexagon-1::after {
+  top: 100%;
+  border-top: 9px solid rgba(255, 119, 198, 0.2);
+}
+
+.hexagon-2 {
+  width: 25px;
+  height: 14px;
+  background: rgba(102, 126, 234, 0.25);
+  position: relative;
+  top: 88%;
+  left: 70%;
+  animation: spin 20s linear infinite reverse;
+  animation-delay: 5s;
+}
+
+.hexagon-2::before,
+.hexagon-2::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 12.5px solid transparent;
+  border-right: 12.5px solid transparent;
+}
+
+.hexagon-2::before {
+  bottom: 100%;
+  border-bottom: 7px solid rgba(102, 126, 234, 0.25);
+}
+
+.hexagon-2::after {
+  top: 100%;
+  border-top: 7px solid rgba(102, 126, 234, 0.25);
+}
+
+/* Formas orgánicas */
+.organic-shape {
+  position: absolute;
+  pointer-events: none;
+  animation: morphFloat 15s ease-in-out infinite;
+}
+
+.blob-1 {
+  width: 50px;
+  height: 50px;
+  top: 25%;
+  left: 20%;
+  background: linear-gradient(135deg, rgba(255, 119, 198, 0.15) 0%, rgba(120, 219, 255, 0.2) 100%);
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation-delay: 0s;
+  filter: blur(1px);
+}
+
+.blob-2 {
+  width: 65px;
+  height: 65px;
+  top: 75%;
+  right: 25%;
+  background: linear-gradient(225deg, rgba(102, 126, 234, 0.18) 0%, rgba(255, 255, 255, 0.1) 100%);
+  border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
+  animation-delay: 5s;
+  filter: blur(0.5px);
+}
+
+.blob-3 {
+  width: 40px;
+  height: 40px;
+  top: 18%;
+  right: 15%;
+  background: linear-gradient(315deg, rgba(120, 219, 255, 0.2) 0%, rgba(255, 119, 198, 0.15) 100%);
+  border-radius: 70% 30% 50% 50% / 30% 70% 50% 50%;
+  animation-delay: 10s;
+  animation-duration: 12s;
+}
+
+.blob-4 {
+  width: 45px;
+  height: 45px;
+  top: 92%;
+  left: 35%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 0%, rgba(120, 119, 198, 0.2) 100%);
+  border-radius: 50% 50% 80% 20% / 50% 50% 20% 80%;
+  animation-delay: 7s;
+  animation-duration: 18s;
+}
+
+/* Círculos con anillos */
+.ring-circle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: ringPulse 8s ease-in-out infinite;
+}
+
+.ring-1 {
+  width: 40px;
+  height: 40px;
+  top: 35%;
+  left: 70%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: radial-gradient(circle, transparent 60%, rgba(120, 219, 255, 0.2) 100%);
+  animation-delay: 0s;
+}
+
+.ring-2 {
+  width: 30px;
+  height: 30px;
+  top: 82%;
+  left: 80%;
+  border: 1.5px solid rgba(255, 119, 198, 0.4);
+  background: radial-gradient(circle, transparent 50%, rgba(255, 119, 198, 0.15) 100%);
+  animation-delay: 2s;
+}
+
+/* Partículas brillantes */
+.sparkle {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: sparkleAnimation 3s ease-in-out infinite;
+}
+
+.sparkle-1 {
+  width: 3px;
+  height: 3px;
+  top: 28%;
+  left: 22%;
+  animation-delay: 0s;
+}
+
+.sparkle-2 {
+  width: 4px;
+  height: 4px;
+  top: 48%;
+  right: 28%;
+  animation-delay: 1s;
+}
+
+.sparkle-3 {
+  width: 2px;
+  height: 2px;
+  top: 68%;
+  left: 12%;
+  animation-delay: 2s;
+}
+
+.sparkle-4 {
+  width: 5px;
+  height: 5px;
+  top: 22%;
+  right: 35%;
+  animation-delay: 0.5s;
+}
+
+.sparkle-5 {
+  width: 3px;
+  height: 3px;
+  top: 78%;
+  right: 18%;
+  animation-delay: 1.5s;
+}
+
+.sparkle-6 {
+  width: 4px;
+  height: 4px;
+  top: 38%;
+  left: 78%;
+  animation-delay: 2.5s;
+}
+
+/* Ondas de fondo */
+.wave {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.03) 50%, transparent 60%);
+  animation: waveMove 25s linear infinite;
+}
+
+.wave-1 {
+  top: -50%;
+  left: -50%;
+  animation-delay: 0s;
+}
+
+.wave-2 {
+  top: -50%;
+  left: -50%;
+  animation-delay: 12.5s;
+  background: linear-gradient(-45deg, transparent 40%, rgba(255, 255, 255, 0.02) 50%, transparent 60%);
+}
+
+/* Animaciones adicionales */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-15px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes morphFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    opacity: 0.6;
+  }
+  20% {
+    transform: translateY(-10px) rotate(72deg) scale(1.1);
+    border-radius: 40% 60% 50% 50% / 30% 70% 50% 50%;
+    opacity: 0.8;
+  }
+  40% {
+    transform: translateY(-20px) rotate(144deg) scale(0.9);
+    border-radius: 70% 30% 60% 40% / 50% 50% 40% 60%;
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(-15px) rotate(216deg) scale(1.05);
+    border-radius: 50% 50% 70% 30% / 60% 40% 30% 70%;
+    opacity: 0.7;
+  }
+  80% {
+    transform: translateY(-5px) rotate(288deg) scale(0.95);
+    border-radius: 30% 70% 40% 60% / 70% 30% 60% 40%;
+    opacity: 0.9;
+  }
+}
+
+@keyframes ringPulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.3) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+@keyframes sparkleAnimation {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes waveMove {
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) rotate(360deg);
+  }
+}
+
+/* Estilos del formulario */
+#contenedor-encuesta{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(15px);
+  border-radius: 2rem;
+  padding: 2.5rem 2rem;
+  margin: 0;
+  max-width: 900px;
+  width: 100%;
+  min-width: 0; /* Permite que el contenedor se encoja */
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  animation: slideInUp 1s ease-out;
+  position: relative;
+  z-index: 3;
+  box-sizing: border-box;
+  overflow: hidden; /* Evita que el contenido se salga */
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mensaje informativo */
+.info-message {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 197, 253, 0.1) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+  animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.info-message p {
+  margin: 0.5rem 0;
+  color: #374151;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.info-message p:first-child {
+  margin-top: 0;
+  color: #1f2937;
+  font-size: 1rem;
+}
+
+.connectivity-note {
+  margin-top: 1rem !important;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(59, 130, 246, 0.2);
+  font-style: italic;
+  color: #6b7280 !important;
+  font-size: 0.9rem !important;
+}
+
+/* Estilos mejorados del formulario */
+.input{
+  height: 2rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.label{
+  height: 2rem;
+  width: 100%;
+}
+
+#input-nombre{
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0.8rem;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  min-width: 0; /* Permite que se encoja */
+}
+
+#input-nombre:focus {
+  border-color: rgba(102, 126, 234, 0.5);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+#float-label-nombre-encuesta{
+  width: 100%;
+  max-width: 500px; /* Limita el ancho máximo para mejor centrado */
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ul{
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+}
+
+.contenedor-opcion{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  margin: 1rem 0;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  min-width: 0; /* Permite que se encoja */
+}
+
+.boton-eliminar-pregunta{
+  margin-top: 1rem;
+  flex-shrink: 0; /* Evita que el botón se encoja */
+}
+
+#boton-finalizar{
+  margin: 2rem 0 1rem 0;
+  padding: 0.8rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+#boton-finalizar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+.contenedor-pregunta{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  background: rgba(102, 126, 234, 0.05);
+  border-radius: 1.2rem;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  min-width: 0; /* Permite que se encoja */
+  overflow: hidden; /* Evita que el contenido se salga */
+}
+
+.contenedor-pregunta:hover {
+  background: rgba(102, 126, 234, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+}
+
+.botonera-pregunta{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+#boton-eliminar-pregunta{
+  border-radius: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+#boton-eliminar-pregunta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+}
+
+.texto-pregunta{
+  font-weight: bold;
+  margin: 0 0 1rem 0;
+  width: 100%;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  color: #2d3748;
+  font-size: 1.1rem;
+  text-align: center;
+  box-sizing: border-box;
+  hyphens: auto; /* Permite división de palabras */
+}
+
+.texto-opcion{
+  width: 100%;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  color: #4a5568;
+  margin: 0.2rem 0;
+  box-sizing: border-box;
+  hyphens: auto; /* Permite división de palabras */
+  flex: 1; /* Permite que el texto ocupe el espacio disponible */
+  min-width: 0; /* Permite que se encoja */
+}
+
+/* Estilos para botones de PrimeNG */
+::ng-deep .p-button {
+  border-radius: 0.8rem !important;
+  transition: all 0.3s ease !important;
+  font-weight: 600 !important;
+}
+
+::ng-deep .p-button:not(.p-button-danger):not(.p-button-contrast) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3) !important;
+}
+
+::ng-deep .p-button:not(.p-button-danger):not(.p-button-contrast):hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
+}
+
+::ng-deep .p-button.p-button-danger:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4) !important;
+}
+
+/* Estilos para secciones */
+::ng-deep app-seccion {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 0; /* Permite que se encoja */
+}
+
+/* Estilos específicos para PrimeNG responsive */
+::ng-deep .p-inputtext {
+  width: 100% !important;
+  max-width: 500px !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  text-align: center !important;
+}
+
+::ng-deep .p-float-label {
+  width: 100% !important;
+  max-width: 500px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  position: relative !important;
+}
+
+::ng-deep .p-float-label > label {
+  max-width: calc(100% - 1rem) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  text-align: center !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+/* Contenedor de botones de gestión de preguntas */
+.botones-gestion-preguntas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Centrar el botón "Agregar Pregunta" cuando está solo */
+::ng-deep app-seccion .p-button:not(#boton-eliminar-pregunta):not(#boton-finalizar) {
+  margin: 0 !important;
+}
+
+/* Centrar mensajes de error */
+::ng-deep app-texto-error {
+  display: block !important;
+  text-align: center !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .background-elements .floating-shape,
+  .background-elements .floating-circle,
+  .background-elements .organic-shape,
+  .background-elements .geometric-shape,
+  .background-elements .ring-circle,
+  .background-elements .sparkle,
+  .background-elements .wave {
+    display: none;
+  }
+
+  .main-content {
+    padding: 1rem 0.5rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  #contenedor-encuesta {
+    padding: 2rem 1rem;
+    border-radius: 1.5rem;
+    width: calc(100% - 1rem);
+    margin: 0.5rem;
+  }
+
+  .contenedor-pregunta {
+    padding: 1rem;
+    margin: 0.8rem 0;
+  }
+
+  .contenedor-opcion {
+    padding: 0 0.5rem;
+    margin: 0.8rem 0;
+  }
+
+  .texto-pregunta{
+    font-size: 1rem;
+  }
+
+  #boton-finalizar {
+    padding: 0.7rem 2rem;
+    font-size: 1rem;
+  }
+
+  /* Ajustar centrado en tablets */
+  ::ng-deep .p-inputtext {
+    max-width: 400px !important;
+  }
+
+  ::ng-deep .p-float-label {
+    max-width: 400px !important;
+  }
+
+  #float-label-nombre-encuesta{
+    max-width: 400px;
+  }
+
+  .info-message {
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-message p {
+    font-size: 0.9rem;
+  }
+
+  .botones-gestion-preguntas {
+    gap: 0.8rem;
+  }
+
+  .item-pregunta-seleccion {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .icono-editar {
+    margin-left: 0;
+    margin-top: 0.8rem;
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 0.5rem 0.25rem;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  #contenedor-encuesta {
+    padding: 1.5rem 0.8rem;
+    border-radius: 1.2rem;
+    width: calc(100% - 0.5rem);
+    margin: 0.25rem;
+  }
+
+  .contenedor-pregunta {
+    padding: 0.8rem;
+    margin: 0.6rem 0;
+  }
+
+  .contenedor-opcion {
+    padding: 0 0.3rem;
+    margin: 0.6rem 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .texto-pregunta{
+    font-size: 0.95rem;
+  }
+
+  .texto-opcion {
+    font-size: 0.9rem;
+  }
+
+  #boton-finalizar {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .botonera-pregunta {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .botonera-pregunta .p-button {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  /* Ajustar centrado en móviles */
+  ::ng-deep .p-inputtext {
+    max-width: 300px !important;
+  }
+
+  ::ng-deep .p-float-label {
+    max-width: 300px !important;
+  }
+
+  #float-label-nombre-encuesta{
+    max-width: 300px;
+  }
+
+  .info-message {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-message p {
+    font-size: 0.85rem;
+  }
+
+  .connectivity-note {
+    font-size: 0.8rem !important;
+  }
+
+  .botones-gestion-preguntas {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .botones-gestion-preguntas .p-button {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .item-pregunta-seleccion {
+    padding: 0.8rem;
+  }
+
+  .titulo-pregunta-seleccion {
+    font-size: 1rem;
+  }
+
+  .tipo-pregunta-seleccion {
+    font-size: 0.85rem;
+  }
+
+  .opciones-titulo {
+    font-size: 0.8rem;
+  }
+
+  .opcion-item {
+    font-size: 0.75rem;
+  }
+}
+
+/* Estilos personalizados para los toasts */
+::ng-deep .p-toast {
+  z-index: 9999 !important;
+}
+
+::ng-deep .p-toast .p-toast-message {
+  border-radius: 1rem !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  margin-bottom: 1rem !important;
+}
+
+::ng-deep .p-toast .p-toast-message.p-toast-message-success {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.95) 0%, rgba(21, 128, 61, 0.95) 100%) !important;
+  color: white !important;
+}
+
+::ng-deep .p-toast .p-toast-message.p-toast-message-error {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.95) 0%, rgba(185, 28, 28, 0.95) 100%) !important;
+  color: white !important;
+}
+
+::ng-deep .p-toast .p-toast-message.p-toast-message-warn {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.95) 0%, rgba(180, 83, 9, 0.95) 100%) !important;
+  color: white !important;
+}
+
+::ng-deep .p-toast .p-toast-message.p-toast-message-info {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.95) 0%, rgba(29, 78, 216, 0.95) 100%) !important;
+  color: white !important;
+}
+
+::ng-deep .p-toast .p-toast-message .p-toast-message-icon {
+  color: white !important;
+  font-size: 1.2rem !important;
+}
+
+::ng-deep .p-toast .p-toast-message .p-toast-summary {
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  margin-bottom: 0.3rem !important;
+}
+
+::ng-deep .p-toast .p-toast-message .p-toast-detail {
+  font-weight: 400 !important;
+  font-size: 0.9rem !important;
+  opacity: 0.95 !important;
+  line-height: 1.4 !important;
+}
+
+::ng-deep .p-toast .p-toast-message .p-toast-icon-close {
+  color: white !important;
+  opacity: 0.8 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+::ng-deep .p-toast .p-toast-message .p-toast-icon-close:hover {
+  opacity: 1 !important;
+}
+
+/* Animaciones personalizadas para los toasts */
+::ng-deep .p-toast .p-toast-message {
+  animation: slideInRight 0.4s ease-out !important;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Estilos para el diálogo de confirmación */
+::ng-deep .p-confirmdialog {
+  border-radius: 1.5rem !important;
+  backdrop-filter: blur(10px) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+::ng-deep .p-confirmdialog .p-dialog-header {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(102, 126, 234, 0.2) !important;
+  padding: 1.5rem 1.5rem 1rem 1.5rem !important;
+}
+
+::ng-deep .p-confirmdialog .p-dialog-title {
+  font-weight: 700 !important;
+  color: #2d3748 !important;
+  font-size: 1.2rem !important;
+}
+
+::ng-deep .p-confirmdialog .p-dialog-content {
+  padding: 1rem 1.5rem !important;
+  color: #4a5568 !important;
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+}
+
+::ng-deep .p-confirmdialog .p-dialog-footer {
+  background: transparent !important;
+  border-top: 1px solid rgba(102, 126, 234, 0.2) !important;
+  padding: 1rem 1.5rem 1.5rem 1.5rem !important;
+  gap: 0.8rem !important;
+}
+
+::ng-deep .p-confirmdialog .p-dialog-footer .p-button {
+  border-radius: 0.8rem !important;
+  font-weight: 600 !important;
+  padding: 0.7rem 1.5rem !important;
+  transition: all 0.3s ease !important;
+}
+
+::ng-deep .p-confirmdialog .p-dialog-footer .p-button:not(.p-button-outlined) {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+::ng-deep .p-confirmdialog .p-dialog-footer .p-button:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Estilos para el diálogo de selección de preguntas */
+.dialogo-seleccion-preguntas {
+  padding: 0.5rem 0;
+}
+
+.instruccion-seleccion {
+  margin: 0 0 1.5rem 0;
+  color: #4a5568;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.item-pregunta-seleccion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(147, 197, 253, 0.05) 100%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.item-pregunta-seleccion:hover {
+  border-color: rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(147, 197, 253, 0.1) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+}
+
+.item-pregunta-seleccion:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+}
+
+.contenido-pregunta-seleccion {
+  flex: 1;
+  min-width: 0;
+}
+
+.titulo-pregunta-seleccion {
+  margin: 0 0 0.5rem 0;
+  color: #2d3748;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  word-wrap: break-word;
+}
+
+.tipo-pregunta-seleccion {
+  margin: 0 0 0.8rem 0;
+  color: #6b7280;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.opciones-preview {
+  margin-top: 0.8rem;
+}
+
+.opciones-titulo {
+  margin: 0 0 0.4rem 0;
+  color: #4a5568;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.opciones-lista {
+  margin: 0;
+  padding-left: 1.2rem;
+  list-style-type: disc;
+}
+
+.opcion-item {
+  margin-bottom: 0.2rem;
+  color: #6b7280;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.icono-editar {
+  flex-shrink: 0;
+  margin-left: 1rem;
+  color: rgba(102, 126, 234, 0.7);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.item-pregunta-seleccion:hover .icono-editar {
+  color: rgba(102, 126, 234, 1);
+  transform: scale(1.1);
+}
+
+.sin-preguntas {
+  text-align: center;
+  color: #9ca3af;
+  font-style: italic;
+  padding: 2rem;
+  margin: 0;
   height: 100%;
   min-height: 100vh;
   display: flex;

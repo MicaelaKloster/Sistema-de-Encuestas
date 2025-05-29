@@ -1,15 +1,73 @@
-<!-- Botón de volver arriba a la izquierda -->
-<button
-  type="button"
-  class="boton-volver"
-  pButton
-  icon="pi pi-arrow-left"
-  [routerLink]="['']"
-  aria-label="Volver"
-></button>
-<h1>Creá una encuesta</h1>
-<form [formGroup]="form" (ngSubmit)="confirmarCrearEncuesta()">
-  <div id="contenedor-encuesta">
+<!-- Elementos decorativos de fondo -->
+<div class="background-elements">
+  <!-- Formas flotantes principales -->
+  <div class="floating-shape shape-1"></div>
+  <div class="floating-shape shape-2"></div>
+  <div class="floating-shape shape-3"></div>
+  <div class="floating-shape shape-4"></div>
+
+  <!-- Círculos flotantes adicionales -->
+  <div class="floating-circle circle-1"></div>
+  <div class="floating-circle circle-2"></div>
+  <div class="floating-circle circle-3"></div>
+  <div class="floating-circle circle-4"></div>
+  <div class="floating-circle circle-5"></div>
+  <div class="floating-circle circle-6"></div>
+  <div class="floating-circle circle-7"></div>
+  <div class="floating-circle circle-8"></div>
+
+  <!-- Formas orgánicas adicionales -->
+  <div class="organic-shape blob-1"></div>
+  <div class="organic-shape blob-2"></div>
+  <div class="organic-shape blob-3"></div>
+  <div class="organic-shape blob-4"></div>
+
+  <!-- Elementos adicionales para más dinamismo -->
+  <div class="geometric-shape triangle-1"></div>
+  <div class="geometric-shape triangle-2"></div>
+  <div class="geometric-shape hexagon-1"></div>
+  <div class="geometric-shape hexagon-2"></div>
+
+  <!-- Círculos con anillos -->
+  <div class="ring-circle ring-1"></div>
+  <div class="ring-circle ring-2"></div>
+
+  <!-- Partículas brillantes -->
+  <div class="sparkle sparkle-1"></div>
+  <div class="sparkle sparkle-2"></div>
+  <div class="sparkle sparkle-3"></div>
+  <div class="sparkle sparkle-4"></div>
+  <div class="sparkle sparkle-5"></div>
+  <div class="sparkle sparkle-6"></div>
+
+  <!-- Ondas de fondo -->
+  <div class="wave wave-1"></div>
+  <div class="wave wave-2"></div>
+</div>
+
+<!-- Contenido principal -->
+<div class="main-content">
+  <!-- Botón de volver arriba a la izquierda -->
+  <button
+    type="button"
+    class="boton-volver"
+    pButton
+    icon="pi pi-arrow-left"
+    [routerLink]="['']"
+    aria-label="Volver"
+  ></button>
+
+  <form [formGroup]="form" (ngSubmit)="confirmarCrearEncuesta()">
+    <div id="contenedor-encuesta">
+      <h1 class="page-title">Creá una encuesta</h1>
+
+      <!-- Mensaje informativo -->
+      <div class="info-message">
+        <p><strong>📝 Instrucciones:</strong></p>
+        <p>1. Ingresa un nombre para tu encuesta</p>
+        <p>2. Agrega al menos una pregunta usando el botón "Agregar Pregunta"</p>
+        <p>3. Haz clic en "Finalizar" para crear tu encuesta</p>
+      </div>
     <app-seccion>
       <p-floatlabel variant="on" id="float-label-nombre-encuesta">
         <input
@@ -52,11 +110,22 @@
       </app-seccion>
     }
     <app-seccion>
-      <p-button
-        label="Agregar Pregunta"
-        (onClick)="abrirDialog()"
-        icon="pi pi-plus"
-      />
+      <div class="botones-gestion-preguntas">
+        <p-button
+          label="Agregar Pregunta"
+          (onClick)="abrirDialog()"
+          icon="pi pi-plus"
+        />
+        @if (preguntas.length > 0) {
+          <p-button
+            label="Editar Pregunta"
+            (onClick)="abrirDialogEditar()"
+            icon="pi pi-pencil"
+            severity="secondary"
+            [outlined]="true"
+          />
+        }
+      </div>
       @if (preguntas.invalid && form.touched) {
         <app-texto-error>Debe agregar al menos una pregunta</app-texto-error>
       }
@@ -74,7 +143,54 @@
     </button>
   </div>
 </form>
+</div>
+
 <app-gestion-pregunta-dialog
   [(visible)]="dialogGestionPreguntaVisible"
+  [(preguntaAEditar)]="preguntaSeleccionada"
   (agregarPregunta)="agregarPregunta($event)"
 />
+
+<!-- Diálogo de selección de preguntas para editar -->
+<p-dialog
+  header="Seleccionar Pregunta para Editar"
+  [modal]="true"
+  [(visible)]="dialogSeleccionPreguntaVisible"
+  [style]="{ width: '35rem', maxWidth: '90vw' }"
+  resizable="false"
+  (onHide)="cerrarDialogSeleccion()"
+>
+  <div class="dialogo-seleccion-preguntas">
+    <p class="instruccion-seleccion">Selecciona la pregunta que deseas editar:</p>
+
+    @for (pregunta of preguntas.value; track idx; let idx = $index) {
+      <div class="item-pregunta-seleccion" (click)="editarPregunta(idx)">
+        <div class="contenido-pregunta-seleccion">
+          <h4 class="titulo-pregunta-seleccion">
+            Pregunta {{ idx + 1 }}: {{ pregunta.texto }}
+          </h4>
+          <p class="tipo-pregunta-seleccion">
+            Tipo: {{ getTipoPreguntaPresentacion(pregunta.tipo) }}
+          </p>
+          @if (pregunta.opciones && pregunta.opciones.length > 0) {
+            <div class="opciones-preview">
+              <p class="opciones-titulo">Opciones:</p>
+              <ul class="opciones-lista">
+                @for (opcion of pregunta.opciones; track i; let i = $index) {
+                  <li class="opcion-item">{{ opcion.texto }}</li>
+                }
+              </ul>
+            </div>
+          }
+        </div>
+        <div class="icono-editar">
+          <i class="pi pi-pencil"></i>
+        </div>
+      </div>
+    }
+
+    @if (preguntas.length === 0) {
+      <p class="sin-preguntas">No hay preguntas disponibles para editar.</p>
+    }
+  </div>
+</p-dialog>
