@@ -1,6 +1,6 @@
 /* Host styles - Configuración principal del componente */
 :host {
-<<<<<<< HEAD
+
   min-height: calc(100vh - 70px);
   width: 100vw;
   display: block;
@@ -1352,7 +1352,6 @@ ul li {
   font-style: italic;
   padding: 2rem;
   margin: 0;
-=======
   height: 100%;
   min-height: 100vh;
   display: flex;
@@ -1535,5 +1534,4 @@ ul {
   .texto-pregunta{
     max-width: 25vw;
   }
->>>>>>> origin/main
 }
