@@ -17,6 +17,7 @@
   justify-content: center;
   position: relative;
   margin: 0;
+
   padding: 1rem;
   background:
     radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
@@ -25,6 +26,10 @@
     linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
   overflow: hidden;
   box-sizing: border-box;
+
+  padding: 0;
+  overflow: auto; /* Permite el scroll si el contenido es más grande que la ventana */
+
 }
 
 /* Patrón de puntos decorativo */
@@ -1098,4 +1103,18 @@
   .feature-item span {
     font-size: 0.8rem;
   }
+
+::ng-deep .banner-button .p-button{
+  font-size: 1.1rem !important;
+  font-weight: bold !important;
+  background-color: rgb(0, 140, 255) !important;
+  color: white !important;
+
+}
+
+::ng-deep .banner-button .p-button:hover{
+  background-color: white !important;
+  color: rgb(0, 140, 255) !important;
+  border: 2px solid rgb(0, 140, 255) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
 }

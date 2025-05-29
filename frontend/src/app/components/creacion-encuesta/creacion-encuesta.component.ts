@@ -21,7 +21,7 @@ import {
 } from '../../enums/tipos-pregunta.enum';
 import { TextoErrorComponent } from '../texto-error/texto-error.component';
 import { EncuestasService } from '../../services/encuestas.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CreateEncuestaDTO } from '../../interfaces/create-encuesta.dto';
 
 @Component({
@@ -36,6 +36,7 @@ import { CreateEncuestaDTO } from '../../interfaces/create-encuesta.dto';
     GestionPreguntaDialogComponent,
     ReactiveFormsModule,
     TextoErrorComponent,
+    RouterModule,
   ],
   templateUrl: './creacion-encuesta.component.html',
   styleUrl: './creacion-encuesta.component.css',
@@ -331,6 +332,7 @@ export class CreacionEncuestaComponent {
     });
 
     // Obtiene los datos del formulario
+<<<<<<< HEAD
     const formData = this.form.value;
 
     // Crear el objeto de encuesta con los campos requeridos por el backend
@@ -365,6 +367,13 @@ export class CreacionEncuestaComponent {
       });
       return;
     }
+=======
+    const encuesta: CreateEncuestaDTO = {
+      ...this.form.value,
+      enlaceCorto: '',
+      codigoQR: '',
+    };
+>>>>>>> origin/main
 
     // Asigna el número de orden a cada pregunta y opción antes de enviar
     for (let i = 0; i < encuesta.preguntas.length; i++) {

@@ -37,6 +37,10 @@ export class Encuesta {
   @Column({ default: true })
   habilitada: boolean; // Columna que indica si la encuesta está habilitada o no
 
+  // Funcionalidad extra (MAIA): Fecha de vencimiento
+  @Column({ name: 'fecha_vencimiento', type: 'timestamptz', nullable: true })
+  fechaVencimiento?: Date;
+
   @OneToMany(() => Respuesta, (respuesta) => respuesta.encuesta)
   respuestas: Respuesta[]; // Relación uno a muchos con la entidad "Respuesta"
 }

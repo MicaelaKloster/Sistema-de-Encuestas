@@ -1,11 +1,14 @@
+::ng-deep .p-dialog{
+  background-color: rgb(199, 199, 199) !important;
+  color: #333 !important;
+}
+
 #contenedor-creacion-pregunta {
   margin-top: 0.3rem;
   display: flex;
   flex-direction: column;
-}
-
-#input-texto {
-  margin-bottom: 0.5rem;
+  background-color: rgb(199, 199, 199);
+  color: #333;
 }
 
 #dropdown-tipos-pregunta {
@@ -45,6 +48,7 @@ ul {
   max-width: 60%;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  color: #333;
 }
 
 #boton-eliminar-opcion {

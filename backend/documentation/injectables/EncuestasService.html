@@ -263,8 +263,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="232"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:232</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="258"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:258</a></div>
                         </td>
                     </tr>
 
@@ -413,8 +413,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="121"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:121</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:128</a></div>
                         </td>
                     </tr>
 
@@ -482,8 +482,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="100"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:100</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -551,8 +551,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="135"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:135</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="142"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:142</a></div>
                         </td>
                     </tr>
 
@@ -644,8 +644,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="255"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:255</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="281"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:281</a></div>
                         </td>
                     </tr>
 
@@ -725,8 +725,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="173"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:173</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="180"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:180</a></div>
                         </td>
                     </tr>
 
@@ -830,7 +830,14 @@ export class EncuestasService {
     codigoQR: string;
   }&gt; {
     for (const pregunta of dto.preguntas) {
-      if (
+      // FUNCIÓN EXTRA: Manejar preguntas de tipo VERDADERO_FALSO
+      if (pregunta.tipo &#x3D;&#x3D;&#x3D; TiposRespuestaEnum.VERDADERO_FALSO) {
+        // Para preguntas de tipo VERDADERO_FALSO, generamos automáticamente las opciones
+        pregunta.opciones &#x3D; [
+          { numero: 1, texto: &#x27;Verdadero&#x27; },
+          { numero: 2, texto: &#x27;Falso&#x27; },
+        ];
+      } else if (
         pregunta.tipo !&#x3D;&#x3D; TiposRespuestaEnum.ABIERTA &amp;&amp;
         (!pregunta.opciones || pregunta.opciones.length &#x3D;&#x3D;&#x3D; 0)
       ) {
@@ -991,6 +998,25 @@ export class EncuestasService {
           pregunta: pregunta.texto,
           tipo: &#x27;ABIERTA&#x27;,
           respuestas: respuestasTexto,
+        };
+      } else if (pregunta.tipo &#x3D;&#x3D;&#x3D; TiposRespuestaEnum.VERDADERO_FALSO) {
+        // Para preguntas de tipo VERDADERO_FALSO, procesamos de manera similar a las de opción múltiple
+        const opcionesConteo &#x3D; pregunta.opciones.map((opcion) &#x3D;&gt; {
+          const conteo &#x3D; encuesta.respuestas
+            .flatMap((r) &#x3D;&gt; r.respuestasOpciones)
+            .filter((ro) &#x3D;&gt; ro.opcion?.id &#x3D;&#x3D;&#x3D; opcion.id).length;
+
+          return {
+            id: opcion.id,
+            opcion: opcion.texto,
+            conteo,
+          };
+        });
+
+        return {
+          pregunta: pregunta.texto,
+          tipo: TiposRespuestaEnum.VERDADERO_FALSO,
+          opciones: opcionesConteo,
         };
       } else {
         const opcionesConteo &#x3D; pregunta.opciones.map((opcion) &#x3D;&gt; {

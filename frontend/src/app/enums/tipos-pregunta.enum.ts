@@ -3,6 +3,7 @@ export enum TiposRespuestaEnum {
   ABIERTA = 'ABIERTA', // Pregunta de respuesta abierta (texto libre)
   OPCION_MULTIPLE_SELECCION_SIMPLE = 'OPCION_MULTIPLE_SELECCION_SIMPLE', // Selección de una sola opción
   OPCION_MULTIPLE_SELECCION_MULTIPLE = 'OPCION_MULTIPLE_SELECCION_MULTIPLE', // Selección de varias opciones
+  VERDADERO_FALSO = 'VERDADERO_FALSO', // FUNCIÓN EXTRA: Respuesta de tipo verdadero/falso
 }
 
 // Arreglo que asocia cada tipo de respuesta con su presentación en texto
@@ -18,5 +19,9 @@ export const tiposPreguntaPresentacion: {
   {
     tipo: TiposRespuestaEnum.OPCION_MULTIPLE_SELECCION_MULTIPLE,
     presentacion: 'Selección Múltiple',
+  },
+  {
+    tipo: TiposRespuestaEnum.VERDADERO_FALSO,
+    presentacion: 'Verdadero o Falso',
   },
 ];

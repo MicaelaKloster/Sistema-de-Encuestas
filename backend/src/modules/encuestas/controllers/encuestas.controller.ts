@@ -24,12 +24,14 @@ import { CodigoTipoEnum } from '../enums/codigo-tipo.enum';
 import { TiposRespuestaEnum } from '../enums/tipos-respuesta.enum';
 import { CreateEncuestaResponseDto } from '../dtos/create-encuesta-response.dto';
 import { VisualizarRespuestasDto } from '../../respuestas/dtos/visualizar-respuestas.dtos';
+
 @Controller('encuestas') // Define el controlador para manejar las rutas relacionadas con "encuestas"
 export class EncuestasController {
   constructor(
     private readonly encuestasService: EncuestasService,
     private readonly respuestasService: RespuestasService,
   ) {} // Inyección de los servicios
+  
   @Post()
   @ApiOperation({ summary: 'Crear una nueva encuesta' })
   @ApiResponse({
@@ -70,6 +72,7 @@ export class EncuestasController {
       dto.tipo, // Tipo de código (respuesta o resultados)
     );
   }
+  
   @Get('participar/:id/:codigo')
   @ApiOperation({ summary: 'Obtener encuesta para participación' })
   @ApiParam({
@@ -288,6 +291,7 @@ export class EncuestasController {
       },
     };
   }
+  
   @Get(':id/resultados')
   @ApiOperation({
     summary: 'Obtener resultados de una encuesta por ID y código',
@@ -314,6 +318,7 @@ export class EncuestasController {
     }
     return this.encuestasService.obtenerResultados(id, codigo);
   }
+  
   // Funcionalidad Extra para deshabilitar una encuesta (MICA)
   @Patch(':id/habilitar') // Define un endpoint PATCH para habilitar/deshabilitar una encuesta
   async cambiarEstadoEncuesta(

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- Elementos decorativos de fondo -->
 <div class="background-elements">
   <!-- Formas flotantes principales -->
@@ -59,6 +60,20 @@
         <p>3. Haz clic en "Finalizar" para crear tu encuesta</p>
 
       </div>
+=======
+<!-- Botón de volver arriba a la izquierda -->
+<button
+  type="button"
+  class="boton-volver"
+  pButton
+  icon="pi pi-arrow-left"
+  [routerLink]="['']"
+  aria-label="Volver"
+></button>
+<h1>Creá una encuesta</h1>
+<form [formGroup]="form" (ngSubmit)="confirmarCrearEncuesta()">
+  <div id="contenedor-encuesta">
+>>>>>>> origin/main
     <app-seccion>
       <p-floatlabel variant="on" id="float-label-nombre-encuesta">
         <input
@@ -118,7 +133,7 @@
         }
       </div>
       @if (preguntas.invalid && form.touched) {
-        <app-texto-error>Debe agregar al menos una pregunra</app-texto-error>
+        <app-texto-error>Debe agregar al menos una pregunta</app-texto-error>
       }
     </app-seccion>
     <button
@@ -128,6 +143,7 @@
       type="submit"
       icon="pi pi-check"
       severity="contrast"
+      class="p-button-rounded"
     >
       Finalizar
     </button>

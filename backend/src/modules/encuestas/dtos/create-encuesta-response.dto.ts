@@ -21,4 +21,12 @@ export class CreateEncuestaResponseDto {
 
   @ApiProperty({ description: 'Código QR generado automáticamente' })
   codigoQR: string;
+
+  @ApiProperty({
+    description: 'Fecha de vencimiento de la encuesta',
+    required: false,
+    type: String,
+    format: 'date-time',
+  })
+  fechaVencimiento?: Date;
 }
