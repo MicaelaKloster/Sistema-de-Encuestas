@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { SeccionComponent } from '../seccion/seccion.component';
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 import { GestionPreguntaDialogComponent } from '../gestion-pregunta-dialog/gestion-pregunta-dialog.component';
 import { PreguntaDTO } from '../../interfaces/pregunta.dto';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -31,6 +32,7 @@ import { CreateEncuestaDTO } from '../../interfaces/create-encuesta.dto';
     FormsModule,
     SeccionComponent,
     ButtonModule,
+    DialogModule,
     GestionPreguntaDialogComponent,
     ReactiveFormsModule,
     TextoErrorComponent,
@@ -53,6 +55,13 @@ export class CreacionEncuestaComponent {
 
   // Almacena la pregunta seleccionada para edición (si corresponde)
   preguntaSeleccionada = signal<PreguntaDTO | null>(null);
+
+  // Controla si estamos en modo edición y qué pregunta se está editando
+  modoEdicion = signal<boolean>(false);
+  indicePreguntaEditando = signal<number>(-1);
+
+  // Controla la visibilidad del diálogo de selección de preguntas para editar
+  dialogSeleccionPreguntaVisible = signal<boolean>(false);
 
   constructor() {
     // Inicializa el formulario con controles y validadores
@@ -77,73 +86,100 @@ export class CreacionEncuestaComponent {
 
   // Abre el diálogo para agregar una nueva pregunta
   abrirDialog() {
+    // Resetear modo edición
+    this.modoEdicion.set(false);
+    this.indicePreguntaEditando.set(-1);
+    this.preguntaSeleccionada.set(null);
+
     this.dialogGestionPreguntaVisible.set(true);
   }
 
-  // Método para probar la conectividad con el backend
-  probarConectividad() {
-    console.log('🔗 Probando conectividad con el backend...');
+  // Abre el diálogo para editar preguntas existentes
+  abrirDialogEditar() {
+    if (this.preguntas.length === 0) {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'No hay preguntas',
+        detail: 'Primero agrega una pregunta para poder editarla',
+        life: 4000
+      });
+      return;
+    }
+
+    // Abrir diálogo de selección de preguntas
+    this.dialogSeleccionPreguntaVisible.set(true);
+  }
+
+  // Edita una pregunta específica por índice
+  editarPregunta(index: number) {
+    const pregunta = this.preguntas.at(index)?.value;
+    if (!pregunta) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'No se pudo encontrar la pregunta a editar',
+        life: 4000
+      });
+      return;
+    }
+
+    // Cerrar diálogo de selección
+    this.dialogSeleccionPreguntaVisible.set(false);
+
+    // Configurar modo edición
+    this.modoEdicion.set(true);
+    this.indicePreguntaEditando.set(index);
+    this.preguntaSeleccionada.set(pregunta);
+
+    // Abrir el diálogo de edición
+    this.dialogGestionPreguntaVisible.set(true);
 
     this.messageService.add({
       severity: 'info',
-      summary: 'Probando conexión...',
-      detail: 'Verificando conectividad con el servidor backend',
+      summary: 'Modo edición',
+      detail: `Editando: "${pregunta.texto}"`,
       life: 3000
     });
-
-    // Hacer una petición GET simple para verificar conectividad
-    // Usamos fetch directamente para probar el endpoint correcto
-    fetch('/api/v1/encuestas', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
-        console.log('✅ Respuesta del backend:', response);
-
-        if (response.ok) {
-          this.messageService.add({
-            severity: 'success',
-            summary: '✅ Backend conectado',
-            detail: `Servidor respondió correctamente (Status: ${response.status})`,
-            life: 5000
-          });
-        } else {
-          this.messageService.add({
-            severity: 'warn',
-            summary: '⚠️ Backend responde con error',
-            detail: `El servidor respondió con status ${response.status}: ${response.statusText}`,
-            life: 7000
-          });
-        }
-      })
-      .catch(error => {
-        console.error('❌ Error de conectividad:', error);
-
-        this.messageService.add({
-          severity: 'error',
-          summary: '❌ Backend no disponible',
-          detail: 'No se pudo conectar con el servidor. Verifica que el backend esté ejecutándose en http://localhost:3000 y que el endpoint /api/v1/encuestas esté disponible',
-          life: 10000,
-          sticky: true
-        });
-      });
   }
 
-  // Agrega una nueva pregunta al FormArray de preguntas
-  agregarPregunta(pregunta: PreguntaDTO) {
-    this.preguntas.push(
-      new FormControl<PreguntaDTO>(pregunta) as FormControl<PreguntaDTO>
-    );
+  // Cierra el diálogo de selección de preguntas
+  cerrarDialogSeleccion() {
+    this.dialogSeleccionPreguntaVisible.set(false);
+  }
 
-    // Mostrar mensaje de confirmación
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Pregunta agregada',
-      detail: `Se agregó la pregunta: "${pregunta.texto}"`,
-      life: 3000
-    });
+  // Agrega una nueva pregunta al FormArray de preguntas o actualiza una existente
+  agregarPregunta(pregunta: PreguntaDTO) {
+    if (this.modoEdicion() && this.indicePreguntaEditando() >= 0) {
+      // Modo edición: actualizar pregunta existente
+      const index = this.indicePreguntaEditando();
+      this.preguntas.at(index)?.setValue(pregunta);
+
+      // Resetear modo edición
+      this.modoEdicion.set(false);
+      this.indicePreguntaEditando.set(-1);
+      this.preguntaSeleccionada.set(null);
+
+      // Mostrar mensaje de confirmación
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Pregunta actualizada',
+        detail: `Se actualizó la pregunta: "${pregunta.texto}"`,
+        life: 3000
+      });
+    } else {
+      // Modo agregar: nueva pregunta
+      this.preguntas.push(
+        new FormControl<PreguntaDTO>(pregunta) as FormControl<PreguntaDTO>
+      );
+
+      // Mostrar mensaje de confirmación
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Pregunta agregada',
+        detail: `Se agregó la pregunta: "${pregunta.texto}"`,
+        life: 3000
+      });
+    }
   }
 
   // Elimina una pregunta del FormArray por índice

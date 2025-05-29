@@ -48,6 +48,9 @@ export class GestionPreguntaDialogComponent {
   // Controla la visibilidad del diálogo
   visible = model.required<boolean>();
 
+  // Pregunta a editar (opcional)
+  preguntaAEditar = model<PreguntaDTO | null>(null);
+
   // Controla la visibilidad del diálogo para agregar opciones
   dialogGestionOpcionVisible = signal<boolean>(false);
 
@@ -80,7 +83,12 @@ export class GestionPreguntaDialogComponent {
     // Efecto que resetea el formulario cuando el diálogo se hace visible
     effect(() => {
       if (this.visible()) {
-        this.reset();
+        const preguntaAEditar = this.preguntaAEditar();
+        if (preguntaAEditar) {
+          this.cargarPreguntaParaEditar(preguntaAEditar);
+        } else {
+          this.reset();
+        }
       }
     });
   }
@@ -94,6 +102,27 @@ export class GestionPreguntaDialogComponent {
   // Elimina todas las opciones del formulario
   resetearOpciones() {
     this.opciones.clear();
+  }
+
+  // Carga los datos de una pregunta existente para editar
+  cargarPreguntaParaEditar(pregunta: PreguntaDTO) {
+    // Resetear primero
+    this.reset();
+
+    // Cargar datos básicos
+    this.texto.setValue(pregunta.texto);
+    this.tipo.setValue(pregunta.tipo);
+
+    // Cargar opciones si existen
+    if (pregunta.opciones && pregunta.opciones.length > 0) {
+      pregunta.opciones.forEach(opcion => {
+        this.opciones.push(
+          new FormControl<Pick<CreateOpcionDTO, 'texto'>>({
+            texto: opcion.texto,
+          }) as FormControl<Pick<CreateOpcionDTO, 'texto'>>
+        );
+      });
+    }
   }
 
   // Devuelve los tipos de pregunta disponibles para el selector

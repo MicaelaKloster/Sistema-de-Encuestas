@@ -792,13 +792,13 @@ ul li {
 .botonera-pregunta{
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
   flex-wrap: wrap;
   margin-top: 1rem;
 }
 
 #boton-eliminar-pregunta{
-  margin-right: 1rem;
-  margin-top: 0.3rem;
   border-radius: 0.8rem;
   transition: all 0.3s ease;
 }
@@ -901,10 +901,18 @@ ul li {
   transform: translateX(-50%) !important;
 }
 
-/* Centrar el botón "Agregar Pregunta" */
+/* Contenedor de botones de gestión de preguntas */
+.botones-gestion-preguntas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Centrar el botón "Agregar Pregunta" cuando está solo */
 ::ng-deep app-seccion .p-button:not(#boton-eliminar-pregunta):not(#boton-finalizar) {
-  margin: 0 auto !important;
-  display: block !important;
+  margin: 0 !important;
 }
 
 /* Centrar mensajes de error */
@@ -983,6 +991,23 @@ ul li {
   .info-message p {
     font-size: 0.9rem;
   }
+
+  .botones-gestion-preguntas {
+    gap: 0.8rem;
+  }
+
+  .item-pregunta-seleccion {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .icono-editar {
+    margin-left: 0;
+    margin-top: 0.8rem;
+    align-self: flex-end;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1034,9 +1059,9 @@ ul li {
     width: 100%;
   }
 
-  #boton-eliminar-pregunta {
-    margin-right: 0;
+  .botonera-pregunta .p-button {
     width: 100%;
+    max-width: 200px;
   }
 
   /* Ajustar centrado en móviles */
@@ -1063,6 +1088,36 @@ ul li {
 
   .connectivity-note {
     font-size: 0.8rem !important;
+  }
+
+  .botones-gestion-preguntas {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .botones-gestion-preguntas .p-button {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .item-pregunta-seleccion {
+    padding: 0.8rem;
+  }
+
+  .titulo-pregunta-seleccion {
+    font-size: 1rem;
+  }
+
+  .tipo-pregunta-seleccion {
+    font-size: 0.85rem;
+  }
+
+  .opciones-titulo {
+    font-size: 0.8rem;
+  }
+
+  .opcion-item {
+    font-size: 0.75rem;
   }
 }
 
@@ -1192,4 +1247,108 @@ ul li {
 ::ng-deep .p-confirmdialog .p-dialog-footer .p-button:hover {
   transform: translateY(-1px) !important;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Estilos para el diálogo de selección de preguntas */
+.dialogo-seleccion-preguntas {
+  padding: 0.5rem 0;
+}
+
+.instruccion-seleccion {
+  margin: 0 0 1.5rem 0;
+  color: #4a5568;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.item-pregunta-seleccion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(147, 197, 253, 0.05) 100%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.item-pregunta-seleccion:hover {
+  border-color: rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(147, 197, 253, 0.1) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+}
+
+.item-pregunta-seleccion:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+}
+
+.contenido-pregunta-seleccion {
+  flex: 1;
+  min-width: 0;
+}
+
+.titulo-pregunta-seleccion {
+  margin: 0 0 0.5rem 0;
+  color: #2d3748;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  word-wrap: break-word;
+}
+
+.tipo-pregunta-seleccion {
+  margin: 0 0 0.8rem 0;
+  color: #6b7280;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.opciones-preview {
+  margin-top: 0.8rem;
+}
+
+.opciones-titulo {
+  margin: 0 0 0.4rem 0;
+  color: #4a5568;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.opciones-lista {
+  margin: 0;
+  padding-left: 1.2rem;
+  list-style-type: disc;
+}
+
+.opcion-item {
+  margin-bottom: 0.2rem;
+  color: #6b7280;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.icono-editar {
+  flex-shrink: 0;
+  margin-left: 1rem;
+  color: rgba(102, 126, 234, 0.7);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.item-pregunta-seleccion:hover .icono-editar {
+  color: rgba(102, 126, 234, 1);
+  transform: scale(1.1);
+}
+
+.sin-preguntas {
+  text-align: center;
+  color: #9ca3af;
+  font-style: italic;
+  padding: 2rem;
+  margin: 0;
 }
