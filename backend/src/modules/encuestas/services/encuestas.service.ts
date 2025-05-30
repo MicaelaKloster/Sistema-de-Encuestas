@@ -15,9 +15,10 @@ import { CodigoTipoEnum } from '../enums/codigo-tipo.enum';
 import { NotFoundException } from '@nestjs/common';
 import { TiposRespuestaEnum } from '../enums/tipos-respuesta.enum';
 import { Respuesta } from '../../respuestas/entities/respuesta.entity';
-// Importación de librería para generar enlace corto
 // Importación de librería para generar QR
 import * as QRCode from 'qrcode';
+// Importación de papaparse para generar CSV
+import * as Papa from 'papaparse'; 
 
 @Injectable() // Decorador que marca esta clase como un servicio inyectable
 export class EncuestasService {
@@ -324,5 +325,53 @@ export class EncuestasService {
     });
 
     return encuesta;
+  }
+
+  // Funcionalidad extra para generar un CSV (Emilia)
+  async resultadosCSV(id: number, codigoResultados: string): Promise<string> {
+    // Obtiene los resultados de la encuesta validando el código de resultados
+    const resultados = await this.obtenerResultados(id, codigoResultados);
+
+    // Si no se encuentran resultados, arroja una excepción
+    if (!resultados) {
+      throw new NotFoundException('No se encontraron resultados');
+    }
+
+    const filas: any[] = []; // Guarda los datos en formato fila para el CSV
+
+    // Recorre cada pregunta para armar las filas
+    resultados.resultados.forEach((pregunta) => {
+      // Si la pregunta es abierta, se agregan todas las respuestas individuales como filas
+      if (pregunta.tipo === 'ABIERTA') {
+        pregunta.respuestas.forEach((textoRespuesta: string) => {
+          filas.push({
+            Pregunta: pregunta.pregunta,
+            Tipo: pregunta.tipo,
+            Respuesta: textoRespuesta,
+          });
+        });
+      } else {
+         // Si la pregunta es de opción, se agregan las opciones con la cantidad de respuestas
+        pregunta.opciones.forEach((opcion) => {
+          filas.push({
+            Pregunta: pregunta.pregunta,
+            Tipo: pregunta.tipo,
+            Opcion: opcion.opcion,
+            'Cantidad Respuestas': opcion.conteo,
+          });
+        });
+      }
+    });
+
+    // Convierte las filas a formato csv utilizando papaparse
+    const csv = Papa.unparse(filas, {
+      quotes: true, 
+      delimiter: ';', 
+      header: true,
+      newline: '\r\n',
+    });
+
+    // Retorna el CSV
+    return '\uFEFF' + csv;
   }
 }

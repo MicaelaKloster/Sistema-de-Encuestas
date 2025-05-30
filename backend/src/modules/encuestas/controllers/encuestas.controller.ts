@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Query,
+  Res,
   BadRequestException,
 } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
@@ -24,6 +25,8 @@ import { CodigoTipoEnum } from '../enums/codigo-tipo.enum';
 import { TiposRespuestaEnum } from '../enums/tipos-respuesta.enum';
 import { CreateEncuestaResponseDto } from '../dtos/create-encuesta-response.dto';
 import { VisualizarRespuestasDto } from '../../respuestas/dtos/visualizar-respuestas.dtos';
+
+import { Response } from 'express';
 
 @Controller('encuestas') // Define el controlador para manejar las rutas relacionadas con "encuestas"
 export class EncuestasController {
@@ -327,4 +330,20 @@ export class EncuestasController {
   ): Promise<{ mensaje: string }> {
     return await this.encuestasService.actualizarEstadoEncuesta(id, habilitada);
   }
+
+  // Funcionalidad extra para generar un CSV (Emilia)
+  @Get(':id/csv/:codigoResultados') // Define un endpoint GET para exportar los resultados de una encuesta en formato CSV
+  async exportarResultadosCSV(
+    @Param('id') id: number, // Obtiene el parámetro "id" de la URL
+    @Param('codigoResultados') codigoResultados: string, // Obtiene el código único para validar el acceso a los resultados
+    @Res() res: Response, // Uso de Response para enviar el archivo CSV como descarga
+  ) {
+    const csv = await this.encuestasService.resultadosCSV(id, codigoResultados); // Obtiene los resultados en formato CSV desde el servicio
+
+    // Configuración de los encabezados
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename="resultados_encuesta_${id}.csv"`);
+
+    res.send(csv); // Envía el contenido del archivo CSV
+  } 
 }
