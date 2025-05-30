@@ -31,7 +31,7 @@ export class EncuestasController {
     private readonly encuestasService: EncuestasService,
     private readonly respuestasService: RespuestasService,
   ) {} // Inyección de los servicios
-  
+
   @Post()
   @ApiOperation({ summary: 'Crear una nueva encuesta' })
   @ApiResponse({
@@ -72,7 +72,7 @@ export class EncuestasController {
       dto.tipo, // Tipo de código (respuesta o resultados)
     );
   }
-  
+
   @Get('participar/:id/:codigo')
   @ApiOperation({ summary: 'Obtener encuesta para participación' })
   @ApiParam({
@@ -291,7 +291,7 @@ export class EncuestasController {
       },
     };
   }
-  
+
   @Get(':id/resultados')
   @ApiOperation({
     summary: 'Obtener resultados de una encuesta por ID y código',
@@ -318,7 +318,7 @@ export class EncuestasController {
     }
     return this.encuestasService.obtenerResultados(id, codigo);
   }
-  
+
   // Funcionalidad Extra para deshabilitar una encuesta (MICA)
   @Patch(':id/habilitar') // Define un endpoint PATCH para habilitar/deshabilitar una encuesta
   async cambiarEstadoEncuesta(

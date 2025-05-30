@@ -39,8 +39,8 @@ export class RespuestasController {
    * También se reciben las respuestas del usuario en el cuerpo de la solicitud.
    *
    * Desde Angular: se hace una solicitud POST a `/respuestas/{id}/{tokenParticipacion}`
-   *     - Se deben enviar las respuestas en formato JSON dentro del body (conforme al DTO).
-   *     - Si sale bien, devuelve un mensaje: "Respuestas registradas exitosamente".
+   *     Se deben enviar las respuestas en formato JSON dentro del body (conforme al DTO).
+   *     Si sale bien, devuelve un mensaje: "Respuestas registradas exitosamente".
    */
 
   @Post(':id/:tokenParticipacion')
@@ -70,50 +70,9 @@ export class RespuestasController {
     description: 'Datos de respuesta inválidos',
   })
   async registrarRespuestas(
-    @Param('id') id: number, // Recibe el ID de la encuesta
+    @Param('id', ParseIntPipe) id: number, // Recibe el ID de la encuesta
     @Param('tokenParticipacion') tokenParticipacion: string, //Recibe el token de participación desde la URL.
     @Body() registrarRespuestasDto: RegistrarRespuestasDto, // Recibe las respuestas en el cuerpo de la solicitud.
-  ): Promise<{ message: string }> {
-    await this.respuestasService.registrarRespuestas(
-      tokenParticipacion,
-      registrarRespuestasDto,
-      id,
-    );
-    return { message: 'Respuestas registradas exitosamente' };
-  }
-
-  @Post('participar/:id/:tokenParticipacion') // Ruta alternativa para mayor compatibilidad
-  @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({
-    summary: 'Registrar respuestas de una encuesta (ruta alternativa)',
-  })
-  @ApiParam({
-    name: 'id',
-    description: 'ID de la encuesta',
-    example: '1',
-  })
-  @ApiParam({
-    name: 'tokenParticipacion',
-    description: 'Token de participación de la encuesta',
-    example: 'abc123def456',
-  })
-  @ApiBody({ type: RegistrarRespuestasDto })
-  @ApiResponse({
-    status: 201,
-    description: 'Respuestas registradas exitosamente',
-  })
-  @ApiResponse({
-    status: 404,
-    description: 'Encuesta no encontrada o enlace inválido',
-  })
-  @ApiResponse({
-    status: 400,
-    description: 'Datos de respuesta inválidos',
-  })
-  async registrarRespuestasAlternativa(
-    @Param('id') id: number,
-    @Param('tokenParticipacion') tokenParticipacion: string,
-    @Body() registrarRespuestasDto: RegistrarRespuestasDto,
   ): Promise<{ message: string }> {
     await this.respuestasService.registrarRespuestas(
       tokenParticipacion,

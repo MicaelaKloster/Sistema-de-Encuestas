@@ -1,0 +1,134 @@
+<!-- responder-encuesta.component.html -->
+<div class="encuesta-container">
+  <!-- Toast para mensajes -->
+  <p-toast></p-toast>
+
+  <!-- Loading state -->
+  <div *ngIf="cargando" class="loading-container">
+    <p-progressSpinner></p-progressSpinner>
+    <p>Cargando encuesta...</p>
+  </div>
+
+  <!-- Encuesta cargada -->
+  <div *ngIf="!cargando && encuesta" class="encuesta-content">
+    <p-card>
+      <ng-template pTemplate="header">
+        <div class="encuesta-header">
+          <h2>{{ encuesta.nombre }}</h2>
+          <p *ngIf="encuesta.descripcion" class="encuesta-descripcion">
+            {{ encuesta.descripcion }}
+          </p>
+        </div>
+      </ng-template>
+
+      <form (ngSubmit)="enviarRespuestas()" #form="ngForm">
+        <div *ngFor="let pregunta of encuesta.preguntas" class="pregunta-container">
+          <div class="pregunta-header">
+            <label class="titulo-pregunta">
+              {{ pregunta.numero }}. {{ pregunta.texto }}
+              <span *ngIf="pregunta.obligatoria" class="obligatoria">*</span>
+            </label>
+          </div>
+
+          <div class="pregunta-content">
+            <!-- Pregunta Abierta (Texto libre) -->
+            <div *ngIf="esPreguntaAbierta(pregunta)" class="pregunta-abierta">
+              <p-inputTextarea
+                rows="4"
+                autoResize="true"
+                [(ngModel)]="getRespuestaPorPregunta(pregunta.numero).texto"
+                (ngModelChange)="onTextoChange(pregunta, $event)"
+                [name]="'pregunta-texto-' + pregunta.numero"
+                placeholder="Escribí tu respuesta aquí..."
+                class="w-full"
+                [required]="pregunta.obligatoria">
+              </p-inputTextarea>
+            </div>
+
+            <!-- Pregunta de Selección Simple (Radio buttons) -->
+            <div *ngIf="esPreguntaSeleccionSimple(pregunta)" class="pregunta-seleccion-simple">
+              <div *ngFor="let opcion of pregunta.opciones" class="opcion-radio">
+                <p-radioButton
+                  [inputId]="'radio-' + pregunta.numero + '-' + opcion.numero"
+                  [name]="'pregunta-' + pregunta.numero"
+                  [value]="opcion.numero"
+                  [(ngModel)]="getRespuestaPorPregunta(pregunta.numero).opciones[0]"
+                  (onChange)="onRadioChange(pregunta, opcion.numero)">
+                </p-radioButton>
+                <label [for]="'radio-' + pregunta.numero + '-' + opcion.numero" class="opcion-label">
+                  {{ opcion.texto }}
+                </label>
+              </div>
+            </div>
+
+              <!-- Pregunta de Selección Múltiple (Checkboxes) -->
+            <div *ngIf="esPreguntaSeleccionMultiple(pregunta)" class="pregunta-seleccion-multiple">
+              <div *ngFor="let opcion of pregunta.opciones" class="opcion-checkbox">
+                <p-checkbox
+                  [inputId]="'chk-' + pregunta.numero + '-' + opcion.numero"
+                  [value]="opcion.numero"
+                  [name]="'pregunta-' + pregunta.numero"
+                  [(ngModel)]="getRespuestaPorPregunta(pregunta.numero).opciones"
+                  (onChange)="onCheckboxChange(pregunta, opcion.numero, $event.checked)">
+                </p-checkbox>
+                <label [for]="'chk-' + pregunta.numero + '-' + opcion.numero" class="opcion-label">
+                  {{ opcion.texto }}
+                </label>
+              </div>
+          </div>
+
+            <!-- Pregunta Verdadero/Falso -->
+            <div *ngIf="esPreguntaVerdaderoFalso(pregunta)" class="pregunta-verdadero-falso">
+              <div class="opcion-radio">
+                <p-radioButton
+                  [inputId]="'radio-' + pregunta.numero + '-verdadero'"
+                  [name]="'pregunta-' + pregunta.numero"
+                  [value]="1"
+                  [(ngModel)]="getRespuestaPorPregunta(pregunta.numero).opciones[0]"
+                  (onChange)="onRadioChange(pregunta, 1)">
+                </p-radioButton>
+                <label [for]="'radio-' + pregunta.numero + '-verdadero'" class="opcion-label">
+                  Verdadero
+                </label>
+              </div>
+              <div class="opcion-radio">
+                <p-radioButton
+                  [inputId]="'radio-' + pregunta.numero + '-falso'"
+                  [name]="'pregunta-' + pregunta.numero"
+                  [value]="0"
+                  [(ngModel)]="getRespuestaPorPregunta(pregunta.numero).opciones[0]"
+                  (onChange)="onRadioChange(pregunta, 0)">
+                </p-radioButton>
+                <label [for]="'radio-' + pregunta.numero + '-falso'" class="opcion-label">
+                  Falso
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <p-button
+            type="submit"
+            label="Enviar Respuestas"
+            icon="pi pi-check"
+            [loading]="enviando"
+            [disabled]="enviando"
+            styleClass="p-button-lg">
+          </p-button>
+        </div>
+      </form>
+    </p-card>
+  </div>
+
+  <!-- Error state -->
+  <div *ngIf="!cargando && !encuesta" class="error-container">
+    <p-card>
+      <div class="error-content">
+        <i class="pi pi-exclamation-triangle error-icon"></i>
+        <h3>Error al cargar la encuesta</h3>
+        <p>No se pudo cargar la encuesta. Por favor, verificá el enlace e intentá nuevamente.</p>
+      </div>
+    </p-card>
+  </div>
+</div>
