@@ -25,20 +25,36 @@ import {
 export class RespuestasController {
   constructor(private readonly respuestasService: RespuestasService) {}
 
-  @Post(':id/:tokenParticipacion') // Permite registrar respuestas para una encuesta específica.
+  /**
+   * Registra las respuestas de un usuario para una encuesta específica
+   * 
+   * Este endpoint permite guardar las respuestas proporcionadas por un usuario
+   * para una encuesta identificada por su ID y token de participación.
+   * Valida que todas las preguntas obligatorias estén respondidas y que
+   * las respuestas sean del tipo correcto para cada pregunta.
+   */
+  @Post('participar/:id/:tokenParticipacion')
   @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Registrar respuestas de una encuesta' })
+  @ApiOperation({ 
+    summary: 'Registrar respuestas de una encuesta',
+    description: 'Guarda las respuestas de un usuario para una encuesta específica. Requiere el ID de la encuesta y el token de participación.'
+  })
   @ApiParam({
     name: 'id',
-    description: 'ID de la encuesta',
+    description: 'ID numérico de la encuesta',
     example: '1',
+    required: true,
   })
   @ApiParam({
     name: 'tokenParticipacion',
-    description: 'Token de participación de la encuesta',
+    description: 'Token UUID de participación de la encuesta',
     example: 'abc123def456',
+    required: true,
   })
-  @ApiBody({ type: RegistrarRespuestasDto })
+  @ApiBody({ 
+    type: RegistrarRespuestasDto,
+    description: 'Objeto con las respuestas del usuario para cada pregunta de la encuesta'
+  })
   @ApiResponse({
     status: 201,
     description: 'Respuestas registradas exitosamente',
@@ -49,51 +65,10 @@ export class RespuestasController {
   })
   @ApiResponse({
     status: 400,
-    description: 'Datos de respuesta inválidos',
+    description: 'Datos de respuesta inválidos o incompletos',
   })
   async registrarRespuestas(
-    @Param('id') id: number, // Recibe el ID de la encuesta
-    @Param('tokenParticipacion') tokenParticipacion: string, //Recibe el token de participación desde la URL.
-    @Body() registrarRespuestasDto: RegistrarRespuestasDto, // Recibe las respuestas en el cuerpo de la solicitud.
-  ): Promise<{ message: string }> {
-    await this.respuestasService.registrarRespuestas(
-      tokenParticipacion,
-      registrarRespuestasDto,
-      id,
-    );
-    return { message: 'Respuestas registradas exitosamente' };
-  }
-
-  @Post('participar/:id/:tokenParticipacion') // Ruta alternativa para mayor compatibilidad
-  @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({
-    summary: 'Registrar respuestas de una encuesta (ruta alternativa)',
-  })
-  @ApiParam({
-    name: 'id',
-    description: 'ID de la encuesta',
-    example: '1',
-  })
-  @ApiParam({
-    name: 'tokenParticipacion',
-    description: 'Token de participación de la encuesta',
-    example: 'abc123def456',
-  })
-  @ApiBody({ type: RegistrarRespuestasDto })
-  @ApiResponse({
-    status: 201,
-    description: 'Respuestas registradas exitosamente',
-  })
-  @ApiResponse({
-    status: 404,
-    description: 'Encuesta no encontrada o enlace inválido',
-  })
-  @ApiResponse({
-    status: 400,
-    description: 'Datos de respuesta inválidos',
-  })
-  async registrarRespuestasAlternativa(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Param('tokenParticipacion') tokenParticipacion: string,
     @Body() registrarRespuestasDto: RegistrarRespuestasDto,
   ): Promise<{ message: string }> {
@@ -105,12 +80,23 @@ export class RespuestasController {
     return { message: 'Respuestas registradas exitosamente' };
   }
 
-  @Get('resultados/:tokenVisualizacion') //obtiene las respuestas
-  @ApiOperation({ summary: 'Visualizar respuestas de una encuesta' })
+  /**
+   * Obtiene los resultados de una encuesta usando el token de visualización
+   * 
+   * Este endpoint permite consultar todas las respuestas recopiladas para una encuesta
+   * utilizando el token de visualización proporcionado al crear la encuesta.
+   * Incluye estadísticas como el número de respuestas por opción.
+   */
+  @Get('resultados/:tokenVisualizacion')
+  @ApiOperation({ 
+    summary: 'Visualizar respuestas de una encuesta',
+    description: 'Obtiene todas las respuestas recopiladas para una encuesta usando el token de visualización.'
+  })
   @ApiParam({
     name: 'tokenVisualizacion',
-    description: 'Token de visualización de resultados',
+    description: 'Token UUID para visualizar los resultados de la encuesta',
     example: 'xyz789uvw012',
+    required: true,
   })
   @ApiResponse({
     status: 200,
@@ -119,16 +105,48 @@ export class RespuestasController {
   })
   @ApiResponse({
     status: 404,
-    description: 'Encuesta no encontrada o enlace inválido',
+    description: 'Encuesta no encontrada o token de visualización inválido',
   })
   async visualizarRespuestas(
-    @Param('tokenVisualizacion') tokenVisualizacion: string, //Recibe el token para visualizar los resultados.
+    @Param('tokenVisualizacion') tokenVisualizacion: string,
   ): Promise<{ message: string; data: VisualizarRespuestasDto }> {
     const resultado =
       await this.respuestasService.visualizarRespuestasDto(tokenVisualizacion);
     return { message: 'Éxito', data: resultado };
   }
+  
+  /**
+   * Obtiene la estructura de una encuesta para participación
+   * 
+   * Este endpoint devuelve la estructura completa de una encuesta para que
+   * un usuario pueda participar en ella, incluyendo todas sus preguntas y opciones.
+   */
   @Get('participar/:id/:tokenParticipacion')
+  @ApiOperation({ 
+    summary: 'Obtener encuesta para participación',
+    description: 'Devuelve la estructura completa de una encuesta para que un usuario pueda participar.'
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'ID numérico de la encuesta',
+    example: '1',
+    required: true,
+  })
+  @ApiParam({
+    name: 'tokenParticipacion',
+    description: 'Token UUID de participación de la encuesta',
+    example: 'abc123def456',
+    required: true,
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Encuesta obtenida exitosamente',
+    type: CreateEncuestaDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Encuesta no encontrada o token inválido',
+  })
   async obtenerEncuestaParaParticipacion(
     @Param('id', ParseIntPipe) id: number,
     @Param('tokenParticipacion') tokenParticipacion: string,

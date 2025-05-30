@@ -73,57 +73,33 @@ export class EncuestasController {
     );
   }
   
-  @Get('participar/:id/:codigo')
-  @ApiOperation({ summary: 'Obtener encuesta para participación' })
-  @ApiParam({
-    name: 'id',
-    description: 'ID de la encuesta',
-    example: '1',
-  })
-  @ApiParam({
-    name: 'codigo',
-    description: 'Código de participación de la encuesta',
-    example: 'abc123def456',
-  })
-  async obtenerEncuestaParaParticipar(
-    @Param('id') id: number,
-    @Param('codigo') codigo: string,
-  ): Promise<any> {
-    const encuesta = await this.encuestasService.obtenerEncuesta(
-      id,
-      codigo,
-      CodigoTipoEnum.RESPUESTA,
-    );
-    // Transformar la respuesta para incluir explícitamente los IDs
-    return {
-      id: encuesta.id,
-      nombre: encuesta.nombre,
-      preguntas: encuesta.preguntas.map((pregunta) => ({
-        id: pregunta.id,
-        numero: pregunta.numero,
-        texto: pregunta.texto,
-        tipo: pregunta.tipo,
-        opciones: pregunta.opciones
-          ? pregunta.opciones.map((opcion) => ({
-              id: opcion.id,
-              numero: opcion.numero,
-              texto: opcion.texto,
-            }))
-          : [],
-      })),
-    };
-  }
-
+  /**
+   * Obtiene una encuesta para participación usando su código
+   * 
+   * Este endpoint permite obtener la estructura completa de una encuesta
+   * para que un usuario pueda participar, utilizando solo el código de participación.
+   * Es el método recomendado para acceder a una encuesta para responderla.
+   */
   @Get('participar/:codigo')
   @ApiOperation({
     summary: 'Obtener encuesta para participación',
+    description: 'Devuelve la estructura completa de una encuesta usando solo su código de participación'
   })
   @ApiParam({
     name: 'codigo',
-    description: 'Código de participación de la encuesta',
+    description: 'Código UUID de participación de la encuesta',
     example: 'abc123def456',
+    required: true
   })
-  async obtenerEncuestaParaParticiparLegacy(
+  @ApiResponse({
+    status: 200,
+    description: 'Encuesta obtenida exitosamente'
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Código de encuesta no válido o encuesta vencida'
+  })
+  async obtenerEncuestaParaParticipar(
     @Param('codigo') codigo: string,
   ): Promise<any> {
     const encuesta = await this.encuestasService.obtenerEncuestaPorCodigo(
