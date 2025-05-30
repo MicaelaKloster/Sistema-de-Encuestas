@@ -217,7 +217,13 @@ export class RespuestasService {
       }
     }
   }
-  // obtiene las respuestas registradas de una encuesta específica para visualizarlas.
+  /**
+   * Obtiene las respuestas registradas de una encuesta específica para visualizarlas
+   * 
+   * @param codigoVisualizacion - Token UUID para visualizar los resultados
+   * @returns Objeto DTO con toda la información de la encuesta y sus respuestas
+   * @throws NotFoundException - Si la encuesta no existe o el token es inválido
+   */
   async visualizarRespuestasDto(
     codigoVisualizacion: string,
   ): Promise<VisualizarRespuestasDto> {
@@ -228,24 +234,8 @@ export class RespuestasService {
     });
 
     if (!encuesta) {
-      throw new NotFoundException('Encuesta no encontrada o enlace inválido'); //si no existe mensaje de error.
+      throw new NotFoundException('Encuesta no encontrada o enlace inválido');
     }
-
-    // Imprimir información detallada de las preguntas y opciones para depuración
-    console.log('Información de la encuesta para depuración:');
-    encuesta.preguntas.forEach((pregunta) => {
-      console.log(
-        `Pregunta ID: ${pregunta.id}, Número: ${pregunta.numero}, Texto: "${pregunta.texto}"`,
-      );
-      if (pregunta.opciones && pregunta.opciones.length > 0) {
-        console.log('Opciones:');
-        pregunta.opciones.forEach((opcion) => {
-          console.log(
-            `  Opción ID: ${opcion.id}, Número: ${opcion.numero}, Texto: "${opcion.texto}"`,
-          );
-        });
-      }
-    });
 
     // Construir el objeto
     const resultado: VisualizarRespuestasDto = {
@@ -301,6 +291,15 @@ export class RespuestasService {
 
     return resultado;
   }
+  /**
+   * Obtiene la estructura de una encuesta para participación
+   * 
+   * @param id - ID numérico de la encuesta
+   * @param codigoParticipacion - Token UUID de participación
+   * @returns Objeto DTO con la estructura de la encuesta para participar
+   * @throws NotFoundException - Si la encuesta no existe o el token es inválido
+   * @throws BadRequestException - Si la encuesta ha vencido
+   */
   async obtenerEncuestaParaParticipacion(
     id: number,
     codigoParticipacion: string,
@@ -315,6 +314,11 @@ export class RespuestasService {
       throw new NotFoundException(
         'Encuesta no encontrada o código de participación inválido',
       );
+    }
+    
+    // Validar si la encuesta ha vencido
+    if (encuesta.fechaVencimiento && encuesta.fechaVencimiento < new Date()) {
+      throw new BadRequestException('La encuesta ha vencido y ya no está disponible');
     }
 
     // Convertir la entidad `Encuesta` a `CreateEncuestaDto`

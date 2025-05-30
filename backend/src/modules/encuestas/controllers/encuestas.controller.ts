@@ -8,6 +8,8 @@ import {
   Post,
   Query,
   BadRequestException,
+  ParseIntPipe,
+  Res,
 } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
 // Importación del servicio de encuestas
@@ -32,25 +34,39 @@ export class EncuestasController {
     private readonly respuestasService: RespuestasService,
   ) {} // Inyección de los servicios
   
+  /**
+   * Crea una nueva encuesta
+   * 
+   * Este endpoint permite crear una encuesta completa con sus preguntas y opciones.
+   * Genera automáticamente códigos únicos para participación y visualización de resultados,
+   * así como enlaces cortos y códigos QR para facilitar el acceso.
+   */
   @Post()
-  @ApiOperation({ summary: 'Crear una nueva encuesta' })
+  @ApiOperation({ 
+    summary: 'Crear una nueva encuesta',
+    description: 'Crea una encuesta con sus preguntas y opciones, generando enlaces y códigos QR'
+  })
   @ApiResponse({
     status: 201,
     description: 'Encuesta creada exitosamente',
     type: CreateEncuestaResponseDto,
-  }) // Define un endpoint POST para crear una nueva encuesta
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Datos de encuesta inválidos o incompletos'
+  })
   async crearEncuesta(
     @Body() dto: CreateEncuestaDto,
   ): Promise<CreateEncuestaResponseDto> {
     // Crea la encuesta utilizando el servicio
     const encuesta = await this.encuestasService.crearEncuesta(dto);
 
-    //  Generar enlace corto
+    // Generar enlace corto
     const enlaceCorto = await this.encuestasService.generarEnlaceCorto(
       encuesta.enlaceParticipacion,
     );
 
-    //  Generar código QR
+    // Generar código QR
     const codigoQR = await this.encuestasService.generarCodigoQR(enlaceCorto);
 
     return {
@@ -127,15 +143,31 @@ export class EncuestasController {
     };
   }
 
+  /**
+   * Obtiene información detallada de la encuesta para depuración
+   * 
+   * Este endpoint intenta obtener la encuesta primero con el código de participación,
+   * y si falla, intenta con el código de resultados. Es útil para diagnosticar problemas
+   * cuando no se sabe qué tipo de código se tiene.
+   */
   @Get('debug/:codigo')
   @ApiOperation({
     summary: 'Obtener información detallada de la encuesta para depuración',
+    description: 'Intenta obtener la encuesta con cualquier tipo de código (participación o resultados)'
   })
   @ApiParam({
     name: 'codigo',
-    description:
-      'Código de la encuesta (puede ser de participación o resultados)',
+    description: 'Código UUID de la encuesta (puede ser de participación o resultados)',
     example: 'abc123def456',
+    required: true
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Encuesta obtenida exitosamente'
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Código de encuesta no válido'
   })
   async obtenerEncuestaDebug(@Param('codigo') codigo: string): Promise<any> {
     // Intentar primero con código de respuesta
@@ -146,9 +178,10 @@ export class EncuestasController {
       );
 
       // Transformar la respuesta para incluir explícitamente los IDs
-      const resultado = {
+      return {
         id: encuesta.id,
         nombre: encuesta.nombre,
+        tipo_codigo: 'PARTICIPACIÓN',
         preguntas: encuesta.preguntas.map((pregunta) => ({
           id: pregunta.id,
           numero: pregunta.numero,
@@ -163,9 +196,6 @@ export class EncuestasController {
             : [],
         })),
       };
-
-      return resultado;
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (_) {
       // Si falla, intentar con código de resultados
       try {
@@ -175,9 +205,10 @@ export class EncuestasController {
         );
 
         // Transformar la respuesta para incluir explícitamente los IDs
-        const resultado = {
+        return {
           id: encuesta.id,
           nombre: encuesta.nombre,
+          tipo_codigo: 'RESULTADOS',
           preguntas: encuesta.preguntas.map((pregunta) => ({
             id: pregunta.id,
             numero: pregunta.numero,
@@ -192,17 +223,38 @@ export class EncuestasController {
               : [],
           })),
         };
-
-        return resultado;
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (_) {
         throw new BadRequestException('Código de encuesta no válido');
       }
     }
   }
 
+  /**
+   * Obtiene los resultados de una encuesta usando su código de visualización
+   * 
+   * Este endpoint permite consultar todas las respuestas recopiladas para una encuesta
+   * utilizando el código de visualización proporcionado al crear la encuesta.
+   */
   @Get('resultados/:codigo')
-  @ApiOperation({ summary: 'Obtener resultados de una encuesta' })
+  @ApiOperation({ 
+    summary: 'Obtener resultados de una encuesta',
+    description: 'Devuelve todas las respuestas recopiladas para una encuesta usando su código de visualización'
+  })
+  @ApiParam({
+    name: 'codigo',
+    description: 'Código UUID de visualización de resultados',
+    example: 'xyz789uvw012',
+    required: true
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Resultados obtenidos exitosamente',
+    type: VisualizarRespuestasDto
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Encuesta no encontrada o código inválido'
+  })
   async obtenerResultadosEncuesta(
     @Param('codigo') codigo: string,
   ): Promise<{ message: string; data: VisualizarRespuestasDto }> {
@@ -295,11 +347,35 @@ export class EncuestasController {
     return this.encuestasService.obtenerResultados(id, codigo);
   }
   
-  // Funcionalidad Extra para deshabilitar una encuesta (MICA)
-  @Patch(':id/habilitar') // Define un endpoint PATCH para habilitar/deshabilitar una encuesta
+  /**
+   * Habilita o deshabilita una encuesta existente
+   * 
+   * Este endpoint permite cambiar el estado de una encuesta para controlar
+   * si está disponible para recibir respuestas o no. Es útil para cerrar
+   * temporalmente una encuesta sin eliminarla.
+   */
+  @Patch(':id/habilitar')
+  @ApiOperation({ 
+    summary: 'Habilitar o deshabilitar una encuesta',
+    description: 'Cambia el estado de disponibilidad de una encuesta existente'
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'ID numérico de la encuesta',
+    example: '1',
+    required: true
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Estado de la encuesta actualizado exitosamente'
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Encuesta no encontrada o datos inválidos'
+  })
   async cambiarEstadoEncuesta(
-    @Param('id') id: number, // Obtiene el parámetro "id" de la URL
-    @Body('habilitada') habilitada: boolean, // Obtiene el cuerpo de la solicitud para saber si se habilita o deshabilita
+    @Param('id', ParseIntPipe) id: number,
+    @Body('habilitada') habilitada: boolean,
   ): Promise<{ mensaje: string }> {
     return await this.encuestasService.actualizarEstadoEncuesta(id, habilitada);
   }
