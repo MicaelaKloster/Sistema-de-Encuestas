@@ -1,5 +1,5 @@
 <p-dialog
-  header="Gestión de Pregunta"
+  [header]="preguntaAEditar() ? 'Editar Pregunta' : 'Agregar Pregunta'"
   [modal]="true"
   [(visible)]="visible"
   [style]="{ width: '25rem' }"
@@ -75,7 +75,7 @@
           severity="contrast"
           icon="pi pi-check"
         >
-          Finalizar
+          {{ preguntaAEditar() ? 'Actualizar' : 'Agregar' }}
         </button>
       </div>
     </div>

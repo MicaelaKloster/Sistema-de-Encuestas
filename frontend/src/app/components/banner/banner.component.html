@@ -1,9 +1,116 @@
-<app-navbar></app-navbar>
 <div class="banner-container">
+  <!-- Elementos decorativos de fondo -->
+  <div class="background-elements">
+    <!-- Formas flotantes principales -->
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+    <div class="floating-shape shape-4"></div>
+
+    <!-- Círculos flotantes adicionales -->
+    <div class="floating-circle circle-1"></div>
+    <div class="floating-circle circle-2"></div>
+    <div class="floating-circle circle-3"></div>
+    <div class="floating-circle circle-4"></div>
+    <div class="floating-circle circle-5"></div>
+    <div class="floating-circle circle-6"></div>
+    <div class="floating-circle circle-7"></div>
+    <div class="floating-circle circle-8"></div>
+    <div class="floating-circle circle-9"></div>
+    <div class="floating-circle circle-10"></div>
+    <div class="floating-circle circle-11"></div>
+    <div class="floating-circle circle-12"></div>
+
+    <!-- Formas orgánicas adicionales -->
+    <div class="organic-shape blob-1"></div>
+    <div class="organic-shape blob-2"></div>
+    <div class="organic-shape blob-3"></div>
+    <div class="organic-shape blob-4"></div>
+    <div class="organic-shape blob-5"></div>
+    <div class="organic-shape blob-6"></div>
+
+    <!-- Elementos adicionales para más dinamismo -->
+    <div class="geometric-shape triangle-1"></div>
+    <div class="geometric-shape triangle-2"></div>
+    <div class="geometric-shape triangle-3"></div>
+    <div class="geometric-shape triangle-4"></div>
+    <div class="geometric-shape hexagon-1"></div>
+    <div class="geometric-shape hexagon-2"></div>
+    <div class="geometric-shape hexagon-3"></div>
+
+    <!-- Círculos con anillos -->
+    <div class="ring-circle ring-1"></div>
+    <div class="ring-circle ring-2"></div>
+    <div class="ring-circle ring-3"></div>
+    <div class="ring-circle ring-4"></div>
+
+    <!-- Partículas brillantes -->
+    <div class="sparkle sparkle-1"></div>
+    <div class="sparkle sparkle-2"></div>
+    <div class="sparkle sparkle-3"></div>
+    <div class="sparkle sparkle-4"></div>
+    <div class="sparkle sparkle-5"></div>
+    <div class="sparkle sparkle-6"></div>
+    <div class="sparkle sparkle-7"></div>
+    <div class="sparkle sparkle-8"></div>
+    <div class="sparkle sparkle-9"></div>
+    <div class="sparkle sparkle-10"></div>
+
+    <!-- Ondas de fondo -->
+    <div class="wave wave-1"></div>
+    <div class="wave wave-2"></div>
+    <div class="wave wave-3"></div>
+  </div>
+
+  <!-- Contenido principal -->
   <div class="banner-content">
-    <h1 class="banner-title">Creá tus encuestas de forma simple y anónima</h1>
-    <!-- <p class="banner-description">Con nuestro sistema de encuestas, podrás crear encuestas personalizadas y recibir respuestas de manera rápida y sencilla.</p> -->
-    <p-button class="banner-button" label="Comenzar" [routerLink]="['/creacion']"/>
+    <div class="content-wrapper">
+      <!-- Icono principal -->
+      <div class="main-icon">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 11H15M9 15H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L19.7071 9.70711C19.8946 9.89464 20 10.149 20 10.4142V19C20 20.1046 19.1054 21 18 21H17ZM17 21V11H13V7H7V19H17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- Título principal -->
+      <h1 class="banner-title">
+        <span class="title-line-1">Creá tus encuestas</span>
+        <span class="title-line-2">de forma simple y anónima</span>
+      </h1>
+
+      <!-- Descripción -->
+      <p class="banner-description">
+        Diseña encuestas personalizadas, recopila respuestas de manera eficiente
+        y obtén insights valiosos para tomar mejores decisiones.
+      </p>
+
+      <!-- Características destacadas -->
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">⚡</div>
+          <span>Rápido</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔒</div>
+          <span>Anónimo</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🎯</div>
+          <span>Preciso</span>
+        </div>
+      </div>
+
+      <!-- Botón de acción -->
+      <div class="cta-section">
+        <p-button
+          label="Comenzar ahora"
+          [routerLink]="['/creacion']"
+          class="cta-button"
+          icon="pi pi-arrow-right"
+          iconPos="right"/>
+        <p class="cta-subtitle">¡Es gratis y solo toma unos minutos!</p>
+      </div>
+    </div>
   </div>
 </div>
 
