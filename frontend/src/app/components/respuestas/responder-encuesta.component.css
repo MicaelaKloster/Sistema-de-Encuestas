@@ -1,316 +1,80 @@
-/*.contenedor {
-    max-width: 700px;
-    margin: 2rem auto;
-    padding: 2rem;
-    border-radius: 10px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  .titulo {
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-    color: #2c3e50;
-  }
-  
-  .cargando,
-  .error {
-    text-align: center;
-    font-size: 1.2rem;
-    margin-top: 1rem;
-    color: #e74c3c;
-  }
-  
-  .formulario {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  
-  .pregunta {
-    padding: 1rem;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .pregunta-titulo {
-    font-size: 1.2rem;
-    margin-bottom: 0.8rem;
-    color: #34495e;
-  }
-  
-  .opciones {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .opcion {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .respuesta-texto {
-    margin-top: 1rem;
-  }
-  
-  .boton-enviar {
-    align-self: center;
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-    border-radius: 6px;
-  }
-  */
+/* Estilos adicionales para los dialogs */
 
-  /* responder-encuesta.component.css */
-
-.encuesta-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Vista previa */
+.vista-previa-content {
+  max-height: 60vh;
+  overflow-y: auto;
 }
 
-/* Loading */
-.loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 20px;
-  text-align: center;
+.pregunta-previa {
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1rem;
 }
 
-.loading-container p {
-  margin-top: 20px;
-  color: #666;
-  font-size: 16px;
+.pregunta-previa:last-child {
+  border-bottom: none;
 }
 
-/* Header de la encuesta */
-.encuesta-header {
-  text-align: center;
-  padding: 20px 0;
-}
-
-.encuesta-header h2 {
-  color: #2c3e50;
-  margin-bottom: 10px;
-  font-size: 24px;
+.pregunta-titulo {
+  color: #374151;
   font-weight: 600;
 }
 
-.encuesta-descripcion {
-  color: #7f8c8d;
-  font-size: 16px;
-  line-height: 1.5;
+.respuesta-previa {
+  background-color: #f8fafc;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid #3b82f6;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+/* Dialog de confirmación */
+.confirmacion-content .estadisticas {
+  background-color: #f8fafc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.confirmacion-content .estadisticas p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+/* Dialog de error */
+.error-dialog-content .error-detalles {
+  background-color: #fef2f2;
+  border-left: 4px solid #ef4444;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+}
+
+.error-dialog-content .error-detalles p {
   margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  color: #b91c1c;
 }
 
-/* Contenedor de preguntas */
-.pregunta-container {
-  margin-bottom: 30px;
-  padding: 20px;
-  border: 1px solid #e1e8ed;
-  border-radius: 8px;
-  background-color: #f8f9fa;
-  transition: box-shadow 0.2s ease;
-}
-
-.pregunta-container:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.pregunta-header {
-  margin-bottom: 15px;
-}
-
-.titulo-pregunta {
-  font-size: 18px;
-  font-weight: 600;
-  color: #2c3e50;
-  line-height: 1.4;
-  display: block;
-}
-
-.obligatoria {
-  color: #e74c3c;
-  font-weight: bold;
-  margin-left: 4px;
-}
-
-.pregunta-content {
-  margin-top: 15px;
-}
-
-/* Estilos para preguntas abiertas */
-.pregunta-abierta {
-  width: 100%;
-}
-
-.pregunta-abierta ::ng-deep .p-inputtextarea {
-  width: 100%;
-  border-radius: 6px;
-  border: 2px solid #ddd;
-  transition: border-color 0.2s ease;
-}
-
-.pregunta-abierta ::ng-deep .p-inputtextarea:focus {
-  border-color: #3498db;
-  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-}
-
-/* Estilos para opciones */
-.opcion-radio,
-.opcion-checkbox {
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-  padding: 8px 12px;
-  border-radius: 6px;
-  background-color: white;
-  border: 1px solid #e1e8ed;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.opcion-radio:hover,
-.opcion-checkbox:hover {
-  background-color: #f1f8ff;
-  border-color: #3498db;
-}
-
-.opcion-label {
-  margin-left: 12px;
-  cursor: pointer;
-  font-size: 16px;
-  line-height: 1.4;
-  color: #2c3e50;
-  flex: 1;
-}
-
-/* Estilos específicos para radio buttons */
-.pregunta-seleccion-simple .opcion-radio,
-.pregunta-verdadero-falso .opcion-radio {
-  margin-bottom: 10px;
-}
-
-/* Estilos específicos para checkboxes */
-.pregunta-seleccion-multiple .opcion-checkbox {
-  margin-bottom: 8px;
-}
-
-/* Personalización de componentes PrimeNG */
-::ng-deep .p-radiobutton .p-radiobutton-box {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ddd;
-  transition: all 0.2s ease;
-}
-
-::ng-deep .p-radiobutton .p-radiobutton-box:not(.p-disabled):hover {
-  border-color: #3498db;
-}
-
-::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight {
-  border-color: #3498db;
-  background: #3498db;
-}
-
-::ng-deep .p-checkbox .p-checkbox-box {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ddd;
-  transition: all 0.2s ease;
-}
-
-::ng-deep .p-checkbox .p-checkbox-box:not(.p-disabled):hover {
-  border-color: #3498db;
-}
-
-::ng-deep .p-checkbox .p-checkbox-box.p-highlight {
-  border-color: #3498db;
-  background: #3498db;
-}
-
-/* Acciones del formulario */
+/* Botones en los form-actions */
 .form-actions {
-  text-align: center;
-  margin-top: 40px;
-  padding-top: 30px;
-  border-top: 1px solid #e1e8ed;
-}
-
-::ng-deep .form-actions .p-button {
-  min-width: 200px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-}
-
-::ng-deep .form-actions .p-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
-}
-
-/* Error state */
-.error-container {
   display: flex;
-  justify-content: center;
-  padding: 60px 20px;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
 }
 
-.error-content {
-  text-align: center;
-}
-
-.error-icon {
-  font-size: 48px;
-  color: #e74c3c;
-  margin-bottom: 20px;
-}
-
-.error-content h3 {
-  color: #2c3e50;
-  margin-bottom: 10px;
-}
-
-.error-content p {
-  color: #7f8c8d;
-  line-height: 1.5;
-}
-
-/* Responsive */
+/* Responsive para botones en pantallas pequeñas */
 @media (max-width: 768px) {
-  .encuesta-container {
-    padding: 10px;
-    margin: 0;
+  .form-actions {
+    flex-direction: column;
+    gap: 0.75rem;
   }
-
-  .pregunta-container {
-    margin-bottom: 20px;
-    padding: 15px;
+  
+  .form-actions .p-button {
+    width: 100%;
   }
-
-  .titulo-pregunta {
-    font-size: 16px;
-  }
-
-  .opcion-label {
-    font-size: 14px;
-  }
-
-  ::ng-deep .form-actions .p-button {
-    min-width: 150px;
-    padding: 10px 20px;
-    font-size: 14px;
-  }
-}
-
-/* Utilidades */
-.w-full {
-  width: 100%;
 }

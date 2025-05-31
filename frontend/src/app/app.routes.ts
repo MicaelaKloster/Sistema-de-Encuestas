@@ -23,6 +23,11 @@ export const routes: Routes = [
   { path: 'responder/:id/:tokenParticipacion', // Ruta para participar y responder la encuesta
     component: ResponderEncuestaComponent, // Componente que se muestra en la ruta 'participar/:codigoRespuesta'
   },
+/*
+  { path: 'participar/:codigoRespuesta', // Ruta para participar y responder la encuesta
+    component: ResponderEncuestaComponent, // Componente que se muestra en la ruta 'participar/:codigoRespuesta'
+  },
+*/
   { path: 'resultados/:codigoResultados', // Ruta para la visualización de los resultados de la encuesta
     component: VisualizarResultadosComponent, // Componente que se muestra en la ruta 'resultados/:codigoResultados'
   },
@@ -31,4 +36,3 @@ export const routes: Routes = [
     redirectTo: '', // Redirige a la ruta raíz
   },
 ];
-

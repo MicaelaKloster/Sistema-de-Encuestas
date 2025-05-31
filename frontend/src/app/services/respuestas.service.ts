@@ -1,40 +1,10 @@
- /**
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class RespuestaService {
-  private API_URL = 'http://localhost:3001/api/v1'; 
-
-  constructor(private http: HttpClient) {}
-
-  // Obtener encuesta para participar
-  obtenerEncuestaParaParticipacion(id: number, token: string): Observable<any> {
-    return this.http.get(`${this.API_URL}/respuestas/participar/${id}/${token}`);
-  }
-
-  // Enviar respuestas
-  registrarRespuestas(id: number, codigo: string, payload: any): Observable<any> {
-    return this.http.post(`${this.API_URL}/respuestas/${id}/${codigo}`, payload);
-  }
-
-  // Ver resultados
-  visualizarResultados(codigoResultados: string): Observable<any> {
-    return this.http.get(`${this.API_URL}/respuestas/visualizar/${codigoResultados}`);
-  }
-}
-   */
-
 // respuesta.service.ts 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-// Interfaces definidas directamente en el servicio
+// ✅ INTERFACES PARA USO INTERNO DEL FRONTEND
 export type TipoRespuesta = 'ABIERTA' | 'OPCION_MULTIPLE_SELECCION_SIMPLE' | 'OPCION_MULTIPLE_SELECCION_MULTIPLE' | 'VERDADERO_FALSO';
 
 export interface OpcionRespuesta {
@@ -59,20 +29,31 @@ export interface Encuesta {
   preguntas: Pregunta[];
 }
 
+// ✅ INTERFACE PARA USO INTERNO - mantiene la estructura que usa tu componente
 export interface RespuestaUsuario {
   numeroPregunta: number;
   opciones: number[];
   texto: string;
 }
 
+// ✅ NUEVAS INTERFACES ALINEADAS CON EL BACKEND
+export interface RespuestaPreguntaDto {
+  id_pregunta: number;
+  tipo: TipoRespuesta;
+  texto?: string;
+  opciones?: number[];
+}
+
+export interface RegistrarRespuestasDto {
+  respuestas: RespuestaPreguntaDto[];
+}
+
+// ✅ INTERFACES PARA RESPUESTAS DE LA API
 export interface EncuestaResponse {
   message: string;
   data: Encuesta;
 }
 
-export interface EnviarRespuestasPayload {
-  respuestas: RespuestaUsuario[];
-}
 
 @Injectable({
   providedIn: 'root'
@@ -82,16 +63,17 @@ export class RespuestaService {
 
   constructor(private http: HttpClient) {}
 
-  // Obtener encuesta para participar
+   //Obtener encuesta para participar
   obtenerEncuestaParaParticipacion(id: number, token: string): Observable<EncuestaResponse> {
-    return this.http.get<EncuestaResponse>(`${this.API_URL}/respuestas/participar/${id}/${token}`)
+    return this.http.get<EncuestaResponse>(`${this.API_URL}/encuestas/participar/${id}/${token}`)
       .pipe(
         catchError(this.handleError)
       );
   }
+    
 
-  // Enviar respuestas
-  registrarRespuestas(id: number, codigo: string, payload: EnviarRespuestasPayload): Observable<any> {
+  // ✅ MÉTODO ACTUALIZADO - ahora acepta el DTO correcto
+  registrarRespuestas(id: number, codigo: string, payload: RegistrarRespuestasDto): Observable<any> {
     return this.http.post(`${this.API_URL}/respuestas/${id}/${codigo}`, payload)
       .pipe(
         catchError(this.handleError)
@@ -115,6 +97,11 @@ export class RespuestaService {
     } else {
       // Error del lado del servidor
       errorMessage = `Código de error: ${error.status}\nMensaje: ${error.message}`;
+      
+      // ✅ AGREGADO - Log más detallado para debugging
+      if (error.error) {
+        console.error('Detalles del error del servidor:', error.error);
+      }
     }
     
     console.error(errorMessage);
