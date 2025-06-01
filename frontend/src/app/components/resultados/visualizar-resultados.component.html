@@ -1,0 +1,107 @@
+<div class="resultados-container">
+  <p-toast></p-toast>
+
+  <!-- Estado de carga -->
+  <div *ngIf="cargando" class="loading-container">
+    <p-progressSpinner class="loading-spinner"></p-progressSpinner>
+    <h3>Cargando resultados...</h3>
+  </div>
+
+  <!-- Estado de error -->
+  <div *ngIf="error && !cargando" class="error-container">
+    <div class="error-card">
+      <h2>Error al cargar los resultados</h2>
+      <p>{{ error }}</p>
+      <p-button
+        label="Volver al inicio"
+        icon="pi pi-home"
+        (click)="router.navigate(['/'])"
+        styleClass="p-button-outlined">
+      </p-button>
+    </div>
+  </div>
+
+  <!-- Contenido de los resultados -->
+  <div *ngIf="resultados && !cargando && !error" class="resultados-content">
+    <!-- Encabezado de los resultados -->
+    <div class="resultados-header">
+      <h1>📊 Resultados de la Encuesta</h1>
+      <h2>{{ resultados.nombre }}</h2>
+      <p class="resultados-descripcion">
+        Aquí puedes ver todas las respuestas recopiladas para esta encuesta.
+      </p>
+    </div>
+
+    <!-- Preguntas y resultados -->
+    <div class="preguntas-resultados">
+      <div *ngFor="let pregunta of resultados.preguntas; let i = index" class="pregunta-resultado-container">
+        <p-card styleClass="pregunta-resultado-card">
+          <ng-template pTemplate="header">
+            <div class="pregunta-resultado-header">
+              <span class="pregunta-numero">{{ pregunta.numero }}</span>
+              <span class="pregunta-tipo">{{ pregunta.tipo }}</span>
+            </div>
+          </ng-template>
+
+          <div class="pregunta-titulo">
+            {{ pregunta.texto }}
+          </div>
+
+          <div class="pregunta-resultados-content">
+            <!-- Resultados para preguntas abiertas -->
+            <div *ngIf="pregunta.tipo === TiposRespuestaEnum.ABIERTA" class="respuestas-abiertas">
+              <h4>Respuestas ({{ pregunta.respuestas_abiertas?.length || 0 }})</h4>
+              <div *ngIf="pregunta.respuestas_abiertas && pregunta.respuestas_abiertas.length > 0; else noRespuestasAbiertas">
+                <div *ngFor="let respuesta of pregunta.respuestas_abiertas" class="respuesta-abierta-item">
+                  <p>{{ respuesta }}</p>
+                </div>
+              </div>
+              <ng-template #noRespuestasAbiertas>
+                <p class="no-respuestas">No hay respuestas para esta pregunta aún.</p>
+              </ng-template>
+            </div>
+
+            <!-- Resultados para preguntas de opciones -->
+            <div *ngIf="pregunta.tipo !== TiposRespuestaEnum.ABIERTA" class="respuestas-opciones">
+              <div class="estadisticas-opciones">
+                <h4>Estadísticas ({{ getTotalRespuestasOpcion(pregunta) }} respuestas)</h4>
+
+                <div *ngIf="pregunta.opciones && pregunta.opciones.length > 0; else noRespuestasOpciones">
+                  <!-- Lista de opciones con estadísticas -->
+                  <div class="opciones-estadisticas">
+                    <div *ngFor="let opcion of pregunta.opciones" class="opcion-estadistica">
+                      <div class="opcion-info">
+                        <span class="opcion-texto">{{ opcion.texto }}</span>
+                        <span class="opcion-cantidad">{{ opcion.cantidad_respuestas || 0 }} respuestas</span>
+                        <span class="opcion-porcentaje">{{ getPorcentajeOpcion(opcion, getTotalRespuestasOpcion(pregunta)) }}%</span>
+                      </div>
+                      <div class="opcion-barra">
+                        <div class="opcion-progreso"
+                             [style.width.%]="getPorcentajeOpcion(opcion, getTotalRespuestasOpcion(pregunta))">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <ng-template #noRespuestasOpciones>
+                  <p class="no-respuestas">No hay respuestas para esta pregunta aún.</p>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    </div>
+
+    <!-- Acciones -->
+    <div class="acciones-container">
+      <p-button
+        label="Volver al inicio"
+        icon="pi pi-home"
+        (click)="router.navigate(['/'])"
+        styleClass="accion-button">
+      </p-button>
+    </div>
+  </div>
+</div>

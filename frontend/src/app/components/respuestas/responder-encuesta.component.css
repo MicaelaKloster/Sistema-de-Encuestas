@@ -1,0 +1,409 @@
+/* Contenedor principal */
+.responder-encuesta-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+}
+
+/* Estado de carga */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.loading-spinner {
+  margin-bottom: 1rem;
+}
+
+.loading-container h3 {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+/* Estado de error */
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 2rem;
+}
+
+.error-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
+.error-card h2 {
+  color: #e74c3c;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.error-card p {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* Contenido de la encuesta */
+.encuesta-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Encabezado de la encuesta */
+.encuesta-header {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.encuesta-header h1 {
+  color: #333;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.encuesta-descripcion {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Formulario de respuestas */
+.respuestas-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Contenedor de pregunta */
+.pregunta-container {
+  margin-bottom: 1.5rem;
+}
+
+/* Tarjeta de pregunta */
+::ng-deep .pregunta-card .p-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+::ng-deep .pregunta-card .p-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+::ng-deep .pregunta-card .p-card-body {
+  padding: 2rem;
+}
+
+/* Encabezado de pregunta */
+.pregunta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pregunta-titulo {
+  color: #333;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+  line-height: 1.4;
+}
+
+.required-asterisk {
+  color: #e74c3c;
+  margin-left: 0.25rem;
+}
+
+.pregunta-numero {
+  color: #667eea;
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+.pregunta-tipo {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+/* Contenido de pregunta */
+.pregunta-content {
+  margin-top: 1rem;
+}
+
+/* Textarea para preguntas abiertas */
+.respuesta-textarea {
+  width: 100%;
+  min-height: 120px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.respuesta-textarea:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  outline: none;
+}
+
+.respuesta-textarea.ng-invalid.ng-touched {
+  border-color: #f44336;
+  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+}
+
+/* Contenedor de opciones */
+.opciones-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Item de opción */
+.opcion-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.opcion-item:hover {
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.opcion-label {
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  flex: 1;
+  line-height: 1.4;
+}
+
+/* Estilos para radio buttons y checkboxes de PrimeNG */
+::ng-deep .opcion-item .p-radiobutton,
+::ng-deep .opcion-item .p-checkbox {
+  flex-shrink: 0;
+}
+
+::ng-deep .opcion-item .p-radiobutton .p-radiobutton-box,
+::ng-deep .opcion-item .p-checkbox .p-checkbox-box {
+  border: 2px solid #667eea;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+::ng-deep .opcion-item .p-radiobutton .p-radiobutton-box.p-highlight,
+::ng-deep .opcion-item .p-checkbox .p-checkbox-box.p-highlight {
+  background: #667eea;
+  border-color: #667eea;
+}
+
+/* Mensajes de error */
+.error-message {
+  color: #f44336;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* Contenedor del botón de envío */
+.submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 2rem 0;
+}
+
+::ng-deep .submit-button {
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  border: none !important;
+  border-radius: 25px !important;
+  padding: 1rem 2rem !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3) !important;
+}
+
+::ng-deep .submit-button:hover:not(:disabled) {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4) !important;
+}
+
+::ng-deep .submit-button:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+/* Contenedor de error */
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.error-content {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+}
+
+.error-icon {
+  font-size: 4rem;
+  color: #f44336;
+  margin-bottom: 1rem;
+}
+
+.error-content h2 {
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.error-content p {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+::ng-deep .home-button {
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  border: none !important;
+  border-radius: 25px !important;
+  padding: 0.8rem 1.5rem !important;
+  font-weight: 600 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .responder-encuesta-container {
+    padding: 1rem;
+  }
+
+  .encuesta-header {
+    padding: 1.5rem;
+  }
+
+  .encuesta-header h1 {
+    font-size: 2rem;
+  }
+
+  ::ng-deep .pregunta-card .p-card-body {
+    padding: 1.5rem;
+  }
+
+  .pregunta-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pregunta-titulo {
+    font-size: 1.2rem;
+  }
+
+  .error-content {
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  .error-content h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .responder-encuesta-container {
+    padding: 0.5rem;
+  }
+
+  .encuesta-header {
+    padding: 1rem;
+  }
+
+  .encuesta-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .encuesta-descripcion {
+    font-size: 1rem;
+  }
+
+  ::ng-deep .pregunta-card .p-card-body {
+    padding: 1rem;
+  }
+
+  .pregunta-titulo {
+    font-size: 1.1rem;
+  }
+
+  .pregunta-tipo {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .respuesta-textarea {
+    min-height: 100px;
+    padding: 0.8rem;
+  }
+
+  .opcion-item {
+    padding: 0.6rem;
+  }
+
+  .submit-container {
+    padding: 1rem 0;
+  }
+
+  ::ng-deep .submit-button {
+    padding: 0.8rem 1.5rem !important;
+    font-size: 1rem !important;
+  }
+}

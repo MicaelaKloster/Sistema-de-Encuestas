@@ -259,7 +259,7 @@ export class CreacionEncuestaComponent {
         severity: 'warn',
         summary: 'Campos requeridos',
         detail: errores.join('. ') + '. Complete todos los campos antes de continuar.',
-        life: 6000,
+        life: 4000,
         sticky: false
       });
     } else {
@@ -267,7 +267,7 @@ export class CreacionEncuestaComponent {
         severity: 'error',
         summary: 'Error de validación',
         detail: 'Por favor, revisa los campos del formulario. Si el problema persiste, usa el botón "Probar Conectividad" para verificar la conexión con el servidor.',
-        life: 6000
+        life: 4000
       });
     }
   }
@@ -328,7 +328,7 @@ export class CreacionEncuestaComponent {
       severity: 'info',
       summary: 'Creando encuesta...',
       detail: 'Por favor espera mientras procesamos tu encuesta',
-      life: 2000
+      life: 4000
     });
 
     // Obtiene los datos del formulario

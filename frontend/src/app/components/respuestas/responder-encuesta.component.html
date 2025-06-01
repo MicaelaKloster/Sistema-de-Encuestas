@@ -1,0 +1,123 @@
+<div class="responder-encuesta-container">
+  <p-toast></p-toast>
+
+
+
+  <!-- Estado de carga -->
+  <div *ngIf="cargando" class="loading-container">
+    <p-progressSpinner class="loading-spinner"></p-progressSpinner>
+    <h3>Cargando encuesta...</h3>
+  </div>
+
+  <!-- Estado de error -->
+  <div *ngIf="error && !cargando" class="error-container">
+    <div class="error-card">
+      <h2>Error al cargar la encuesta</h2>
+      <p>{{ error }}</p>
+      <p-button
+        label="Volver al inicio"
+        icon="pi pi-home"
+        (click)="router.navigate(['/'])"
+        styleClass="p-button-outlined">
+      </p-button>
+    </div>
+  </div>
+
+  <!-- Contenido de la encuesta -->
+  <div *ngIf="encuesta && !cargando && !error" class="encuesta-content">
+    <!-- Encabezado de la encuesta -->
+    <div class="encuesta-header">
+      <h1>{{ encuesta.nombre }}</h1>
+      <p class="encuesta-descripcion">
+        Complete todas las preguntas y envíe sus respuestas.
+      </p>
+    </div>
+
+    <!-- Formulario de respuestas -->
+    <form [formGroup]="respuestasForm" (ngSubmit)="onSubmit()" class="respuestas-form">
+
+      <!-- Iteración sobre las preguntas -->
+      <div *ngFor="let pregunta of encuesta.preguntas; let i = index" class="pregunta-container">
+        <p-card styleClass="pregunta-card">
+          <ng-template pTemplate="header">
+            <div class="pregunta-header">
+              <span class="pregunta-numero">{{ pregunta.numero }}</span>
+              <span class="pregunta-tipo">{{ pregunta.tipo }}</span>
+            </div>
+          </ng-template>
+
+          <div class="pregunta-titulo">
+            {{ pregunta.texto }}
+            <span class="required-asterisk">*</span>
+          </div>
+
+          <div class="pregunta-content">
+            <!-- Pregunta abierta -->
+            <div *ngIf="pregunta.tipo === TiposRespuestaEnum.ABIERTA">
+              <textarea
+                [formControlName]="'pregunta_' + pregunta.id"
+                class="respuesta-textarea"
+                [class.ng-invalid]="hasError(pregunta.id)"
+                placeholder="Escriba su respuesta aquí..."
+                rows="4">
+              </textarea>
+              <div *ngIf="hasError(pregunta.id)" class="error-message">
+                Esta pregunta es obligatoria
+              </div>
+            </div>
+
+            <!-- Pregunta de selección simple (radio buttons) -->
+            <div *ngIf="pregunta.tipo === TiposRespuestaEnum.OPCION_MULTIPLE_SELECCION_SIMPLE ||
+                        pregunta.tipo === TiposRespuestaEnum.VERDADERO_FALSO"
+                 class="opciones-container">
+              <div *ngFor="let opcion of pregunta.opciones" class="opcion-item">
+                <p-radioButton
+                  [formControlName]="'pregunta_' + pregunta.id"
+                  [value]="opcion.id"
+                  [inputId]="'opcion_' + opcion.id"
+                  name="pregunta_{{ pregunta.id }}">
+                </p-radioButton>
+                <label [for]="'opcion_' + opcion.id" class="opcion-label">
+                  {{ opcion.texto }}
+                </label>
+              </div>
+              <div *ngIf="hasError(pregunta.id)" class="error-message">
+                Debe seleccionar una opción
+              </div>
+            </div>
+
+            <!-- Pregunta de selección múltiple (checkboxes) -->
+            <div *ngIf="pregunta.tipo === TiposRespuestaEnum.OPCION_MULTIPLE_SELECCION_MULTIPLE"
+                 class="opciones-container">
+              <div *ngFor="let opcion of pregunta.opciones; let j = index" class="opcion-item">
+                <p-checkbox
+                  [formControl]="getCheckboxControl(pregunta.id, j)"
+                  [inputId]="'opcion_' + opcion.id"
+                  [binary]="true">
+                </p-checkbox>
+                <label [for]="'opcion_' + opcion.id" class="opcion-label">
+                  {{ opcion.texto }}
+                </label>
+              </div>
+              <div *ngIf="hasError(pregunta.id)" class="error-message">
+                Debe seleccionar al menos una opción
+              </div>
+            </div>
+          </div>
+        </p-card>
+      </div>
+
+      <!-- Botón de envío -->
+      <div class="submit-container">
+        <p-button
+          type="submit"
+          label="Enviar respuestas"
+          icon="pi pi-send"
+          [loading]="enviando"
+          [disabled]="respuestasForm.invalid || enviando"
+          styleClass="submit-button">
+        </p-button>
+      </div>
+    </form>
+  </div>
+</div>
