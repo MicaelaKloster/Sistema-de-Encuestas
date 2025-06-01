@@ -57,6 +57,9 @@ export class CreacionEncuestaComponent {
   // Almacena la pregunta seleccionada para edición (si corresponde)
   preguntaSeleccionada = signal<PreguntaDTO | null>(null);
 
+  // Controla el estado de carga del botón finalizar
+  creandoEncuesta = signal<boolean>(false);
+
   // Controla si estamos en modo edición y qué pregunta se está editando
   modoEdicion = signal<boolean>(false);
   indicePreguntaEditando = signal<number>(-1);
@@ -323,6 +326,9 @@ export class CreacionEncuestaComponent {
       return;
     }
 
+    // Activar estado de carga
+    this.creandoEncuesta.set(true);
+
     // Mostrar mensaje de carga
     this.messageService.add({
       severity: 'info',
@@ -392,6 +398,12 @@ export class CreacionEncuestaComponent {
       next: (res) => {
         console.log('✅ Encuesta creada exitosamente:', res);
 
+        // Cerrar el diálogo de confirmación inmediatamente
+        this.confirmationService.close();
+
+        // Limpiar todos los toasts anteriores (incluyendo el de "Creando encuesta...")
+        this.messageService.clear();
+
         // Mensaje de éxito detallado
         this.messageService.add({
           severity: 'success',
@@ -422,6 +434,9 @@ export class CreacionEncuestaComponent {
           error: err.error,
           url: err.url
         });
+
+        // Cerrar el diálogo de confirmación en caso de error
+        this.confirmationService.close();
 
         // Mensaje de error detallado
         let errorDetail = 'Verifica tu conexión a internet e intenta nuevamente';
