@@ -6,17 +6,17 @@ import { PresentacionEnlacesComponent } from './components/enlaces/presentacion-
 import { ResponderEncuestaComponent } from './components/respuestas/responder-encuesta.component';
 import { VisualizarResultadosComponent } from './components/resultados/visualizar-resultados.component';
 
-// Definición de las rutas principales de la aplicación Angular
 export const routes: Routes = [
   {
-    path: '', // Ruta raíz (home)
-    component: BannerComponent, // Componente que se muestra en la ruta raíz
+    path: '',
+    component: BannerComponent,
   },
   {
-    path: 'creacion', // Ruta para la creación de encuestas
-    component: CreacionEncuestaComponent, // Componente que se muestra en la ruta 'creacion'
+    path: 'creacion',
+    component: CreacionEncuestaComponent,
   },
   {
+<<<<<<< HEAD
     path: 'presentacion-enlaces', // Ruta para la presentación de enlaces luego de finalizar una encuesta
     component: PresentacionEnlacesComponent, // Componente que se muestra en la ruta 'presentacion-enlaces'
   },
@@ -32,9 +32,21 @@ export const routes: Routes = [
   {
     path: 'resultados/:codigoResultados', // Ruta para la visualización de los resultados de la encuesta
     component: VisualizarResultadosComponent, // Componente que se muestra en la ruta 'resultados/:codigoResultados'
+=======
+    path: 'presentacion-enlaces',
+    component: PresentacionEnlacesComponent,
+>>>>>>> origin/main
   },
   {
-    path: '**', // Ruta comodín (cualquier ruta no definida)
-    redirectTo: '', // Redirige a la ruta raíz
+    path: 'responder/:id/:tokenParticipacion',
+    component: ResponderEncuestaComponent,
+  },
+  {
+    path: 'resultados/:codigoResultados',
+    component: VisualizarResultadosComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];

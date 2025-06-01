@@ -1,15 +1,22 @@
+<<<<<<< HEAD
 // respuesta.service.ts
+=======
+import { Injectable, inject } from '@angular/core';
+>>>>>>> origin/main
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
+<<<<<<< HEAD
 // ✅ INTERFACES PARA USO INTERNO DEL FRONTEND
 export type TipoRespuesta =
   | 'ABIERTA'
   | 'OPCION_MULTIPLE_SELECCION_SIMPLE'
   | 'OPCION_MULTIPLE_SELECCION_MULTIPLE'
   | 'VERDADERO_FALSO';
+=======
+export type TipoRespuesta = 'ABIERTA' | 'OPCION_MULTIPLE_SELECCION_SIMPLE' | 'OPCION_MULTIPLE_SELECCION_MULTIPLE' | 'VERDADERO_FALSO';
+>>>>>>> origin/main
 
 export interface OpcionRespuesta {
   id: number;
@@ -33,14 +40,12 @@ export interface Encuesta {
   preguntas: Pregunta[];
 }
 
-// ✅ INTERFACE PARA USO INTERNO - mantiene la estructura que usa tu componente
 export interface RespuestaUsuario {
   numeroPregunta: number;
   opciones: number[];
   texto: string;
 }
 
-// ✅ NUEVAS INTERFACES ALINEADAS CON EL BACKEND
 export interface RespuestaPreguntaDto {
   id_pregunta: number;
   tipo: TipoRespuesta;
@@ -52,12 +57,12 @@ export interface RegistrarRespuestasDto {
   respuestas: RespuestaPreguntaDto[];
 }
 
-// ✅ INTERFACES PARA RESPUESTAS DE LA API
 export interface EncuestaResponse {
   message: string;
   data: Encuesta;
 }
 
+<<<<<<< HEAD
 @Injectable({
   providedIn: 'root',
 })
@@ -93,6 +98,59 @@ export class RespuestaService {
   visualizarResultados(tokenVisualizacion: string): Observable<any> {
     return this.http
       .get(`${this.API_URL}/respuestas/resultados/${tokenVisualizacion}`)
+=======
+@Injectable({ providedIn: 'root' })
+export class RespuestasService {
+  private httpClient = inject(HttpClient);
+
+  obtenerEncuestaParaParticipacion(id: number, token: string): Observable<EncuestaResponse> {
+    return this.httpClient.get<any>(`/api/v1/encuestas/estructura/${token}`)
+      .pipe(
+        catchError(this.handleError),
+        map(response => ({
+          message: 'Encuesta obtenida exitosamente',
+          data: {
+            id: response.id,
+            nombre: response.nombre,
+            preguntas: response.preguntas.map((pregunta: any) => ({
+              id: pregunta.id,
+              numero: pregunta.numero,
+              texto: pregunta.texto,
+              tipo: pregunta.tipo,
+              obligatoria: true,
+              opciones: pregunta.opciones || []
+            }))
+          }
+        }))
+      );
+  }
+
+  registrarRespuestas(id: number, codigo: string, payload: RegistrarRespuestasDto): Observable<any> {
+    return this.httpClient.post(`/api/v1/respuestas/${id}/${codigo}`, payload)
+      .pipe(catchError(this.handleError));
+  }
+
+  obtenerResultadosEncuesta(codigoResultados: string): Observable<{
+    message: string;
+    data: {
+      id: number;
+      nombre: string;
+      codigoRespuesta: string;
+      codigoResultados: string;
+      preguntas: any[];
+    };
+  }> {
+    return this.httpClient.get<{
+      message: string;
+      data: {
+        id: number;
+        nombre: string;
+        codigoRespuesta: string;
+        codigoResultados: string;
+        preguntas: any[];
+      };
+    }>(`/api/v1/encuestas/resultados/${codigoResultados}`)
+>>>>>>> origin/main
       .pipe(catchError(this.handleError));
   }
 
@@ -100,13 +158,14 @@ export class RespuestaService {
     let errorMessage = 'Ha ocurrido un error desconocido';
 
     if (error.error instanceof ErrorEvent) {
-      // Error del lado del cliente
       errorMessage = `Error: ${error.error.message}`;
     } else {
-      // Error del lado del servidor
       errorMessage = `Código de error: ${error.status}\nMensaje: ${error.message}`;
+<<<<<<< HEAD
 
       // ✅ AGREGADO - Log más detallado para debugging
+=======
+>>>>>>> origin/main
       if (error.error) {
         console.error('Detalles del error del servidor:', error.error);
       }

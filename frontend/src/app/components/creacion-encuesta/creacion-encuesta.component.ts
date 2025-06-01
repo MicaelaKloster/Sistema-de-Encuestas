@@ -58,6 +58,9 @@ export class CreacionEncuestaComponent {
   // Almacena la pregunta seleccionada para edición (si corresponde)
   preguntaSeleccionada = signal<PreguntaDTO | null>(null);
 
+  // Controla el estado de carga del botón finalizar
+  creandoEncuesta = signal<boolean>(false);
+
   // Controla si estamos en modo edición y qué pregunta se está editando
   modoEdicion = signal<boolean>(false);
   indicePreguntaEditando = signal<number>(-1);
@@ -261,19 +264,30 @@ export class CreacionEncuestaComponent {
       this.messageService.add({
         severity: 'warn',
         summary: 'Campos requeridos',
+<<<<<<< HEAD
         detail:
           errores.join('. ') +
           '. Complete todos los campos antes de continuar.',
         life: 6000,
         sticky: false,
+=======
+        detail: errores.join('. ') + '. Complete todos los campos antes de continuar.',
+        life: 4000,
+        sticky: false
+>>>>>>> origin/main
       });
     } else {
       this.messageService.add({
         severity: 'error',
         summary: 'Error de validación',
+<<<<<<< HEAD
         detail:
           'Por favor, revisa los campos del formulario. Si el problema persiste, usa el botón "Probar Conectividad" para verificar la conexión con el servidor.',
         life: 6000,
+=======
+        detail: 'Por favor, revisa los campos del formulario. Si el problema persiste, usa el botón "Probar Conectividad" para verificar la conexión con el servidor.',
+        life: 4000
+>>>>>>> origin/main
       });
     }
   }
@@ -329,12 +343,19 @@ export class CreacionEncuestaComponent {
       return;
     }
 
+    // Activar estado de carga
+    this.creandoEncuesta.set(true);
+
     // Mostrar mensaje de carga
     this.messageService.add({
       severity: 'info',
       summary: 'Creando encuesta...',
       detail: 'Por favor espera mientras procesamos tu encuesta',
+<<<<<<< HEAD
       life: 2000,
+=======
+      life: 4000
+>>>>>>> origin/main
     });
 
     // Obtiene los datos del formulario
@@ -400,6 +421,12 @@ export class CreacionEncuestaComponent {
       next: (res) => {
         console.log('✅ Encuesta creada exitosamente:', res);
 
+        // Cerrar el diálogo de confirmación inmediatamente
+        this.confirmationService.close();
+
+        // Limpiar todos los toasts anteriores (incluyendo el de "Creando encuesta...")
+        this.messageService.clear();
+
         // Mensaje de éxito detallado
         this.messageService.add({
           severity: 'success',
@@ -430,6 +457,9 @@ export class CreacionEncuestaComponent {
           error: err.error,
           url: err.url,
         });
+
+        // Cerrar el diálogo de confirmación en caso de error
+        this.confirmationService.close();
 
         // Mensaje de error detallado
         let errorDetail =

@@ -1,15 +1,11 @@
-<!-- responder-encuesta.component.html -->
 <div class="encuesta-container">
-  <!-- Toast para mensajes -->
   <p-toast></p-toast>
 
-  <!-- Loading state -->
   <div *ngIf="cargando" class="loading-container">
     <p-progressSpinner></p-progressSpinner>
     <p>Cargando encuesta...</p>
   </div>
 
-  <!-- Encuesta cargada -->
   <div *ngIf="!cargando && encuesta" class="encuesta-content">
     <p-card>
       <ng-template pTemplate="header">
@@ -34,15 +30,14 @@
           </div>
 
           <div class="pregunta-content">
-            <!-- Pregunta Abierta (Texto libre) -->
             <div *ngIf="esPreguntaAbierta(pregunta)" class="pregunta-abierta">
-              <p-inputTextarea
+              <textarea
                 rows="4"
-                autoResize="true"
                 [(ngModel)]="getRespuestaPorPregunta(pregunta.numero).texto"
                 (ngModelChange)="onTextoChange(pregunta, $event)"
                 [name]="'pregunta-texto-' + pregunta.numero"
                 placeholder="Escribí tu respuesta aquí..."
+<<<<<<< HEAD
                 class="w-full"
                 [required]="pregunta.obligatoria"
               >
@@ -58,6 +53,15 @@
                 *ngFor="let opcion of pregunta.opciones"
                 class="opcion-radio"
               >
+=======
+                class="w-full textarea-custom"
+                [required]="pregunta.obligatoria">
+              </textarea>
+            </div>
+
+            <div *ngIf="esPreguntaSeleccionSimple(pregunta)" class="pregunta-seleccion-simple">
+              <div *ngFor="let opcion of pregunta.opciones" class="opcion-radio">
+>>>>>>> origin/main
                 <p-radioButton
                   [inputId]="'radio-' + pregunta.numero + '-' + opcion.id"
                   [name]="'pregunta-' + pregunta.numero"
@@ -77,6 +81,7 @@
               </div>
             </div>
 
+<<<<<<< HEAD
             <!-- Pregunta de Selección Múltiple (Checkboxes) -->
             <div
               *ngIf="esPreguntaSeleccionMultiple(pregunta)"
@@ -86,10 +91,15 @@
                 *ngFor="let opcion of pregunta.opciones"
                 class="opcion-checkbox"
               >
+=======
+            <div *ngIf="esPreguntaSeleccionMultiple(pregunta)" class="pregunta-seleccion-multiple">
+              <div *ngFor="let opcion of pregunta.opciones" class="opcion-checkbox">
+>>>>>>> origin/main
                 <p-checkbox
                   [inputId]="'chk-' + pregunta.numero + '-' + opcion.id"
                   [value]="opcion.id"
                   [name]="'pregunta-' + pregunta.numero"
+<<<<<<< HEAD
                   [(ngModel)]="
                     getRespuestaPorPregunta(pregunta.numero).opciones
                   "
@@ -97,6 +107,11 @@
                     onCheckboxChange(pregunta, opcion.id, $event.checked)
                   "
                 >
+=======
+                  [ngModel]="isOpcionSeleccionada(pregunta.numero, opcion.id)"
+                  (onChange)="onCheckboxChange(pregunta, opcion.id, $event.checked)"
+                  [binary]="true">
+>>>>>>> origin/main
                 </p-checkbox>
                 <label
                   [for]="'chk-' + pregunta.numero + '-' + opcion.id"
@@ -107,11 +122,15 @@
               </div>
             </div>
 
+<<<<<<< HEAD
             <!-- Pregunta Verdadero/Falso -->
             <div
               *ngIf="esPreguntaVerdaderoFalso(pregunta)"
               class="pregunta-verdadero-falso"
             >
+=======
+            <div *ngIf="esPreguntaVerdaderoFalso(pregunta)" class="pregunta-verdadero-falso">
+>>>>>>> origin/main
               <div class="opcion-radio">
                 <p-radioButton
                   [inputId]="'radio-' + pregunta.numero + '-verdadero'"
@@ -152,7 +171,6 @@
           </div>
         </div>
 
-        <!-- ✅ BOTONES ACTUALIZADOS CON NUEVA FUNCIONALIDAD -->
         <div class="form-actions">
           <p-button
             type="button"
@@ -179,7 +197,6 @@
     </p-card>
   </div>
 
-  <!-- Error state -->
   <div *ngIf="!cargando && !encuesta" class="error-container">
     <p-card>
       <div class="error-content">
@@ -193,13 +210,17 @@
     </p-card>
   </div>
 
+<<<<<<< HEAD
   <!-- ✅ DIALOG DE VISTA PREVIA -->
+=======
+>>>>>>> origin/main
   <p-dialog
     header="Vista Previa de Respuestas"
     [(visible)]="mostrarDialogVistaPrevia"
     [modal]="true"
     [style]="{ width: '70vw', maxWidth: '800px' }"
     [closable]="true"
+<<<<<<< HEAD
     [draggable]="false"
   >
     <div class="vista-previa-content">
@@ -209,6 +230,14 @@
         *ngFor="let pregunta of encuesta?.preguntas"
         class="pregunta-previa mb-4"
       >
+=======
+    [draggable]="false">
+
+    <div class="vista-previa-content">
+      <p class="mb-4">Revisá tus respuestas antes de enviar:</p>
+
+      <div *ngFor="let pregunta of encuesta?.preguntas" class="pregunta-previa mb-4">
+>>>>>>> origin/main
         <div class="pregunta-titulo font-semibold mb-2">
           {{ pregunta.numero }}. {{ pregunta.texto }}
           <span *ngIf="pregunta.obligatoria" class="text-red-500">*</span>
@@ -239,15 +268,23 @@
     </ng-template>
   </p-dialog>
 
+<<<<<<< HEAD
   <!-- ✅ DIALOG DE CONFIRMACIÓN -->
+=======
+>>>>>>> origin/main
   <p-dialog
     header="Confirmar Envío"
     [(visible)]="mostrarDialogConfirmacion"
     [modal]="true"
     [style]="{ width: '450px' }"
     [closable]="true"
+<<<<<<< HEAD
     [draggable]="false"
   >
+=======
+    [draggable]="false">
+
+>>>>>>> origin/main
     <div class="confirmacion-content">
       <div class="flex align-items-center mb-4">
         <i class="pi pi-question-circle text-4xl text-blue-500 mr-3"></i>
@@ -290,15 +327,23 @@
     </ng-template>
   </p-dialog>
 
+<<<<<<< HEAD
   <!-- ✅ DIALOG DE ERROR -->
+=======
+>>>>>>> origin/main
   <p-dialog
     header="Error"
     [(visible)]="mostrarDialogError"
     [modal]="true"
     [style]="{ width: '500px' }"
     [closable]="true"
+<<<<<<< HEAD
     [draggable]="false"
   >
+=======
+    [draggable]="false">
+
+>>>>>>> origin/main
     <div class="error-dialog-content">
       <div class="flex align-items-center mb-4">
         <i class="pi pi-exclamation-triangle text-4xl text-red-500 mr-3"></i>
@@ -310,9 +355,13 @@
 
       <p-divider></p-divider>
 
+<<<<<<< HEAD
       <div
         class="error-detalles mt-4 p-3 bg-red-50 border-l-4 border-red-400 rounded"
       >
+=======
+      <div class="error-detalles mt-4 p-3 bg-red-50 border-l-4 border-red-400 rounded">
+>>>>>>> origin/main
         <p class="text-sm text-red-700">{{ errorDetallado }}</p>
       </div>
     </div>

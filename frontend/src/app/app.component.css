@@ -9,7 +9,222 @@
   max-width: 90vw; /* El ancho máximo es el 90% del viewport */
 }
 
-/* Limita el ancho máximo de las notificaciones toast de PrimeNG */
+/* TOASTS MEJORADOS - CENTRADOS Y ANIMADOS */
 ::ng-deep .p-toast {
+<<<<<<< HEAD
   max-width: 80%; /* El ancho máximo es el 80% del contenedor */
 }
+=======
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 9999 !important;
+  max-width: 500px !important;
+  width: auto !important;
+}
+
+::ng-deep .p-toast .p-toast-message {
+  margin: 0.5rem 0 !important;
+  border-radius: 15px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+  border: none !important;
+  backdrop-filter: blur(10px) !important;
+  animation: toastSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+  min-width: 350px !important;
+  max-width: 500px !important;
+}
+
+/* Animación de entrada para los toasts */
+@keyframes toastSlideIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-10deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) rotate(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Toast de éxito - Verde vibrante */
+::ng-deep .p-toast .p-toast-message.p-toast-message-success {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 50%, #4CAF50 100%) !important;
+  color: white !important;
+  border-left: 5px solid #2E7D32 !important;
+  animation: toastSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), successPulse 2s ease-in-out infinite !important;
+}
+
+/* Toast de error - Rojo vibrante */
+::ng-deep .p-toast .p-toast-message.p-toast-message-error {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 50%, #f44336 100%) !important;
+  color: white !important;
+  border-left: 5px solid #c62828 !important;
+  animation: toastSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), errorShake 0.5s ease-in-out !important;
+}
+
+/* Toast de advertencia - Naranja vibrante */
+::ng-deep .p-toast .p-toast-message.p-toast-message-warn {
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 50%, #ff9800 100%) !important;
+  color: white !important;
+  border-left: 5px solid #ef6c00 !important;
+  animation: toastSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), warnBounce 1s ease-in-out infinite !important;
+}
+
+/* Toast de información - Azul vibrante */
+::ng-deep .p-toast .p-toast-message.p-toast-message-info {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 50%, #2196F3 100%) !important;
+  color: white !important;
+  border-left: 5px solid #1565C0 !important;
+  animation: toastSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), infoPulse 2s ease-in-out infinite !important;
+}
+
+/* Iconos de los toasts más grandes y animados */
+::ng-deep .p-toast .p-toast-message .p-toast-message-icon {
+  font-size: 2rem !important;
+  margin-right: 1rem !important;
+  animation: iconBounce 1s ease-in-out infinite !important;
+}
+
+/* Contenido del toast mejorado */
+::ng-deep .p-toast .p-toast-message .p-toast-message-content {
+  padding: 1.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Texto del toast mejorado */
+::ng-deep .p-toast .p-toast-message .p-toast-message-text {
+  flex: 1 !important;
+}
+
+/* Título del toast más grande */
+::ng-deep .p-toast .p-toast-message .p-toast-summary {
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Detalle del toast */
+::ng-deep .p-toast .p-toast-message .p-toast-detail {
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+  opacity: 0.95 !important;
+}
+
+/* Botón de cerrar mejorado */
+::ng-deep .p-toast .p-toast-message .p-toast-icon-close {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 50% !important;
+  width: 2rem !important;
+  height: 2rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+}
+
+::ng-deep .p-toast .p-toast-message .p-toast-icon-close:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  transform: scale(1.1) !important;
+}
+
+/* ANIMACIONES PARA LOS TOASTS */
+
+/* Animación de pulso para éxito */
+@keyframes successPulse {
+  0%, 100% {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(76, 175, 80, 0.4);
+  }
+  50% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 0 10px rgba(76, 175, 80, 0.1);
+  }
+}
+
+/* Animación de temblor para error */
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+  20%, 40%, 60%, 80% { transform: translateX(3px); }
+}
+
+/* Animación de rebote para advertencia */
+@keyframes warnBounce {
+  0%, 100% {
+    transform: translateY(0);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Animación de pulso para información */
+@keyframes infoPulse {
+  0%, 100% {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(33, 150, 243, 0.4);
+  }
+  50% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 0 10px rgba(33, 150, 243, 0.1);
+  }
+}
+
+/* Animación de rebote para iconos */
+@keyframes iconBounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.1);
+  }
+}
+
+/* Responsive para toasts */
+@media (max-width: 768px) {
+  ::ng-deep .p-toast {
+    max-width: 90vw !important;
+  }
+
+  ::ng-deep .p-toast .p-toast-message {
+    min-width: 300px !important;
+    max-width: 90vw !important;
+  }
+
+  ::ng-deep .p-toast .p-toast-message .p-toast-summary {
+    font-size: 1.1rem !important;
+  }
+
+  ::ng-deep .p-toast .p-toast-message .p-toast-detail {
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  ::ng-deep .p-toast .p-toast-message {
+    min-width: 280px !important;
+  }
+
+  ::ng-deep .p-toast .p-toast-message .p-toast-message-content {
+    padding: 1rem !important;
+  }
+
+  ::ng-deep .p-toast .p-toast-message .p-toast-summary {
+    font-size: 1rem !important;
+  }
+
+  ::ng-deep .p-toast .p-toast-message .p-toast-detail {
+    font-size: 0.85rem !important;
+  }
+
+  ::ng-deep .p-toast .p-toast-message .p-toast-message-icon {
+    font-size: 1.5rem !important;
+  }
+}
+>>>>>>> origin/main
