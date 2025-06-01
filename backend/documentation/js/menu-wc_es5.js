@@ -1,40 +1,365 @@
 'use strict';
 
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
-function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
-function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
-function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
-function _assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
-function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, "prototype", { writable: !1 }), e && _setPrototypeOf(t, e); }
-function _wrapNativeSuper(t) { var r = "function" == typeof Map ? new Map() : void 0; return _wrapNativeSuper = function _wrapNativeSuper(t) { if (null === t || !_isNativeFunction(t)) return t; if ("function" != typeof t) throw new TypeError("Super expression must either be null or a function"); if (void 0 !== r) { if (r.has(t)) return r.get(t); r.set(t, Wrapper); } function Wrapper() { return _construct(t, arguments, _getPrototypeOf(this).constructor); } return Wrapper.prototype = Object.create(t.prototype, { constructor: { value: Wrapper, enumerable: !1, writable: !0, configurable: !0 } }), _setPrototypeOf(Wrapper, t); }, _wrapNativeSuper(t); }
-function _construct(t, e, r) { if (_isNativeReflectConstruct()) return Reflect.construct.apply(null, arguments); var o = [null]; o.push.apply(o, e); var p = new (t.bind.apply(t, o))(); return r && _setPrototypeOf(p, r.prototype), p; }
-function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _isNativeFunction(t) { try { return -1 !== Function.toString.call(t).indexOf("[native code]"); } catch (n) { return "function" == typeof t; } }
-function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
-function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }
-customElements.define('compodoc-menu', /*#__PURE__*/function (_HTMLElement) {
-  function _class() {
-    var _this;
-    _classCallCheck(this, _class);
-    _this = _callSuper(this, _class);
-    _this.isNormalMode = _this.getAttribute('mode') === 'normal';
-    return _this;
+function _typeof(o) {
+  '@babel/helpers - typeof';
+  return (
+    (_typeof =
+      'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
+        ? function (o) {
+            return typeof o;
+          }
+        : function (o) {
+            return o &&
+              'function' == typeof Symbol &&
+              o.constructor === Symbol &&
+              o !== Symbol.prototype
+              ? 'symbol'
+              : typeof o;
+          }),
+    _typeof(o)
+  );
+}
+function _classCallCheck(a, n) {
+  if (!(a instanceof n))
+    throw new TypeError('Cannot call a class as a function');
+}
+function _defineProperties(e, r) {
+  for (var t = 0; t < r.length; t++) {
+    var o = r[t];
+    (o.enumerable = o.enumerable || !1),
+      (o.configurable = !0),
+      'value' in o && (o.writable = !0),
+      Object.defineProperty(e, _toPropertyKey(o.key), o);
   }
-  _inherits(_class, _HTMLElement);
-  return _createClass(_class, [{
-    key: "connectedCallback",
-    value: function connectedCallback() {
-      this.render(this.isNormalMode);
+}
+function _createClass(e, r, t) {
+  return (
+    r && _defineProperties(e.prototype, r),
+    t && _defineProperties(e, t),
+    Object.defineProperty(e, 'prototype', { writable: !1 }),
+    e
+  );
+}
+function _toPropertyKey(t) {
+  var i = _toPrimitive(t, 'string');
+  return 'symbol' == _typeof(i) ? i : i + '';
+}
+function _toPrimitive(t, r) {
+  if ('object' != _typeof(t) || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r || 'default');
+    if ('object' != _typeof(i)) return i;
+    throw new TypeError('@@toPrimitive must return a primitive value.');
+  }
+  return ('string' === r ? String : Number)(t);
+}
+function _callSuper(t, o, e) {
+  return (
+    (o = _getPrototypeOf(o)),
+    _possibleConstructorReturn(
+      t,
+      _isNativeReflectConstruct()
+        ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor)
+        : o.apply(t, e),
+    )
+  );
+}
+function _possibleConstructorReturn(t, e) {
+  if (e && ('object' == _typeof(e) || 'function' == typeof e)) return e;
+  if (void 0 !== e)
+    throw new TypeError(
+      'Derived constructors may only return object or undefined',
+    );
+  return _assertThisInitialized(t);
+}
+function _assertThisInitialized(e) {
+  if (void 0 === e)
+    throw new ReferenceError(
+      "this hasn't been initialised - super() hasn't been called",
+    );
+  return e;
+}
+function _inherits(t, e) {
+  if ('function' != typeof e && null !== e)
+    throw new TypeError('Super expression must either be null or a function');
+  (t.prototype = Object.create(e && e.prototype, {
+    constructor: { value: t, writable: !0, configurable: !0 },
+  })),
+    Object.defineProperty(t, 'prototype', { writable: !1 }),
+    e && _setPrototypeOf(t, e);
+}
+function _wrapNativeSuper(t) {
+  var r = 'function' == typeof Map ? new Map() : void 0;
+  return (
+    (_wrapNativeSuper = function _wrapNativeSuper(t) {
+      if (null === t || !_isNativeFunction(t)) return t;
+      if ('function' != typeof t)
+        throw new TypeError(
+          'Super expression must either be null or a function',
+        );
+      if (void 0 !== r) {
+        if (r.has(t)) return r.get(t);
+        r.set(t, Wrapper);
+      }
+      function Wrapper() {
+        return _construct(t, arguments, _getPrototypeOf(this).constructor);
+      }
+      return (
+        (Wrapper.prototype = Object.create(t.prototype, {
+          constructor: {
+            value: Wrapper,
+            enumerable: !1,
+            writable: !0,
+            configurable: !0,
+          },
+        })),
+        _setPrototypeOf(Wrapper, t)
+      );
+    }),
+    _wrapNativeSuper(t)
+  );
+}
+function _construct(t, e, r) {
+  if (_isNativeReflectConstruct())
+    return Reflect.construct.apply(null, arguments);
+  var o = [null];
+  o.push.apply(o, e);
+  var p = new (t.bind.apply(t, o))();
+  return r && _setPrototypeOf(p, r.prototype), p;
+}
+function _isNativeReflectConstruct() {
+  try {
+    var t = !Boolean.prototype.valueOf.call(
+      Reflect.construct(Boolean, [], function () {}),
+    );
+  } catch (t) {}
+  return (_isNativeReflectConstruct = function _isNativeReflectConstruct() {
+    return !!t;
+  })();
+}
+function _isNativeFunction(t) {
+  try {
+    return -1 !== Function.toString.call(t).indexOf('[native code]');
+  } catch (n) {
+    return 'function' == typeof t;
+  }
+}
+function _setPrototypeOf(t, e) {
+  return (
+    (_setPrototypeOf = Object.setPrototypeOf
+      ? Object.setPrototypeOf.bind()
+      : function (t, e) {
+          return (t.__proto__ = e), t;
+        }),
+    _setPrototypeOf(t, e)
+  );
+}
+function _getPrototypeOf(t) {
+  return (
+    (_getPrototypeOf = Object.setPrototypeOf
+      ? Object.getPrototypeOf.bind()
+      : function (t) {
+          return t.__proto__ || Object.getPrototypeOf(t);
+        }),
+    _getPrototypeOf(t)
+  );
+}
+customElements.define(
+  'compodoc-menu',
+  /*#__PURE__*/ (function (_HTMLElement) {
+    function _class() {
+      var _this;
+      _classCallCheck(this, _class);
+      _this = _callSuper(this, _class);
+      _this.isNormalMode = _this.getAttribute('mode') === 'normal';
+      return _this;
     }
-  }, {
-    key: "render",
-    value: function render(isNormalMode) {
-      var tp = lithtml.html("\n        <nav>\n            <ul class=\"list\">\n                <li class=\"title\">\n                    <a href=\"index.html\" data-type=\"index-link\">backend-encuestas-tfi documentation</a>\n                </li>\n\n                <li class=\"divider\"></li>\n                ".concat(isNormalMode ? "<div id=\"book-search-input\" role=\"search\"><input type=\"text\" placeholder=\"Type to search\"></div>" : '', "\n                <li class=\"chapter\">\n                    <a data-type=\"chapter-link\" href=\"index.html\"><span class=\"icon ion-ios-home\"></span>Getting started</a>\n                    <ul class=\"links\">\n                        <li class=\"link\">\n                            <a href=\"overview.html\" data-type=\"chapter-link\">\n                                <span class=\"icon ion-ios-keypad\"></span>Overview\n                            </a>\n                        </li>\n                        <li class=\"link\">\n                            <a href=\"index.html\" data-type=\"chapter-link\">\n                                <span class=\"icon ion-ios-paper\"></span>README\n                            </a>\n                        </li>\n                                <li class=\"link\">\n                                    <a href=\"dependencies.html\" data-type=\"chapter-link\">\n                                        <span class=\"icon ion-ios-list\"></span>Dependencies\n                                    </a>\n                                </li>\n                                <li class=\"link\">\n                                    <a href=\"properties.html\" data-type=\"chapter-link\">\n                                        <span class=\"icon ion-ios-apps\"></span>Properties\n                                    </a>\n                                </li>\n                    </ul>\n                </li>\n                    <li class=\"chapter modules\">\n                        <a data-type=\"chapter-link\" href=\"modules.html\">\n                            <div class=\"menu-toggler linked\" data-bs-toggle=\"collapse\" ").concat(isNormalMode ? 'data-bs-target="#modules-links"' : 'data-bs-target="#xs-modules-links"', ">\n                                <span class=\"icon ion-ios-archive\"></span>\n                                <span class=\"link-name\">Modules</span>\n                                <span class=\"icon ion-ios-arrow-down\"></span>\n                            </div>\n                        </a>\n                        <ul class=\"links collapse \" ").concat(isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"', ">\n                            <li class=\"link\">\n                                <a href=\"modules/AppModule.html\" data-type=\"entity-link\" >AppModule</a>\n                            </li>\n                            <li class=\"link\">\n                                <a href=\"modules/EncuestasModule.html\" data-type=\"entity-link\" >EncuestasModule</a>\n                                    <li class=\"chapter inner\">\n                                        <div class=\"simple menu-toggler\" data-bs-toggle=\"collapse\" ").concat(isNormalMode ? 'data-bs-target="#controllers-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"' : 'data-bs-target="#xs-controllers-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"', ">\n                                            <span class=\"icon ion-md-swap\"></span>\n                                            <span>Controllers</span>\n                                            <span class=\"icon ion-ios-arrow-down\"></span>\n                                        </div>\n                                        <ul class=\"links collapse\" ").concat(isNormalMode ? 'id="controllers-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"' : 'id="xs-controllers-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"', ">\n                                            <li class=\"link\">\n                                                <a href=\"controllers/EncuestasController.html\" data-type=\"entity-link\" data-context=\"sub-entity\" data-context-id=\"modules\" >EncuestasController</a>\n                                            </li>\n                                        </ul>\n                                    </li>\n                                <li class=\"chapter inner\">\n                                    <div class=\"simple menu-toggler\" data-bs-toggle=\"collapse\" ").concat(isNormalMode ? 'data-bs-target="#injectables-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"' : 'data-bs-target="#xs-injectables-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"', ">\n                                        <span class=\"icon ion-md-arrow-round-down\"></span>\n                                        <span>Injectables</span>\n                                        <span class=\"icon ion-ios-arrow-down\"></span>\n                                    </div>\n                                    <ul class=\"links collapse\" ").concat(isNormalMode ? 'id="injectables-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"' : 'id="xs-injectables-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"', ">\n                                        <li class=\"link\">\n                                            <a href=\"injectables/EncuestasService.html\" data-type=\"entity-link\" data-context=\"sub-entity\" data-context-id=\"modules\" >EncuestasService</a>\n                                        </li>\n                                    </ul>\n                                </li>\n                            </li>\n                            <li class=\"link\">\n                                <a href=\"modules/OpcionesModule.html\" data-type=\"entity-link\" >OpcionesModule</a>\n                                    <li class=\"chapter inner\">\n                                        <div class=\"simple menu-toggler\" data-bs-toggle=\"collapse\" ").concat(isNormalMode ? 'data-bs-target="#controllers-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"' : 'data-bs-target="#xs-controllers-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"', ">\n                                            <span class=\"icon ion-md-swap\"></span>\n                                            <span>Controllers</span>\n                                            <span class=\"icon ion-ios-arrow-down\"></span>\n                                        </div>\n                                        <ul class=\"links collapse\" ").concat(isNormalMode ? 'id="controllers-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"' : 'id="xs-controllers-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"', ">\n                                            <li class=\"link\">\n                                                <a href=\"controllers/OpcionesController.html\" data-type=\"entity-link\" data-context=\"sub-entity\" data-context-id=\"modules\" >OpcionesController</a>\n                                            </li>\n                                        </ul>\n                                    </li>\n                                <li class=\"chapter inner\">\n                                    <div class=\"simple menu-toggler\" data-bs-toggle=\"collapse\" ").concat(isNormalMode ? 'data-bs-target="#injectables-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"' : 'data-bs-target="#xs-injectables-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"', ">\n                                        <span class=\"icon ion-md-arrow-round-down\"></span>\n                                        <span>Injectables</span>\n                                        <span class=\"icon ion-ios-arrow-down\"></span>\n                                    </div>\n                                    <ul class=\"links collapse\" ").concat(isNormalMode ? 'id="injectables-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"' : 'id="xs-injectables-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"', ">\n                                        <li class=\"link\">\n                                            <a href=\"injectables/OpcionesService.html\" data-type=\"entity-link\" data-context=\"sub-entity\" data-context-id=\"modules\" >OpcionesService</a>\n                                        </li>\n                                    </ul>\n                                </li>\n                            </li>\n                            <li class=\"link\">\n                                <a href=\"modules/PreguntasModule.html\" data-type=\"entity-link\" >PreguntasModule</a>\n                                    <li class=\"chapter inner\">\n                                        <div class=\"simple menu-toggler\" data-bs-toggle=\"collapse\" ").concat(isNormalMode ? 'data-bs-target="#controllers-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"' : 'data-bs-target="#xs-controllers-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"', ">\n                                            <span class=\"icon ion-md-swap\"></span>\n                                            <span>Controllers</span>\n                                            <span class=\"icon ion-ios-arrow-down\"></span>\n                                        </div>\n                                        <ul class=\"links collapse\" ").concat(isNormalMode ? 'id="controllers-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"' : 'id="xs-controllers-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"', ">\n                                            <li class=\"link\">\n                                                <a href=\"controllers/PreguntasController.html\" data-type=\"entity-link\" data-context=\"sub-entity\" data-context-id=\"modules\" >PreguntasController</a>\n                                            </li>\n                                        </ul>\n                                    </li>\n                                <li class=\"chapter inner\">\n                                    <div class=\"simple menu-toggler\" data-bs-toggle=\"collapse\" ").concat(isNormalMode ? 'data-bs-target="#injectables-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"' : 'data-bs-target="#xs-injectables-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"', ">\n                                        <span class=\"icon ion-md-arrow-round-down\"></span>\n                                        <span>Injectables</span>\n                                        <span class=\"icon ion-ios-arrow-down\"></span>\n                                    </div>\n                                    <ul class=\"links collapse\" ").concat(isNormalMode ? 'id="injectables-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"' : 'id="xs-injectables-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"', ">\n                                        <li class=\"link\">\n                                            <a href=\"injectables/PreguntasService.html\" data-type=\"entity-link\" data-context=\"sub-entity\" data-context-id=\"modules\" >PreguntasService</a>\n                                        </li>\n                                    </ul>\n                                </li>\n                            </li>\n                            <li class=\"link\">\n                                <a href=\"modules/RespuestasModule.html\" data-type=\"entity-link\" >RespuestasModule</a>\n                                    <li class=\"chapter inner\">\n                                        <div class=\"simple menu-toggler\" data-bs-toggle=\"collapse\" ").concat(isNormalMode ? 'data-bs-target="#controllers-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"' : 'data-bs-target="#xs-controllers-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"', ">\n                                            <span class=\"icon ion-md-swap\"></span>\n                                            <span>Controllers</span>\n                                            <span class=\"icon ion-ios-arrow-down\"></span>\n                                        </div>\n                                        <ul class=\"links collapse\" ").concat(isNormalMode ? 'id="controllers-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"' : 'id="xs-controllers-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"', ">\n                                            <li class=\"link\">\n                                                <a href=\"controllers/RespuestasController.html\" data-type=\"entity-link\" data-context=\"sub-entity\" data-context-id=\"modules\" >RespuestasController</a>\n                                            </li>\n                                        </ul>\n                                    </li>\n                                <li class=\"chapter inner\">\n                                    <div class=\"simple menu-toggler\" data-bs-toggle=\"collapse\" ").concat(isNormalMode ? 'data-bs-target="#injectables-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"' : 'data-bs-target="#xs-injectables-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"', ">\n                                        <span class=\"icon ion-md-arrow-round-down\"></span>\n                                        <span>Injectables</span>\n                                        <span class=\"icon ion-ios-arrow-down\"></span>\n                                    </div>\n                                    <ul class=\"links collapse\" ").concat(isNormalMode ? 'id="injectables-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"' : 'id="xs-injectables-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"', ">\n                                        <li class=\"link\">\n                                            <a href=\"injectables/RespuestasService.html\" data-type=\"entity-link\" data-context=\"sub-entity\" data-context-id=\"modules\" >RespuestasService</a>\n                                        </li>\n                                    </ul>\n                                </li>\n                            </li>\n                </ul>\n                </li>\n                        <li class=\"chapter\">\n                            <div class=\"simple menu-toggler\" data-bs-toggle=\"collapse\" ").concat(isNormalMode ? 'data-bs-target="#controllers-links"' : 'data-bs-target="#xs-controllers-links"', ">\n                                <span class=\"icon ion-md-swap\"></span>\n                                <span>Controllers</span>\n                                <span class=\"icon ion-ios-arrow-down\"></span>\n                            </div>\n                            <ul class=\"links collapse \" ").concat(isNormalMode ? 'id="controllers-links"' : 'id="xs-controllers-links"', ">\n                                <li class=\"link\">\n                                    <a href=\"controllers/EncuestasController.html\" data-type=\"entity-link\" >EncuestasController</a>\n                                </li>\n                                <li class=\"link\">\n                                    <a href=\"controllers/OpcionesController.html\" data-type=\"entity-link\" >OpcionesController</a>\n                                </li>\n                                <li class=\"link\">\n                                    <a href=\"controllers/PreguntasController.html\" data-type=\"entity-link\" >PreguntasController</a>\n                                </li>\n                                <li class=\"link\">\n                                    <a href=\"controllers/RespuestasController.html\" data-type=\"entity-link\" >RespuestasController</a>\n                                </li>\n                            </ul>\n                        </li>\n                        <li class=\"chapter\">\n                            <div class=\"simple menu-toggler\" data-bs-toggle=\"collapse\" ").concat(isNormalMode ? 'data-bs-target="#entities-links"' : 'data-bs-target="#xs-entities-links"', ">\n                                <span class=\"icon ion-ios-apps\"></span>\n                                <span>Entities</span>\n                                <span class=\"icon ion-ios-arrow-down\"></span>\n                            </div>\n                            <ul class=\"links collapse \" ").concat(isNormalMode ? 'id="entities-links"' : 'id="xs-entities-links"', ">\n                                <li class=\"link\">\n                                    <a href=\"entities/Encuesta.html\" data-type=\"entity-link\" >Encuesta</a>\n                                </li>\n                                <li class=\"link\">\n                                    <a href=\"entities/Opcion.html\" data-type=\"entity-link\" >Opcion</a>\n                                </li>\n                                <li class=\"link\">\n                                    <a href=\"entities/Pregunta.html\" data-type=\"entity-link\" >Pregunta</a>\n                                </li>\n                                <li class=\"link\">\n                                    <a href=\"entities/Pregunta-1.html\" data-type=\"entity-link\" >Pregunta</a>\n                                </li>\n                                <li class=\"link\">\n                                    <a href=\"entities/Respuesta.html\" data-type=\"entity-link\" >Respuesta</a>\n                                </li>\n                                <li class=\"link\">\n                                    <a href=\"entities/Respuesta-1.html\" data-type=\"entity-link\" >Respuesta</a>\n                                </li>\n                                <li class=\"link\">\n                                    <a href=\"entities/RespuestaAbierta.html\" data-type=\"entity-link\" >RespuestaAbierta</a>\n                                </li>\n                                <li class=\"link\">\n                                    <a href=\"entities/RespuestaOpcion.html\" data-type=\"entity-link\" >RespuestaOpcion</a>\n                                </li>\n                            </ul>\n                        </li>\n                    <li class=\"chapter\">\n                        <div class=\"simple menu-toggler\" data-bs-toggle=\"collapse\" ").concat(isNormalMode ? 'data-bs-target="#classes-links"' : 'data-bs-target="#xs-classes-links"', ">\n                            <span class=\"icon ion-ios-paper\"></span>\n                            <span>Classes</span>\n                            <span class=\"icon ion-ios-arrow-down\"></span>\n                        </div>\n                        <ul class=\"links collapse \" ").concat(isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"', ">\n                            <li class=\"link\">\n                                <a href=\"classes/ActualizarPreguntaDto.html\" data-type=\"entity-link\" >ActualizarPreguntaDto</a>\n                            </li>\n                            <li class=\"link\">\n                                <a href=\"classes/CreateEncuestaDto.html\" data-type=\"entity-link\" >CreateEncuestaDto</a>\n                            </li>\n                            <li class=\"link\">\n                                <a href=\"classes/CreateEncuestaResponseDto.html\" data-type=\"entity-link\" >CreateEncuestaResponseDto</a>\n                            </li>\n                            <li class=\"link\">\n                                <a href=\"classes/CreateOpcionDto.html\" data-type=\"entity-link\" >CreateOpcionDto</a>\n                            </li>\n                            <li class=\"link\">\n                                <a href=\"classes/CreatePreguntaDto.html\" data-type=\"entity-link\" >CreatePreguntaDto</a>\n                            </li>\n                            <li class=\"link\">\n                                <a href=\"classes/ObtenerEncuestaDto.html\" data-type=\"entity-link\" >ObtenerEncuestaDto</a>\n                            </li>\n                            <li class=\"link\">\n                                <a href=\"classes/OpcionConRespuestasDto.html\" data-type=\"entity-link\" >OpcionConRespuestasDto</a>\n                            </li>\n                            <li class=\"link\">\n                                <a href=\"classes/PreguntaConRespuestasDto.html\" data-type=\"entity-link\" >PreguntaConRespuestasDto</a>\n                            </li>\n                            <li class=\"link\">\n                                <a href=\"classes/RegistrarRespuestasDto.html\" data-type=\"entity-link\" >RegistrarRespuestasDto</a>\n                            </li>\n                            <li class=\"link\">\n                                <a href=\"classes/RespuestaPreguntaDto.html\" data-type=\"entity-link\" >RespuestaPreguntaDto</a>\n                            </li>\n                            <li class=\"link\">\n                                <a href=\"classes/VisualizarRespuestasDto.html\" data-type=\"entity-link\" >VisualizarRespuestasDto</a>\n                            </li>\n                        </ul>\n                    </li>\n                        <li class=\"chapter\">\n                            <div class=\"simple menu-toggler\" data-bs-toggle=\"collapse\" ").concat(isNormalMode ? 'data-bs-target="#injectables-links"' : 'data-bs-target="#xs-injectables-links"', ">\n                                <span class=\"icon ion-md-arrow-round-down\"></span>\n                                <span>Injectables</span>\n                                <span class=\"icon ion-ios-arrow-down\"></span>\n                            </div>\n                            <ul class=\"links collapse \" ").concat(isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"', ">\n                                <li class=\"link\">\n                                    <a href=\"injectables/EncuestasService.html\" data-type=\"entity-link\" >EncuestasService</a>\n                                </li>\n                                <li class=\"link\">\n                                    <a href=\"injectables/OpcionesService.html\" data-type=\"entity-link\" >OpcionesService</a>\n                                </li>\n                                <li class=\"link\">\n                                    <a href=\"injectables/PreguntasService.html\" data-type=\"entity-link\" >PreguntasService</a>\n                                </li>\n                                <li class=\"link\">\n                                    <a href=\"injectables/RespuestasService.html\" data-type=\"entity-link\" >RespuestasService</a>\n                                </li>\n                            </ul>\n                        </li>\n                    <li class=\"chapter\">\n                        <div class=\"simple menu-toggler\" data-bs-toggle=\"collapse\" ").concat(isNormalMode ? 'data-bs-target="#miscellaneous-links"' : 'data-bs-target="#xs-miscellaneous-links"', ">\n                            <span class=\"icon ion-ios-cube\"></span>\n                            <span>Miscellaneous</span>\n                            <span class=\"icon ion-ios-arrow-down\"></span>\n                        </div>\n                        <ul class=\"links collapse \" ").concat(isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"', ">\n                            <li class=\"link\">\n                                <a href=\"miscellaneous/enumerations.html\" data-type=\"entity-link\">Enums</a>\n                            </li>\n                            <li class=\"link\">\n                                <a href=\"miscellaneous/functions.html\" data-type=\"entity-link\">Functions</a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li class=\"chapter\">\n                        <a data-type=\"chapter-link\" href=\"coverage.html\"><span class=\"icon ion-ios-stats\"></span>Documentation coverage</a>\n                    </li>\n                    <li class=\"divider\"></li>\n                    <li class=\"copyright\">\n                        Documentation generated using <a href=\"https://compodoc.app/\" target=\"_blank\" rel=\"noopener noreferrer\">\n                            <img data-src=\"images/compodoc-vectorise.png\" class=\"img-responsive\" data-type=\"compodoc-logo\">\n                        </a>\n                    </li>\n            </ul>\n        </nav>\n        "));
-      this.innerHTML = tp.strings;
-    }
-  }]);
-}(/*#__PURE__*/_wrapNativeSuper(HTMLElement)));
+    _inherits(_class, _HTMLElement);
+    return _createClass(_class, [
+      {
+        key: 'connectedCallback',
+        value: function connectedCallback() {
+          this.render(this.isNormalMode);
+        },
+      },
+      {
+        key: 'render',
+        value: function render(isNormalMode) {
+          var tp = lithtml.html(
+            '\n        <nav>\n            <ul class="list">\n                <li class="title">\n                    <a href="index.html" data-type="index-link">backend-encuestas-tfi documentation</a>\n                </li>\n\n                <li class="divider"></li>\n                '
+              .concat(
+                isNormalMode
+                  ? '<div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>'
+                  : '',
+                '\n                <li class="chapter">\n                    <a data-type="chapter-link" href="index.html"><span class="icon ion-ios-home"></span>Getting started</a>\n                    <ul class="links">\n                        <li class="link">\n                            <a href="overview.html" data-type="chapter-link">\n                                <span class="icon ion-ios-keypad"></span>Overview\n                            </a>\n                        </li>\n                        <li class="link">\n                            <a href="index.html" data-type="chapter-link">\n                                <span class="icon ion-ios-paper"></span>README\n                            </a>\n                        </li>\n                                <li class="link">\n                                    <a href="dependencies.html" data-type="chapter-link">\n                                        <span class="icon ion-ios-list"></span>Dependencies\n                                    </a>\n                                </li>\n                                <li class="link">\n                                    <a href="properties.html" data-type="chapter-link">\n                                        <span class="icon ion-ios-apps"></span>Properties\n                                    </a>\n                                </li>\n                    </ul>\n                </li>\n                    <li class="chapter modules">\n                        <a data-type="chapter-link" href="modules.html">\n                            <div class="menu-toggler linked" data-bs-toggle="collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'data-bs-target="#modules-links"'
+                  : 'data-bs-target="#xs-modules-links"',
+                '>\n                                <span class="icon ion-ios-archive"></span>\n                                <span class="link-name">Modules</span>\n                                <span class="icon ion-ios-arrow-down"></span>\n                            </div>\n                        </a>\n                        <ul class="links collapse " ',
+              )
+              .concat(
+                isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"',
+                '>\n                            <li class="link">\n                                <a href="modules/AppModule.html" data-type="entity-link" >AppModule</a>\n                            </li>\n                            <li class="link">\n                                <a href="modules/EncuestasModule.html" data-type="entity-link" >EncuestasModule</a>\n                                    <li class="chapter inner">\n                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'data-bs-target="#controllers-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"'
+                  : 'data-bs-target="#xs-controllers-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"',
+                '>\n                                            <span class="icon ion-md-swap"></span>\n                                            <span>Controllers</span>\n                                            <span class="icon ion-ios-arrow-down"></span>\n                                        </div>\n                                        <ul class="links collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'id="controllers-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"'
+                  : 'id="xs-controllers-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"',
+                '>\n                                            <li class="link">\n                                                <a href="controllers/EncuestasController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EncuestasController</a>\n                                            </li>\n                                        </ul>\n                                    </li>\n                                <li class="chapter inner">\n                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'data-bs-target="#injectables-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"'
+                  : 'data-bs-target="#xs-injectables-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"',
+                '>\n                                        <span class="icon ion-md-arrow-round-down"></span>\n                                        <span>Injectables</span>\n                                        <span class="icon ion-ios-arrow-down"></span>\n                                    </div>\n                                    <ul class="links collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'id="injectables-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"'
+                  : 'id="xs-injectables-links-module-EncuestasModule-8fddfccb6ed0433cb5a59c525937690e40b37c7b48d98cad1d8dc0d54deb43b38ae047b4342987066be2bdbb5cd7ac1e48a3b7fe6b255af3509a98b3a4360973"',
+                '>\n                                        <li class="link">\n                                            <a href="injectables/EncuestasService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EncuestasService</a>\n                                        </li>\n                                    </ul>\n                                </li>\n                            </li>\n                            <li class="link">\n                                <a href="modules/OpcionesModule.html" data-type="entity-link" >OpcionesModule</a>\n                                    <li class="chapter inner">\n                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'data-bs-target="#controllers-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"'
+                  : 'data-bs-target="#xs-controllers-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"',
+                '>\n                                            <span class="icon ion-md-swap"></span>\n                                            <span>Controllers</span>\n                                            <span class="icon ion-ios-arrow-down"></span>\n                                        </div>\n                                        <ul class="links collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'id="controllers-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"'
+                  : 'id="xs-controllers-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"',
+                '>\n                                            <li class="link">\n                                                <a href="controllers/OpcionesController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >OpcionesController</a>\n                                            </li>\n                                        </ul>\n                                    </li>\n                                <li class="chapter inner">\n                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'data-bs-target="#injectables-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"'
+                  : 'data-bs-target="#xs-injectables-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"',
+                '>\n                                        <span class="icon ion-md-arrow-round-down"></span>\n                                        <span>Injectables</span>\n                                        <span class="icon ion-ios-arrow-down"></span>\n                                    </div>\n                                    <ul class="links collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'id="injectables-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"'
+                  : 'id="xs-injectables-links-module-OpcionesModule-48900202ef0bc5750d894bd4840ea70addf4e8368d3ac311d35667f0ce60d484a25d1bdf6970a666f3acb1cf8f6d37bfa3acbfe3912058f9aa83ef672788a7e5"',
+                '>\n                                        <li class="link">\n                                            <a href="injectables/OpcionesService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >OpcionesService</a>\n                                        </li>\n                                    </ul>\n                                </li>\n                            </li>\n                            <li class="link">\n                                <a href="modules/PreguntasModule.html" data-type="entity-link" >PreguntasModule</a>\n                                    <li class="chapter inner">\n                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'data-bs-target="#controllers-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"'
+                  : 'data-bs-target="#xs-controllers-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"',
+                '>\n                                            <span class="icon ion-md-swap"></span>\n                                            <span>Controllers</span>\n                                            <span class="icon ion-ios-arrow-down"></span>\n                                        </div>\n                                        <ul class="links collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'id="controllers-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"'
+                  : 'id="xs-controllers-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"',
+                '>\n                                            <li class="link">\n                                                <a href="controllers/PreguntasController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PreguntasController</a>\n                                            </li>\n                                        </ul>\n                                    </li>\n                                <li class="chapter inner">\n                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'data-bs-target="#injectables-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"'
+                  : 'data-bs-target="#xs-injectables-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"',
+                '>\n                                        <span class="icon ion-md-arrow-round-down"></span>\n                                        <span>Injectables</span>\n                                        <span class="icon ion-ios-arrow-down"></span>\n                                    </div>\n                                    <ul class="links collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'id="injectables-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"'
+                  : 'id="xs-injectables-links-module-PreguntasModule-d97e195bf672cd5cd76352f12a4d3bac9ee01b000c619fee656a692ac64a5591f8412d9583c4373e8cafae2d64e9d386351748536c61e51de778dc0adb5fdf14"',
+                '>\n                                        <li class="link">\n                                            <a href="injectables/PreguntasService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PreguntasService</a>\n                                        </li>\n                                    </ul>\n                                </li>\n                            </li>\n                            <li class="link">\n                                <a href="modules/RespuestasModule.html" data-type="entity-link" >RespuestasModule</a>\n                                    <li class="chapter inner">\n                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'data-bs-target="#controllers-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"'
+                  : 'data-bs-target="#xs-controllers-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"',
+                '>\n                                            <span class="icon ion-md-swap"></span>\n                                            <span>Controllers</span>\n                                            <span class="icon ion-ios-arrow-down"></span>\n                                        </div>\n                                        <ul class="links collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'id="controllers-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"'
+                  : 'id="xs-controllers-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"',
+                '>\n                                            <li class="link">\n                                                <a href="controllers/RespuestasController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RespuestasController</a>\n                                            </li>\n                                        </ul>\n                                    </li>\n                                <li class="chapter inner">\n                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'data-bs-target="#injectables-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"'
+                  : 'data-bs-target="#xs-injectables-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"',
+                '>\n                                        <span class="icon ion-md-arrow-round-down"></span>\n                                        <span>Injectables</span>\n                                        <span class="icon ion-ios-arrow-down"></span>\n                                    </div>\n                                    <ul class="links collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'id="injectables-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"'
+                  : 'id="xs-injectables-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"',
+                '>\n                                        <li class="link">\n                                            <a href="injectables/RespuestasService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RespuestasService</a>\n                                        </li>\n                                    </ul>\n                                </li>\n                            </li>\n                </ul>\n                </li>\n                        <li class="chapter">\n                            <div class="simple menu-toggler" data-bs-toggle="collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'data-bs-target="#controllers-links"'
+                  : 'data-bs-target="#xs-controllers-links"',
+                '>\n                                <span class="icon ion-md-swap"></span>\n                                <span>Controllers</span>\n                                <span class="icon ion-ios-arrow-down"></span>\n                            </div>\n                            <ul class="links collapse " ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'id="controllers-links"'
+                  : 'id="xs-controllers-links"',
+                '>\n                                <li class="link">\n                                    <a href="controllers/EncuestasController.html" data-type="entity-link" >EncuestasController</a>\n                                </li>\n                                <li class="link">\n                                    <a href="controllers/OpcionesController.html" data-type="entity-link" >OpcionesController</a>\n                                </li>\n                                <li class="link">\n                                    <a href="controllers/PreguntasController.html" data-type="entity-link" >PreguntasController</a>\n                                </li>\n                                <li class="link">\n                                    <a href="controllers/RespuestasController.html" data-type="entity-link" >RespuestasController</a>\n                                </li>\n                            </ul>\n                        </li>\n                        <li class="chapter">\n                            <div class="simple menu-toggler" data-bs-toggle="collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'data-bs-target="#entities-links"'
+                  : 'data-bs-target="#xs-entities-links"',
+                '>\n                                <span class="icon ion-ios-apps"></span>\n                                <span>Entities</span>\n                                <span class="icon ion-ios-arrow-down"></span>\n                            </div>\n                            <ul class="links collapse " ',
+              )
+              .concat(
+                isNormalMode ? 'id="entities-links"' : 'id="xs-entities-links"',
+                '>\n                                <li class="link">\n                                    <a href="entities/Encuesta.html" data-type="entity-link" >Encuesta</a>\n                                </li>\n                                <li class="link">\n                                    <a href="entities/Opcion.html" data-type="entity-link" >Opcion</a>\n                                </li>\n                                <li class="link">\n                                    <a href="entities/Pregunta.html" data-type="entity-link" >Pregunta</a>\n                                </li>\n                                <li class="link">\n                                    <a href="entities/Pregunta-1.html" data-type="entity-link" >Pregunta</a>\n                                </li>\n                                <li class="link">\n                                    <a href="entities/Respuesta.html" data-type="entity-link" >Respuesta</a>\n                                </li>\n                                <li class="link">\n                                    <a href="entities/Respuesta-1.html" data-type="entity-link" >Respuesta</a>\n                                </li>\n                                <li class="link">\n                                    <a href="entities/RespuestaAbierta.html" data-type="entity-link" >RespuestaAbierta</a>\n                                </li>\n                                <li class="link">\n                                    <a href="entities/RespuestaOpcion.html" data-type="entity-link" >RespuestaOpcion</a>\n                                </li>\n                            </ul>\n                        </li>\n                    <li class="chapter">\n                        <div class="simple menu-toggler" data-bs-toggle="collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'data-bs-target="#classes-links"'
+                  : 'data-bs-target="#xs-classes-links"',
+                '>\n                            <span class="icon ion-ios-paper"></span>\n                            <span>Classes</span>\n                            <span class="icon ion-ios-arrow-down"></span>\n                        </div>\n                        <ul class="links collapse " ',
+              )
+              .concat(
+                isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"',
+                '>\n                            <li class="link">\n                                <a href="classes/ActualizarPreguntaDto.html" data-type="entity-link" >ActualizarPreguntaDto</a>\n                            </li>\n                            <li class="link">\n                                <a href="classes/CreateEncuestaDto.html" data-type="entity-link" >CreateEncuestaDto</a>\n                            </li>\n                            <li class="link">\n                                <a href="classes/CreateEncuestaResponseDto.html" data-type="entity-link" >CreateEncuestaResponseDto</a>\n                            </li>\n                            <li class="link">\n                                <a href="classes/CreateOpcionDto.html" data-type="entity-link" >CreateOpcionDto</a>\n                            </li>\n                            <li class="link">\n                                <a href="classes/CreatePreguntaDto.html" data-type="entity-link" >CreatePreguntaDto</a>\n                            </li>\n                            <li class="link">\n                                <a href="classes/ObtenerEncuestaDto.html" data-type="entity-link" >ObtenerEncuestaDto</a>\n                            </li>\n                            <li class="link">\n                                <a href="classes/OpcionConRespuestasDto.html" data-type="entity-link" >OpcionConRespuestasDto</a>\n                            </li>\n                            <li class="link">\n                                <a href="classes/PreguntaConRespuestasDto.html" data-type="entity-link" >PreguntaConRespuestasDto</a>\n                            </li>\n                            <li class="link">\n                                <a href="classes/RegistrarRespuestasDto.html" data-type="entity-link" >RegistrarRespuestasDto</a>\n                            </li>\n                            <li class="link">\n                                <a href="classes/RespuestaPreguntaDto.html" data-type="entity-link" >RespuestaPreguntaDto</a>\n                            </li>\n                            <li class="link">\n                                <a href="classes/VisualizarRespuestasDto.html" data-type="entity-link" >VisualizarRespuestasDto</a>\n                            </li>\n                        </ul>\n                    </li>\n                        <li class="chapter">\n                            <div class="simple menu-toggler" data-bs-toggle="collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'data-bs-target="#injectables-links"'
+                  : 'data-bs-target="#xs-injectables-links"',
+                '>\n                                <span class="icon ion-md-arrow-round-down"></span>\n                                <span>Injectables</span>\n                                <span class="icon ion-ios-arrow-down"></span>\n                            </div>\n                            <ul class="links collapse " ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'id="injectables-links"'
+                  : 'id="xs-injectables-links"',
+                '>\n                                <li class="link">\n                                    <a href="injectables/EncuestasService.html" data-type="entity-link" >EncuestasService</a>\n                                </li>\n                                <li class="link">\n                                    <a href="injectables/OpcionesService.html" data-type="entity-link" >OpcionesService</a>\n                                </li>\n                                <li class="link">\n                                    <a href="injectables/PreguntasService.html" data-type="entity-link" >PreguntasService</a>\n                                </li>\n                                <li class="link">\n                                    <a href="injectables/RespuestasService.html" data-type="entity-link" >RespuestasService</a>\n                                </li>\n                            </ul>\n                        </li>\n                    <li class="chapter">\n                        <div class="simple menu-toggler" data-bs-toggle="collapse" ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'data-bs-target="#miscellaneous-links"'
+                  : 'data-bs-target="#xs-miscellaneous-links"',
+                '>\n                            <span class="icon ion-ios-cube"></span>\n                            <span>Miscellaneous</span>\n                            <span class="icon ion-ios-arrow-down"></span>\n                        </div>\n                        <ul class="links collapse " ',
+              )
+              .concat(
+                isNormalMode
+                  ? 'id="miscellaneous-links"'
+                  : 'id="xs-miscellaneous-links"',
+                '>\n                            <li class="link">\n                                <a href="miscellaneous/enumerations.html" data-type="entity-link">Enums</a>\n                            </li>\n                            <li class="link">\n                                <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>\n                            </li>\n                        </ul>\n                    </li>\n                    <li class="chapter">\n                        <a data-type="chapter-link" href="coverage.html"><span class="icon ion-ios-stats"></span>Documentation coverage</a>\n                    </li>\n                    <li class="divider"></li>\n                    <li class="copyright">\n                        Documentation generated using <a href="https://compodoc.app/" target="_blank" rel="noopener noreferrer">\n                            <img data-src="images/compodoc-vectorise.png" class="img-responsive" data-type="compodoc-logo">\n                        </a>\n                    </li>\n            </ul>\n        </nav>\n        ',
+              ),
+          );
+          this.innerHTML = tp.strings;
+        },
+      },
+    ]);
+  })(/*#__PURE__*/ _wrapNativeSuper(HTMLElement)),
+);

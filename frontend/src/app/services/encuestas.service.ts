@@ -34,5 +34,4 @@ export class EncuestasService {
       '/api/v1/encuestas/' + idEncuesta + '?codigo=' + codigo + '&tipo=' + tipo,
     );
   }
-
 }

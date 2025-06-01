@@ -18,7 +18,7 @@ import { Respuesta } from '../../respuestas/entities/respuesta.entity';
 // Importación de librería para generar QR
 import * as QRCode from 'qrcode';
 // Importación de papaparse para generar CSV
-import * as Papa from 'papaparse'; 
+import * as Papa from 'papaparse';
 
 @Injectable() // Decorador que marca esta clase como un servicio inyectable
 export class EncuestasService {
@@ -351,7 +351,7 @@ export class EncuestasService {
           });
         });
       } else {
-         // Si la pregunta es de opción, se agregan las opciones con la cantidad de respuestas
+        // Si la pregunta es de opción, se agregan las opciones con la cantidad de respuestas
         pregunta.opciones.forEach((opcion) => {
           filas.push({
             Pregunta: pregunta.pregunta,
@@ -365,8 +365,8 @@ export class EncuestasService {
 
     // Convierte las filas a formato csv utilizando papaparse
     const csv = Papa.unparse(filas, {
-      quotes: true, 
-      delimiter: ';', 
+      quotes: true,
+      delimiter: ';',
       header: true,
       newline: '\r\n',
     });

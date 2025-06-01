@@ -6,19 +6,13 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { QRCodeComponent } from 'angularx-qrcode';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-presentacion-enlaces',
-  imports: [
-    CommonModule, 
-    QRCodeComponent, 
-    RouterModule, 
-    ButtonModule],
+  imports: [CommonModule, QRCodeComponent, RouterModule, ButtonModule],
   templateUrl: './presentacion-enlaces.component.html',
   styleUrl: './presentacion-enlaces.component.css',
 })
 export class PresentacionEnlacesComponent {
-
   // Servicios y utilidades inyectados
   private route = inject(ActivatedRoute); // Obtener parámetros de la URL
   private router = inject(Router); // Redireccionar
@@ -55,6 +49,6 @@ export class PresentacionEnlacesComponent {
 
   // Método para volver a la página de inicio
   volverInicio() {
-    this.router.navigateByUrl('');  
+    this.router.navigateByUrl('');
   }
 }

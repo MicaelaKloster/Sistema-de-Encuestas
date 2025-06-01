@@ -52,7 +52,7 @@
 
 .error-dialog-content .error-detalles p {
   margin: 0;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 0.875rem;
   color: #b91c1c;
 }
@@ -73,7 +73,7 @@
     flex-direction: column;
     gap: 0.75rem;
   }
-  
+
   .form-actions .p-button {
     width: 100%;
   }

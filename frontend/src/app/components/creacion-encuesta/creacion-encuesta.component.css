@@ -1,6 +1,5 @@
 /* Host styles - Configuración principal del componente */
 :host {
-
   min-height: calc(100vh - 70px);
   width: 100vw;
   display: block;
@@ -9,22 +8,37 @@
   padding: 0;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%),
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(120, 119, 198, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 119, 198, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(120, 219, 255, 0.2) 0%,
+      transparent 50%
+    ),
     linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
 }
 
 /* Patrón de puntos decorativo */
 :host::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image:
-    radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2px, transparent 2px);
+  background-image: radial-gradient(
+    circle at 25px 25px,
+    rgba(255, 255, 255, 0.1) 2px,
+    transparent 2px
+  );
   background-size: 50px 50px;
   animation: movePattern 20s linear infinite;
   z-index: 1;
@@ -61,7 +75,11 @@
   height: 60px;
   top: 15%;
   left: 8%;
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(120, 219, 255, 0.3));
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(120, 219, 255, 0.3)
+  );
   border-radius: 50%;
   animation-delay: 0s;
   box-shadow: 0 8px 32px rgba(120, 219, 255, 0.3);
@@ -72,7 +90,11 @@
   height: 80px;
   top: 70%;
   right: 12%;
-  background: linear-gradient(135deg, rgba(255, 119, 198, 0.2), rgba(255, 255, 255, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 119, 198, 0.2),
+    rgba(255, 255, 255, 0.1)
+  );
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   animation-delay: 2s;
   animation-name: floatMorph;
@@ -84,7 +106,11 @@
   height: 45px;
   top: 85%;
   left: 15%;
-  background: linear-gradient(225deg, rgba(120, 119, 198, 0.3), rgba(255, 255, 255, 0.2));
+  background: linear-gradient(
+    225deg,
+    rgba(120, 119, 198, 0.3),
+    rgba(255, 255, 255, 0.2)
+  );
   border-radius: 50%;
   animation-delay: 4s;
   box-shadow: 0 8px 32px rgba(120, 119, 198, 0.3);
@@ -95,7 +121,11 @@
   height: 70px;
   top: 8%;
   right: 20%;
-  background: linear-gradient(315deg, rgba(102, 126, 234, 0.2), rgba(255, 255, 255, 0.15));
+  background: linear-gradient(
+    315deg,
+    rgba(102, 126, 234, 0.2),
+    rgba(255, 255, 255, 0.15)
+  );
   border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
   animation-delay: 1s;
   animation-name: floatRotate;
@@ -103,7 +133,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg) scale(1);
     opacity: 0.7;
   }
@@ -114,7 +145,8 @@
 }
 
 @keyframes floatMorph {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
     opacity: 0.7;
@@ -135,7 +167,8 @@
 }
 
 @keyframes floatRotate {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg) scale(1);
     border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
     opacity: 0.7;
@@ -164,7 +197,11 @@
   height: 20px;
   top: 25%;
   left: 5%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(120, 219, 255, 0.2) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(120, 219, 255, 0.2) 100%
+  );
   animation-delay: 0s;
 }
 
@@ -173,7 +210,11 @@
   height: 28px;
   top: 45%;
   right: 8%;
-  background: radial-gradient(circle, rgba(255, 119, 198, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 119, 198, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
   animation-delay: 1.5s;
 }
 
@@ -182,7 +223,11 @@
   height: 15px;
   top: 65%;
   left: 3%;
-  background: radial-gradient(circle, rgba(102, 126, 234, 0.4) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(102, 126, 234, 0.4) 0%,
+    transparent 70%
+  );
   animation-delay: 3s;
 }
 
@@ -191,7 +236,11 @@
   height: 32px;
   top: 80%;
   right: 5%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(120, 119, 198, 0.3) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(120, 119, 198, 0.3) 100%
+  );
   animation-delay: 4.5s;
 }
 
@@ -200,7 +249,11 @@
   height: 22px;
   top: 35%;
   left: 85%;
-  background: radial-gradient(circle, rgba(255, 119, 198, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 119, 198, 0.25) 0%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
   animation-delay: 6s;
 }
 
@@ -209,7 +262,11 @@
   height: 18px;
   top: 55%;
   left: 92%;
-  background: radial-gradient(circle, rgba(120, 219, 255, 0.35) 0%, transparent 80%);
+  background: radial-gradient(
+    circle,
+    rgba(120, 219, 255, 0.35) 0%,
+    transparent 80%
+  );
   animation-delay: 7.5s;
 }
 
@@ -218,7 +275,11 @@
   height: 25px;
   top: 12%;
   left: 40%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, rgba(102, 126, 234, 0.2) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(102, 126, 234, 0.2) 100%
+  );
   animation-delay: 2s;
 }
 
@@ -227,12 +288,17 @@
   height: 30px;
   top: 90%;
   left: 60%;
-  background: radial-gradient(circle, rgba(255, 119, 198, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 119, 198, 0.2) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
   animation-delay: 5s;
 }
 
 @keyframes floatCircle {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) translateX(0px) scale(1);
     opacity: 0.6;
   }
@@ -389,7 +455,11 @@
   height: 50px;
   top: 25%;
   left: 20%;
-  background: linear-gradient(135deg, rgba(255, 119, 198, 0.15) 0%, rgba(120, 219, 255, 0.2) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 119, 198, 0.15) 0%,
+    rgba(120, 219, 255, 0.2) 100%
+  );
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   animation-delay: 0s;
   filter: blur(1px);
@@ -400,7 +470,11 @@
   height: 65px;
   top: 75%;
   right: 25%;
-  background: linear-gradient(225deg, rgba(102, 126, 234, 0.18) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: linear-gradient(
+    225deg,
+    rgba(102, 126, 234, 0.18) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
   border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
   animation-delay: 5s;
   filter: blur(0.5px);
@@ -411,7 +485,11 @@
   height: 40px;
   top: 18%;
   right: 15%;
-  background: linear-gradient(315deg, rgba(120, 219, 255, 0.2) 0%, rgba(255, 119, 198, 0.15) 100%);
+  background: linear-gradient(
+    315deg,
+    rgba(120, 219, 255, 0.2) 0%,
+    rgba(255, 119, 198, 0.15) 100%
+  );
   border-radius: 70% 30% 50% 50% / 30% 70% 50% 50%;
   animation-delay: 10s;
   animation-duration: 12s;
@@ -422,7 +500,11 @@
   height: 45px;
   top: 92%;
   left: 35%;
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 0%, rgba(120, 119, 198, 0.2) 100%);
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(120, 119, 198, 0.2) 100%
+  );
   border-radius: 50% 50% 80% 20% / 50% 50% 20% 80%;
   animation-delay: 7s;
   animation-duration: 18s;
@@ -442,7 +524,11 @@
   top: 35%;
   left: 70%;
   border: 2px solid rgba(255, 255, 255, 0.3);
-  background: radial-gradient(circle, transparent 60%, rgba(120, 219, 255, 0.2) 100%);
+  background: radial-gradient(
+    circle,
+    transparent 60%,
+    rgba(120, 219, 255, 0.2) 100%
+  );
   animation-delay: 0s;
 }
 
@@ -452,14 +538,22 @@
   top: 82%;
   left: 80%;
   border: 1.5px solid rgba(255, 119, 198, 0.4);
-  background: radial-gradient(circle, transparent 50%, rgba(255, 119, 198, 0.15) 100%);
+  background: radial-gradient(
+    circle,
+    transparent 50%,
+    rgba(255, 119, 198, 0.15) 100%
+  );
   animation-delay: 2s;
 }
 
 /* Partículas brillantes */
 .sparkle {
   position: absolute;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.8) 0%,
+    transparent 70%
+  );
   border-radius: 50%;
   animation: sparkleAnimation 3s ease-in-out infinite;
 }
@@ -517,7 +611,12 @@
   position: absolute;
   width: 200%;
   height: 200%;
-  background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.03) 50%, transparent 60%);
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.03) 50%,
+    transparent 60%
+  );
   animation: waveMove 25s linear infinite;
 }
 
@@ -531,12 +630,18 @@
   top: -50%;
   left: -50%;
   animation-delay: 12.5s;
-  background: linear-gradient(-45deg, transparent 40%, rgba(255, 255, 255, 0.02) 50%, transparent 60%);
+  background: linear-gradient(
+    -45deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.02) 50%,
+    transparent 60%
+  );
 }
 
 /* Animaciones adicionales */
 @keyframes floatSlow {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
     opacity: 0.6;
   }
@@ -556,7 +661,8 @@
 }
 
 @keyframes morphFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg) scale(1);
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     opacity: 0.6;
@@ -584,7 +690,8 @@
 }
 
 @keyframes ringPulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1) rotate(0deg);
     opacity: 0.6;
   }
@@ -595,7 +702,8 @@
 }
 
 @keyframes sparkleAnimation {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
     transform: scale(0.5);
   }
@@ -615,7 +723,7 @@
 }
 
 /* Estilos del formulario */
-#contenedor-encuesta{
+#contenedor-encuesta {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -650,7 +758,11 @@
 
 /* Mensaje informativo */
 .info-message {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 197, 253, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(147, 197, 253, 0.1) 100%
+  );
   border: 1px solid rgba(59, 130, 246, 0.2);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -682,19 +794,19 @@
 }
 
 /* Estilos mejorados del formulario */
-.input{
+.input {
   height: 2rem;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
 }
 
-.label{
+.label {
   height: 2rem;
   width: 100%;
 }
 
-#input-nombre{
+#input-nombre {
   width: 100%;
   max-width: 100%;
   border-radius: 0.8rem;
@@ -709,7 +821,7 @@
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-#float-label-nombre-encuesta{
+#float-label-nombre-encuesta {
   width: 100%;
   max-width: 500px; /* Limita el ancho máximo para mejor centrado */
   margin-bottom: 1.5rem;
@@ -719,7 +831,7 @@
   align-items: center;
 }
 
-ul{
+ul {
   margin-left: 0;
   margin-right: 0;
   margin-top: 0.5rem;
@@ -731,7 +843,7 @@ ul li {
   color: #4a5568;
 }
 
-.contenedor-opcion{
+.contenedor-opcion {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -743,12 +855,12 @@ ul li {
   min-width: 0; /* Permite que se encoja */
 }
 
-.boton-eliminar-pregunta{
+.boton-eliminar-pregunta {
   margin-top: 1rem;
   flex-shrink: 0; /* Evita que el botón se encoja */
 }
 
-#boton-finalizar{
+#boton-finalizar {
   margin: 2rem 0 1rem 0;
   padding: 0.8rem 2.5rem;
   font-size: 1.1rem;
@@ -767,7 +879,7 @@ ul li {
   background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
 }
 
-.contenedor-pregunta{
+.contenedor-pregunta {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -790,7 +902,7 @@ ul li {
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
 }
 
-.botonera-pregunta{
+.botonera-pregunta {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -799,7 +911,7 @@ ul li {
   margin-top: 1rem;
 }
 
-#boton-eliminar-pregunta{
+#boton-eliminar-pregunta {
   border-radius: 0.8rem;
   transition: all 0.3s ease;
 }
@@ -809,7 +921,7 @@ ul li {
   box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
 }
 
-.texto-pregunta{
+.texto-pregunta {
   font-weight: bold;
   margin: 0 0 1rem 0;
   width: 100%;
@@ -823,7 +935,7 @@ ul li {
   hyphens: auto; /* Permite división de palabras */
 }
 
-.texto-opcion{
+.texto-opcion {
   width: 100%;
   max-width: 100%;
   word-wrap: break-word;
@@ -912,7 +1024,9 @@ ul li {
 }
 
 /* Centrar el botón "Agregar Pregunta" cuando está solo */
-::ng-deep app-seccion .p-button:not(#boton-eliminar-pregunta):not(#boton-finalizar) {
+::ng-deep
+  app-seccion
+  .p-button:not(#boton-eliminar-pregunta):not(#boton-finalizar) {
   margin: 0 !important;
 }
 
@@ -962,7 +1076,7 @@ ul li {
     margin: 0.8rem 0;
   }
 
-  .texto-pregunta{
+  .texto-pregunta {
     font-size: 1rem;
   }
 
@@ -980,7 +1094,7 @@ ul li {
     max-width: 400px !important;
   }
 
-  #float-label-nombre-encuesta{
+  #float-label-nombre-encuesta {
     max-width: 400px;
   }
 
@@ -1041,7 +1155,7 @@ ul li {
     gap: 0.5rem;
   }
 
-  .texto-pregunta{
+  .texto-pregunta {
     font-size: 0.95rem;
   }
 
@@ -1074,7 +1188,7 @@ ul li {
     max-width: 300px !important;
   }
 
-  #float-label-nombre-encuesta{
+  #float-label-nombre-encuesta {
     max-width: 300px;
   }
 
@@ -1136,22 +1250,38 @@ ul li {
 }
 
 ::ng-deep .p-toast .p-toast-message.p-toast-message-success {
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.95) 0%, rgba(21, 128, 61, 0.95) 100%) !important;
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.95) 0%,
+    rgba(21, 128, 61, 0.95) 100%
+  ) !important;
   color: white !important;
 }
 
 ::ng-deep .p-toast .p-toast-message.p-toast-message-error {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.95) 0%, rgba(185, 28, 28, 0.95) 100%) !important;
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.95) 0%,
+    rgba(185, 28, 28, 0.95) 100%
+  ) !important;
   color: white !important;
 }
 
 ::ng-deep .p-toast .p-toast-message.p-toast-message-warn {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.95) 0%, rgba(180, 83, 9, 0.95) 100%) !important;
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.95) 0%,
+    rgba(180, 83, 9, 0.95) 100%
+  ) !important;
   color: white !important;
 }
 
 ::ng-deep .p-toast .p-toast-message.p-toast-message-info {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.95) 0%, rgba(29, 78, 216, 0.95) 100%) !important;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.95) 0%,
+    rgba(29, 78, 216, 0.95) 100%
+  ) !important;
   color: white !important;
 }
 
@@ -1271,14 +1401,22 @@ ul li {
   margin-bottom: 1rem;
   border: 2px solid rgba(102, 126, 234, 0.2);
   border-radius: 1rem;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(147, 197, 253, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.05) 0%,
+    rgba(147, 197, 253, 0.05) 100%
+  );
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .item-pregunta-seleccion:hover {
   border-color: rgba(102, 126, 234, 0.4);
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(147, 197, 253, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.1) 0%,
+    rgba(147, 197, 253, 0.1) 100%
+  );
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
 }
@@ -1375,12 +1513,14 @@ ul li {
   background: #008cff;
   color: #fff;
   border: none;
-  box-shadow: 0 2px 8px rgba(0,140,255,0.10);
+  box-shadow: 0 2px 8px rgba(0, 140, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.3rem;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .boton-volver:hover {
@@ -1403,14 +1543,17 @@ ul li {
   gap: 1.5rem;
 }
 
-h1{
+h1 {
   text-align: center;
   font-size: 2rem;
   margin-bottom: 1rem;
   color: #333;
 }
 
-p-floatlabel, button, ul, p{
+p-floatlabel,
+button,
+ul,
+p {
   width: 100%;
 }
 
@@ -1440,12 +1583,12 @@ ul {
   padding-left: 1rem;
 }
 
-::ng-deep .p-button{
+::ng-deep .p-button {
   background-color: #008cff !important;
   color: white !important;
 }
 
-::ng-deep .p-button:hover{
+::ng-deep .p-button:hover {
   background-color: #fff !important;
   color: #008cff !important;
   border: 2px solid #008cff !important;
@@ -1509,7 +1652,7 @@ ul {
   color: #333;
 }
 
-.texto-opcion{
+.texto-opcion {
   margin-left: 1rem;
   max-width: 30vw;
   word-wrap: break-word;
@@ -1517,21 +1660,22 @@ ul {
   color: #333;
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
   #contenedor-encuesta {
     padding: 1.5rem;
   }
 
-  .texto-pregunta, .texto-opcion{
+  .texto-pregunta,
+  .texto-opcion {
     max-width: 100%;
   }
 }
 
 @media (min-width: 500px) {
-  .texto-opcion{
+  .texto-opcion {
     max-width: 25vw;
   }
-  .texto-pregunta{
+  .texto-pregunta {
     max-width: 25vw;
   }
 }

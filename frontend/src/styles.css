@@ -1,19 +1,20 @@
 @import "primeicons/primeicons.css"; /* Importa los iconos de PrimeNG para su uso en la app */
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap");
 
 /* Importa las fuentes de Google Fonts para su uso en la app */
-*{
-    font-family:'Montserrat', Arial, Helvetica, sans-serif; /* Define la fuente base de la aplicación */
+* {
+  font-family:
+    "Montserrat", Arial, Helvetica, sans-serif; /* Define la fuente base de la aplicación */
 }
 /* Estilos globales para el body */
-body{
-    margin: 0; /* Elimina el margen por defecto del body */
-    height: 100vh; /* Ocupa el 100% de la altura de la ventana */
-    display: flex; /* Usa flexbox para el layout */
-    justify-content: center; /* Centra horizontalmente el contenido */
+body {
+  margin: 0; /* Elimina el margen por defecto del body */
+  height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+  display: flex; /* Usa flexbox para el layout */
+  justify-content: center; /* Centra horizontalmente el contenido */
 }
 
 /* Ajusta el tamaño base de la fuente para todo el HTML */
 html {
-    font-size: 1.2rem; /* Tamaño de fuente base aumentado */
+  font-size: 1.2rem; /* Tamaño de fuente base aumentado */
 }

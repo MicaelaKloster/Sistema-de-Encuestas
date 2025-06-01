@@ -15,12 +15,14 @@
   margin-bottom: 1.6rem;
 }
 
-.enlace, .qr {
+.enlace,
+.qr {
   margin-bottom: 1.6rem;
   text-align: left;
 }
 
-.enlace label, .qr label {
+.enlace label,
+.qr label {
   display: block;
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -65,7 +67,7 @@
   font-weight: 600;
   font-size: 0.9rem;
   transition: background-color 0.3s ease;
-  max-width: 100px;  
+  max-width: 100px;
   box-sizing: border-box;
 }
 

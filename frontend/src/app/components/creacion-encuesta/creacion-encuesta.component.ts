@@ -48,7 +48,8 @@ export class CreacionEncuestaComponent {
   // Servicios y utilidades inyectados
   private messageService: MessageService = inject(MessageService);
   private router: Router = inject(Router);
-  private confirmationService: ConfirmationService = inject(ConfirmationService);
+  private confirmationService: ConfirmationService =
+    inject(ConfirmationService);
   private encuestasService: EncuestasService = inject(EncuestasService);
 
   // Controla la visibilidad del diálogo para agregar/editar preguntas
@@ -70,7 +71,7 @@ export class CreacionEncuestaComponent {
       nombre: new FormControl<string>('', Validators.required), // Nombre de la encuesta
       preguntas: new FormArray<FormControl<PreguntaDTO>>(
         [],
-        [Validators.required, Validators.minLength(1)] // Al menos una pregunta requerida
+        [Validators.required, Validators.minLength(1)], // Al menos una pregunta requerida
       ),
     });
   }
@@ -102,7 +103,7 @@ export class CreacionEncuestaComponent {
         severity: 'warn',
         summary: 'No hay preguntas',
         detail: 'Primero agrega una pregunta para poder editarla',
-        life: 4000
+        life: 4000,
       });
       return;
     }
@@ -119,7 +120,7 @@ export class CreacionEncuestaComponent {
         severity: 'error',
         summary: 'Error',
         detail: 'No se pudo encontrar la pregunta a editar',
-        life: 4000
+        life: 4000,
       });
       return;
     }
@@ -139,7 +140,7 @@ export class CreacionEncuestaComponent {
       severity: 'info',
       summary: 'Modo edición',
       detail: `Editando: "${pregunta.texto}"`,
-      life: 3000
+      life: 3000,
     });
   }
 
@@ -165,12 +166,12 @@ export class CreacionEncuestaComponent {
         severity: 'success',
         summary: 'Pregunta actualizada',
         detail: `Se actualizó la pregunta: "${pregunta.texto}"`,
-        life: 3000
+        life: 3000,
       });
     } else {
       // Modo agregar: nueva pregunta
       this.preguntas.push(
-        new FormControl<PreguntaDTO>(pregunta) as FormControl<PreguntaDTO>
+        new FormControl<PreguntaDTO>(pregunta) as FormControl<PreguntaDTO>,
       );
 
       // Mostrar mensaje de confirmación
@@ -178,7 +179,7 @@ export class CreacionEncuestaComponent {
         severity: 'success',
         summary: 'Pregunta agregada',
         detail: `Se agregó la pregunta: "${pregunta.texto}"`,
-        life: 3000
+        life: 3000,
       });
     }
   }
@@ -192,15 +193,17 @@ export class CreacionEncuestaComponent {
     this.messageService.add({
       severity: 'info',
       summary: 'Pregunta eliminada',
-      detail: preguntaEliminada ? `Se eliminó la pregunta: "${preguntaEliminada.texto}"` : 'Pregunta eliminada correctamente',
-      life: 3000
+      detail: preguntaEliminada
+        ? `Se eliminó la pregunta: "${preguntaEliminada.texto}"`
+        : 'Pregunta eliminada correctamente',
+      life: 3000,
     });
   }
 
   // Devuelve la presentación textual del tipo de pregunta
   getTipoPreguntaPresentacion(tipo: TiposRespuestaEnum): string {
     return tiposPreguntaPresentacion.find(
-      (tipoPresentacion) => tipoPresentacion.tipo === tipo
+      (tipoPresentacion) => tipoPresentacion.tipo === tipo,
     )!?.presentacion;
   }
 
@@ -258,16 +261,19 @@ export class CreacionEncuestaComponent {
       this.messageService.add({
         severity: 'warn',
         summary: 'Campos requeridos',
-        detail: errores.join('. ') + '. Complete todos los campos antes de continuar.',
+        detail:
+          errores.join('. ') +
+          '. Complete todos los campos antes de continuar.',
         life: 6000,
-        sticky: false
+        sticky: false,
       });
     } else {
       this.messageService.add({
         severity: 'error',
         summary: 'Error de validación',
-        detail: 'Por favor, revisa los campos del formulario. Si el problema persiste, usa el botón "Probar Conectividad" para verificar la conexión con el servidor.',
-        life: 6000
+        detail:
+          'Por favor, revisa los campos del formulario. Si el problema persiste, usa el botón "Probar Conectividad" para verificar la conexión con el servidor.',
+        life: 6000,
       });
     }
   }
@@ -300,9 +306,9 @@ export class CreacionEncuestaComponent {
           severity: 'info',
           summary: 'Operación cancelada',
           detail: 'La pregunta no fue eliminada',
-          life: 2000
+          life: 2000,
         });
-      }
+      },
     });
   }
 
@@ -313,7 +319,7 @@ export class CreacionEncuestaComponent {
     console.log('📋 Estado del formulario:', {
       valid: this.form.valid,
       value: this.form.value,
-      errors: this.form.errors
+      errors: this.form.errors,
     });
 
     // Verificar que el formulario sea válido
@@ -328,7 +334,7 @@ export class CreacionEncuestaComponent {
       severity: 'info',
       summary: 'Creando encuesta...',
       detail: 'Por favor espera mientras procesamos tu encuesta',
-      life: 2000
+      life: 2000,
     });
 
     // Obtiene los datos del formulario
@@ -341,9 +347,8 @@ export class CreacionEncuestaComponent {
       enlaceCorto: '',
       codigoQR: '',
       nombre: formData.nombre,
-      preguntas: formData.preguntas || []
+      preguntas: formData.preguntas || [],
     };
-
 
     // Si el backend requiere estos campos, los agregamos como strings vacíos
     // El backend debería generar los valores reales
@@ -357,21 +362,24 @@ export class CreacionEncuestaComponent {
     console.log('📝 Datos de la encuesta antes de procesar:', encuesta);
 
     // Validar que tenemos datos básicos
-    if (!encuesta.nombre || !encuesta.preguntas || encuesta.preguntas.length === 0) {
+    if (
+      !encuesta.nombre ||
+      !encuesta.preguntas ||
+      encuesta.preguntas.length === 0
+    ) {
       console.error('❌ Datos de encuesta incompletos:', {
         nombre: encuesta.nombre,
-        preguntasLength: encuesta.preguntas?.length || 0
+        preguntasLength: encuesta.preguntas?.length || 0,
       });
 
       this.messageService.add({
         severity: 'error',
         summary: 'Datos incompletos',
         detail: 'Faltan datos requeridos para crear la encuesta',
-        life: 5000
+        life: 5000,
       });
       return;
     }
-
 
     // Asigna el número de orden a cada pregunta y opción antes de enviar
     for (let i = 0; i < encuesta.preguntas.length; i++) {
@@ -397,7 +405,7 @@ export class CreacionEncuestaComponent {
           severity: 'success',
           summary: '¡Encuesta creada exitosamente!',
           detail: `La encuesta "${encuesta.nombre}" se ha creado correctamente con ${encuesta.preguntas.length} pregunta${encuesta.preguntas.length > 1 ? 's' : ''}`,
-          life: 4000
+          life: 4000,
         });
 
         // Pequeño delay para que el usuario vea el mensaje antes de redirigir
@@ -409,7 +417,7 @@ export class CreacionEncuestaComponent {
               '&codigo-respuesta=' +
               res.codigoRespuesta +
               '&codigo-resultados=' +
-              res.codigoResultados
+              res.codigoResultados,
           );
         }, 1500);
       },
@@ -420,11 +428,12 @@ export class CreacionEncuestaComponent {
           statusText: err.statusText,
           message: err.message,
           error: err.error,
-          url: err.url
+          url: err.url,
         });
 
         // Mensaje de error detallado
-        let errorDetail = 'Verifica tu conexión a internet e intenta nuevamente';
+        let errorDetail =
+          'Verifica tu conexión a internet e intenta nuevamente';
         let errorSummary = 'Error al crear la encuesta';
 
         if (err.status === 400) {
@@ -435,10 +444,12 @@ export class CreacionEncuestaComponent {
         } else if (err.status === 500) {
           errorDetail = 'Error interno del servidor. Intenta más tarde';
         } else if (err.status === 0) {
-          errorDetail = 'No se pudo conectar con el servidor. Verifica que el backend esté ejecutándose';
+          errorDetail =
+            'No se pudo conectar con el servidor. Verifica que el backend esté ejecutándose';
           errorSummary = 'Sin conexión al servidor';
         } else if (err.status === 404) {
-          errorDetail = 'El endpoint de creación de encuestas no fue encontrado';
+          errorDetail =
+            'El endpoint de creación de encuestas no fue encontrado';
           errorSummary = 'Servicio no encontrado';
         }
 
@@ -447,7 +458,7 @@ export class CreacionEncuestaComponent {
           summary: errorSummary,
           detail: errorDetail,
           life: 8000,
-          sticky: true
+          sticky: true,
         });
       },
     });

@@ -1,4 +1,4 @@
-::ng-deep .p-dialog{
+::ng-deep .p-dialog {
   background-color: rgb(199, 199, 199) !important;
   color: #333 !important;
 }
@@ -65,7 +65,7 @@ ul {
   margin-bottom: 1rem;
 }
 
-#botonera-opciones{
+#botonera-opciones {
   margin-left: 1rem;
   display: flex;
   justify-content: flex-end;

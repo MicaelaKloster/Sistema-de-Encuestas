@@ -62,7 +62,8 @@ export class GestionPreguntaDialogComponent {
 
   // Servicios de mensajes y confirmación de PrimeNG
   private messageService: MessageService = inject(MessageService);
-  private confirmationService: ConfirmationService = inject(ConfirmationService);
+  private confirmationService: ConfirmationService =
+    inject(ConfirmationService);
 
   constructor() {
     // Inicializa el formulario con controles y validadores
@@ -115,11 +116,11 @@ export class GestionPreguntaDialogComponent {
 
     // Cargar opciones si existen
     if (pregunta.opciones && pregunta.opciones.length > 0) {
-      pregunta.opciones.forEach(opcion => {
+      pregunta.opciones.forEach((opcion) => {
         this.opciones.push(
           new FormControl<Pick<CreateOpcionDTO, 'texto'>>({
             texto: opcion.texto,
-          }) as FormControl<Pick<CreateOpcionDTO, 'texto'>>
+          }) as FormControl<Pick<CreateOpcionDTO, 'texto'>>,
         );
       });
     }
@@ -164,10 +165,10 @@ export class GestionPreguntaDialogComponent {
     const pregunta: PreguntaDTO = this.form.value;
 
     if (pregunta.tipo === TiposRespuestaEnum.VERDADERO_FALSO) {
-    pregunta.opciones = [
-          { numero: 1, texto: 'Verdadero' },
-          { numero: 2, texto: 'Falso' },
-    ];
+      pregunta.opciones = [
+        { numero: 1, texto: 'Verdadero' },
+        { numero: 2, texto: 'Falso' },
+      ];
     }
 
     this.agregarPregunta.emit(pregunta); // Emite la pregunta al componente padre

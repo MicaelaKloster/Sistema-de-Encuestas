@@ -1,4 +1,12 @@
-import { Component, effect, inject, input, model, output, signal } from '@angular/core';
+import {
+  Component,
+  effect,
+  inject,
+  input,
+  model,
+  output,
+  signal,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,

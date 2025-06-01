@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-texto-error',
   imports: [],
   templateUrl: './texto-error.component.html',
-  styleUrl: './texto-error.component.css'
+  styleUrl: './texto-error.component.css',
 })
-export class TextoErrorComponent {
-
-}
+export class TextoErrorComponent {}

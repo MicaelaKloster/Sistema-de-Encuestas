@@ -20,28 +20,42 @@
 
   padding: 1rem;
   background:
-    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%),
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(120, 119, 198, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 119, 198, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(120, 219, 255, 0.2) 0%,
+      transparent 50%
+    ),
     linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
   overflow: hidden;
   box-sizing: border-box;
 
   padding: 0;
   overflow: auto; /* Permite el scroll si el contenido es más grande que la ventana */
-
 }
 
 /* Patrón de puntos decorativo */
 .banner-container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image:
-    radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.1) 2px, transparent 2px);
+  background-image: radial-gradient(
+    circle at 25px 25px,
+    rgba(255, 255, 255, 0.1) 2px,
+    transparent 2px
+  );
   background-size: 50px 50px;
   animation: movePattern 20s linear infinite;
   z-index: 1;
@@ -77,7 +91,11 @@
   height: 80px;
   top: 20%;
   left: 10%;
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(120, 219, 255, 0.3));
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(120, 219, 255, 0.3)
+  );
   border-radius: 50%;
   animation-delay: 0s;
   box-shadow: 0 8px 32px rgba(120, 219, 255, 0.3);
@@ -88,7 +106,11 @@
   height: 120px;
   top: 60%;
   right: 15%;
-  background: linear-gradient(135deg, rgba(255, 119, 198, 0.2), rgba(255, 255, 255, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 119, 198, 0.2),
+    rgba(255, 255, 255, 0.1)
+  );
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   animation-delay: 2s;
   animation-name: floatMorph;
@@ -100,7 +122,11 @@
   height: 60px;
   top: 80%;
   left: 20%;
-  background: linear-gradient(225deg, rgba(120, 119, 198, 0.3), rgba(255, 255, 255, 0.2));
+  background: linear-gradient(
+    225deg,
+    rgba(120, 119, 198, 0.3),
+    rgba(255, 255, 255, 0.2)
+  );
   border-radius: 50%;
   animation-delay: 4s;
   box-shadow: 0 8px 32px rgba(120, 119, 198, 0.3);
@@ -111,7 +137,11 @@
   height: 100px;
   top: 10%;
   right: 25%;
-  background: linear-gradient(315deg, rgba(102, 126, 234, 0.2), rgba(255, 255, 255, 0.15));
+  background: linear-gradient(
+    315deg,
+    rgba(102, 126, 234, 0.2),
+    rgba(255, 255, 255, 0.15)
+  );
   border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
   animation-delay: 1s;
   animation-name: floatRotate;
@@ -120,7 +150,7 @@
 
 /* Formas adicionales para más dinamismo */
 .shape-1::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -133,7 +163,7 @@
 }
 
 .shape-3::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 10px;
   right: 10px;
@@ -145,7 +175,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg) scale(1);
     opacity: 0.7;
   }
@@ -156,7 +187,8 @@
 }
 
 @keyframes floatMorph {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
     opacity: 0.7;
@@ -177,7 +209,8 @@
 }
 
 @keyframes floatRotate {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg) scale(1);
     border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
     opacity: 0.7;
@@ -206,7 +239,11 @@
   height: 25px;
   top: 12%;
   left: 8%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(120, 219, 255, 0.2) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(120, 219, 255, 0.2) 100%
+  );
   animation-delay: 0s;
   box-shadow: 0 4px 20px rgba(120, 219, 255, 0.4);
 }
@@ -216,7 +253,11 @@
   height: 35px;
   top: 25%;
   right: 12%;
-  background: radial-gradient(circle, rgba(255, 119, 198, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 119, 198, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
   animation-delay: 1.5s;
   box-shadow: 0 4px 20px rgba(255, 119, 198, 0.4);
 }
@@ -226,7 +267,11 @@
   height: 18px;
   top: 45%;
   left: 5%;
-  background: radial-gradient(circle, rgba(102, 126, 234, 0.4) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(102, 126, 234, 0.4) 0%,
+    transparent 70%
+  );
   animation-delay: 3s;
   animation-duration: 8s;
 }
@@ -236,7 +281,11 @@
   height: 42px;
   top: 65%;
   right: 8%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(120, 119, 198, 0.3) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(120, 119, 198, 0.3) 100%
+  );
   animation-delay: 4.5s;
   box-shadow: 0 6px 25px rgba(120, 119, 198, 0.3);
 }
@@ -246,7 +295,11 @@
   height: 28px;
   top: 85%;
   left: 15%;
-  background: radial-gradient(circle, rgba(255, 119, 198, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 119, 198, 0.25) 0%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
   animation-delay: 6s;
   animation-duration: 12s;
 }
@@ -256,7 +309,11 @@
   height: 22px;
   top: 35%;
   left: 85%;
-  background: radial-gradient(circle, rgba(120, 219, 255, 0.35) 0%, transparent 80%);
+  background: radial-gradient(
+    circle,
+    rgba(120, 219, 255, 0.35) 0%,
+    transparent 80%
+  );
   animation-delay: 7.5s;
   animation-duration: 9s;
 }
@@ -266,7 +323,11 @@
   height: 38px;
   top: 55%;
   left: 3%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, rgba(102, 126, 234, 0.2) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(102, 126, 234, 0.2) 100%
+  );
   animation-delay: 2s;
   box-shadow: 0 5px 22px rgba(102, 126, 234, 0.35);
 }
@@ -276,7 +337,11 @@
   height: 15px;
   top: 75%;
   right: 25%;
-  background: radial-gradient(circle, rgba(255, 119, 198, 0.4) 0%, transparent 60%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 119, 198, 0.4) 0%,
+    transparent 60%
+  );
   animation-delay: 8s;
   animation-duration: 7s;
 }
@@ -286,7 +351,11 @@
   height: 32px;
   top: 18%;
   left: 45%;
-  background: radial-gradient(circle, rgba(120, 219, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(120, 219, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
   animation-delay: 9.5s;
   animation-duration: 11s;
 }
@@ -296,7 +365,11 @@
   height: 26px;
   top: 92%;
   right: 35%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(120, 119, 198, 0.25) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(120, 119, 198, 0.25) 100%
+  );
   animation-delay: 1s;
   animation-duration: 13s;
 }
@@ -306,7 +379,11 @@
   height: 20px;
   top: 8%;
   right: 45%;
-  background: radial-gradient(circle, rgba(102, 126, 234, 0.35) 0%, transparent 75%);
+  background: radial-gradient(
+    circle,
+    rgba(102, 126, 234, 0.35) 0%,
+    transparent 75%
+  );
   animation-delay: 11s;
   animation-duration: 6s;
 }
@@ -316,13 +393,18 @@
   height: 45px;
   top: 40%;
   left: 92%;
-  background: radial-gradient(circle, rgba(255, 119, 198, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 119, 198, 0.2) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
   animation-delay: 5s;
   box-shadow: 0 7px 30px rgba(255, 119, 198, 0.3);
 }
 
 @keyframes floatCircle {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) translateX(0px) scale(1);
     opacity: 0.6;
   }
@@ -352,7 +434,11 @@
   height: 60px;
   top: 22%;
   left: 25%;
-  background: linear-gradient(135deg, rgba(255, 119, 198, 0.15) 0%, rgba(120, 219, 255, 0.2) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 119, 198, 0.15) 0%,
+    rgba(120, 219, 255, 0.2) 100%
+  );
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   animation-delay: 0s;
   filter: blur(1px);
@@ -363,7 +449,11 @@
   height: 80px;
   top: 70%;
   right: 30%;
-  background: linear-gradient(225deg, rgba(102, 126, 234, 0.18) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: linear-gradient(
+    225deg,
+    rgba(102, 126, 234, 0.18) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
   border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
   animation-delay: 5s;
   filter: blur(0.5px);
@@ -374,7 +464,11 @@
   height: 45px;
   top: 15%;
   right: 20%;
-  background: linear-gradient(315deg, rgba(120, 219, 255, 0.2) 0%, rgba(255, 119, 198, 0.15) 100%);
+  background: linear-gradient(
+    315deg,
+    rgba(120, 219, 255, 0.2) 0%,
+    rgba(255, 119, 198, 0.15) 100%
+  );
   border-radius: 70% 30% 50% 50% / 30% 70% 50% 50%;
   animation-delay: 10s;
   animation-duration: 12s;
@@ -385,7 +479,11 @@
   height: 55px;
   top: 88%;
   left: 40%;
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 0%, rgba(120, 119, 198, 0.2) 100%);
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(120, 119, 198, 0.2) 100%
+  );
   border-radius: 50% 50% 80% 20% / 50% 50% 20% 80%;
   animation-delay: 7s;
   animation-duration: 18s;
@@ -396,7 +494,11 @@
   height: 35px;
   top: 50%;
   left: 12%;
-  background: linear-gradient(180deg, rgba(255, 119, 198, 0.25) 0%, rgba(102, 126, 234, 0.15) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 119, 198, 0.25) 0%,
+    rgba(102, 126, 234, 0.15) 100%
+  );
   border-radius: 80% 20% 60% 40% / 20% 80% 40% 60%;
   animation-delay: 12s;
   animation-duration: 14s;
@@ -407,14 +509,19 @@
   height: 70px;
   top: 35%;
   right: 5%;
-  background: linear-gradient(90deg, rgba(120, 219, 255, 0.18) 0%, rgba(255, 255, 255, 0.12) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(120, 219, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.12) 100%
+  );
   border-radius: 30% 70% 40% 60% / 70% 30% 60% 40%;
   animation-delay: 3s;
   animation-duration: 16s;
 }
 
 @keyframes morphFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg) scale(1);
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     opacity: 0.6;
@@ -455,7 +562,11 @@
   top: 28%;
   left: 65%;
   border: 2px solid rgba(255, 255, 255, 0.3);
-  background: radial-gradient(circle, transparent 60%, rgba(120, 219, 255, 0.2) 100%);
+  background: radial-gradient(
+    circle,
+    transparent 60%,
+    rgba(120, 219, 255, 0.2) 100%
+  );
   animation-delay: 0s;
 }
 
@@ -465,7 +576,11 @@
   top: 78%;
   left: 75%;
   border: 1.5px solid rgba(255, 119, 198, 0.4);
-  background: radial-gradient(circle, transparent 50%, rgba(255, 119, 198, 0.15) 100%);
+  background: radial-gradient(
+    circle,
+    transparent 50%,
+    rgba(255, 119, 198, 0.15) 100%
+  );
   animation-delay: 2s;
 }
 
@@ -475,7 +590,11 @@
   top: 5%;
   left: 30%;
   border: 2.5px solid rgba(102, 126, 234, 0.25);
-  background: radial-gradient(circle, transparent 70%, rgba(102, 126, 234, 0.1) 100%);
+  background: radial-gradient(
+    circle,
+    transparent 70%,
+    rgba(102, 126, 234, 0.1) 100%
+  );
   animation-delay: 4s;
   animation-duration: 10s;
 }
@@ -486,13 +605,18 @@
   top: 60%;
   left: 85%;
   border: 2px solid rgba(120, 119, 198, 0.35);
-  background: radial-gradient(circle, transparent 55%, rgba(120, 119, 198, 0.18) 100%);
+  background: radial-gradient(
+    circle,
+    transparent 55%,
+    rgba(120, 119, 198, 0.18) 100%
+  );
   animation-delay: 6s;
   animation-duration: 12s;
 }
 
 @keyframes ringPulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1) rotate(0deg);
     opacity: 0.6;
   }
@@ -649,7 +773,11 @@
 /* Partículas brillantes */
 .sparkle {
   position: absolute;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.8) 0%,
+    transparent 70%
+  );
   border-radius: 50%;
   animation: sparkleAnimation 3s ease-in-out infinite;
 }
@@ -743,7 +871,12 @@
   position: absolute;
   width: 200%;
   height: 200%;
-  background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.03) 50%, transparent 60%);
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.03) 50%,
+    transparent 60%
+  );
   animation: waveMove 25s linear infinite;
 }
 
@@ -757,20 +890,31 @@
   top: -50%;
   left: -50%;
   animation-delay: 12.5s;
-  background: linear-gradient(-45deg, transparent 40%, rgba(255, 255, 255, 0.02) 50%, transparent 60%);
+  background: linear-gradient(
+    -45deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.02) 50%,
+    transparent 60%
+  );
 }
 
 .wave-3 {
   top: -50%;
   left: -50%;
   animation-delay: 8s;
-  background: linear-gradient(90deg, transparent 35%, rgba(255, 255, 255, 0.025) 50%, transparent 65%);
+  background: linear-gradient(
+    90deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.025) 50%,
+    transparent 65%
+  );
   animation-duration: 30s;
 }
 
 /* Animaciones adicionales */
 @keyframes floatSlow {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
     opacity: 0.6;
   }
@@ -790,7 +934,8 @@
 }
 
 @keyframes sparkleAnimation {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
     transform: scale(0.5);
   }
@@ -854,7 +999,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -1104,18 +1250,17 @@
     font-size: 0.8rem;
   }
 
-::ng-deep .banner-button .p-button{
-  font-size: 1.1rem !important;
-  font-weight: bold !important;
-  background-color: rgb(0, 140, 255) !important;
-  color: white !important;
+  ::ng-deep .banner-button .p-button {
+    font-size: 1.1rem !important;
+    font-weight: bold !important;
+    background-color: rgb(0, 140, 255) !important;
+    color: white !important;
+  }
 
-}
-
-::ng-deep .banner-button .p-button:hover{
-  background-color: white !important;
-  color: rgb(0, 140, 255) !important;
-  border: 2px solid rgb(0, 140, 255) !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
-}
+  ::ng-deep .banner-button .p-button:hover {
+    background-color: white !important;
+    color: rgb(0, 140, 255) !important;
+    border: 2px solid rgb(0, 140, 255) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+  }
 }

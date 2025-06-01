@@ -18,6 +18,6 @@ export const appConfig: ApplicationConfig = {
         preset: Aura, // Aplica el tema Aura de PrimeNG
       },
     }),
-    provideHttpClient() // Proveedor para realizar peticiones HTTP
+    provideHttpClient(), // Proveedor para realizar peticiones HTTP
   ],
 };

@@ -1,4 +1,4 @@
-// responder-encuesta.component.ts 
+// responder-encuesta.component.ts
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -18,10 +18,10 @@ import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 
 // Importamos el servicio y sus interfaces
-import { 
-  RespuestaService, 
-  Encuesta, 
-  Pregunta, 
+import {
+  RespuestaService,
+  Encuesta,
+  Pregunta,
   RespuestaUsuario,
   RespuestaPreguntaDto,
   RegistrarRespuestasDto,
@@ -42,7 +42,7 @@ import {
     ProgressSpinnerModule,
     // ✅ NUEVOS MÓDULOS PARA DIALOGS
     DialogModule,
-    DividerModule
+    DividerModule,
   ],
   providers: [MessageService],
   templateUrl: './responder-encuesta.component.html',
@@ -56,7 +56,7 @@ export class ResponderEncuestaComponent implements OnInit {
 
   encuesta: Encuesta | null = null;
   respuestas: RespuestaUsuario[] = [];
-  
+
   id!: number;
   tokenParticipacion!: string;
   cargando = true;
@@ -71,29 +71,33 @@ export class ResponderEncuestaComponent implements OnInit {
   ngOnInit() {
     // Obtener parámetros de la ruta
     this.id = Number(this.route.snapshot.paramMap.get('id'));
-    this.tokenParticipacion = this.route.snapshot.paramMap.get('tokenParticipacion')!;
-    
+    this.tokenParticipacion =
+      this.route.snapshot.paramMap.get('tokenParticipacion')!;
+
     if (!this.id || !this.tokenParticipacion) {
-      this.messageService.add({ 
-        severity: 'error', 
-        summary: 'Error', 
-        detail: 'Parámetros de encuesta inválidos' 
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Parámetros de encuesta inválidos',
       });
       return;
     }
     console.log('ID recibido:', this.id);
     console.log('Token recibido:', this.tokenParticipacion);
-    console.log(`Llamando a: /encuestas/participar/${this.id}/${this.tokenParticipacion}`);
+    console.log(
+      `Llamando a: /encuestas/participar/${this.id}/${this.tokenParticipacion}`,
+    );
 
     this.cargarEncuesta();
   }
-    
+
   cargarEncuesta() {
     this.cargando = true;
-    
-    this.respuestaService.obtenerEncuestaParaParticipacion(this.id, this.tokenParticipacion)
+
+    this.respuestaService
+      .obtenerEncuestaParaParticipacion(this.id, this.tokenParticipacion)
       .subscribe({
-        next: (response: { data: any; }) => {
+        next: (response: { data: any }) => {
           this.encuesta = response.data;
           this.inicializarRespuestas();
           this.cargando = false;
@@ -106,20 +110,23 @@ export class ResponderEncuestaComponent implements OnInit {
         },
       });
   }
-      
 
   private inicializarRespuestas() {
     if (!this.encuesta) return;
-    
-    this.respuestas = this.encuesta.preguntas.map((pregunta: { numero: any; }) => ({
-      numeroPregunta: pregunta.numero,
-      opciones: [],
-      texto: '',
-    }));
+
+    this.respuestas = this.encuesta.preguntas.map(
+      (pregunta: { numero: any }) => ({
+        numeroPregunta: pregunta.numero,
+        opciones: [],
+        texto: '',
+      }),
+    );
   }
 
   getRespuestaPorPregunta(numeroPregunta: number): RespuestaUsuario {
-    let respuesta = this.respuestas.find(r => r.numeroPregunta === numeroPregunta);
+    let respuesta = this.respuestas.find(
+      (r) => r.numeroPregunta === numeroPregunta,
+    );
     if (!respuesta) {
       respuesta = { numeroPregunta, opciones: [], texto: '' };
       this.respuestas.push(respuesta);
@@ -127,17 +134,16 @@ export class ResponderEncuestaComponent implements OnInit {
     return respuesta;
   }
 
-
   // Maneja selección para preguntas de opción múltiple (múltiple selección)
   onCheckboxChange(pregunta: Pregunta, idOpcion: number, checked: boolean) {
     const respuesta = this.getRespuestaPorPregunta(pregunta.numero);
-    
+
     if (checked) {
       if (!respuesta.opciones.includes(idOpcion)) {
         respuesta.opciones.push(idOpcion);
       }
     } else {
-      respuesta.opciones = respuesta.opciones.filter(n => n !== idOpcion);
+      respuesta.opciones = respuesta.opciones.filter((n) => n !== idOpcion);
     }
   }
 
@@ -183,7 +189,7 @@ export class ResponderEncuestaComponent implements OnInit {
   }
 
   // ✅ NUEVOS MÉTODOS PARA DIALOGS
-  
+
   // Abre el dialog de vista previa
   abrirVistaPrevia() {
     this.mostrarDialogVistaPrevia = true;
@@ -195,7 +201,8 @@ export class ResponderEncuestaComponent implements OnInit {
       this.messageService.add({
         severity: 'warn',
         summary: 'Validación',
-        detail: 'Por favor, responde todas las preguntas obligatorias antes de enviar',
+        detail:
+          'Por favor, responde todas las preguntas obligatorias antes de enviar',
       });
       return;
     }
@@ -208,41 +215,53 @@ export class ResponderEncuestaComponent implements OnInit {
     this.enviando = true;
 
     const respuestasParaBackend = this.respuestas
-    .map(respuesta => {
-      const pregunta = this.encuesta?.preguntas.find(p => p.numero === respuesta.numeroPregunta);
-      if (!pregunta) return null; // No enviar respuestas sin pregunta válida
-      
-      // Solo enviar si respuesta está llena
-      if (this.esPreguntaAbierta(pregunta) && !respuesta.texto.trim()) return null;
-      if (!this.esPreguntaAbierta(pregunta) && respuesta.opciones.length === 0) return null;
+      .map((respuesta) => {
+        const pregunta = this.encuesta?.preguntas.find(
+          (p) => p.numero === respuesta.numeroPregunta,
+        );
+        if (!pregunta) return null; // No enviar respuestas sin pregunta válida
 
-      const respuestaDto: RespuestaPreguntaDto = {
-        id_pregunta: pregunta.id, // enviar el id real, no el número
-        tipo: pregunta.tipo,
-      };
+        // Solo enviar si respuesta está llena
+        if (this.esPreguntaAbierta(pregunta) && !respuesta.texto.trim())
+          return null;
+        if (
+          !this.esPreguntaAbierta(pregunta) &&
+          respuesta.opciones.length === 0
+        )
+          return null;
 
-      if (this.esPreguntaAbierta(pregunta)) {
-        respuestaDto.texto = respuesta.texto.trim();
-      } else {
-        // Opciones que deben enviarse son ids, no números
-        // Convertir los números locales a ids reales
-        const opcionesIds = respuesta.opciones.map(numOpcion => {
-          const opcion = pregunta.opciones?.find(o => o.numero === numOpcion);
-          return opcion ? opcion.id : numOpcion;
-        }).filter(id => id !== undefined) as number[];
+        const respuestaDto: RespuestaPreguntaDto = {
+          id_pregunta: pregunta.id, // enviar el id real, no el número
+          tipo: pregunta.tipo,
+        };
 
-        respuestaDto.opciones = opcionesIds;
-      }
+        if (this.esPreguntaAbierta(pregunta)) {
+          respuestaDto.texto = respuesta.texto.trim();
+        } else {
+          // Opciones que deben enviarse son ids, no números
+          // Convertir los números locales a ids reales
+          const opcionesIds = respuesta.opciones
+            .map((numOpcion) => {
+              const opcion = pregunta.opciones?.find(
+                (o) => o.numero === numOpcion,
+              );
+              return opcion ? opcion.id : numOpcion;
+            })
+            .filter((id) => id !== undefined) as number[];
 
-      return respuestaDto;
-    })
-    .filter(rta => rta !== null) as RespuestaPreguntaDto[];
+          respuestaDto.opciones = opcionesIds;
+        }
 
-    const payload: RegistrarRespuestasDto = { 
-      respuestas: respuestasParaBackend 
+        return respuestaDto;
+      })
+      .filter((rta) => rta !== null) as RespuestaPreguntaDto[];
+
+    const payload: RegistrarRespuestasDto = {
+      respuestas: respuestasParaBackend,
     };
 
-    this.respuestaService.registrarRespuestas(this.id, this.tokenParticipacion, payload)
+    this.respuestaService
+      .registrarRespuestas(this.id, this.tokenParticipacion, payload)
       .subscribe({
         next: () => {
           this.messageService.add({
@@ -300,29 +319,31 @@ export class ResponderEncuestaComponent implements OnInit {
   // Obtiene el texto de la respuesta para mostrar en la vista previa
   obtenerTextoRespuesta(pregunta: Pregunta): string {
     const respuesta = this.getRespuestaPorPregunta(pregunta.numero);
-    
+
     if (this.esPreguntaAbierta(pregunta)) {
       return respuesta.texto.trim() || 'Sin respuesta';
     }
-    
+
     if (respuesta.opciones.length === 0) {
       return 'Sin respuesta';
     }
-    
-    const opcionesTexto = respuesta.opciones.map(numeroOpcion => {
-      const opcion = pregunta.opciones?.find(o => o.numero === numeroOpcion);
+
+    const opcionesTexto = respuesta.opciones.map((numeroOpcion) => {
+      const opcion = pregunta.opciones?.find((o) => o.numero === numeroOpcion);
       return opcion?.texto || `Opción ${numeroOpcion}`;
     });
-    
+
     return opcionesTexto.join(', ');
   }
 
   // Cuenta respuestas completadas para mostrar en confirmación
   contarRespuestasCompletadas(): number {
-    return this.respuestas.filter(respuesta => {
-      const pregunta = this.encuesta?.preguntas.find(p => p.numero === respuesta.numeroPregunta);
+    return this.respuestas.filter((respuesta) => {
+      const pregunta = this.encuesta?.preguntas.find(
+        (p) => p.numero === respuesta.numeroPregunta,
+      );
       if (!pregunta) return false;
-      
+
       if (this.esPreguntaAbierta(pregunta)) {
         return respuesta.texto.trim() !== '';
       } else {

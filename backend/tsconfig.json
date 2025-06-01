@@ -18,14 +18,9 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false
   },
-    "include": [
+  "include": [
     "src/**/*",
-    "documentation/js/menu-wc.js"  // Añadido para incluir ese archivo específico
+    "documentation/js/menu-wc.js" // Añadido para incluir ese archivo específico
   ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
-
+  "exclude": ["node_modules", "dist"]
 }
-

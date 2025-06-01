@@ -7,8 +7,6 @@ import { NavbarComponent } from '../navbar/navbar.component';
   selector: 'app-banner',
   imports: [ButtonModule, RouterModule, NavbarComponent],
   templateUrl: './banner.component.html',
-  styleUrl: './banner.component.css'
+  styleUrl: './banner.component.css',
 })
-export class BannerComponent {
-
-}
+export class BannerComponent {}

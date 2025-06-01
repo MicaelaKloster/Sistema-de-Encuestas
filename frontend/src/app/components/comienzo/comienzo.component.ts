@@ -6,8 +6,6 @@ import { ButtonModule } from 'primeng/button';
   selector: 'app-comienzo',
   imports: [ButtonModule, RouterModule],
   templateUrl: './comienzo.component.html',
-  styleUrl: './comienzo.component.css'
+  styleUrl: './comienzo.component.css',
 })
-export class ComienzoComponent {
-
-}
+export class ComienzoComponent {}

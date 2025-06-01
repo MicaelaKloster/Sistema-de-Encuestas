@@ -65,84 +65,86 @@
       <div class="info-message">
         <p><strong>📝 Instrucciones:</strong></p>
         <p>1. Ingresa un nombre para tu encuesta</p>
-        <p>2. Agrega al menos una pregunta usando el botón "Agregar Pregunta"</p>
+        <p>
+          2. Agrega al menos una pregunta usando el botón "Agregar Pregunta"
+        </p>
         <p>3. Haz clic en "Finalizar" para crear tu encuesta</p>
       </div>
-    <app-seccion>
-      <p-floatlabel variant="on" id="float-label-nombre-encuesta">
-        <input
-          pInputText
-          id="input-nombre"
-          formControlName="nombre"
-          autocomplete="off"
-        />
-        <label for="input-nombre">Nombre de la encuesta</label>
-      </p-floatlabel>
-      @if (nombre.invalid && nombre.touched) {
-        <app-texto-error>Requerido</app-texto-error>
-      }
-    </app-seccion>
-    @for (pregunta of preguntas.value; track idx; let idx = $index) {
       <app-seccion>
-        <div class="contenedor-pregunta">
-          <p class="texto-pregunta">
-            {{ pregunta.texto }} ({{
-              getTipoPreguntaPresentacion(pregunta.tipo)
-            }})
-          </p>
-          <ul>
-            @for (opcion of pregunta.opciones; track i; let i = $index) {
-              <li>
-                <p class="texto-opcion">{{ opcion.texto }}</p>
-              </li>
-            }
-          </ul>
-          <div class="botonera-pregunta">
-            <p-button
-              (onClick)="confirmarEliminarPregunta(idx)"
-              id="boton-eliminar-pregunta"
-              icon="pi pi-times"
-              label="Eliminar"
-              severity="danger"
-            ></p-button>
-          </div>
-        </div>
-      </app-seccion>
-    }
-    <app-seccion>
-      <div class="botones-gestion-preguntas">
-        <p-button
-          label="Agregar Pregunta"
-          (onClick)="abrirDialog()"
-          icon="pi pi-plus"
-        />
-        @if (preguntas.length > 0) {
-          <p-button
-            label="Editar Pregunta"
-            (onClick)="abrirDialogEditar()"
-            icon="pi pi-pencil"
-            severity="secondary"
-            [outlined]="true"
+        <p-floatlabel variant="on" id="float-label-nombre-encuesta">
+          <input
+            pInputText
+            id="input-nombre"
+            formControlName="nombre"
+            autocomplete="off"
           />
+          <label for="input-nombre">Nombre de la encuesta</label>
+        </p-floatlabel>
+        @if (nombre.invalid && nombre.touched) {
+          <app-texto-error>Requerido</app-texto-error>
         }
-      </div>
-      @if (preguntas.invalid && form.touched) {
-        <app-texto-error>Debe agregar al menos una pregunta</app-texto-error>
+      </app-seccion>
+      @for (pregunta of preguntas.value; track idx; let idx = $index) {
+        <app-seccion>
+          <div class="contenedor-pregunta">
+            <p class="texto-pregunta">
+              {{ pregunta.texto }} ({{
+                getTipoPreguntaPresentacion(pregunta.tipo)
+              }})
+            </p>
+            <ul>
+              @for (opcion of pregunta.opciones; track i; let i = $index) {
+                <li>
+                  <p class="texto-opcion">{{ opcion.texto }}</p>
+                </li>
+              }
+            </ul>
+            <div class="botonera-pregunta">
+              <p-button
+                (onClick)="confirmarEliminarPregunta(idx)"
+                id="boton-eliminar-pregunta"
+                icon="pi pi-times"
+                label="Eliminar"
+                severity="danger"
+              ></p-button>
+            </div>
+          </div>
+        </app-seccion>
       }
-    </app-seccion>
-    <button
-      id="boton-finalizar"
-      pButton
-      pRipple
-      type="submit"
-      icon="pi pi-check"
-      severity="contrast"
-      class="p-button-rounded"
-    >
-      Finalizar
-    </button>
-  </div>
-</form>
+      <app-seccion>
+        <div class="botones-gestion-preguntas">
+          <p-button
+            label="Agregar Pregunta"
+            (onClick)="abrirDialog()"
+            icon="pi pi-plus"
+          />
+          @if (preguntas.length > 0) {
+            <p-button
+              label="Editar Pregunta"
+              (onClick)="abrirDialogEditar()"
+              icon="pi pi-pencil"
+              severity="secondary"
+              [outlined]="true"
+            />
+          }
+        </div>
+        @if (preguntas.invalid && form.touched) {
+          <app-texto-error>Debe agregar al menos una pregunta</app-texto-error>
+        }
+      </app-seccion>
+      <button
+        id="boton-finalizar"
+        pButton
+        pRipple
+        type="submit"
+        icon="pi pi-check"
+        severity="contrast"
+        class="p-button-rounded"
+      >
+        Finalizar
+      </button>
+    </div>
+  </form>
 </div>
 
 <app-gestion-pregunta-dialog
@@ -161,7 +163,9 @@
   (onHide)="cerrarDialogSeleccion()"
 >
   <div class="dialogo-seleccion-preguntas">
-    <p class="instruccion-seleccion">Selecciona la pregunta que deseas editar:</p>
+    <p class="instruccion-seleccion">
+      Selecciona la pregunta que deseas editar:
+    </p>
 
     @for (pregunta of preguntas.value; track idx; let idx = $index) {
       <div class="item-pregunta-seleccion" (click)="editarPregunta(idx)">
