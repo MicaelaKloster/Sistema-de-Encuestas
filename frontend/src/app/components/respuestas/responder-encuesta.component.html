@@ -60,8 +60,9 @@
                   [inputId]="'chk-' + pregunta.numero + '-' + opcion.id"
                   [value]="opcion.id"
                   [name]="'pregunta-' + pregunta.numero"
-                  [(ngModel)]="getRespuestaPorPregunta(pregunta.numero).opciones"
-                  (onChange)="onCheckboxChange(pregunta, opcion.id, $event.checked)">
+                  [ngModel]="isOpcionSeleccionada(pregunta.numero, opcion.id)"
+                  (onChange)="onCheckboxChange(pregunta, opcion.id, $event.checked)"
+                  [binary]="true">
                 </p-checkbox>
                 <label [for]="'chk-' + pregunta.numero + '-' + opcion.id" class="opcion-label">
                   {{ opcion.texto }}

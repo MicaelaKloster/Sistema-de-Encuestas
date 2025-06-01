@@ -136,9 +136,9 @@ export class ResponderEncuestaComponent implements OnInit {
     respuesta.texto = texto;
   }
 
-  isOpcionSeleccionada(numeroPregunta: number, numeroOpcion: number): boolean {
+  isOpcionSeleccionada(numeroPregunta: number, idOpcion: number): boolean {
     const respuesta = this.getRespuestaPorPregunta(numeroPregunta);
-    return respuesta.opciones.includes(numeroOpcion);
+    return respuesta.opciones.includes(idOpcion);
   }
 
   getOpcionSeleccionada(numeroPregunta: number): number | null {

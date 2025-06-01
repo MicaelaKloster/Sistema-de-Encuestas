@@ -127,17 +127,23 @@
   resize: vertical;
   transition: all 0.3s ease;
   background: white;
+  color: #333;
 }
 
 .textarea-custom:focus {
   border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
   outline: none;
+  color: #333;
 }
 
 .textarea-custom:invalid {
   border-color: #f44336;
   box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+}
+
+.textarea-custom::placeholder {
+  color: #999;
 }
 
 .opcion-radio,
