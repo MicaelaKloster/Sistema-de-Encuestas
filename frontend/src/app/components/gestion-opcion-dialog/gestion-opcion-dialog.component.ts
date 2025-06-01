@@ -61,6 +61,7 @@ export class GestionOpcionDialogComponent {
       this.messageService.add({
         severity: 'error',
         summary: 'Hay errores en el formulario',
+        life: 4000
       });
       return;
     }

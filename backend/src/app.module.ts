@@ -4,7 +4,7 @@ import configuration from './config/configuration'; // Archivo de configuración
 import { EncuestasModule } from './modules/encuestas/encuestas.module'; // Módulo de encuestas
 import { TypeOrmModule } from '@nestjs/typeorm'; // Módulo para la integración con TypeORM
 import { PreguntasModule } from './modules/preguntas/preguntas.module';
-import { RespuestasModule } from 'src/modules/respuestas/respuestas.module';
+import { RespuestasModule } from './modules/respuestas/respuestas.module';
 import { OpcionesModule } from './modules/opciones/opciones.module';
 
 @Module({
