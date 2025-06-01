@@ -337,3 +337,7 @@ export class RespuestasService {
     };
   }
 }
+
+// Guardamos respuestas de una encuesta anónima (registrarRespuestas).
+// Visualizamos los resultados de una encuesta (visualizarRespuestasDto).
+// Obtenemos los datos de una encuesta habilitada para que alguien pueda participar (obtenerEncuestaParaParticipacion).

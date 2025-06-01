@@ -20,13 +20,21 @@ export const routes: Routes = [
   path: 'presentacion-enlaces', // Ruta para la presentación de enlaces luego de finalizar una encuesta
   component: PresentacionEnlacesComponent, // Componente que se muestra en la ruta 'presentacion-enlaces'
   },
+<<<<<<< HEAD
   {
     path: 'test-responder', // Ruta de prueba sin parámetros
     component: ResponderEncuestaComponent,
   },
+=======
+  { path: 'responder/:id/:tokenParticipacion', // Ruta para participar y responder la encuesta
+    component: ResponderEncuestaComponent, // Componente que se muestra en la ruta 'participar/:codigoRespuesta'
+  },
+/*
+>>>>>>> 9bb63b403286e5bcc76335fd2fae72268e2bd0e2
   { path: 'participar/:codigoRespuesta', // Ruta para participar y responder la encuesta
     component: ResponderEncuestaComponent, // Componente que se muestra en la ruta 'participar/:codigoRespuesta'
   },
+*/
   { path: 'resultados/:codigoResultados', // Ruta para la visualización de los resultados de la encuesta
     component: VisualizarResultadosComponent, // Componente que se muestra en la ruta 'resultados/:codigoResultados'
   },

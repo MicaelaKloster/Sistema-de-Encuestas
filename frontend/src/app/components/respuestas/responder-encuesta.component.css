@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Contenedor principal */
 .responder-encuesta-container {
   min-height: 100vh;
@@ -405,5 +406,85 @@
   ::ng-deep .submit-button {
     padding: 0.8rem 1.5rem !important;
     font-size: 1rem !important;
+=======
+/* Estilos adicionales para los dialogs */
+
+/* Vista previa */
+.vista-previa-content {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.pregunta-previa {
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1rem;
+}
+
+.pregunta-previa:last-child {
+  border-bottom: none;
+}
+
+.pregunta-titulo {
+  color: #374151;
+  font-weight: 600;
+}
+
+.respuesta-previa {
+  background-color: #f8fafc;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid #3b82f6;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+/* Dialog de confirmación */
+.confirmacion-content .estadisticas {
+  background-color: #f8fafc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.confirmacion-content .estadisticas p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+/* Dialog de error */
+.error-dialog-content .error-detalles {
+  background-color: #fef2f2;
+  border-left: 4px solid #ef4444;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+}
+
+.error-dialog-content .error-detalles p {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  color: #b91c1c;
+}
+
+/* Botones en los form-actions */
+.form-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Responsive para botones en pantallas pequeñas */
+@media (max-width: 768px) {
+  .form-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .form-actions .p-button {
+    width: 100%;
+>>>>>>> 9bb63b403286e5bcc76335fd2fae72268e2bd0e2
   }
 }

@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Query,
+  Res,
   BadRequestException,
   ParseIntPipe,
   Res,
@@ -27,12 +28,15 @@ import { TiposRespuestaEnum } from '../enums/tipos-respuesta.enum';
 import { CreateEncuestaResponseDto } from '../dtos/create-encuesta-response.dto';
 import { VisualizarRespuestasDto } from '../../respuestas/dtos/visualizar-respuestas.dtos';
 
+import { Response } from 'express';
+
 @Controller('encuestas') // Define el controlador para manejar las rutas relacionadas con "encuestas"
 export class EncuestasController {
   constructor(
     private readonly encuestasService: EncuestasService,
     private readonly respuestasService: RespuestasService,
   ) {} // Inyección de los servicios
+<<<<<<< HEAD
   
   /**
    * Crea una nueva encuesta
@@ -41,6 +45,9 @@ export class EncuestasController {
    * Genera automáticamente códigos únicos para participación y visualización de resultados,
    * así como enlaces cortos y códigos QR para facilitar el acceso.
    */
+=======
+
+>>>>>>> 9bb63b403286e5bcc76335fd2fae72268e2bd0e2
   @Post()
   @ApiOperation({ 
     summary: 'Crear una nueva encuesta',
@@ -88,6 +95,7 @@ export class EncuestasController {
       dto.tipo, // Tipo de código (respuesta o resultados)
     );
   }
+<<<<<<< HEAD
   
   /**
    * Obtiene una encuesta para participación usando su código
@@ -96,6 +104,50 @@ export class EncuestasController {
    * para que un usuario pueda participar, utilizando solo el código de participación.
    * Es el método recomendado para acceder a una encuesta para responderla.
    */
+=======
+
+  @Get('participar/:id/:codigo')
+  @ApiOperation({ summary: 'Obtener encuesta para participación' })
+  @ApiParam({
+    name: 'id',
+    description: 'ID de la encuesta',
+    example: '1',
+  })
+  @ApiParam({
+    name: 'codigo',
+    description: 'Código de participación de la encuesta',
+    example: 'abc123def456',
+  })
+  async obtenerEncuestaParaParticipar(
+    @Param('id') id: number,
+    @Param('codigo') codigo: string,
+  ): Promise<any> {
+    const encuesta = await this.encuestasService.obtenerEncuesta(
+      id,
+      codigo,
+      CodigoTipoEnum.RESPUESTA,
+    );
+    // Transformar la respuesta para incluir explícitamente los IDs
+    return {
+      id: encuesta.id,
+      nombre: encuesta.nombre,
+      preguntas: encuesta.preguntas.map((pregunta) => ({
+        id: pregunta.id,
+        numero: pregunta.numero,
+        texto: pregunta.texto,
+        tipo: pregunta.tipo,
+        opciones: pregunta.opciones
+          ? pregunta.opciones.map((opcion) => ({
+              id: opcion.id,
+              numero: opcion.numero,
+              texto: opcion.texto,
+            }))
+          : [],
+      })),
+    };
+  }
+
+>>>>>>> 9bb63b403286e5bcc76335fd2fae72268e2bd0e2
   @Get('participar/:codigo')
   @ApiOperation({
     summary: 'Obtener encuesta para participación',
@@ -319,7 +371,7 @@ export class EncuestasController {
       },
     };
   }
-  
+
   @Get(':id/resultados')
   @ApiOperation({
     summary: 'Obtener resultados de una encuesta por ID y código',
@@ -346,6 +398,7 @@ export class EncuestasController {
     }
     return this.encuestasService.obtenerResultados(id, codigo);
   }
+<<<<<<< HEAD
   
   /**
    * Habilita o deshabilita una encuesta existente
@@ -373,10 +426,34 @@ export class EncuestasController {
     status: 400,
     description: 'Encuesta no encontrada o datos inválidos'
   })
+=======
+
+  // Funcionalidad Extra para deshabilitar una encuesta (MICA)
+  @Patch(':id/habilitar') // Define un endpoint PATCH para habilitar/deshabilitar una encuesta
+>>>>>>> 9bb63b403286e5bcc76335fd2fae72268e2bd0e2
   async cambiarEstadoEncuesta(
     @Param('id', ParseIntPipe) id: number,
     @Body('habilitada') habilitada: boolean,
   ): Promise<{ mensaje: string }> {
     return await this.encuestasService.actualizarEstadoEncuesta(id, habilitada);
+  }
+
+  // Funcionalidad extra para generar un CSV (Emilia)
+  @Get(':id/csv/:codigoResultados') // Define un endpoint GET para exportar los resultados de una encuesta en formato CSV
+  async exportarResultadosCSV(
+    @Param('id') id: number, // Obtiene el parámetro "id" de la URL
+    @Param('codigoResultados') codigoResultados: string, // Obtiene el código único para validar el acceso a los resultados
+    @Res() res: Response, // Uso de Response para enviar el archivo CSV como descarga
+  ) {
+    const csv = await this.encuestasService.resultadosCSV(id, codigoResultados); // Obtiene los resultados en formato CSV desde el servicio
+
+    // Configuración de los encabezados
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader(
+      'Content-Disposition',
+      `attachment; filename="resultados_encuesta_${id}.csv"`,
+    );
+
+    res.send(csv); // Envía el contenido del archivo CSV
   }
 }
