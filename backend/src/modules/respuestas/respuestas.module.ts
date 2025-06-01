@@ -6,9 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm'; // Módulo de TypeORM para la i
 import { Respuesta } from './entities/respuesta.entity'; // Entidad que representa la tabla "Respuesta" en la base de datos
 import { RespuestaAbierta } from './entities/respuesta-abierta.entity'; //Entidad que representa la tabla "Respuesta Abierta" en la base de datos
 import { RespuestaOpcion } from './entities/respuesta-opcion.entity'; //Entidad que representa la tabla "RespuestaOpciones" en la base de datos
-import { Encuesta } from 'src/modules/encuestas/entities/encuesta.entity'; // Entidad que representa la tabla "Encuesta" en la base de datos
-import { Pregunta } from 'src/modules/encuestas/entities/pregunta.entity'; // Entidad que representa la tabla "Pregunta" en la base de datos
-import { Opcion } from 'src/modules/encuestas/entities/opcion.entity'; // Entidad que representa la tabla "Opción" en la base de datos
+import { Encuesta } from '../encuestas/entities/encuesta.entity'; // Entidad que representa la tabla "Encuesta" en la base de datos
+import { Pregunta } from '../encuestas/entities/pregunta.entity'; // Entidad que representa la tabla "Pregunta" en la base de datos
+import { Opcion } from '../encuestas/entities/opcion.entity'; // Entidad que representa la tabla "Opción" en la base de datos
 
 @Module({
   // Importación de módulos necesarios para este módulo

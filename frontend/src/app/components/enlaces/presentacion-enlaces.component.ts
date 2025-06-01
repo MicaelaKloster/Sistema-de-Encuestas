@@ -104,7 +104,7 @@ export class PresentacionEnlacesComponent {
       this.idEncuesta = params.get('id-encuesta') ?? '';
 
       // Genera los enlaces completos usando la URL base (location.origin)
-      this.enlaceParticipacion = `${location.origin}/participar/${this.codigoRespuesta}`;
+      this.enlaceParticipacion = `${location.origin}/responder/${this.idEncuesta}/${this.codigoRespuesta}`;
       this.enlaceResultados = `${location.origin}/resultados/${this.codigoResultados}`;
 
       // Activar la animación de confeti festivo después de un pequeño delay

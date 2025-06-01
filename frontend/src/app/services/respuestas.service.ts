@@ -1,68 +1,8 @@
-<<<<<<< HEAD
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { EncuestaDTO } from '../interfaces/encuesta.dto';
-import { RegistrarRespuestasDTO } from '../interfaces/respuesta.dto';
-
-@Injectable({ providedIn: 'root' })
-export class RespuestasService {
-  private httpClient = inject(HttpClient);
-
-  // Método para obtener una encuesta por su código de participación
-  obtenerEncuestaParaParticipar(codigo: string): Observable<{
-    id: number;
-    nombre: string;
-    preguntas: any[];
-  }> {
-    return this.httpClient.get<{
-      id: number;
-      nombre: string;
-      preguntas: any[];
-    }>(`/api/v1/encuestas/participar/${codigo}`);
-  }
-
-  // Método para registrar las respuestas de una encuesta
-  registrarRespuestas(
-    id: number,
-    tokenParticipacion: string,
-    respuestas: RegistrarRespuestasDTO
-  ): Observable<{ message: string }> {
-    return this.httpClient.post<{ message: string }>(
-      `/api/v1/respuestas/participar/${id}/${tokenParticipacion}`,
-      respuestas
-    );
-  }
-
-  // Método para obtener los resultados de una encuesta por código de resultados
-  obtenerResultadosEncuesta(codigoResultados: string): Observable<{
-    message: string;
-    data: {
-      id: number;
-      nombre: string;
-      codigoRespuesta: string;
-      codigoResultados: string;
-      preguntas: any[];
-    };
-  }> {
-    return this.httpClient.get<{
-      message: string;
-      data: {
-        id: number;
-        nombre: string;
-        codigoRespuesta: string;
-        codigoResultados: string;
-        preguntas: any[];
-      };
-    }>(`/api/v1/encuestas/resultados/${codigoResultados}`);
-=======
-// respuesta.service.ts 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
-// ✅ INTERFACES PARA USO INTERNO DEL FRONTEND
 export type TipoRespuesta = 'ABIERTA' | 'OPCION_MULTIPLE_SELECCION_SIMPLE' | 'OPCION_MULTIPLE_SELECCION_MULTIPLE' | 'VERDADERO_FALSO';
 
 export interface OpcionRespuesta {
@@ -87,14 +27,12 @@ export interface Encuesta {
   preguntas: Pregunta[];
 }
 
-// ✅ INTERFACE PARA USO INTERNO - mantiene la estructura que usa tu componente
 export interface RespuestaUsuario {
   numeroPregunta: number;
   opciones: number[];
   texto: string;
 }
 
-// ✅ NUEVAS INTERFACES ALINEADAS CON EL BACKEND
 export interface RespuestaPreguntaDto {
   id_pregunta: number;
   tipo: TipoRespuesta;
@@ -106,64 +44,78 @@ export interface RegistrarRespuestasDto {
   respuestas: RespuestaPreguntaDto[];
 }
 
-// ✅ INTERFACES PARA RESPUESTAS DE LA API
 export interface EncuestaResponse {
   message: string;
   data: Encuesta;
 }
 
+@Injectable({ providedIn: 'root' })
+export class RespuestasService {
+  private httpClient = inject(HttpClient);
 
-@Injectable({
-  providedIn: 'root'
-})
-export class RespuestaService {
-  private API_URL = 'http://localhost:3001/api/v1'; 
-
-  constructor(private http: HttpClient) {}
-
-   //Obtener encuesta para participar
   obtenerEncuestaParaParticipacion(id: number, token: string): Observable<EncuestaResponse> {
-    return this.http.get<EncuestaResponse>(`${this.API_URL}/encuestas/participar/${id}/${token}`)
+    return this.httpClient.get<any>(`/api/v1/encuestas/estructura/${token}`)
       .pipe(
-        catchError(this.handleError)
+        catchError(this.handleError),
+        map(response => ({
+          message: 'Encuesta obtenida exitosamente',
+          data: {
+            id: response.id,
+            nombre: response.nombre,
+            preguntas: response.preguntas.map((pregunta: any) => ({
+              id: pregunta.id,
+              numero: pregunta.numero,
+              texto: pregunta.texto,
+              tipo: pregunta.tipo,
+              obligatoria: true,
+              opciones: pregunta.opciones || []
+            }))
+          }
+        }))
       );
   }
-    
 
-  // ✅ MÉTODO ACTUALIZADO - ahora acepta el DTO correcto
   registrarRespuestas(id: number, codigo: string, payload: RegistrarRespuestasDto): Observable<any> {
-    return this.http.post(`${this.API_URL}/respuestas/${id}/${codigo}`, payload)
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.httpClient.post(`/api/v1/respuestas/${id}/${codigo}`, payload)
+      .pipe(catchError(this.handleError));
   }
 
-  // Ver resultados 
-  visualizarResultados(tokenVisualizacion: string): Observable<any> {
-    return this.http.get(`${this.API_URL}/respuestas/resultados/${tokenVisualizacion}`)
-      .pipe(
-        catchError(this.handleError)
-      );
+  obtenerResultadosEncuesta(codigoResultados: string): Observable<{
+    message: string;
+    data: {
+      id: number;
+      nombre: string;
+      codigoRespuesta: string;
+      codigoResultados: string;
+      preguntas: any[];
+    };
+  }> {
+    return this.httpClient.get<{
+      message: string;
+      data: {
+        id: number;
+        nombre: string;
+        codigoRespuesta: string;
+        codigoResultados: string;
+        preguntas: any[];
+      };
+    }>(`/api/v1/encuestas/resultados/${codigoResultados}`)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Ha ocurrido un error desconocido';
-    
+
     if (error.error instanceof ErrorEvent) {
-      // Error del lado del cliente
       errorMessage = `Error: ${error.error.message}`;
     } else {
-      // Error del lado del servidor
       errorMessage = `Código de error: ${error.status}\nMensaje: ${error.message}`;
-      
-      // ✅ AGREGADO - Log más detallado para debugging
       if (error.error) {
         console.error('Detalles del error del servidor:', error.error);
       }
     }
-    
+
     console.error(errorMessage);
     return throwError(() => new Error(errorMessage));
->>>>>>> 9bb63b403286e5bcc76335fd2fae72268e2bd0e2
   }
 }

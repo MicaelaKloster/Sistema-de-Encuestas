@@ -1,321 +1,92 @@
-<<<<<<< HEAD
-import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { CheckboxModule } from 'primeng/checkbox';
-import { FloatLabelModule } from 'primeng/floatlabel';
-import { CardModule } from 'primeng/card';
-import { MessageService } from 'primeng/api';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { ToastModule } from 'primeng/toast';
-import { RespuestasService } from '../../services/respuestas.service';
-import { RegistrarRespuestasDTO, RespuestaPreguntaDTO } from '../../interfaces/respuesta.dto';
-import { TiposRespuestaEnum } from '../../enums/tipos-pregunta.enum';
-=======
-// responder-encuesta.component.ts 
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-// PrimeNG imports
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
-import { InputTextarea, Textarea } from 'primeng/inputtextarea';
+
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { CardModule } from 'primeng/card';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-// ✅ NUEVOS IMPORTS PARA DIALOGS
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
-
-// Importamos el servicio y sus interfaces
-import { 
-  RespuestaService, 
-  Encuesta, 
-  Pregunta, 
+import {
+  RespuestasService,
+  Encuesta,
+  Pregunta,
   RespuestaUsuario,
   RespuestaPreguntaDto,
   RegistrarRespuestasDto,
 } from '../../services/respuestas.service';
->>>>>>> 9bb63b403286e5bcc76335fd2fae72268e2bd0e2
 
 @Component({
   selector: 'app-responder-encuesta',
   standalone: true,
   imports: [
     CommonModule,
-<<<<<<< HEAD
-    ReactiveFormsModule,
-    ButtonModule,
-    InputTextModule,
-    RadioButtonModule,
-    CheckboxModule,
-    FloatLabelModule,
-    CardModule,
-    ProgressSpinnerModule,
-    ToastModule
-  ],
-=======
     FormsModule,
     ButtonModule,
     CheckboxModule,
-    InputTextarea,
+
     RadioButtonModule,
     ToastModule,
     CardModule,
     ProgressSpinnerModule,
-    // ✅ NUEVOS MÓDULOS PARA DIALOGS
     DialogModule,
     DividerModule
   ],
-  providers: [MessageService],
->>>>>>> 9bb63b403286e5bcc76335fd2fae72268e2bd0e2
   templateUrl: './responder-encuesta.component.html',
   styleUrls: ['./responder-encuesta.component.css'],
   providers: [MessageService]
 })
 export class ResponderEncuestaComponent implements OnInit {
-<<<<<<< HEAD
-  // Servicios inyectados
-  private route = inject(ActivatedRoute);
-  public router = inject(Router); // Público para acceder desde el template
-  private respuestasService = inject(RespuestasService);
-  private messageService = inject(MessageService);
-
-  // Variables de estado
-  encuesta: any = null;
-  codigoParticipacion = '';
-  cargando = true;
-  error = '';
-  enviando = false;
-
-  // Formulario reactivo
-  respuestasForm!: FormGroup;
-
-  // Enum para usar en el template
-  TiposRespuestaEnum = TiposRespuestaEnum;
-
-  ngOnInit() {
-    // Obtener el código de participación de la URL
-    this.codigoParticipacion = this.route.snapshot.paramMap.get('codigoRespuesta') || '';
-
-    if (this.codigoParticipacion) {
-      this.cargarEncuesta();
-    } else {
-      this.error = 'Código de participación no válido';
-      this.cargando = false;
-    }
-  }
-
-  private cargarEncuesta() {
-    this.cargando = true;
-    this.error = '';
-
-    this.respuestasService.obtenerEncuestaParaParticipar(this.codigoParticipacion)
-      .subscribe({
-        next: (encuesta) => {
-          console.log('Encuesta cargada:', encuesta);
-          this.encuesta = encuesta;
-          this.crearFormulario();
-          this.cargando = false;
-        },
-        error: (error) => {
-          console.error('Error al cargar encuesta:', error);
-          this.error = 'Error al cargar la encuesta. Verifique que el enlace sea válido.';
-          this.cargando = false;
-        }
-      });
-  }
-
-  private crearFormulario() {
-    const formControls: { [key: string]: AbstractControl } = {};
-
-    this.encuesta.preguntas.forEach((pregunta: any) => {
-      const controlName = `pregunta_${pregunta.id}`;
-
-      switch (pregunta.tipo) {
-        case TiposRespuestaEnum.ABIERTA:
-          formControls[controlName] = new FormControl('', [Validators.required]);
-          break;
-        case TiposRespuestaEnum.OPCION_MULTIPLE_SELECCION_SIMPLE:
-        case TiposRespuestaEnum.VERDADERO_FALSO:
-          formControls[controlName] = new FormControl(null, [Validators.required]);
-          break;
-        case TiposRespuestaEnum.OPCION_MULTIPLE_SELECCION_MULTIPLE:
-          // Para múltiple selección, creamos un FormArray
-          const checkboxControls = pregunta.opciones.map(() => new FormControl(false));
-          formControls[controlName] = new FormArray(checkboxControls, this.atLeastOneCheckboxValidator);
-          break;
-      }
-    });
-
-    this.respuestasForm = new FormGroup(formControls);
-  }
-
-  // Validador personalizado para checkboxes (al menos uno seleccionado)
-  private atLeastOneCheckboxValidator(formArray: AbstractControl) {
-    const controls = (formArray as FormArray).controls;
-    const hasAtLeastOne = controls.some(control => control.value === true);
-    return hasAtLeastOne ? null : { atLeastOneRequired: true };
-  }
-
-  onSubmit() {
-    if (this.respuestasForm.valid) {
-      this.enviando = true;
-
-      const respuestas: RespuestaPreguntaDTO[] = [];
-
-      this.encuesta.preguntas.forEach((pregunta: any) => {
-        const controlName = `pregunta_${pregunta.id}`;
-        const valor = this.respuestasForm.get(controlName)?.value;
-
-        const respuesta: RespuestaPreguntaDTO = {
-          id_pregunta: pregunta.id,
-          tipo: pregunta.tipo
-        };
-
-        switch (pregunta.tipo) {
-          case TiposRespuestaEnum.ABIERTA:
-            respuesta.texto = valor;
-            break;
-          case TiposRespuestaEnum.OPCION_MULTIPLE_SELECCION_SIMPLE:
-          case TiposRespuestaEnum.VERDADERO_FALSO:
-            respuesta.opciones = [valor];
-            break;
-          case TiposRespuestaEnum.OPCION_MULTIPLE_SELECCION_MULTIPLE:
-            const opcionesSeleccionadas: number[] = [];
-            valor.forEach((seleccionado: boolean, index: number) => {
-              if (seleccionado) {
-                opcionesSeleccionadas.push(pregunta.opciones[index].id);
-              }
-            });
-            respuesta.opciones = opcionesSeleccionadas;
-            break;
-        }
-
-        respuestas.push(respuesta);
-      });
-
-      const dto: RegistrarRespuestasDTO = { respuestas };
-
-      console.log('Enviando respuestas al backend:', dto);
-      console.log('ID de encuesta:', this.encuesta.id);
-      console.log('Token de participación:', this.codigoParticipacion);
-
-      // Enviar respuestas al backend
-      this.respuestasService.registrarRespuestas(this.encuesta.id, this.codigoParticipacion, dto)
-        .subscribe({
-          next: (response) => {
-            console.log('Respuestas enviadas exitosamente:', response);
-            this.enviando = false;
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Éxito',
-              detail: 'Sus respuestas han sido registradas correctamente',
-              life: 4000 // Duración de 4 segundos
-            });
-
-            // Redirigir después de un momento
-            setTimeout(() => {
-              this.router.navigate(['/']);
-            }, 4500);
-          },
-          error: (error) => {
-            console.error('Error al enviar respuestas:', error);
-            this.enviando = false;
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: 'Hubo un problema al registrar sus respuestas. Inténtelo nuevamente.',
-              life: 4000 // Duración de 4 segundos
-            });
-          }
-        });
-    } else {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'Por favor complete todas las preguntas obligatorias',
-        life: 4000 // Duración de 4 segundos
-      });
-    }
-  }
-
-  // Método auxiliar para obtener el FormArray de una pregunta de múltiple selección
-  getPreguntaFormArray(preguntaId: number): FormArray {
-    return this.respuestasForm.get(`pregunta_${preguntaId}`) as FormArray;
-  }
-
-  // Método auxiliar para obtener un FormControl específico de un FormArray
-  getCheckboxControl(preguntaId: number, index: number): FormControl {
-    const formArray = this.getPreguntaFormArray(preguntaId);
-    return formArray.at(index) as FormControl;
-  }
-
-  // Método auxiliar para verificar si una pregunta tiene errores
-  hasError(preguntaId: number): boolean {
-    const control = this.respuestasForm.get(`pregunta_${preguntaId}`);
-    return !!(control && control.invalid && control.touched);
-  }
-}
-=======
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private messageService = inject(MessageService);
-  private respuestaService = inject(RespuestaService);
+  private respuestasService = inject(RespuestasService);
 
   encuesta: Encuesta | null = null;
   respuestas: RespuestaUsuario[] = [];
-  
+
   id!: number;
   tokenParticipacion!: string;
   cargando = true;
   enviando = false;
 
-  // ✅ NUEVAS PROPIEDADES PARA DIALOGS
   mostrarDialogConfirmacion = false;
   mostrarDialogVistaPrevia = false;
   mostrarDialogError = false;
   errorDetallado = '';
 
   ngOnInit() {
-    // Obtener parámetros de la ruta
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.tokenParticipacion = this.route.snapshot.paramMap.get('tokenParticipacion')!;
-    
+
     if (!this.id || !this.tokenParticipacion) {
-      this.messageService.add({ 
-        severity: 'error', 
-        summary: 'Error', 
-        detail: 'Parámetros de encuesta inválidos' 
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Parámetros de encuesta inválidos'
       });
       return;
     }
-    console.log('ID recibido:', this.id);
-    console.log('Token recibido:', this.tokenParticipacion);
-    console.log(`Llamando a: /encuestas/participar/${this.id}/${this.tokenParticipacion}`);
 
     this.cargarEncuesta();
   }
-    
+
   cargarEncuesta() {
     this.cargando = true;
-    
-    this.respuestaService.obtenerEncuestaParaParticipacion(this.id, this.tokenParticipacion)
+
+    this.respuestasService.obtenerEncuestaParaParticipacion(this.id, this.tokenParticipacion)
       .subscribe({
-        next: (response: { data: any; }) => {
+        next: (response) => {
           this.encuesta = response.data;
           this.inicializarRespuestas();
           this.cargando = false;
         },
-        error: (error: any) => {
+        error: (error) => {
           console.error('Error al cargar encuesta:', error);
           this.errorDetallado = `Error al cargar la encuesta: ${error.message || 'Error desconocido'}`;
           this.mostrarDialogError = true;
@@ -323,12 +94,11 @@ export class ResponderEncuestaComponent implements OnInit {
         },
       });
   }
-      
 
   private inicializarRespuestas() {
     if (!this.encuesta) return;
-    
-    this.respuestas = this.encuesta.preguntas.map((pregunta: { numero: any; }) => ({
+
+    this.respuestas = this.encuesta.preguntas.map((pregunta) => ({
       numeroPregunta: pregunta.numero,
       opciones: [],
       texto: '',
@@ -344,11 +114,9 @@ export class ResponderEncuestaComponent implements OnInit {
     return respuesta;
   }
 
-
-  // Maneja selección para preguntas de opción múltiple (múltiple selección)
   onCheckboxChange(pregunta: Pregunta, idOpcion: number, checked: boolean) {
     const respuesta = this.getRespuestaPorPregunta(pregunta.numero);
-    
+
     if (checked) {
       if (!respuesta.opciones.includes(idOpcion)) {
         respuesta.opciones.push(idOpcion);
@@ -358,31 +126,26 @@ export class ResponderEncuestaComponent implements OnInit {
     }
   }
 
-  // Maneja selección para preguntas de opción simple (radio button)
   onRadioChange(pregunta: Pregunta, idOpcion: number) {
     const respuesta = this.getRespuestaPorPregunta(pregunta.numero);
     respuesta.opciones = [idOpcion];
   }
 
-  // Maneja cambios en campos de texto
   onTextoChange(pregunta: Pregunta, texto: string) {
     const respuesta = this.getRespuestaPorPregunta(pregunta.numero);
     respuesta.texto = texto;
   }
 
-  // Verifica si una opción está seleccionada (para checkboxes)
   isOpcionSeleccionada(numeroPregunta: number, numeroOpcion: number): boolean {
     const respuesta = this.getRespuestaPorPregunta(numeroPregunta);
     return respuesta.opciones.includes(numeroOpcion);
   }
 
-  // Obtiene la opción seleccionada para radio buttons
   getOpcionSeleccionada(numeroPregunta: number): number | null {
     const respuesta = this.getRespuestaPorPregunta(numeroPregunta);
     return respuesta.opciones.length > 0 ? respuesta.opciones[0] : null;
   }
 
-  // Determina el tipo de pregunta para el template
   esPreguntaAbierta(pregunta: Pregunta): boolean {
     return pregunta.tipo === 'ABIERTA';
   }
@@ -399,14 +162,10 @@ export class ResponderEncuestaComponent implements OnInit {
     return pregunta.tipo === 'VERDADERO_FALSO';
   }
 
-  // ✅ NUEVOS MÉTODOS PARA DIALOGS
-  
-  // Abre el dialog de vista previa
   abrirVistaPrevia() {
     this.mostrarDialogVistaPrevia = true;
   }
 
-  // Abre el dialog de confirmación
   confirmarEnvio() {
     if (!this.validarRespuestas()) {
       this.messageService.add({
@@ -419,7 +178,6 @@ export class ResponderEncuestaComponent implements OnInit {
     this.mostrarDialogConfirmacion = true;
   }
 
-  // Envío definitivo después de confirmar
   enviarRespuestasFinal() {
     this.mostrarDialogConfirmacion = false;
     this.enviando = true;
@@ -427,22 +185,19 @@ export class ResponderEncuestaComponent implements OnInit {
     const respuestasParaBackend = this.respuestas
     .map(respuesta => {
       const pregunta = this.encuesta?.preguntas.find(p => p.numero === respuesta.numeroPregunta);
-      if (!pregunta) return null; // No enviar respuestas sin pregunta válida
-      
-      // Solo enviar si respuesta está llena
+      if (!pregunta) return null;
+
       if (this.esPreguntaAbierta(pregunta) && !respuesta.texto.trim()) return null;
       if (!this.esPreguntaAbierta(pregunta) && respuesta.opciones.length === 0) return null;
 
       const respuestaDto: RespuestaPreguntaDto = {
-        id_pregunta: pregunta.id, // enviar el id real, no el número
+        id_pregunta: pregunta.id,
         tipo: pregunta.tipo,
       };
 
       if (this.esPreguntaAbierta(pregunta)) {
         respuestaDto.texto = respuesta.texto.trim();
       } else {
-        // Opciones que deben enviarse son ids, no números
-        // Convertir los números locales a ids reales
         const opcionesIds = respuesta.opciones.map(numOpcion => {
           const opcion = pregunta.opciones?.find(o => o.numero === numOpcion);
           return opcion ? opcion.id : numOpcion;
@@ -455,11 +210,11 @@ export class ResponderEncuestaComponent implements OnInit {
     })
     .filter(rta => rta !== null) as RespuestaPreguntaDto[];
 
-    const payload: RegistrarRespuestasDto = { 
-      respuestas: respuestasParaBackend 
+    const payload: RegistrarRespuestasDto = {
+      respuestas: respuestasParaBackend
     };
 
-    this.respuestaService.registrarRespuestas(this.id, this.tokenParticipacion, payload)
+    this.respuestasService.registrarRespuestas(this.id, this.tokenParticipacion, payload)
       .subscribe({
         next: () => {
           this.messageService.add({
@@ -468,10 +223,10 @@ export class ResponderEncuestaComponent implements OnInit {
             detail: '¡Respuestas registradas con éxito!',
           });
           setTimeout(() => {
-            this.router.navigateByUrl('/gracias');
+            this.router.navigateByUrl('/');
           }, 2000);
         },
-        error: (error: any) => {
+        error: (error) => {
           console.error('Error al enviar respuestas:', error);
           this.errorDetallado = `Error al enviar respuestas: ${error.message || 'Error desconocido'}`;
           this.mostrarDialogError = true;
@@ -480,13 +235,11 @@ export class ResponderEncuestaComponent implements OnInit {
       });
   }
 
-  // Reintenta el envío desde el dialog de error
   reintentarEnvio() {
     this.mostrarDialogError = false;
     this.confirmarEnvio();
   }
 
-  // Método original para mantener compatibilidad con el form submit
   enviarRespuestas() {
     this.confirmarEnvio();
   }
@@ -512,34 +265,30 @@ export class ResponderEncuestaComponent implements OnInit {
     return true;
   }
 
-  // ✅ MÉTODOS HELPER PARA LOS DIALOGS
-
-  // Obtiene el texto de la respuesta para mostrar en la vista previa
   obtenerTextoRespuesta(pregunta: Pregunta): string {
     const respuesta = this.getRespuestaPorPregunta(pregunta.numero);
-    
+
     if (this.esPreguntaAbierta(pregunta)) {
       return respuesta.texto.trim() || 'Sin respuesta';
     }
-    
+
     if (respuesta.opciones.length === 0) {
       return 'Sin respuesta';
     }
-    
+
     const opcionesTexto = respuesta.opciones.map(numeroOpcion => {
       const opcion = pregunta.opciones?.find(o => o.numero === numeroOpcion);
       return opcion?.texto || `Opción ${numeroOpcion}`;
     });
-    
+
     return opcionesTexto.join(', ');
   }
 
-  // Cuenta respuestas completadas para mostrar en confirmación
   contarRespuestasCompletadas(): number {
     return this.respuestas.filter(respuesta => {
       const pregunta = this.encuesta?.preguntas.find(p => p.numero === respuesta.numeroPregunta);
       if (!pregunta) return false;
-      
+
       if (this.esPreguntaAbierta(pregunta)) {
         return respuesta.texto.trim() !== '';
       } else {
@@ -548,4 +297,3 @@ export class ResponderEncuestaComponent implements OnInit {
     }).length;
   }
 }
->>>>>>> 9bb63b403286e5bcc76335fd2fae72268e2bd0e2
