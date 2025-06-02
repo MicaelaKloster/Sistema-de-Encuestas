@@ -359,12 +359,9 @@ export class EncuestasService {
         });
       } else {
         // Si la pregunta es de opción, se agregan las opciones con la cantidad de respuestas
-<<<<<<< HEAD
-        pregunta.opciones.forEach((opcion) => {
-=======
+
         // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
         pregunta.opciones.forEach((opcion: any) => {
->>>>>>> origin/main
           filas.push({
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             Pregunta: pregunta.pregunta,
