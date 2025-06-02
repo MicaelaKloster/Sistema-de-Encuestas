@@ -18,16 +18,13 @@ import { TiposRespuestaEnum } from '../../enums/tipos-pregunta.enum';
     ButtonModule,
     CardModule,
     ProgressSpinnerModule,
-    ToastModule
+    ToastModule,
     // ChartModule
   ],
   templateUrl: './visualizar-resultados.component.html',
   styleUrls: ['./visualizar-resultados.component.css'],
-  providers: [MessageService]
+  providers: [MessageService],
 })
-<<<<<<< HEAD
-export class VisualizarResultadosComponent {}
-=======
 export class VisualizarResultadosComponent implements OnInit {
   // Servicios inyectados
   private route = inject(ActivatedRoute);
@@ -48,8 +45,12 @@ export class VisualizarResultadosComponent implements OnInit {
     console.log('VisualizarResultadosComponent ngOnInit ejecutado');
 
     // Obtener el código de resultados de la URL
-    this.codigoResultados = this.route.snapshot.paramMap.get('codigoResultados') || '';
-    console.log('Código de resultados obtenido de la URL:', this.codigoResultados);
+    this.codigoResultados =
+      this.route.snapshot.paramMap.get('codigoResultados') || '';
+    console.log(
+      'Código de resultados obtenido de la URL:',
+      this.codigoResultados,
+    );
 
     if (this.codigoResultados) {
       console.log('Iniciando carga de resultados...');
@@ -65,7 +66,8 @@ export class VisualizarResultadosComponent implements OnInit {
     this.cargando = true;
     this.error = '';
 
-    this.respuestasService.obtenerResultadosEncuesta(this.codigoResultados)
+    this.respuestasService
+      .obtenerResultadosEncuesta(this.codigoResultados)
       .subscribe({
         next: (response) => {
           console.log('Resultados cargados:', response);
@@ -74,16 +76,20 @@ export class VisualizarResultadosComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error al cargar resultados:', error);
-          this.error = 'Error al cargar los resultados. Verifique que el enlace sea válido.';
+          this.error =
+            'Error al cargar los resultados. Verifique que el enlace sea válido.';
           this.cargando = false;
-        }
+        },
       });
   }
 
   // Método para obtener el total de respuestas de una pregunta de opciones
   getTotalRespuestasOpcion(pregunta: any): number {
     if (!pregunta.opciones) return 0;
-    return pregunta.opciones.reduce((total: number, opcion: any) => total + (opcion.cantidad_respuestas || 0), 0);
+    return pregunta.opciones.reduce(
+      (total: number, opcion: any) => total + (opcion.cantidad_respuestas || 0),
+      0,
+    );
   }
 
   // Método para calcular el porcentaje de una opción
@@ -97,7 +103,9 @@ export class VisualizarResultadosComponent implements OnInit {
     if (!pregunta.opciones || pregunta.opciones.length === 0) return null;
 
     const labels = pregunta.opciones.map((opcion: any) => opcion.texto);
-    const data = pregunta.opciones.map((opcion: any) => opcion.cantidad_respuestas || 0);
+    const data = pregunta.opciones.map(
+      (opcion: any) => opcion.cantidad_respuestas || 0,
+    );
 
     return {
       labels: labels,
@@ -112,12 +120,12 @@ export class VisualizarResultadosComponent implements OnInit {
             '#4facfe',
             '#00f2fe',
             '#43e97b',
-            '#38f9d7'
+            '#38f9d7',
           ],
           borderWidth: 2,
-          borderColor: '#fff'
-        }
-      ]
+          borderColor: '#fff',
+        },
+      ],
     };
   }
 
@@ -131,11 +139,10 @@ export class VisualizarResultadosComponent implements OnInit {
           position: 'bottom',
           labels: {
             usePointStyle: true,
-            padding: 20
-          }
-        }
-      }
+            padding: 20,
+          },
+        },
+      },
     };
   }
 }
->>>>>>> origin/main

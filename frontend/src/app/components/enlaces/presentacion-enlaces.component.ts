@@ -41,7 +41,7 @@ export class PresentacionEnlacesComponent {
       bottom: Array(15).fill(0),
       bottomLeft: Array(12).fill(0),
       left: Array(15).fill(0),
-      topLeft: Array(12).fill(0)
+      topLeft: Array(12).fill(0),
     },
     hearts: {
       top: Array(10).fill(0),
@@ -51,7 +51,7 @@ export class PresentacionEnlacesComponent {
       bottom: Array(10).fill(0),
       bottomLeft: Array(8).fill(0),
       left: Array(10).fill(0),
-      topLeft: Array(8).fill(0)
+      topLeft: Array(8).fill(0),
     },
     celebration: {
       top: Array(8).fill(0),
@@ -61,7 +61,7 @@ export class PresentacionEnlacesComponent {
       bottom: Array(8).fill(0),
       bottomLeft: Array(6).fill(0),
       left: Array(8).fill(0),
-      topLeft: Array(6).fill(0)
+      topLeft: Array(6).fill(0),
     },
     sparkles: {
       top: Array(12).fill(0),
@@ -71,22 +71,38 @@ export class PresentacionEnlacesComponent {
       bottom: Array(12).fill(0),
       bottomLeft: Array(10).fill(0),
       left: Array(12).fill(0),
-      topLeft: Array(10).fill(0)
+      topLeft: Array(10).fill(0),
     },
     geometric: {
       circles: Array(40).fill(0),
       squares: Array(35).fill(0),
       triangles: Array(30).fill(0),
-      diamonds: Array(25).fill(0)
-    }
+      diamonds: Array(25).fill(0),
+    },
   };
 
   // Colores festivos para el confeti
   colors = [
-    '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
-    '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9',
-    '#F8C471', '#82E0AA', '#F1948A', '#85C1E9', '#D7BDE2',
-    '#A3E4D7', '#FAD7A0', '#D5A6BD', '#AED6F1', '#A9DFBF'
+    '#FF6B6B',
+    '#4ECDC4',
+    '#45B7D1',
+    '#96CEB4',
+    '#FFEAA7',
+    '#DDA0DD',
+    '#98D8C8',
+    '#F7DC6F',
+    '#BB8FCE',
+    '#85C1E9',
+    '#F8C471',
+    '#82E0AA',
+    '#F1948A',
+    '#85C1E9',
+    '#D7BDE2',
+    '#A3E4D7',
+    '#FAD7A0',
+    '#D5A6BD',
+    '#AED6F1',
+    '#A9DFBF',
   ];
 
   // Método que se ejecuta al inicializar el componente
@@ -153,7 +169,7 @@ export class PresentacionEnlacesComponent {
           right: rect.right,
           bottom: rect.bottom,
           width: rect.width,
-          height: rect.height
+          height: rect.height,
         };
       }
     }

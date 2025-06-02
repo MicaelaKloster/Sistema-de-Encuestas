@@ -16,7 +16,8 @@
         label="Volver al inicio"
         icon="pi pi-home"
         (click)="router.navigate(['/'])"
-        styleClass="p-button-outlined">
+        styleClass="p-button-outlined"
+      >
       </p-button>
     </div>
   </div>
@@ -34,7 +35,10 @@
 
     <!-- Preguntas y resultados -->
     <div class="preguntas-resultados">
-      <div *ngFor="let pregunta of resultados.preguntas; let i = index" class="pregunta-resultado-container">
+      <div
+        *ngFor="let pregunta of resultados.preguntas; let i = index"
+        class="pregunta-resultado-container"
+      >
         <p-card styleClass="pregunta-resultado-card">
           <ng-template pTemplate="header">
             <div class="pregunta-resultado-header">
@@ -49,43 +53,95 @@
 
           <div class="pregunta-resultados-content">
             <!-- Resultados para preguntas abiertas -->
-            <div *ngIf="pregunta.tipo === TiposRespuestaEnum.ABIERTA" class="respuestas-abiertas">
-              <h4>Respuestas ({{ pregunta.respuestas_abiertas?.length || 0 }})</h4>
-              <div *ngIf="pregunta.respuestas_abiertas && pregunta.respuestas_abiertas.length > 0; else noRespuestasAbiertas">
-                <div *ngFor="let respuesta of pregunta.respuestas_abiertas" class="respuesta-abierta-item">
+            <div
+              *ngIf="pregunta.tipo === TiposRespuestaEnum.ABIERTA"
+              class="respuestas-abiertas"
+            >
+              <h4>
+                Respuestas ({{ pregunta.respuestas_abiertas?.length || 0 }})
+              </h4>
+              <div
+                *ngIf="
+                  pregunta.respuestas_abiertas &&
+                    pregunta.respuestas_abiertas.length > 0;
+                  else noRespuestasAbiertas
+                "
+              >
+                <div
+                  *ngFor="let respuesta of pregunta.respuestas_abiertas"
+                  class="respuesta-abierta-item"
+                >
                   <p>{{ respuesta }}</p>
                 </div>
               </div>
               <ng-template #noRespuestasAbiertas>
-                <p class="no-respuestas">No hay respuestas para esta pregunta aún.</p>
+                <p class="no-respuestas">
+                  No hay respuestas para esta pregunta aún.
+                </p>
               </ng-template>
             </div>
 
             <!-- Resultados para preguntas de opciones -->
-            <div *ngIf="pregunta.tipo !== TiposRespuestaEnum.ABIERTA" class="respuestas-opciones">
+            <div
+              *ngIf="pregunta.tipo !== TiposRespuestaEnum.ABIERTA"
+              class="respuestas-opciones"
+            >
               <div class="estadisticas-opciones">
-                <h4>Estadísticas ({{ getTotalRespuestasOpcion(pregunta) }} respuestas)</h4>
+                <h4>
+                  Estadísticas ({{
+                    getTotalRespuestasOpcion(pregunta)
+                  }}
+                  respuestas)
+                </h4>
 
-                <div *ngIf="pregunta.opciones && pregunta.opciones.length > 0; else noRespuestasOpciones">
+                <div
+                  *ngIf="
+                    pregunta.opciones && pregunta.opciones.length > 0;
+                    else noRespuestasOpciones
+                  "
+                >
                   <!-- Lista de opciones con estadísticas -->
                   <div class="opciones-estadisticas">
-                    <div *ngFor="let opcion of pregunta.opciones" class="opcion-estadistica">
+                    <div
+                      *ngFor="let opcion of pregunta.opciones"
+                      class="opcion-estadistica"
+                    >
                       <div class="opcion-info">
                         <span class="opcion-texto">{{ opcion.texto }}</span>
-                        <span class="opcion-cantidad">{{ opcion.cantidad_respuestas || 0 }} respuestas</span>
-                        <span class="opcion-porcentaje">{{ getPorcentajeOpcion(opcion, getTotalRespuestasOpcion(pregunta)) }}%</span>
+                        <span class="opcion-cantidad"
+                          >{{
+                            opcion.cantidad_respuestas || 0
+                          }}
+                          respuestas</span
+                        >
+                        <span class="opcion-porcentaje"
+                          >{{
+                            getPorcentajeOpcion(
+                              opcion,
+                              getTotalRespuestasOpcion(pregunta)
+                            )
+                          }}%</span
+                        >
                       </div>
                       <div class="opcion-barra">
-                        <div class="opcion-progreso"
-                             [style.width.%]="getPorcentajeOpcion(opcion, getTotalRespuestasOpcion(pregunta))">
-                        </div>
+                        <div
+                          class="opcion-progreso"
+                          [style.width.%]="
+                            getPorcentajeOpcion(
+                              opcion,
+                              getTotalRespuestasOpcion(pregunta)
+                            )
+                          "
+                        ></div>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <ng-template #noRespuestasOpciones>
-                  <p class="no-respuestas">No hay respuestas para esta pregunta aún.</p>
+                  <p class="no-respuestas">
+                    No hay respuestas para esta pregunta aún.
+                  </p>
                 </ng-template>
               </div>
             </div>
@@ -100,7 +156,8 @@
         label="Volver al inicio"
         icon="pi pi-home"
         (click)="router.navigate(['/'])"
-        styleClass="accion-button">
+        styleClass="accion-button"
+      >
       </p-button>
     </div>
   </div>
