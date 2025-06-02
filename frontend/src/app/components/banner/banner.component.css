@@ -1,35 +1,29 @@
 /* Host styles - Configuración principal del componente */
 :host {
-  height: calc(100vh - 70px); /* Restamos la altura del navbar */
+  min-height: calc(100vh - 70px); /* Altura mínima, pero permite que crezca */
   width: 100vw;
   display: block;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  /* Removemos overflow: hidden para permitir que se vea el footer */
 }
 
 /* Contenedor principal con gradiente de fondo mejorado */
 .banner-container {
-  height: 100%;
+  min-height: calc(100vh - 70px);
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   margin: 0;
-
-  padding: 1rem;
+  padding: 2rem 1rem;
   background:
     radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
     radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%),
     linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  overflow: hidden;
   box-sizing: border-box;
-
-  padding: 0;
-  overflow: auto; /* Permite el scroll si el contenido es más grande que la ventana */
-
 }
 
 /* Patrón de puntos decorativo */
@@ -1119,3 +1113,5 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
 }
 }
+
+

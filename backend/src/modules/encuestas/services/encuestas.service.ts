@@ -18,7 +18,7 @@ import { Respuesta } from '../../respuestas/entities/respuesta.entity';
 // Importación de librería para generar QR
 import * as QRCode from 'qrcode';
 // Importación de papaparse para generar CSV
-import * as Papa from 'papaparse'; 
+import * as Papa from 'papaparse';
 
 @Injectable() // Decorador que marca esta clase como un servicio inyectable
 export class EncuestasService {
@@ -328,8 +328,10 @@ export class EncuestasService {
   }
 
   // Funcionalidad extra para generar un CSV (Emilia)
+
   async resultadosCSV(id: number, codigoResultados: string): Promise<string> {
     // Obtiene los resultados de la encuesta validando el código de resultados
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const resultados = await this.obtenerResultados(id, codigoResultados);
 
     // Si no se encuentran resultados, arroja una excepción
@@ -340,23 +342,33 @@ export class EncuestasService {
     const filas: any[] = []; // Guarda los datos en formato fila para el CSV
 
     // Recorre cada pregunta para armar las filas
-    resultados.resultados.forEach((pregunta) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    resultados.resultados.forEach((pregunta: any) => {
       // Si la pregunta es abierta, se agregan todas las respuestas individuales como filas
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (pregunta.tipo === 'ABIERTA') {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
         pregunta.respuestas.forEach((textoRespuesta: string) => {
           filas.push({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             Pregunta: pregunta.pregunta,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             Tipo: pregunta.tipo,
             Respuesta: textoRespuesta,
           });
         });
       } else {
-         // Si la pregunta es de opción, se agregan las opciones con la cantidad de respuestas
-        pregunta.opciones.forEach((opcion) => {
+        // Si la pregunta es de opción, se agregan las opciones con la cantidad de respuestas
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+        pregunta.opciones.forEach((opcion: any) => {
           filas.push({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             Pregunta: pregunta.pregunta,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             Tipo: pregunta.tipo,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             Opcion: opcion.opcion,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             'Cantidad Respuestas': opcion.conteo,
           });
         });
@@ -365,8 +377,8 @@ export class EncuestasService {
 
     // Convierte las filas a formato csv utilizando papaparse
     const csv = Papa.unparse(filas, {
-      quotes: true, 
-      delimiter: ';', 
+      quotes: true,
+      delimiter: ';',
       header: true,
       newline: '\r\n',
     });

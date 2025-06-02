@@ -1,15 +1,11 @@
-<!-- responder-encuesta.component.html -->
 <div class="encuesta-container">
-  <!-- Toast para mensajes -->
   <p-toast></p-toast>
 
-  <!-- Loading state -->
   <div *ngIf="cargando" class="loading-container">
     <p-progressSpinner></p-progressSpinner>
     <p>Cargando encuesta...</p>
   </div>
 
-  <!-- Encuesta cargada -->
   <div *ngIf="!cargando && encuesta" class="encuesta-content">
     <p-card>
       <ng-template pTemplate="header">
@@ -31,21 +27,18 @@
           </div>
 
           <div class="pregunta-content">
-            <!-- Pregunta Abierta (Texto libre) -->
             <div *ngIf="esPreguntaAbierta(pregunta)" class="pregunta-abierta">
-              <p-inputTextarea
+              <textarea
                 rows="4"
-                autoResize="true"
                 [(ngModel)]="getRespuestaPorPregunta(pregunta.numero).texto"
                 (ngModelChange)="onTextoChange(pregunta, $event)"
                 [name]="'pregunta-texto-' + pregunta.numero"
                 placeholder="Escribí tu respuesta aquí..."
-                class="w-full"
+                class="w-full textarea-custom"
                 [required]="pregunta.obligatoria">
-              </p-inputTextarea>
+              </textarea>
             </div>
 
-            <!-- Pregunta de Selección Simple (Radio buttons) -->
             <div *ngIf="esPreguntaSeleccionSimple(pregunta)" class="pregunta-seleccion-simple">
               <div *ngFor="let opcion of pregunta.opciones" class="opcion-radio">
                 <p-radioButton
@@ -61,15 +54,15 @@
               </div>
             </div>
 
-            <!-- Pregunta de Selección Múltiple (Checkboxes) -->
             <div *ngIf="esPreguntaSeleccionMultiple(pregunta)" class="pregunta-seleccion-multiple">
               <div *ngFor="let opcion of pregunta.opciones" class="opcion-checkbox">
                 <p-checkbox
                   [inputId]="'chk-' + pregunta.numero + '-' + opcion.id"
                   [value]="opcion.id"
                   [name]="'pregunta-' + pregunta.numero"
-                  [(ngModel)]="getRespuestaPorPregunta(pregunta.numero).opciones"
-                  (onChange)="onCheckboxChange(pregunta, opcion.id, $event.checked)">
+                  [ngModel]="isOpcionSeleccionada(pregunta.numero, opcion.id)"
+                  (onChange)="onCheckboxChange(pregunta, opcion.id, $event.checked)"
+                  [binary]="true">
                 </p-checkbox>
                 <label [for]="'chk-' + pregunta.numero + '-' + opcion.id" class="opcion-label">
                   {{ opcion.texto }}
@@ -77,7 +70,6 @@
               </div>
             </div>
 
-            <!-- Pregunta Verdadero/Falso -->
             <div *ngIf="esPreguntaVerdaderoFalso(pregunta)" class="pregunta-verdadero-falso">
               <div class="opcion-radio">
                 <p-radioButton
@@ -107,7 +99,6 @@
           </div>
         </div>
 
-        <!-- ✅ BOTONES ACTUALIZADOS CON NUEVA FUNCIONALIDAD -->
         <div class="form-actions">
           <p-button
             type="button"
@@ -118,7 +109,7 @@
             [disabled]="enviando"
             styleClass="p-button-lg mr-2">
           </p-button>
-          
+
           <p-button
             type="submit"
             label="Enviar Respuestas"
@@ -132,7 +123,6 @@
     </p-card>
   </div>
 
-  <!-- Error state -->
   <div *ngIf="!cargando && !encuesta" class="error-container">
     <p-card>
       <div class="error-content">
@@ -143,18 +133,17 @@
     </p-card>
   </div>
 
-  <!-- ✅ DIALOG DE VISTA PREVIA -->
-  <p-dialog 
+  <p-dialog
     header="Vista Previa de Respuestas"
     [(visible)]="mostrarDialogVistaPrevia"
     [modal]="true"
     [style]="{width: '70vw', maxWidth: '800px'}"
     [closable]="true"
     [draggable]="false">
-    
+
     <div class="vista-previa-content">
       <p class="mb-4">Revisá tus respuestas antes de enviar:</p>
-      
+
       <div *ngFor="let pregunta of encuesta?.preguntas" class="pregunta-previa mb-4">
         <div class="pregunta-titulo font-semibold mb-2">
           {{ pregunta.numero }}. {{ pregunta.texto }}
@@ -167,30 +156,29 @@
     </div>
 
     <ng-template pTemplate="footer">
-      <p-button 
-        label="Volver a Editar" 
-        icon="pi pi-pencil" 
+      <p-button
+        label="Volver a Editar"
+        icon="pi pi-pencil"
         severity="secondary"
         (onClick)="mostrarDialogVistaPrevia = false">
       </p-button>
-      <p-button 
-        label="Enviar Respuestas" 
-        icon="pi pi-check" 
+      <p-button
+        label="Enviar Respuestas"
+        icon="pi pi-check"
         (onClick)="confirmarEnvio(); mostrarDialogVistaPrevia = false"
         styleClass="ml-2">
       </p-button>
     </ng-template>
   </p-dialog>
 
-  <!-- ✅ DIALOG DE CONFIRMACIÓN -->
-  <p-dialog 
+  <p-dialog
     header="Confirmar Envío"
     [(visible)]="mostrarDialogConfirmacion"
     [modal]="true"
     [style]="{width: '450px'}"
     [closable]="true"
     [draggable]="false">
-    
+
     <div class="confirmacion-content">
       <div class="flex align-items-center mb-4">
         <i class="pi pi-question-circle text-4xl text-blue-500 mr-3"></i>
@@ -199,9 +187,9 @@
           <p class="text-gray-600">Una vez enviadas, no podrás modificarlas.</p>
         </div>
       </div>
-      
+
       <p-divider></p-divider>
-      
+
       <div class="estadisticas mt-4">
         <p><strong>Preguntas respondidas:</strong> {{ contarRespuestasCompletadas() }} de {{ encuesta?.preguntas?.length }}</p>
         <p><strong>Encuesta:</strong> {{ encuesta?.nombre }}</p>
@@ -209,15 +197,15 @@
     </div>
 
     <ng-template pTemplate="footer">
-      <p-button 
-        label="Cancelar" 
-        icon="pi pi-times" 
+      <p-button
+        label="Cancelar"
+        icon="pi pi-times"
         severity="secondary"
         (onClick)="mostrarDialogConfirmacion = false">
       </p-button>
-      <p-button 
-        label="Confirmar Envío" 
-        icon="pi pi-check" 
+      <p-button
+        label="Confirmar Envío"
+        icon="pi pi-check"
         [loading]="enviando"
         (onClick)="enviarRespuestasFinal()"
         styleClass="ml-2">
@@ -225,15 +213,14 @@
     </ng-template>
   </p-dialog>
 
-  <!-- ✅ DIALOG DE ERROR -->
-  <p-dialog 
+  <p-dialog
     header="Error"
     [(visible)]="mostrarDialogError"
     [modal]="true"
     [style]="{width: '500px'}"
     [closable]="true"
     [draggable]="false">
-    
+
     <div class="error-dialog-content">
       <div class="flex align-items-center mb-4">
         <i class="pi pi-exclamation-triangle text-4xl text-red-500 mr-3"></i>
@@ -242,24 +229,24 @@
           <p class="text-gray-600">No se pudieron procesar tus respuestas.</p>
         </div>
       </div>
-      
+
       <p-divider></p-divider>
-      
+
       <div class="error-detalles mt-4 p-3 bg-red-50 border-l-4 border-red-400 rounded">
         <p class="text-sm text-red-700">{{ errorDetallado }}</p>
       </div>
     </div>
 
     <ng-template pTemplate="footer">
-      <p-button 
-        label="Cerrar" 
-        icon="pi pi-times" 
+      <p-button
+        label="Cerrar"
+        icon="pi pi-times"
         severity="secondary"
         (onClick)="mostrarDialogError = false">
       </p-button>
-      <p-button 
-        label="Reintentar" 
-        icon="pi pi-refresh" 
+      <p-button
+        label="Reintentar"
+        icon="pi pi-refresh"
         (onClick)="reintentarEnvio()"
         styleClass="ml-2">
       </p-button>
