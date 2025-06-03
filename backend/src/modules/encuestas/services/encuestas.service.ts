@@ -74,7 +74,7 @@ export class EncuestasService {
       ...dto, // Copia las propiedades del DTO
       codigoRespuesta, // Genera un código único para las respuestas
       codigoResultados, // Genera un código único para los resultados
-      fechaVencimiento: dto.fechaVencimiento,
+      fechaVencimiento: dto.fechaVencimiento, // Se toma la fecha de vencimiento
     });
 
     // Guarda la encuesta en la base de datos
@@ -179,7 +179,7 @@ export class EncuestasService {
       throw new BadRequestException('Datos de encuesta no válidos');
     }
 
-    // Validar fecha de vencimiento si existe
+    // Se agrega una validación para rechazar el acceso si la encuesta ya está vencida.
     if (encuesta.fechaVencimiento && encuesta.fechaVencimiento < new Date()) {
       throw new BadRequestException(
         'La encuesta ha vencido y ya no está disponible',
@@ -310,6 +310,7 @@ export class EncuestasService {
       throw new BadRequestException('Código de encuesta no válido');
     }
 
+    // Se agrega una validación para rechazar el acceso si la encuesta ya está vencida.
     if (encuesta.fechaVencimiento && encuesta.fechaVencimiento < new Date()) {
       throw new BadRequestException(
         'La encuesta ha vencido y ya no está disponible',

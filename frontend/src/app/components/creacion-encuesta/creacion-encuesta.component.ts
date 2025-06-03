@@ -23,6 +23,7 @@ import { TextoErrorComponent } from '../texto-error/texto-error.component';
 import { EncuestasService } from '../../services/encuestas.service';
 import { Router, RouterModule } from '@angular/router';
 import { CreateEncuestaDTO } from '../../interfaces/create-encuesta.dto';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-creacion-encuesta',
@@ -37,6 +38,7 @@ import { CreateEncuestaDTO } from '../../interfaces/create-encuesta.dto';
     ReactiveFormsModule,
     TextoErrorComponent,
     RouterModule,
+    MessageModule,
   ],
   templateUrl: './creacion-encuesta.component.html',
   styleUrl: './creacion-encuesta.component.css',
@@ -71,6 +73,7 @@ export class CreacionEncuestaComponent {
     // Inicializa el formulario con controles y validadores
     this.form = new FormGroup({
       nombre: new FormControl<string>('', Validators.required), // Nombre de la encuesta
+      fechaVencimiento: new FormControl<Date | null>(null), // Fecha de vencimiento incorporada
       preguntas: new FormArray<FormControl<PreguntaDTO>>(
         [],
         [Validators.required, Validators.minLength(1)] // Al menos una pregunta requerida
@@ -86,6 +89,11 @@ export class CreacionEncuestaComponent {
   // Getter para el control del nombre de la encuesta
   get nombre(): FormControl<string> {
     return this.form.get('nombre') as FormControl<string>;
+  }
+
+    // Getter para fecha de vecimiento
+  get fechaVencimiento(): FormControl<Date | null> {
+    return this.form.get('fechaVencimiento') as FormControl<Date | null>;
   }
 
   // Abre el diálogo para agregar una nueva pregunta
@@ -316,7 +324,8 @@ export class CreacionEncuestaComponent {
     console.log('📋 Estado del formulario:', {
       valid: this.form.valid,
       value: this.form.value,
-      errors: this.form.errors
+      errors: this.form.errors,
+      fechaVencimiento: this.form.value.fechaVencimiento
     });
 
     // Verificar que el formulario sea válido
@@ -347,6 +356,7 @@ export class CreacionEncuestaComponent {
       enlaceCorto: '',
       codigoQR: '',
       nombre: formData.nombre,
+      fechaVencimiento: formData.fechaVencimiento,
       preguntas: formData.preguntas || []
     };
 
@@ -368,6 +378,15 @@ export class CreacionEncuestaComponent {
         nombre: encuesta.nombre,
         preguntasLength: encuesta.preguntas?.length || 0
       });
+
+      if (this.fechaVencimiento.value) { //validar fecha de vencimiento
+        const fechaSeleccionada = new Date(this.fechaVencimiento.value);
+        const ahora = new Date();
+        
+        if (fechaSeleccionada <= ahora) {
+          console.log('La fecha de vencimiento debe ser posterior a la fecha actual');
+        }
+      }
 
       this.messageService.add({
         severity: 'error',
