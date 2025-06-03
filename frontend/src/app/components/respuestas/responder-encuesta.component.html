@@ -127,8 +127,8 @@
     <p-card>
       <div class="error-content">
         <i class="pi pi-exclamation-triangle error-icon"></i>
-        <h3>Error al cargar la encuesta</h3>
-        <p>No se pudo cargar la encuesta. Por favor, verificá el enlace e intentá nuevamente.</p>
+        <h3>¡Ups!</h3>
+        <p>'La encuesta ha vencido y ya no acepta respuestas</p>
       </div>
     </p-card>
   </div>
@@ -142,7 +142,7 @@
     [draggable]="false">
 
     <div class="vista-previa-content">
-      <p class="mb-4">Revisá tus respuestas antes de enviar:</p>
+      <p class="mb-4">Por favor, revisá tus respuestas antes de enviar:</p>
 
       <div *ngFor="let pregunta of encuesta?.preguntas" class="pregunta-previa mb-4">
         <div class="pregunta-titulo font-semibold mb-2">
