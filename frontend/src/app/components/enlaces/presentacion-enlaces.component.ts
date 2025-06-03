@@ -35,6 +35,8 @@ export class PresentacionEnlacesComponent implements OnInit {
 
   // Variables para la animación de confeti festivo MASIVO
   showAnimation = false;
+  confettiWaves: any[] = [];
+  currentWave = 0;
 
   // Variables para la notificación de copia
   showCopyNotification = false;
@@ -65,11 +67,7 @@ export class PresentacionEnlacesComponent implements OnInit {
 
       // Activar la animación de confeti festivo después de un pequeño delay
       setTimeout(() => {
-        this.showAnimation = true;
-        // Desactivar la animación después de 5 segundos para disfrutar más la celebración
-        setTimeout(() => {
-          this.showAnimation = false;
-        }, 5000);
+        this.startConfettiAnimation();
       }, 500);
     });
   }
@@ -126,6 +124,67 @@ export class PresentacionEnlacesComponent implements OnInit {
     };
   }
 
+  // Método para iniciar la animación de confeti por ondas
+  private startConfettiAnimation() {
+    this.showAnimation = true;
+    this.confettiWaves = [];
+    this.currentWave = 0;
+
+    // Crear 6 ondas de confeti con intensidad decreciente
+    const waveIntensities = [1.0, 0.8, 0.6, 0.4, 0.25, 0.1];
+
+    waveIntensities.forEach((intensity, index) => {
+      setTimeout(() => {
+        this.createConfettiWave(intensity, index);
+      }, index * 800); // Cada onda aparece 800ms después de la anterior
+    });
+
+    // Terminar la animación después de que todas las ondas hayan terminado
+    setTimeout(() => {
+      this.showAnimation = false;
+      this.confettiWaves = [];
+    }, 12000); // 12 segundos total
+  }
+
+  // Método para crear una onda de confeti
+  private createConfettiWave(intensity: number, waveIndex: number) {
+    const wave = {
+      id: waveIndex,
+      intensity: intensity,
+      particles: this.generateWaveParticles(intensity),
+      active: true
+    };
+
+    this.confettiWaves.push(wave);
+
+    // Desactivar esta onda después de su duración
+    setTimeout(() => {
+      const waveToRemove = this.confettiWaves.find(w => w.id === waveIndex);
+      if (waveToRemove) {
+        waveToRemove.active = false;
+      }
+    }, 4000 + (intensity * 2000)); // Duración variable según intensidad
+  }
+
+  // Método para generar partículas para una onda específica
+  private generateWaveParticles(intensity: number) {
+    const baseCount = {
+      stars: 15,
+      hearts: 10,
+      celebration: 8,
+      sparkles: 12,
+      geometric: 40
+    };
+
+    return {
+      stars: Array(Math.floor(baseCount.stars * intensity)).fill(0).map(() => this.generateRandomParticle()),
+      hearts: Array(Math.floor(baseCount.hearts * intensity)).fill(0).map(() => this.generateRandomParticle()),
+      celebration: Array(Math.floor(baseCount.celebration * intensity)).fill(0).map(() => this.generateRandomParticle()),
+      sparkles: Array(Math.floor(baseCount.sparkles * intensity)).fill(0).map(() => this.generateRandomParticle()),
+      geometric: Array(Math.floor(baseCount.geometric * intensity)).fill(0).map(() => this.generateRandomParticle())
+    };
+  }
+
   // Método para copiar el texto(enlace) al portapapeles con notificación llamativa
   copiar(texto: string) {
     this.clipboard.copy(texto);
@@ -160,11 +219,14 @@ export class PresentacionEnlacesComponent implements OnInit {
     return {
       left: Math.random() * 100, // Posición horizontal aleatoria (0-100%)
       top: Math.random() * 100,  // Posición vertical aleatoria (0-100%)
-      delay: Math.random() * 2,  // Delay aleatorio (0-2 segundos)
-      duration: 2 + Math.random() * 3, // Duración aleatoria (2-5 segundos)
+      delay: Math.random() * 1.5,  // Delay aleatorio más corto (0-1.5 segundos)
+      duration: 3 + Math.random() * 4, // Duración más larga (3-7 segundos)
       rotation: Math.random() * 360, // Rotación inicial aleatoria
-      scale: 0.5 + Math.random() * 1, // Escala aleatoria (0.5-1.5)
-      color: this.getRandomColor()
+      scale: 0.6 + Math.random() * 0.8, // Escala más consistente (0.6-1.4)
+      color: this.getRandomColor(),
+      velocity: 0.5 + Math.random() * 1.5, // Velocidad de caída (0.5-2)
+      swing: Math.random() * 60 - 30, // Movimiento de balanceo (-30 a 30 grados)
+      fadeOut: 0.8 + Math.random() * 0.2 // Momento de desvanecimiento (80-100% de la duración)
     };
   }
 
@@ -228,6 +290,37 @@ export class PresentacionEnlacesComponent implements OnInit {
       ...this.confetti.geometric.triangles,
       ...this.confetti.geometric.diamonds
     ];
+  }
+
+  // Métodos para obtener partículas de todas las ondas activas
+  getAllWaveStars() {
+    return this.confettiWaves
+      .filter(wave => wave.active)
+      .flatMap(wave => wave.particles.stars || []);
+  }
+
+  getAllWaveHearts() {
+    return this.confettiWaves
+      .filter(wave => wave.active)
+      .flatMap(wave => wave.particles.hearts || []);
+  }
+
+  getAllWaveCelebration() {
+    return this.confettiWaves
+      .filter(wave => wave.active)
+      .flatMap(wave => wave.particles.celebration || []);
+  }
+
+  getAllWaveSparkles() {
+    return this.confettiWaves
+      .filter(wave => wave.active)
+      .flatMap(wave => wave.particles.sparkles || []);
+  }
+
+  getAllWaveGeometric() {
+    return this.confettiWaves
+      .filter(wave => wave.active)
+      .flatMap(wave => wave.particles.geometric || []);
   }
 
   // Método para obtener la clase CSS de las formas geométricas

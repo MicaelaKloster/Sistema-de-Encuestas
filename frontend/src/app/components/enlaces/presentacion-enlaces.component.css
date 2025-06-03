@@ -130,6 +130,15 @@ button[pButton][label="Volver al Inicio"]:hover {
   font-size: 1.2rem;
 }
 
+/* Estilos para partículas fluidas */
+.fluid-particle {
+  animation: fluidFall var(--duration, 4s) ease-out forwards;
+  font-size: 1.2rem;
+  --velocity: 1;
+  --swing: 0deg;
+  --fade-start: 0.8;
+}
+
 @keyframes random-float {
   0% {
     transform: translateY(0) rotate(0deg) scale(1);
@@ -879,5 +888,27 @@ button[pButton][label="Volver al Inicio"]:hover {
   75% {
     transform: translateY(-10px) scale(1.1) rotate(270deg);
     opacity: 1;
+  }
+}
+
+/* Nueva animación fluida para confeti */
+@keyframes fluidFall {
+  0% {
+    transform: translateY(-100vh) translateX(0) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  calc(var(--fade-start) * 100%) {
+    opacity: 1;
+  }
+  100% {
+    transform:
+      translateY(calc(100vh + 200px))
+      translateX(calc(var(--swing) * var(--velocity) * 2))
+      rotate(calc(360deg * var(--velocity)))
+      scale(0.3);
+    opacity: 0;
   }
 }
