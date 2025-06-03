@@ -163,6 +163,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#obtenerResultados" >obtenerResultados</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#resultadosCSV" >resultadosCSV</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -181,12 +185,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(encuestaRepository: <a href="../entitys/Encuesta.html" target="_self">Repository&lt;Encuesta&gt;</a>, respuestaRepository: Repository<Respuesta>)</code>
+<code>constructor(encuestaRepository: <a href="../entitys/Encuesta.html" target="_self">Repository&lt;Encuesta&gt;</a>, respuestaRepository: Repository<Respuesta>, configService: ConfigService)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -220,6 +224,18 @@
                                                   
                                                         <td>
                                                                     <code>Repository&lt;Respuesta&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>configService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigService</code>
                                                         </td>
                                                   
                                                     <td>
@@ -263,8 +279,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="258"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:258</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="277"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:277</a></div>
                         </td>
                     </tr>
 
@@ -344,8 +360,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -413,8 +429,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="128"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:128</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="140"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:140</a></div>
                         </td>
                     </tr>
 
@@ -482,8 +498,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:107</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="119"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:119</a></div>
                         </td>
                     </tr>
 
@@ -551,8 +567,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="142"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:142</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="154"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:154</a></div>
                         </td>
                     </tr>
 
@@ -644,8 +660,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="281"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:281</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="300"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:300</a></div>
                         </td>
                     </tr>
 
@@ -725,8 +741,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="180"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:180</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="199"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:199</a></div>
                         </td>
                     </tr>
 
@@ -784,6 +800,87 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resultadosCSV"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>resultadosCSV</b></span>
+                        <a href="#resultadosCSV"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resultadosCSV(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, codigoResultados: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="340"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:340</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>codigoResultados</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;string&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -806,8 +903,11 @@ import { CodigoTipoEnum } from &#x27;../enums/codigo-tipo.enum&#x27;;
 import { NotFoundException } from &#x27;@nestjs/common&#x27;;
 import { TiposRespuestaEnum } from &#x27;../enums/tipos-respuesta.enum&#x27;;
 import { Respuesta } from &#x27;../../respuestas/entities/respuesta.entity&#x27;;
-import fetch from &#x27;node-fetch&#x27;;
+// Importación de librería para generar QR
 import * as QRCode from &#x27;qrcode&#x27;;
+// Importación de papaparse para generar CSV
+import * as Papa from &#x27;papaparse&#x27;;
+import { ConfigService } from &#x27;@nestjs/config&#x27;;
 
 @Injectable() // Decorador que marca esta clase como un servicio inyectable
 export class EncuestasService {
@@ -817,6 +917,7 @@ export class EncuestasService {
     private encuestaRepository: Repository&lt;Encuesta&gt;,
     @InjectRepository(Respuesta)
     private respuestaRepository: Repository&lt;Respuesta&gt;,
+    private configService: ConfigService,
   ) {}
 
   // Método para crear una nueva encuesta se le agrega codigo de enlace corto y codigoqr
@@ -828,6 +929,7 @@ export class EncuestasService {
     enlaceVisualizacion: string;
     enlaceCorto: string;
     codigoQR: string;
+    fechaVencimiento?: Date;
   }&gt; {
     for (const pregunta of dto.preguntas) {
       // FUNCIÓN EXTRA: Manejar preguntas de tipo VERDADERO_FALSO
@@ -862,14 +964,20 @@ export class EncuestasService {
       ...dto, // Copia las propiedades del DTO
       codigoRespuesta, // Genera un código único para las respuestas
       codigoResultados, // Genera un código único para los resultados
+      fechaVencimiento: dto.fechaVencimiento, // Se toma la fecha de vencimiento
     });
 
     // Guarda la encuesta en la base de datos
     const encuestaCreada &#x3D; await this.encuestaRepository.save(encuesta);
 
     // Usamos APP_URL para que sea dinámico con el puerto que esté activo
-    const baseUrl &#x3D; process.env.APP_URL || &#x27;http://localhost:3000&#x27;;
-    const apiPrefix &#x3D; process.env.GLOBAL_PREFIX || &#x27;api&#x27;;
+    // const baseUrl &#x3D; process.env.APP_URL || &#x27;http://localhost:3000&#x27;;
+    const baseUrl &#x3D; this.configService.get&lt;string&gt;(
+      &#x27;APP_URL&#x27;,
+      &#x27;http://localhost:3000&#x27;,
+    );
+    // const apiPrefix &#x3D; process.env.GLOBAL_PREFIX || &#x27;api&#x27;;
+    const apiPrefix &#x3D; this.configService.get&lt;string&gt;(&#x27;GLOBAL_PREFIX&#x27;, &#x27;api&#x27;);
     const apiVersion &#x3D; &#x27;v1&#x27;;
 
     // Formato: /api/v1/respuestas/participar/{id}/{codigoRespuesta}
@@ -893,6 +1001,7 @@ export class EncuestasService {
       enlaceVisualizacion,
       enlaceCorto,
       codigoQR,
+      fechaVencimiento: encuestaCreada.fechaVencimiento,
     };
   }
   async generarEnlaceCorto(url: string): Promise&lt;string&gt; {
@@ -963,6 +1072,13 @@ export class EncuestasService {
     // Si no se encuentra la encuesta, lanza una excepción
     if (!encuesta) {
       throw new BadRequestException(&#x27;Datos de encuesta no válidos&#x27;);
+    }
+
+    // Se agrega una validación para rechazar el acceso si la encuesta ya está vencida.
+    if (encuesta.fechaVencimiento &amp;&amp; encuesta.fechaVencimiento &lt; new Date()) {
+      throw new BadRequestException(
+        &#x27;La encuesta ha vencido y ya no está disponible&#x27;,
+      );
     }
 
     // Retorna la encuesta encontrada
@@ -1089,6 +1205,13 @@ export class EncuestasService {
       throw new BadRequestException(&#x27;Código de encuesta no válido&#x27;);
     }
 
+    // Se agrega una validación para rechazar el acceso si la encuesta ya está vencida.
+    if (encuesta.fechaVencimiento &amp;&amp; encuesta.fechaVencimiento &lt; new Date()) {
+      throw new BadRequestException(
+        &#x27;La encuesta ha vencido y ya no está disponible&#x27;,
+      );
+    }
+
     // Ordenar las preguntas y opciones
     encuesta.preguntas.sort((a, b) &#x3D;&gt; a.numero - b.numero);
     encuesta.preguntas.forEach((pregunta) &#x3D;&gt; {
@@ -1098,6 +1221,66 @@ export class EncuestasService {
     });
 
     return encuesta;
+  }
+
+  // Funcionalidad extra para generar un CSV (Emilia)
+
+  async resultadosCSV(id: number, codigoResultados: string): Promise&lt;string&gt; {
+    // Obtiene los resultados de la encuesta validando el código de resultados
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const resultados &#x3D; await this.obtenerResultados(id, codigoResultados);
+
+    // Si no se encuentran resultados, arroja una excepción
+    if (!resultados) {
+      throw new NotFoundException(&#x27;No se encontraron resultados&#x27;);
+    }
+
+    const filas: any[] &#x3D; []; // Guarda los datos en formato fila para el CSV
+
+    // Recorre cada pregunta para armar las filas
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    resultados.resultados.forEach((pregunta: any) &#x3D;&gt; {
+      // Si la pregunta es abierta, se agregan todas las respuestas individuales como filas
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (pregunta.tipo &#x3D;&#x3D;&#x3D; &#x27;ABIERTA&#x27;) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+        pregunta.respuestas.forEach((textoRespuesta: string) &#x3D;&gt; {
+          filas.push({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+            Pregunta: pregunta.pregunta,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+            Tipo: pregunta.tipo,
+            Respuesta: textoRespuesta,
+          });
+        });
+      } else {
+        // Si la pregunta es de opción, se agregan las opciones con la cantidad de respuestas
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+        pregunta.opciones.forEach((opcion: any) &#x3D;&gt; {
+          filas.push({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+            Pregunta: pregunta.pregunta,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+            Tipo: pregunta.tipo,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+            Opcion: opcion.opcion,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+            &#x27;Cantidad Respuestas&#x27;: opcion.conteo,
+          });
+        });
+      }
+    });
+
+    // Convierte las filas a formato csv utilizando papaparse
+    const csv &#x3D; Papa.unparse(filas, {
+      quotes: true,
+      delimiter: &#x27;;&#x27;,
+      header: true,
+      newline: &#x27;\r\n&#x27;,
+    });
+
+    // Retorna el CSV
+    return &#x27;\uFEFF&#x27; + csv;
   }
 }
 </code></pre>

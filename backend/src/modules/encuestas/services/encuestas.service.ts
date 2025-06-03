@@ -19,6 +19,7 @@ import { Respuesta } from '../../respuestas/entities/respuesta.entity';
 import * as QRCode from 'qrcode';
 // Importación de papaparse para generar CSV
 import * as Papa from 'papaparse';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable() // Decorador que marca esta clase como un servicio inyectable
 export class EncuestasService {
@@ -28,6 +29,7 @@ export class EncuestasService {
     private encuestaRepository: Repository<Encuesta>,
     @InjectRepository(Respuesta)
     private respuestaRepository: Repository<Respuesta>,
+    private configService: ConfigService,
   ) {}
 
   // Método para crear una nueva encuesta se le agrega codigo de enlace corto y codigoqr
@@ -81,8 +83,13 @@ export class EncuestasService {
     const encuestaCreada = await this.encuestaRepository.save(encuesta);
 
     // Usamos APP_URL para que sea dinámico con el puerto que esté activo
-    const baseUrl = process.env.APP_URL || 'http://localhost:3000';
-    const apiPrefix = process.env.GLOBAL_PREFIX || 'api';
+    // const baseUrl = process.env.APP_URL || 'http://localhost:3000';
+    const baseUrl = this.configService.get<string>(
+      'APP_URL',
+      'http://localhost:3000',
+    );
+    // const apiPrefix = process.env.GLOBAL_PREFIX || 'api';
+    const apiPrefix = this.configService.get<string>('GLOBAL_PREFIX', 'api');
     const apiVersion = 'v1';
 
     // Formato: /api/v1/respuestas/participar/{id}/{codigoRespuesta}

@@ -213,7 +213,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/modules/respuestas/dtos/registrar-respuestas.dto.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/modules/respuestas/dtos/registrar-respuestas.dto.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -253,7 +253,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/modules/respuestas/dtos/registrar-respuestas.dto.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/modules/respuestas/dtos/registrar-respuestas.dto.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -291,7 +291,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/modules/respuestas/dtos/registrar-respuestas.dto.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/modules/respuestas/dtos/registrar-respuestas.dto.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -329,7 +329,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/respuestas/dtos/registrar-respuestas.dto.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modules/respuestas/dtos/registrar-respuestas.dto.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -358,6 +358,15 @@
 } from &#x27;class-validator&#x27;;
 import { Type } from &#x27;class-transformer&#x27;;
 
+// Representa la respuesta a una pregunta individual de la encuesta:
+// id_pregunta: Un número obligatorio que identifica la pregunta (validado con @IsNumber() y @IsNotEmpty())
+// tipo: Un string que debe ser uno de tres valores específicos (tipos de pregunta):
+// &#x27;ABIERTA&#x27;: Para preguntas de respuesta libre
+// &#x27;OPCION_MULTIPLE_SELECCION_SIMPLE&#x27;: Para preguntas con una sola opción seleccionable
+// &#x27;OPCION_MULTIPLE_SELECCION_MULTIPLE&#x27;: Para preguntas con múltiples opciones seleccionables
+// texto: Un campo opcional (@IsOptional()) de tipo string para almacenar la respuesta a preguntas abiertas
+// opciones: Un campo opcional que contiene un array de números, para almacenar los IDs de las opciones seleccionadas en preguntas de opción múltiple
+
 export class RespuestaPreguntaDto {
   @IsNumber()
   @IsNotEmpty()
@@ -382,6 +391,11 @@ export class RespuestaPreguntaDto {
   @Type(() &#x3D;&gt; Number) // Transforma cada elemento a número
   opciones?: number[]; // preguntas de opción múltiple
 }
+
+// Actúa como contenedor principal que será recibido por el controlador:
+// respuestas: Un array obligatorio de objetos RespuestaPreguntaDto
+// Usa @ValidateNested() para validar cada elemento del array según las reglas de RespuestaPreguntaDto
+// Usa @Type(() &#x3D;&gt; RespuestaPreguntaDto) para asegurar que cada elemento sea transformado correctamente
 
 export class RegistrarRespuestasDto {
   @IsArray()

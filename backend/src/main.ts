@@ -15,11 +15,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Habilitar CORS para permitir solicitudes desde el frontend
-  app.enableCors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:4200',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  });
+  // app.enableCors({
+  //   origin: process.env.FRONTEND_URL || 'http://localhost:4200',
+  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  //   credentials: true,
+  // });
 
   // Uso de Helmet para mejorar la seguridad de la aplicación
   app.use(helmet());

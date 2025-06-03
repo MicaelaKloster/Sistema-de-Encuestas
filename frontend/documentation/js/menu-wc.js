@@ -75,10 +75,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/NavbarComponent.html" data-type="entity-link" >NavbarComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/PresentacionEnlacesComponent.html" data-type="entity-link" >PresentacionEnlacesComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ResponderEncuestaComponent.html" data-type="entity-link" >ResponderEncuestaComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/SeccionComponent.html" data-type="entity-link" >SeccionComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/TextoErrorComponent.html" data-type="entity-link" >TextoErrorComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/VisualizarResultadosComponent.html" data-type="entity-link" >VisualizarResultadosComponent</a>
                             </li>
                         </ul>
                     </li>
@@ -92,6 +101,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
                                     <a href="injectables/EncuestasService.html" data-type="entity-link" >EncuestasService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/RespuestasService.html" data-type="entity-link" >RespuestasService</a>
                                 </li>
                             </ul>
                         </li>
@@ -110,13 +122,40 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/CreatePreguntaDTO.html" data-type="entity-link" >CreatePreguntaDTO</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/Encuesta.html" data-type="entity-link" >Encuesta</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/EncuestaDTO.html" data-type="entity-link" >EncuestaDTO</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EncuestaResponse.html" data-type="entity-link" >EncuestaResponse</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/OpcionDTO.html" data-type="entity-link" >OpcionDTO</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/OpcionRespuesta.html" data-type="entity-link" >OpcionRespuesta</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/Pregunta.html" data-type="entity-link" >Pregunta</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/PreguntaDTO.html" data-type="entity-link" >PreguntaDTO</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RegistrarRespuestasDTO.html" data-type="entity-link" >RegistrarRespuestasDTO</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RegistrarRespuestasDto.html" data-type="entity-link" >RegistrarRespuestasDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RespuestaPreguntaDTO.html" data-type="entity-link" >RespuestaPreguntaDTO</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RespuestaPreguntaDto.html" data-type="entity-link" >RespuestaPreguntaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RespuestaUsuario.html" data-type="entity-link" >RespuestaUsuario</a>
                             </li>
                         </ul>
                     </li>

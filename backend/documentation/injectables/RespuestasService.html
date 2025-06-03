@@ -295,14 +295,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="309"
-                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:309</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="308"
+                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:308</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Obtiene la estructura de una encuesta para participación</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -313,6 +315,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -327,6 +330,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>ID numérico de la encuesta</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>codigoParticipacion</td>
@@ -339,6 +348,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Token UUID de participación</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -348,7 +363,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Objeto DTO con la estructura de la encuesta para participar</p>
+
                             </div>
                 </td>
             </tr>
@@ -376,14 +392,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:37</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:45</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Registra las respuestas de un usuario para una encuesta específica</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -394,6 +412,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -408,6 +427,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Token UUID de participación de la encuesta</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>registarRespuestasDto</td>
@@ -420,6 +445,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Objeto con las respuestas del usuario</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>encuestaId</td>
@@ -432,6 +463,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>ID opcional de la encuesta para validación adicional</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -469,14 +506,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="226"
-                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:226</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="232"
+                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:232</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Obtiene las respuestas registradas de una encuesta específica para visualizarlas</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -487,6 +526,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -501,6 +541,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Token UUID para visualizar los resultados</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -510,7 +556,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Objeto DTO con toda la información de la encuesta y sus respuestas</p>
+
                             </div>
                 </td>
             </tr>
@@ -557,12 +604,28 @@ export class RespuestasService {
     @InjectRepository(Opcion)
     private opcionRepository: Repository&lt;Opcion&gt;,
   ) {}
-  //recibe las respuestas de un usuario que ha participado en una encuesta y las guarda en la base de datos
+  /**
+   * Registra las respuestas de un usuario para una encuesta específica
+   *
+   * @param codigoParticipacion - Token UUID de participación de la encuesta
+   * @param registarRespuestasDto - Objeto con las respuestas del usuario
+   * @param encuestaId - ID opcional de la encuesta para validación adicional
+   * @throws NotFoundException - Si la encuesta no existe o el token es inválido
+   * @throws BadRequestException - Si faltan respuestas obligatorias o son inválidas
+   */
   async registrarRespuestas(
     codigoParticipacion: string,
     registarRespuestasDto: RegistrarRespuestasDto,
     encuestaId?: number,
   ): Promise&lt;void&gt; {
+    // Validar que el DTO de respuestas no esté vacío
+    if (
+      !registarRespuestasDto.respuestas ||
+      registarRespuestasDto.respuestas.length &#x3D;&#x3D;&#x3D; 0
+    ) {
+      throw new BadRequestException(&#x27;No se proporcionaron respuestas&#x27;);
+    }
+
     // Construir la condición de búsqueda con un tipo específico
     const whereCondition: {
       codigoRespuesta: string;
@@ -579,12 +642,19 @@ export class RespuestasService {
     }
 
     const encuesta &#x3D; await this.encuestaRepository.findOne({
-      where: whereCondition, //busca la encuesta con el codigo de participacion y opcionalmente el ID
+      where: whereCondition,
       relations: [&#x27;preguntas&#x27;, &#x27;preguntas.opciones&#x27;],
     });
 
     if (!encuesta) {
-      throw new NotFoundException(&#x27;Encuesta no encontrada o enlace invalido&#x27;); //sino existe el codigo mensaje de error
+      throw new NotFoundException(&#x27;Encuesta no encontrada o enlace inválido&#x27;);
+    }
+
+    // Validar si la encuesta ha vencido
+    if (encuesta.fechaVencimiento &amp;&amp; encuesta.fechaVencimiento &lt; new Date()) {
+      throw new BadRequestException(
+        &#x27;La encuesta ha vencido y ya no acepta respuestas&#x27;,
+      );
     }
 
     const preguntasObligatorias &#x3D; encuesta.preguntas;
@@ -598,40 +668,17 @@ export class RespuestasService {
     );
 
     if (preguntasFaltantes.length &gt; 0) {
-      console.log(
-        &#x27;Preguntas obligatorias:&#x27;,
-        preguntasObligatorias.map((p) &#x3D;&gt; p.id),
-      );
-      console.log(&#x27;Preguntas respondidas:&#x27;, preguntasRespondidas);
-      console.log(
-        &#x27;Preguntas faltantes:&#x27;,
-        preguntasFaltantes.map((p) &#x3D;&gt; p.id),
-      );
-      // Imprimir información detallada de las preguntas y opciones
-      encuesta.preguntas.forEach((pregunta) &#x3D;&gt; {
-        console.log(
-          &#x60;Pregunta ID: ${pregunta.id}, Número: ${pregunta.numero}, Texto: &quot;${pregunta.texto}&quot;&#x60;,
-        );
-        if (pregunta.opciones &amp;&amp; pregunta.opciones.length &gt; 0) {
-          console.log(&#x27;Opciones:&#x27;);
-          pregunta.opciones.forEach((opcion) &#x3D;&gt; {
-            console.log(
-              &#x60;  Opción ID: ${opcion.id}, Número: ${opcion.numero}, Texto: &quot;${opcion.texto}&quot;&#x60;,
-            );
-          });
-        }
-      });
-
       throw new BadRequestException(
         &#x60;Debe responder todas las preguntas obligatorias. Faltan las preguntas: ${preguntasFaltantes.map((p) &#x3D;&gt; p.numero).join(&#x27;, &#x27;)}&#x60;,
       );
     }
-    //crea una nueva respuesta vinculada a la encuesta
+
+    // Crear una nueva respuesta vinculada a la encuesta
     const respuesta &#x3D; this.respuestaRepository.create({
       id_encuesta: encuesta.id,
     });
+    const respuestaGuardada &#x3D; await this.respuestaRepository.save(respuesta);
 
-    const respuestaGuardada &#x3D; await this.respuestaRepository.save(respuesta); //guarda las respuestas en la base de datos
     for (const respuestaPregunta of registarRespuestasDto.respuestas) {
       const pregunta &#x3D; await this.preguntaRepository.findOne({
         where: {
@@ -746,7 +793,13 @@ export class RespuestasService {
       }
     }
   }
-  // obtiene las respuestas registradas de una encuesta específica para visualizarlas.
+  /**
+   * Obtiene las respuestas registradas de una encuesta específica para visualizarlas
+   *
+   * @param codigoVisualizacion - Token UUID para visualizar los resultados
+   * @returns Objeto DTO con toda la información de la encuesta y sus respuestas
+   * @throws NotFoundException - Si la encuesta no existe o el token es inválido
+   */
   async visualizarRespuestasDto(
     codigoVisualizacion: string,
   ): Promise&lt;VisualizarRespuestasDto&gt; {
@@ -757,24 +810,8 @@ export class RespuestasService {
     });
 
     if (!encuesta) {
-      throw new NotFoundException(&#x27;Encuesta no encontrada o enlace inválido&#x27;); //si no existe mensaje de error.
+      throw new NotFoundException(&#x27;Encuesta no encontrada o enlace inválido&#x27;);
     }
-
-    // Imprimir información detallada de las preguntas y opciones para depuración
-    console.log(&#x27;Información de la encuesta para depuración:&#x27;);
-    encuesta.preguntas.forEach((pregunta) &#x3D;&gt; {
-      console.log(
-        &#x60;Pregunta ID: ${pregunta.id}, Número: ${pregunta.numero}, Texto: &quot;${pregunta.texto}&quot;&#x60;,
-      );
-      if (pregunta.opciones &amp;&amp; pregunta.opciones.length &gt; 0) {
-        console.log(&#x27;Opciones:&#x27;);
-        pregunta.opciones.forEach((opcion) &#x3D;&gt; {
-          console.log(
-            &#x60;  Opción ID: ${opcion.id}, Número: ${opcion.numero}, Texto: &quot;${opcion.texto}&quot;&#x60;,
-          );
-        });
-      }
-    });
 
     // Construir el objeto
     const resultado: VisualizarRespuestasDto &#x3D; {
@@ -830,6 +867,15 @@ export class RespuestasService {
 
     return resultado;
   }
+  /**
+   * Obtiene la estructura de una encuesta para participación
+   *
+   * @param id - ID numérico de la encuesta
+   * @param codigoParticipacion - Token UUID de participación
+   * @returns Objeto DTO con la estructura de la encuesta para participar
+   * @throws NotFoundException - Si la encuesta no existe o el token es inválido
+   * @throws BadRequestException - Si la encuesta ha vencido
+   */
   async obtenerEncuestaParaParticipacion(
     id: number,
     codigoParticipacion: string,
@@ -843,6 +889,13 @@ export class RespuestasService {
     if (!encuesta) {
       throw new NotFoundException(
         &#x27;Encuesta no encontrada o código de participación inválido&#x27;,
+      );
+    }
+
+    // Validar si la encuesta ha vencido
+    if (encuesta.fechaVencimiento &amp;&amp; encuesta.fechaVencimiento &lt; new Date()) {
+      throw new BadRequestException(
+        &#x27;La encuesta ha vencido y ya no está disponible&#x27;,
       );
     }
 
@@ -862,6 +915,10 @@ export class RespuestasService {
     };
   }
 }
+
+// Guardamos respuestas de una encuesta anónima (registrarRespuestas).
+// Visualizamos los resultados de una encuesta (visualizarRespuestasDto).
+// Obtenemos los datos de una encuesta habilitada para que alguien pueda participar (obtenerEncuestaParaParticipacion).
 </code></pre>
     </div>
 
