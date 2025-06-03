@@ -96,6 +96,19 @@ export class CreacionEncuestaComponent {
     return this.form.get('fechaVencimiento') as FormControl<Date | null>;
   }
 
+  // Método para obtener la fecha mínima permitida (fecha actual)
+  getFechaMinima(): string {
+    const now = new Date();
+    // Formatear la fecha para el input datetime-local (YYYY-MM-DDTHH:MM)
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  }
+
   // Abre el diálogo para agregar una nueva pregunta
   abrirDialog() {
     // Resetear modo edición
@@ -411,11 +424,32 @@ export class CreacionEncuestaComponent {
     }
 
     console.log('✅ Datos de la encuesta procesados:', encuesta);
+    console.log('🚀 Enviando petición al backend...');
 
     // Llama al servicio para crear la encuesta y maneja la respuesta
     this.encuestasService.crearEncuesta(encuesta).subscribe({
       next: (res) => {
         console.log('✅ Encuesta creada exitosamente:', res);
+        console.log('📊 Estructura de la respuesta:', {
+          id: res.id,
+          codigoRespuesta: res.codigoRespuesta,
+          codigoResultados: res.codigoResultados,
+          tipoId: typeof res.id,
+          tipoCodResp: typeof res.codigoRespuesta,
+          tipoCodRes: typeof res.codigoResultados
+        });
+
+        // Verificar que tenemos todos los datos necesarios
+        if (!res.id || !res.codigoRespuesta || !res.codigoResultados) {
+          console.error('❌ Respuesta incompleta del backend:', res);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error en la respuesta del servidor',
+            detail: 'El servidor no devolvió todos los códigos necesarios',
+            life: 5000
+          });
+          return;
+        }
 
         // Cerrar el diálogo de confirmación inmediatamente
         this.confirmationService.close();
@@ -431,17 +465,20 @@ export class CreacionEncuestaComponent {
           life: 4000
         });
 
+        // Construir la URL de redirección
+        const redirectUrl = `/presentacion-enlaces?id-encuesta=${res.id}&codigo-respuesta=${res.codigoRespuesta}&codigo-resultados=${res.codigoResultados}`;
+        console.log('🔗 URL de redirección:', redirectUrl);
+
         // Pequeño delay para que el usuario vea el mensaje antes de redirigir
         setTimeout(() => {
-          // Redirige a la pantalla de presentación de enlaces con los códigos generados
-          this.router.navigateByUrl(
-            '/presentacion-enlaces?id-encuesta=' +
-              res.id +
-              '&codigo-respuesta=' +
-              res.codigoRespuesta +
-              '&codigo-resultados=' +
-              res.codigoResultados
-          );
+          console.log('🚀 Redirigiendo a:', redirectUrl);
+          this.router.navigate(['/presentacion-enlaces'], {
+            queryParams: {
+              'id-encuesta': res.id,
+              'codigo-respuesta': res.codigoRespuesta,
+              'codigo-resultados': res.codigoResultados
+            }
+          });
         }, 1500);
       },
       error: (err) => {
@@ -484,6 +521,11 @@ export class CreacionEncuestaComponent {
           sticky: true
         });
       },
+      complete: () => {
+        // Asegurar que el estado de carga siempre se resetee
+        this.creandoEncuesta.set(false);
+        console.log('🔄 Estado de carga reseteado');
+      }
     });
   }
 }

@@ -709,6 +709,78 @@
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
+/* Estilos para el campo de fecha de vencimiento */
+#fechaVencimiento {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0.8rem;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 1rem 0.75rem 0.75rem 0.75rem; /* Más padding arriba para el label */
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2d3748;
+}
+
+#fechaVencimiento:focus {
+  border-color: rgba(102, 126, 234, 0.5);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: rgba(255, 255, 255, 1);
+}
+
+#fechaVencimiento::-webkit-calendar-picker-indicator {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+/* Estilos específicos para el float label de fecha de vencimiento */
+::ng-deep #fechaVencimiento + label,
+::ng-deep label[for="fechaVencimiento"] {
+  position: absolute !important;
+  top: 0.25rem !important;
+  left: 0.75rem !important;
+  transform: none !important;
+  font-size: 0.75rem !important;
+  color: rgba(102, 126, 234, 0.8) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  padding: 0 0.25rem !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+::ng-deep #fechaVencimiento + label:hover,
+::ng-deep label[for="fechaVencimiento"]:hover {
+  color: rgba(102, 126, 234, 1) !important;
+}
+
+/* Contenedor del float label para fecha de vencimiento */
+::ng-deep app-seccion .p-float-label {
+  position: relative !important;
+  margin-top: 1rem !important;
+  width: 100% !important;
+  max-width: 500px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.text-muted {
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-style: italic;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
 #float-label-nombre-encuesta{
   width: 100%;
   max-width: 500px; /* Limita el ancho máximo para mejor centrado */
@@ -984,6 +1056,28 @@ ul li {
     max-width: 400px;
   }
 
+  /* Responsive para fecha de vencimiento en tablets */
+  #fechaVencimiento {
+    padding: 0.9rem 0.6rem 0.6rem 0.6rem;
+    font-size: 0.95rem;
+    max-width: 400px;
+  }
+
+  ::ng-deep #fechaVencimiento + label,
+  ::ng-deep label[for="fechaVencimiento"] {
+    top: 0.2rem !important;
+    left: 0.6rem !important;
+    font-size: 0.7rem !important;
+    padding: 0 0.2rem !important;
+  }
+
+  .text-muted {
+    font-size: 0.8rem;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 0.5rem;
+  }
+
   .info-message {
     padding: 1.2rem;
     margin-bottom: 1.5rem;
@@ -1076,6 +1170,36 @@ ul li {
 
   #float-label-nombre-encuesta{
     max-width: 300px;
+  }
+
+  /* Responsive para fecha de vencimiento en móviles */
+  #fechaVencimiento {
+    padding: 0.8rem 0.5rem 0.5rem 0.5rem;
+    font-size: 0.9rem;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  ::ng-deep #fechaVencimiento + label,
+  ::ng-deep label[for="fechaVencimiento"] {
+    top: 0.15rem !important;
+    left: 0.5rem !important;
+    font-size: 0.65rem !important;
+    padding: 0 0.15rem !important;
+  }
+
+  .text-muted {
+    font-size: 0.75rem;
+    max-width: 300px;
+    margin: 0 auto;
+    margin-top: 0.4rem;
+    padding: 0 0.5rem;
+  }
+
+  /* Ajustar el contenedor de la sección de fecha */
+  ::ng-deep app-seccion .p-float-label {
+    max-width: 300px !important;
+    margin: 1rem auto !important;
   }
 
   .info-message {

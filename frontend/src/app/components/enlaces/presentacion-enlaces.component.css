@@ -124,6 +124,42 @@ button[pButton][label="Volver al Inicio"]:hover {
   animation-fill-mode: forwards;
 }
 
+/* Estilos para partículas aleatorias */
+.random-particle {
+  animation: random-float 3s ease-in-out infinite;
+  font-size: 1.2rem;
+}
+
+/* Estilos para partículas fluidas */
+.fluid-particle {
+  animation: fluidFall var(--duration, 4s) ease-out forwards;
+  font-size: 1.2rem;
+  --velocity: 1;
+  --swing: 0deg;
+  --fade-start: 0.8;
+}
+
+@keyframes random-float {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg) scale(1.3);
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg) scale(0.7);
+    opacity: 0;
+  }
+}
+
 /* Estilos para estrellitas MASIVAS */
 .star {
   font-size: 2.2rem;
@@ -852,5 +888,27 @@ button[pButton][label="Volver al Inicio"]:hover {
   75% {
     transform: translateY(-10px) scale(1.1) rotate(270deg);
     opacity: 1;
+  }
+}
+
+/* Nueva animación fluida para confeti */
+@keyframes fluidFall {
+  0% {
+    transform: translateY(-100vh) translateX(0) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform:
+      translateY(calc(100vh + 200px))
+      translateX(calc(var(--swing) * var(--velocity) * 2))
+      rotate(calc(360deg * var(--velocity)))
+      scale(0.3);
+    opacity: 0;
   }
 }

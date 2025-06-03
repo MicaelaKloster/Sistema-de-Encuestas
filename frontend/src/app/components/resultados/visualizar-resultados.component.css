@@ -278,8 +278,10 @@
 .acciones-container {
   display: flex;
   justify-content: center;
+  gap: 1rem;
   margin-top: 3rem;
   padding: 2rem 0;
+  flex-wrap: wrap;
 }
 
 ::ng-deep .accion-button {
@@ -296,6 +298,30 @@
 ::ng-deep .accion-button:hover:not(:disabled) {
   transform: translateY(-2px) !important;
   box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4) !important;
+}
+
+/* Botón CSV específico */
+::ng-deep .csv-button {
+  background: linear-gradient(135deg, #28a745, #20c997) !important;
+  border: none !important;
+  border-radius: 25px !important;
+  padding: 1rem 2rem !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3) !important;
+}
+
+::ng-deep .csv-button:hover:not(:disabled) {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 35px rgba(40, 167, 69, 0.4) !important;
+  background: linear-gradient(135deg, #20c997, #28a745) !important;
+}
+
+::ng-deep .csv-button:disabled {
+  opacity: 0.6 !important;
+  transform: none !important;
+  cursor: not-allowed !important;
 }
 
 /* Responsive Design */
