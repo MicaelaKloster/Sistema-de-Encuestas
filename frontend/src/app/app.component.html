@@ -1,11 +1,74 @@
-<!-- Navbar -->
-<!-- <app-navbar></app-navbar> -->
+<!-- Header elegante - Solo mostrar en páginas principales (no en presentación de enlaces, responder encuesta o resultados) -->
+<header class="app-header" *ngIf="shouldShowHeaderFooter()">
+  <div class="header-container">
+    <div class="logo-container">
+      <img src="assets/logo.png" alt="Logo" class="logo" onerror="this.src='https://via.placeholder.com/150x50?text=ENCUESTAS'">
+      <h1 class="site-title">Sistema de Encuestas</h1>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <!-- Mostrar solo "Crear Encuesta" cuando estamos en la página de inicio -->
+        <li *ngIf="isHomePage()">
+          <a (click)="navigateTo('/creacion')" class="nav-button">
+            <i class="pi pi-plus"></i>
+            Crear Encuesta
+          </a>
+        </li>
 
-<!-- Banner -->
-<!-- <app-banner></app-banner> -->
+        <!-- Mostrar solo "Inicio" cuando estamos en la página de creación -->
+        <li *ngIf="isCreationPage()">
+          <a (click)="navigateTo('/')" class="nav-button">
+            <i class="pi pi-home"></i>
+            Inicio
+          </a>
+        </li>
 
-<!-- Punto de inserción para las rutas hijas definidas en el router de Angular -->
-<router-outlet />
+        <!-- Mostrar navegación completa en otras páginas -->
+        <li *ngIf="!isHomePage() && !isCreationPage()">
+          <a (click)="navigateTo('/')" class="nav-button">
+            <i class="pi pi-home"></i>
+            Inicio
+          </a>
+        </li>
+        <li *ngIf="!isHomePage() && !isCreationPage()">
+          <a (click)="navigateTo('/creacion')" class="nav-button">
+            <i class="pi pi-plus"></i>
+            Crear Encuesta
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Contenido principal -->
+<main class="app-content" [class.fullscreen]="!shouldShowHeaderFooter()">
+  <!-- Punto de inserción para las rutas hijas definidas en el router de Angular -->
+  <router-outlet />
+</main>
+
+<!-- Footer elegante y compacto - Solo mostrar en páginas principales (no en presentación de enlaces, responder encuesta o resultados) -->
+<footer class="app-footer" *ngIf="shouldShowHeaderFooter()">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h4>Sistema de Encuestas</h4>
+        <p>&copy; 2025 Todos los derechos reservados</p>
+      </div>
+
+      <div class="footer-team">
+        <span class="team-label">Desarrollado por:</span>
+        <div class="team-names">
+          <span>Estefanía Altamirano</span>
+          <span>Micaela Kloster</span>
+          <span>Ignacio José Rocha</span>
+          <span>Maia Judith Roszezuk</span>
+          <span>María Emilia Van de Linde</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <!-- Componente de PrimeNG para mostrar notificaciones tipo toast -->
 <p-toast></p-toast>

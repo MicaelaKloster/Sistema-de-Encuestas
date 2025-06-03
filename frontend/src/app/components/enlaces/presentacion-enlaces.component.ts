@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -10,14 +10,14 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-presentacion-enlaces',
   imports: [
-    CommonModule, 
-    QRCodeComponent, 
-    RouterModule, 
+    CommonModule,
+    QRCodeComponent,
+    RouterModule,
     ButtonModule],
   templateUrl: './presentacion-enlaces.component.html',
   styleUrl: './presentacion-enlaces.component.css',
 })
-export class PresentacionEnlacesComponent {
+export class PresentacionEnlacesComponent implements OnInit {
 
   // Servicios y utilidades inyectados
   private route = inject(ActivatedRoute); // Obtener parámetros de la URL
@@ -38,54 +38,7 @@ export class PresentacionEnlacesComponent {
 
   // Variables para la notificación de copia
   showCopyNotification = false;
-  confetti = {
-    stars: {
-      top: Array(15).fill(0),
-      topRight: Array(12).fill(0),
-      right: Array(15).fill(0),
-      bottomRight: Array(12).fill(0),
-      bottom: Array(15).fill(0),
-      bottomLeft: Array(12).fill(0),
-      left: Array(15).fill(0),
-      topLeft: Array(12).fill(0)
-    },
-    hearts: {
-      top: Array(10).fill(0),
-      topRight: Array(8).fill(0),
-      right: Array(10).fill(0),
-      bottomRight: Array(8).fill(0),
-      bottom: Array(10).fill(0),
-      bottomLeft: Array(8).fill(0),
-      left: Array(10).fill(0),
-      topLeft: Array(8).fill(0)
-    },
-    celebration: {
-      top: Array(8).fill(0),
-      topRight: Array(6).fill(0),
-      right: Array(8).fill(0),
-      bottomRight: Array(6).fill(0),
-      bottom: Array(8).fill(0),
-      bottomLeft: Array(6).fill(0),
-      left: Array(8).fill(0),
-      topLeft: Array(6).fill(0)
-    },
-    sparkles: {
-      top: Array(12).fill(0),
-      topRight: Array(10).fill(0),
-      right: Array(12).fill(0),
-      bottomRight: Array(10).fill(0),
-      bottom: Array(12).fill(0),
-      bottomLeft: Array(10).fill(0),
-      left: Array(12).fill(0),
-      topLeft: Array(10).fill(0)
-    },
-    geometric: {
-      circles: Array(40).fill(0),
-      squares: Array(35).fill(0),
-      triangles: Array(30).fill(0),
-      diamonds: Array(25).fill(0)
-    }
-  };
+  confetti: any = {};
 
   // Colores festivos para el confeti
   colors = [
@@ -97,6 +50,9 @@ export class PresentacionEnlacesComponent {
 
   // Método que se ejecuta al inicializar el componente
   ngOnInit() {
+    // Inicializar el confeti después de que el componente esté completamente cargado
+    this.initializeConfetti();
+
     this.route.queryParamMap.subscribe((params) => {
       // Obtiene los valores de los parámetros o string vacío si no están
       this.codigoRespuesta = params.get('codigo-respuesta') ?? '';
@@ -116,6 +72,58 @@ export class PresentacionEnlacesComponent {
         }, 5000);
       }, 500);
     });
+  }
+
+  // Método para inicializar el confeti de forma segura
+  private initializeConfetti() {
+    this.confetti = {
+      stars: {
+        top: Array(15).fill(0).map(() => this.generateRandomParticle()),
+        topRight: Array(12).fill(0).map(() => this.generateRandomParticle()),
+        right: Array(15).fill(0).map(() => this.generateRandomParticle()),
+        bottomRight: Array(12).fill(0).map(() => this.generateRandomParticle()),
+        bottom: Array(15).fill(0).map(() => this.generateRandomParticle()),
+        bottomLeft: Array(12).fill(0).map(() => this.generateRandomParticle()),
+        left: Array(15).fill(0).map(() => this.generateRandomParticle()),
+        topLeft: Array(12).fill(0).map(() => this.generateRandomParticle())
+      },
+      hearts: {
+        top: Array(10).fill(0).map(() => this.generateRandomParticle()),
+        topRight: Array(8).fill(0).map(() => this.generateRandomParticle()),
+        right: Array(10).fill(0).map(() => this.generateRandomParticle()),
+        bottomRight: Array(8).fill(0).map(() => this.generateRandomParticle()),
+        bottom: Array(10).fill(0).map(() => this.generateRandomParticle()),
+        bottomLeft: Array(8).fill(0).map(() => this.generateRandomParticle()),
+        left: Array(10).fill(0).map(() => this.generateRandomParticle()),
+        topLeft: Array(8).fill(0).map(() => this.generateRandomParticle())
+      },
+      celebration: {
+        top: Array(8).fill(0).map(() => this.generateRandomParticle()),
+        topRight: Array(6).fill(0).map(() => this.generateRandomParticle()),
+        right: Array(8).fill(0).map(() => this.generateRandomParticle()),
+        bottomRight: Array(6).fill(0).map(() => this.generateRandomParticle()),
+        bottom: Array(8).fill(0).map(() => this.generateRandomParticle()),
+        bottomLeft: Array(6).fill(0).map(() => this.generateRandomParticle()),
+        left: Array(8).fill(0).map(() => this.generateRandomParticle()),
+        topLeft: Array(6).fill(0).map(() => this.generateRandomParticle())
+      },
+      sparkles: {
+        top: Array(12).fill(0).map(() => this.generateRandomParticle()),
+        topRight: Array(10).fill(0).map(() => this.generateRandomParticle()),
+        right: Array(12).fill(0).map(() => this.generateRandomParticle()),
+        bottomRight: Array(10).fill(0).map(() => this.generateRandomParticle()),
+        bottom: Array(12).fill(0).map(() => this.generateRandomParticle()),
+        bottomLeft: Array(10).fill(0).map(() => this.generateRandomParticle()),
+        left: Array(12).fill(0).map(() => this.generateRandomParticle()),
+        topLeft: Array(10).fill(0).map(() => this.generateRandomParticle())
+      },
+      geometric: {
+        circles: Array(40).fill(0).map(() => this.generateRandomParticle()),
+        squares: Array(35).fill(0).map(() => this.generateRandomParticle()),
+        triangles: Array(30).fill(0).map(() => this.generateRandomParticle()),
+        diamonds: Array(25).fill(0).map(() => this.generateRandomParticle())
+      }
+    };
   }
 
   // Método para copiar el texto(enlace) al portapapeles con notificación llamativa
@@ -147,6 +155,94 @@ export class PresentacionEnlacesComponent {
     return edges[Math.floor(Math.random() * edges.length)];
   }
 
+  // Método para generar una partícula con posición aleatoria
+  generateRandomParticle() {
+    return {
+      left: Math.random() * 100, // Posición horizontal aleatoria (0-100%)
+      top: Math.random() * 100,  // Posición vertical aleatoria (0-100%)
+      delay: Math.random() * 2,  // Delay aleatorio (0-2 segundos)
+      duration: 2 + Math.random() * 3, // Duración aleatoria (2-5 segundos)
+      rotation: Math.random() * 360, // Rotación inicial aleatoria
+      scale: 0.5 + Math.random() * 1, // Escala aleatoria (0.5-1.5)
+      color: this.getRandomColor()
+    };
+  }
+
+  // Métodos para obtener todas las partículas de cada tipo
+  getAllStars() {
+    return [
+      ...this.confetti.stars.top,
+      ...this.confetti.stars.topRight,
+      ...this.confetti.stars.right,
+      ...this.confetti.stars.bottomRight,
+      ...this.confetti.stars.bottom,
+      ...this.confetti.stars.bottomLeft,
+      ...this.confetti.stars.left,
+      ...this.confetti.stars.topLeft
+    ];
+  }
+
+  getAllHearts() {
+    return [
+      ...this.confetti.hearts.top,
+      ...this.confetti.hearts.topRight,
+      ...this.confetti.hearts.right,
+      ...this.confetti.hearts.bottomRight,
+      ...this.confetti.hearts.bottom,
+      ...this.confetti.hearts.bottomLeft,
+      ...this.confetti.hearts.left,
+      ...this.confetti.hearts.topLeft
+    ];
+  }
+
+  getAllCelebration() {
+    return [
+      ...this.confetti.celebration.top,
+      ...this.confetti.celebration.topRight,
+      ...this.confetti.celebration.right,
+      ...this.confetti.celebration.bottomRight,
+      ...this.confetti.celebration.bottom,
+      ...this.confetti.celebration.bottomLeft,
+      ...this.confetti.celebration.left,
+      ...this.confetti.celebration.topLeft
+    ];
+  }
+
+  getAllSparkles() {
+    return [
+      ...this.confetti.sparkles.top,
+      ...this.confetti.sparkles.topRight,
+      ...this.confetti.sparkles.right,
+      ...this.confetti.sparkles.bottomRight,
+      ...this.confetti.sparkles.bottom,
+      ...this.confetti.sparkles.bottomLeft,
+      ...this.confetti.sparkles.left,
+      ...this.confetti.sparkles.topLeft
+    ];
+  }
+
+  getAllGeometric() {
+    return [
+      ...this.confetti.geometric.circles,
+      ...this.confetti.geometric.squares,
+      ...this.confetti.geometric.triangles,
+      ...this.confetti.geometric.diamonds
+    ];
+  }
+
+  // Método para obtener la clase CSS de las formas geométricas
+  getGeometricClass(index: number): string {
+    const shapes = ['circle', 'square', 'triangle', 'diamond'];
+    const totalCircles = this.confetti.geometric.circles.length;
+    const totalSquares = this.confetti.geometric.squares.length;
+    const totalTriangles = this.confetti.geometric.triangles.length;
+
+    if (index < totalCircles) return 'circle';
+    if (index < totalCircles + totalSquares) return 'square';
+    if (index < totalCircles + totalSquares + totalTriangles) return 'triangle';
+    return 'diamond';
+  }
+
   // Método para obtener la posición del cuadro blanco en el viewport
   getBoxPosition() {
     if (typeof window !== 'undefined') {
@@ -168,6 +264,6 @@ export class PresentacionEnlacesComponent {
 
   // Método para volver a la página de inicio
   volverInicio() {
-    this.router.navigateByUrl('');
+    this.router.navigate(['']);
   }
 }

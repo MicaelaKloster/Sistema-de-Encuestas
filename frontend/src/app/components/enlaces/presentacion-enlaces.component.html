@@ -21,69 +21,54 @@
     <button pButton type="button" label="Volver al Inicio" (click)="volverInicio()"></button>
   </div>
 
-  <!-- Animación de confeti festivo MASIVO -->
+  <!-- Animación de confeti festivo MASIVO con posiciones aleatorias -->
   <div class="celebration-animation" *ngIf="showAnimation">
-    <!-- ESTRELLITAS MASIVAS ⭐ -->
-    <div class="confetti-item star star-top" *ngFor="let star of confetti.stars.top; let i = index" [style.animation-delay.s]="i * 0.05">⭐</div>
-    <div class="confetti-item star star-top-right" *ngFor="let star of confetti.stars.topRight; let i = index" [style.animation-delay.s]="i * 0.06">⭐</div>
-    <div class="confetti-item star star-right" *ngFor="let star of confetti.stars.right; let i = index" [style.animation-delay.s]="i * 0.05">⭐</div>
-    <div class="confetti-item star star-bottom-right" *ngFor="let star of confetti.stars.bottomRight; let i = index" [style.animation-delay.s]="i * 0.06">⭐</div>
-    <div class="confetti-item star star-bottom" *ngFor="let star of confetti.stars.bottom; let i = index" [style.animation-delay.s]="i * 0.05">⭐</div>
-    <div class="confetti-item star star-bottom-left" *ngFor="let star of confetti.stars.bottomLeft; let i = index" [style.animation-delay.s]="i * 0.06">⭐</div>
-    <div class="confetti-item star star-left" *ngFor="let star of confetti.stars.left; let i = index" [style.animation-delay.s]="i * 0.05">⭐</div>
-    <div class="confetti-item star star-top-left" *ngFor="let star of confetti.stars.topLeft; let i = index" [style.animation-delay.s]="i * 0.06">⭐</div>
+    <!-- ESTRELLITAS ALEATORIAS ⭐ -->
+    <div class="confetti-item star random-particle"
+         *ngFor="let star of getAllStars(); let i = index"
+         [style.left.%]="star.left"
+         [style.top.%]="star.top"
+         [style.animation-delay.s]="star.delay"
+         [style.animation-duration.s]="star.duration"
+         [style.transform]="'rotate(' + star.rotation + 'deg) scale(' + star.scale + ')'">⭐</div>
 
-    <!-- CORAZONES MASIVOS 💖 -->
-    <div class="confetti-item heart heart-top" *ngFor="let heart of confetti.hearts.top; let i = index" [style.animation-delay.s]="i * 0.08">💖</div>
-    <div class="confetti-item heart heart-top-right" *ngFor="let heart of confetti.hearts.topRight; let i = index" [style.animation-delay.s]="i * 0.09">💖</div>
-    <div class="confetti-item heart heart-right" *ngFor="let heart of confetti.hearts.right; let i = index" [style.animation-delay.s]="i * 0.08">💖</div>
-    <div class="confetti-item heart heart-bottom-right" *ngFor="let heart of confetti.hearts.bottomRight; let i = index" [style.animation-delay.s]="i * 0.09">💖</div>
-    <div class="confetti-item heart heart-bottom" *ngFor="let heart of confetti.hearts.bottom; let i = index" [style.animation-delay.s]="i * 0.08">💖</div>
-    <div class="confetti-item heart heart-bottom-left" *ngFor="let heart of confetti.hearts.bottomLeft; let i = index" [style.animation-delay.s]="i * 0.09">💖</div>
-    <div class="confetti-item heart heart-left" *ngFor="let heart of confetti.hearts.left; let i = index" [style.animation-delay.s]="i * 0.08">💖</div>
-    <div class="confetti-item heart heart-top-left" *ngFor="let heart of confetti.hearts.topLeft; let i = index" [style.animation-delay.s]="i * 0.09">💖</div>
+    <!-- CORAZONES ALEATORIOS 💖 -->
+    <div class="confetti-item heart random-particle"
+         *ngFor="let heart of getAllHearts(); let i = index"
+         [style.left.%]="heart.left"
+         [style.top.%]="heart.top"
+         [style.animation-delay.s]="heart.delay"
+         [style.animation-duration.s]="heart.duration"
+         [style.transform]="'rotate(' + heart.rotation + 'deg) scale(' + heart.scale + ')'">💖</div>
 
-    <!-- CELEBRACIÓN MASIVA 🎉🎊 -->
-    <div class="confetti-item celebration celebration-top" *ngFor="let cel of confetti.celebration.top; let i = index" [style.animation-delay.s]="i * 0.12">🎉</div>
-    <div class="confetti-item celebration celebration-top-right" *ngFor="let cel of confetti.celebration.topRight; let i = index" [style.animation-delay.s]="i * 0.13">🎊</div>
-    <div class="confetti-item celebration celebration-right" *ngFor="let cel of confetti.celebration.right; let i = index" [style.animation-delay.s]="i * 0.12">🎉</div>
-    <div class="confetti-item celebration celebration-bottom-right" *ngFor="let cel of confetti.celebration.bottomRight; let i = index" [style.animation-delay.s]="i * 0.13">🎊</div>
-    <div class="confetti-item celebration celebration-bottom" *ngFor="let cel of confetti.celebration.bottom; let i = index" [style.animation-delay.s]="i * 0.12">🎉</div>
-    <div class="confetti-item celebration celebration-bottom-left" *ngFor="let cel of confetti.celebration.bottomLeft; let i = index" [style.animation-delay.s]="i * 0.13">🎊</div>
-    <div class="confetti-item celebration celebration-left" *ngFor="let cel of confetti.celebration.left; let i = index" [style.animation-delay.s]="i * 0.12">🎉</div>
-    <div class="confetti-item celebration celebration-top-left" *ngFor="let cel of confetti.celebration.topLeft; let i = index" [style.animation-delay.s]="i * 0.13">🎊</div>
+    <!-- CELEBRACIÓN ALEATORIA 🎉🎊 -->
+    <div class="confetti-item celebration random-particle"
+         *ngFor="let cel of getAllCelebration(); let i = index"
+         [style.left.%]="cel.left"
+         [style.top.%]="cel.top"
+         [style.animation-delay.s]="cel.delay"
+         [style.animation-duration.s]="cel.duration"
+         [style.transform]="'rotate(' + cel.rotation + 'deg) scale(' + cel.scale + ')'">{{ i % 2 === 0 ? '🎉' : '🎊' }}</div>
 
-    <!-- BRILLITOS MASIVOS ✨ -->
-    <div class="confetti-item sparkle sparkle-top" *ngFor="let sparkle of confetti.sparkles.top; let i = index" [style.animation-delay.s]="i * 0.07">✨</div>
-    <div class="confetti-item sparkle sparkle-top-right" *ngFor="let sparkle of confetti.sparkles.topRight; let i = index" [style.animation-delay.s]="i * 0.08">✨</div>
-    <div class="confetti-item sparkle sparkle-right" *ngFor="let sparkle of confetti.sparkles.right; let i = index" [style.animation-delay.s]="i * 0.07">✨</div>
-    <div class="confetti-item sparkle sparkle-bottom-right" *ngFor="let sparkle of confetti.sparkles.bottomRight; let i = index" [style.animation-delay.s]="i * 0.08">✨</div>
-    <div class="confetti-item sparkle sparkle-bottom" *ngFor="let sparkle of confetti.sparkles.bottom; let i = index" [style.animation-delay.s]="i * 0.07">✨</div>
-    <div class="confetti-item sparkle sparkle-bottom-left" *ngFor="let sparkle of confetti.sparkles.bottomLeft; let i = index" [style.animation-delay.s]="i * 0.08">✨</div>
-    <div class="confetti-item sparkle sparkle-left" *ngFor="let sparkle of confetti.sparkles.left; let i = index" [style.animation-delay.s]="i * 0.07">✨</div>
-    <div class="confetti-item sparkle sparkle-top-left" *ngFor="let sparkle of confetti.sparkles.topLeft; let i = index" [style.animation-delay.s]="i * 0.08">✨</div>
+    <!-- BRILLITOS ALEATORIOS ✨ -->
+    <div class="confetti-item sparkle random-particle"
+         *ngFor="let sparkle of getAllSparkles(); let i = index"
+         [style.left.%]="sparkle.left"
+         [style.top.%]="sparkle.top"
+         [style.animation-delay.s]="sparkle.delay"
+         [style.animation-duration.s]="sparkle.duration"
+         [style.transform]="'rotate(' + sparkle.rotation + 'deg) scale(' + sparkle.scale + ')'">✨</div>
 
-    <!-- CONFETI GEOMÉTRICO MASIVO -->
-    <div class="confetti-item geometric circle geometric-outward" *ngFor="let circle of confetti.geometric.circles; let i = index"
-         [style.animation-delay.s]="i * 0.04"
-         [style.background-color]="getRandomColor()"
-         [style.left.%]="getRandomPosition()"
-         [style.top.%]="getRandomEdgePosition()"></div>
-    <div class="confetti-item geometric square geometric-outward" *ngFor="let square of confetti.geometric.squares; let i = index"
-         [style.animation-delay.s]="i * 0.05"
-         [style.background-color]="getRandomColor()"
-         [style.left.%]="getRandomPosition()"
-         [style.top.%]="getRandomEdgePosition()"></div>
-    <div class="confetti-item geometric triangle geometric-outward" *ngFor="let triangle of confetti.geometric.triangles; let i = index"
-         [style.animation-delay.s]="i * 0.06"
-         [style.border-bottom-color]="getRandomColor()"
-         [style.left.%]="getRandomPosition()"
-         [style.top.%]="getRandomEdgePosition()"></div>
-    <div class="confetti-item geometric diamond geometric-outward" *ngFor="let diamond of confetti.geometric.diamonds; let i = index"
-         [style.animation-delay.s]="i * 0.07"
-         [style.background-color]="getRandomColor()"
-         [style.left.%]="getRandomPosition()"
-         [style.top.%]="getRandomEdgePosition()"></div>
+    <!-- CONFETI GEOMÉTRICO ALEATORIO -->
+    <div class="confetti-item geometric random-particle"
+         *ngFor="let geo of getAllGeometric(); let i = index"
+         [style.left.%]="geo.left"
+         [style.top.%]="geo.top"
+         [style.animation-delay.s]="geo.delay"
+         [style.animation-duration.s]="geo.duration"
+         [style.background-color]="geo.color"
+         [style.transform]="'rotate(' + geo.rotation + 'deg) scale(' + geo.scale + ')'"
+         [class]="getGeometricClass(i)"></div>
 
     <!-- RAYOS DE LUZ MASIVOS -->
     <div class="light-ray ray-1"></div>

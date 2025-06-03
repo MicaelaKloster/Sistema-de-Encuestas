@@ -130,6 +130,33 @@
         <app-texto-error>Debe agregar al menos una pregunta</app-texto-error>
       }
     </app-seccion>
+
+    <!-- Campo de fecha de vencimiento -->
+    <app-seccion>
+      <p-floatlabel>
+        <input
+          type="datetime-local"
+          id="fechaVencimiento"
+          pInputText
+          [formControl]="fechaVencimiento"
+          class="w-full"
+          [min]="getFechaMinima()"
+        />
+        <label for="fechaVencimiento">Fecha de Vencimiento (Opcional)</label>
+      </p-floatlabel>
+      <!-- Mensaje de ayuda -->
+      <small class="text-muted block mt-1">
+        Si no especificas una fecha, la encuesta estará disponible indefinidamente
+      </small>
+
+      <!-- Mostrar errores de validación -->
+      <p-message
+        severity="error"
+        text="La fecha de vencimiento debe ser posterior a la fecha actual"
+        *ngIf="form.get('fechaVencimiento')?.errors?.['fechaInvalida']">
+      </p-message>
+    </app-seccion>
+
     <button
       id="boton-finalizar"
       pButton
@@ -138,8 +165,10 @@
       icon="pi pi-check"
       severity="contrast"
       class="p-button-rounded"
+      [disabled]="creandoEncuesta()"
+      [loading]="creandoEncuesta()"
     >
-      Finalizar
+      {{ creandoEncuesta() ? 'Creando...' : 'Finalizar' }}
     </button>
   </div>
 </form>
@@ -192,29 +221,5 @@
     @if (preguntas.length === 0) {
       <p class="sin-preguntas">No hay preguntas disponibles para editar.</p>
     }
-  </div>
-  <div class="field">
-    <p-floatlabel>
-      <input
-        type="datetime-local"
-        id="fechaVencimiento"
-        pInputText
-        [formControl]="fechaVencimiento"
-        class="w-full"
-        [min]="getFechaMinima()"
-      />
-      <label for="fechaVencimiento">Fecha de Vencimiento (Opcional)</label>
-    </p-floatlabel>
-    <!-- Mensaje de ayuda -->
-    <small class="text-muted block mt-1">
-      Si no especificas una fecha, la encuesta estará disponible indefinidamente
-    </small>
-    
-    <!-- Mostrar errores de validación -->
-    <p-message
-      severity="error"
-      text="La fecha de vencimiento debe ser posterior a la fecha actual"
-      *ngIf="formulario.get('fechaVencimiento')?.errors?.fechaInvalida">
-    </p-message>
   </div>
 </p-dialog>
