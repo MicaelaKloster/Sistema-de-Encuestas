@@ -97,6 +97,14 @@
     <!-- Acciones -->
     <div class="acciones-container">
       <p-button
+        label="Exportar CSV"
+        icon="pi pi-download"
+        (click)="exportarCSV()"
+        [disabled]="exportandoCSV"
+        [loading]="exportandoCSV"
+        styleClass="accion-button csv-button">
+      </p-button>
+      <p-button
         label="Volver al inicio"
         icon="pi pi-home"
         (click)="router.navigate(['/'])"

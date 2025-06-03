@@ -37,6 +37,7 @@ export class VisualizarResultadosComponent implements OnInit {
   codigoResultados = '';
   cargando = true;
   error = '';
+  exportandoCSV = false;
 
   // Enum para usar en el template
   TiposRespuestaEnum = TiposRespuestaEnum;
@@ -133,5 +134,51 @@ export class VisualizarResultadosComponent implements OnInit {
         }
       }
     };
+  }
+
+  // Método para exportar resultados a CSV
+  exportarCSV() {
+    if (!this.resultados || !this.resultados.id) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'No hay datos para exportar'
+      });
+      return;
+    }
+
+    this.exportandoCSV = true;
+
+    this.respuestasService.exportarResultadosCSV(this.resultados.id, this.codigoResultados)
+      .subscribe({
+        next: (blob) => {
+          // Crear un enlace temporal para descargar el archivo
+          const url = window.URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `resultados_encuesta_${this.resultados.id}.csv`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(url);
+
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Exportación exitosa',
+            detail: 'Los resultados se han descargado correctamente'
+          });
+
+          this.exportandoCSV = false;
+        },
+        error: (error) => {
+          console.error('Error al exportar CSV:', error);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error al exportar',
+            detail: 'No se pudo descargar el archivo CSV. Intenta nuevamente.'
+          });
+          this.exportandoCSV = false;
+        }
+      });
   }
 }

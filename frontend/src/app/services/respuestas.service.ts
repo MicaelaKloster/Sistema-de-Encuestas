@@ -103,6 +103,13 @@ export class RespuestasService {
       .pipe(catchError(this.handleError));
   }
 
+  // Método para exportar resultados a CSV
+  exportarResultadosCSV(idEncuesta: number, codigoResultados: string): Observable<Blob> {
+    return this.httpClient.get(`/api/v1/encuestas/${idEncuesta}/csv/${codigoResultados}`, {
+      responseType: 'blob'
+    }).pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Ha ocurrido un error desconocido';
 
