@@ -9,8 +9,11 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "deploy": "npm run build && npm run nginx:limpiar && npm run nginx:llenar",
-    "nginx:limpiar": "rm -rf /opt/homebrew/var/www/*",
-    "nginx:llenar": "cp -R dist/frontend/browser/* /opt/homebrew/var/www/"
+    "deploy:linux": "npm run build && npm run nginx:limpiar:linux && npm run nginx:llenar:linux",
+    "nginx:limpiar": "del /F /Q C:\\nginx-1.28.0\\html\\* && for /d %x in (C:\\nginx-1.28.0\\html\\*) do rmdir /S /Q \"%x\"",
+    "nginx:llenar":"xcopy /E /I dist\\frontend\\browser\\* C:\\nginx-1.28.0\\html\\",
+    "nginx:limpiar:linux": "rm -rf /opt/homebrew/var/www/*",
+    "nginx:llenar:linux": "cp -R dist/frontend/browser/* /opt/homebrew/var/www/"
   },
   "private": true,
   "dependencies": {
@@ -33,7 +36,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.11",
-    "@angular/cli": "^20.0.0",
+    "@angular/cli": "^19.2.11",
     "@angular/compiler-cli": "^19.2.0",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.6.0",
