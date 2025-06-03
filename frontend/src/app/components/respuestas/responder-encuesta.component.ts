@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-// responder-encuesta.component.ts
-=======
->>>>>>> origin/main
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -16,15 +12,8 @@ import { CardModule } from 'primeng/card';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
-<<<<<<< HEAD
-
-// Importamos el servicio y sus interfaces
-import {
-  RespuestaService,
-=======
 import {
   RespuestasService,
->>>>>>> origin/main
   Encuesta,
   Pregunta,
   RespuestaUsuario,
@@ -50,7 +39,7 @@ import {
   ],
   templateUrl: './responder-encuesta.component.html',
   styleUrls: ['./responder-encuesta.component.css'],
-  providers: [MessageService]
+  providers: [MessageService],
 })
 export class ResponderEncuestaComponent implements OnInit {
   private route = inject(ActivatedRoute);
@@ -73,33 +62,17 @@ export class ResponderEncuestaComponent implements OnInit {
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
-<<<<<<< HEAD
     this.tokenParticipacion =
       this.route.snapshot.paramMap.get('tokenParticipacion')!;
-=======
-    this.tokenParticipacion = this.route.snapshot.paramMap.get('tokenParticipacion')!;
->>>>>>> origin/main
 
     if (!this.id || !this.tokenParticipacion) {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
-<<<<<<< HEAD
         detail: 'Parámetros de encuesta inválidos',
       });
       return;
     }
-    console.log('ID recibido:', this.id);
-    console.log('Token recibido:', this.tokenParticipacion);
-    console.log(
-      `Llamando a: /encuestas/participar/${this.id}/${this.tokenParticipacion}`,
-    );
-=======
-        detail: 'Parámetros de encuesta inválidos'
-      });
-      return;
-    }
->>>>>>> origin/main
 
     this.cargarEncuesta();
   }
@@ -107,16 +80,10 @@ export class ResponderEncuestaComponent implements OnInit {
   cargarEncuesta() {
     this.cargando = true;
 
-<<<<<<< HEAD
-    this.respuestaService
+    this.respuestasService
       .obtenerEncuestaParaParticipacion(this.id, this.tokenParticipacion)
       .subscribe({
-        next: (response: { data: any }) => {
-=======
-    this.respuestasService.obtenerEncuestaParaParticipacion(this.id, this.tokenParticipacion)
-      .subscribe({
         next: (response) => {
->>>>>>> origin/main
           this.encuesta = response.data;
           this.inicializarRespuestas();
           this.cargando = false;
@@ -133,21 +100,11 @@ export class ResponderEncuestaComponent implements OnInit {
   private inicializarRespuestas() {
     if (!this.encuesta) return;
 
-<<<<<<< HEAD
-    this.respuestas = this.encuesta.preguntas.map(
-      (pregunta: { numero: any }) => ({
-        numeroPregunta: pregunta.numero,
-        opciones: [],
-        texto: '',
-      }),
-    );
-=======
     this.respuestas = this.encuesta.preguntas.map((pregunta) => ({
       numeroPregunta: pregunta.numero,
       opciones: [],
       texto: '',
     }));
->>>>>>> origin/main
   }
 
   getRespuestaPorPregunta(numeroPregunta: number): RespuestaUsuario {
@@ -161,10 +118,6 @@ export class ResponderEncuestaComponent implements OnInit {
     return respuesta;
   }
 
-<<<<<<< HEAD
-  // Maneja selección para preguntas de opción múltiple (múltiple selección)
-=======
->>>>>>> origin/main
   onCheckboxChange(pregunta: Pregunta, idOpcion: number, checked: boolean) {
     const respuesta = this.getRespuestaPorPregunta(pregunta.numero);
 
@@ -213,12 +166,6 @@ export class ResponderEncuestaComponent implements OnInit {
     return pregunta.tipo === 'VERDADERO_FALSO';
   }
 
-<<<<<<< HEAD
-  // ✅ NUEVOS MÉTODOS PARA DIALOGS
-
-  // Abre el dialog de vista previa
-=======
->>>>>>> origin/main
   abrirVistaPrevia() {
     this.mostrarDialogVistaPrevia = true;
   }
@@ -235,20 +182,21 @@ export class ResponderEncuestaComponent implements OnInit {
     }
     this.mostrarDialogConfirmacion = true;
   }
+  validarRespuestas() {
+    throw new Error('Method not implemented.');
+  }
 
   enviarRespuestasFinal() {
     this.mostrarDialogConfirmacion = false;
     this.enviando = true;
 
     const respuestasParaBackend = this.respuestas
-<<<<<<< HEAD
       .map((respuesta) => {
         const pregunta = this.encuesta?.preguntas.find(
           (p) => p.numero === respuesta.numeroPregunta,
         );
-        if (!pregunta) return null; // No enviar respuestas sin pregunta válida
+        if (!pregunta) return null;
 
-        // Solo enviar si respuesta está llena
         if (this.esPreguntaAbierta(pregunta) && !respuesta.texto.trim())
           return null;
         if (
@@ -258,36 +206,13 @@ export class ResponderEncuestaComponent implements OnInit {
           return null;
 
         const respuestaDto: RespuestaPreguntaDto = {
-          id_pregunta: pregunta.id, // enviar el id real, no el número
+          id_pregunta: pregunta.id,
           tipo: pregunta.tipo,
         };
-=======
-    .map(respuesta => {
-      const pregunta = this.encuesta?.preguntas.find(p => p.numero === respuesta.numeroPregunta);
-      if (!pregunta) return null;
-
-      if (this.esPreguntaAbierta(pregunta) && !respuesta.texto.trim()) return null;
-      if (!this.esPreguntaAbierta(pregunta) && respuesta.opciones.length === 0) return null;
-
-      const respuestaDto: RespuestaPreguntaDto = {
-        id_pregunta: pregunta.id,
-        tipo: pregunta.tipo,
-      };
-
-      if (this.esPreguntaAbierta(pregunta)) {
-        respuestaDto.texto = respuesta.texto.trim();
-      } else {
-        const opcionesIds = respuesta.opciones.map(numOpcion => {
-          const opcion = pregunta.opciones?.find(o => o.numero === numOpcion);
-          return opcion ? opcion.id : numOpcion;
-        }).filter(id => id !== undefined) as number[];
->>>>>>> origin/main
 
         if (this.esPreguntaAbierta(pregunta)) {
           respuestaDto.texto = respuesta.texto.trim();
         } else {
-          // Opciones que deben enviarse son ids, no números
-          // Convertir los números locales a ids reales
           const opcionesIds = respuesta.opciones
             .map((numOpcion) => {
               const opcion = pregunta.opciones?.find(
@@ -296,11 +221,8 @@ export class ResponderEncuestaComponent implements OnInit {
               return opcion ? opcion.id : numOpcion;
             })
             .filter((id) => id !== undefined) as number[];
-
           respuestaDto.opciones = opcionesIds;
         }
-
-<<<<<<< HEAD
         return respuestaDto;
       })
       .filter((rta) => rta !== null) as RespuestaPreguntaDto[];
@@ -309,15 +231,8 @@ export class ResponderEncuestaComponent implements OnInit {
       respuestas: respuestasParaBackend,
     };
 
-    this.respuestaService
+    this.respuestasService
       .registrarRespuestas(this.id, this.tokenParticipacion, payload)
-=======
-    const payload: RegistrarRespuestasDto = {
-      respuestas: respuestasParaBackend
-    };
-
-    this.respuestasService.registrarRespuestas(this.id, this.tokenParticipacion, payload)
->>>>>>> origin/main
       .subscribe({
         next: () => {
           this.messageService.add({
@@ -379,13 +294,8 @@ export class ResponderEncuestaComponent implements OnInit {
       return 'Sin respuesta';
     }
 
-<<<<<<< HEAD
     const opcionesTexto = respuesta.opciones.map((numeroOpcion) => {
       const opcion = pregunta.opciones?.find((o) => o.numero === numeroOpcion);
-=======
-    const opcionesTexto = respuesta.opciones.map(numeroOpcion => {
-      const opcion = pregunta.opciones?.find(o => o.numero === numeroOpcion);
->>>>>>> origin/main
       return opcion?.texto || `Opción ${numeroOpcion}`;
     });
 
