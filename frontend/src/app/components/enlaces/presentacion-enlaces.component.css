@@ -900,7 +900,7 @@ button[pButton][label="Volver al Inicio"]:hover {
   5% {
     opacity: 1;
   }
-  calc(var(--fade-start) * 100%) {
+  80% {
     opacity: 1;
   }
   100% {
