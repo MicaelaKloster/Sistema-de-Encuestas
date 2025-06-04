@@ -23,7 +23,6 @@
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
     "@primeng/themes": "^19.1.2",
-    "allowedCommonJsDependencies": "qrcode",
     "angularx-qrcode": "^19.0.0",
     "chart.js": "^4.4.9",
     "primeicons": "^7.0.0",
