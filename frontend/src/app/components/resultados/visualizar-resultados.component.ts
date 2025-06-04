@@ -9,6 +9,7 @@ import { MessageService } from 'primeng/api';
 // import { ChartModule } from 'primeng/chart';
 import { RespuestasService } from '../../services/respuestas.service';
 import { TiposRespuestaEnum } from '../../enums/tipos-pregunta.enum';
+import { EncuestasService } from '../../services/encuestas.service';
 
 @Component({
   selector: 'app-visualizar-resultados',
@@ -31,6 +32,7 @@ export class VisualizarResultadosComponent implements OnInit {
   public router = inject(Router);
   private respuestasService = inject(RespuestasService);
   private messageService = inject(MessageService);
+  private encuestasService = inject(EncuestasService);
 
   // Variables de estado
   resultados: any = null;
@@ -38,6 +40,8 @@ export class VisualizarResultadosComponent implements OnInit {
   cargando = true;
   error = '';
   exportandoCSV = false;
+  estadoEncuesta: boolean | null = null;
+  idEncuesta: number | null = null;
 
   // Enum para usar en el template
   TiposRespuestaEnum = TiposRespuestaEnum;
@@ -68,6 +72,9 @@ export class VisualizarResultadosComponent implements OnInit {
         next: (response) => {
           console.log('Resultados cargados:', response);
           this.resultados = response.data;
+          // Asigna el estado e id de la encuesta si existen en la respuesta
+          this.estadoEncuesta = this.resultados?.habilitada ?? null;
+          this.idEncuesta = this.resultados?.id ?? null;
           this.cargando = false;
         },
         error: (error) => {
@@ -178,6 +185,27 @@ export class VisualizarResultadosComponent implements OnInit {
             detail: 'No se pudo descargar el archivo CSV. Intenta nuevamente.'
           });
           this.exportandoCSV = false;
+        }
+      });
+  }
+
+  // Método para habilitar/deshabilitar una encuesta
+  cambiarEstadoEncuesta() {
+    if (this.idEncuesta == null || this.estadoEncuesta == null) return;
+    this.encuestasService.actualizarEstadoEncuesta(this.idEncuesta, !this.estadoEncuesta)
+      .subscribe({
+        next: () => {
+          this.estadoEncuesta = !this.estadoEncuesta;
+          this.messageService.add({
+            severity: 'success',
+            summary: `Encuesta ${this.estadoEncuesta ? 'habilitada' : 'deshabilitada'}`
+          });
+        },
+        error: () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'No se pudo cambiar el estado de la encuesta'
+          });
         }
       });
   }

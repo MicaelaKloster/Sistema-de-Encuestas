@@ -155,13 +155,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/RespuestasModule.html" data-type="entity-link" >RespuestasModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#controllers-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"' : 'data-bs-target="#xs-controllers-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"' }>
+                                            'data-bs-target="#controllers-links-module-RespuestasModule-4d40416983406b89c92b9737114a06eb0796b121d93053627f70b38252e24224936b12414bff6de45d9ca9ba92f75442b62a4842ad6b68ecd9c9c1af52aa3e01"' : 'data-bs-target="#xs-controllers-links-module-RespuestasModule-4d40416983406b89c92b9737114a06eb0796b121d93053627f70b38252e24224936b12414bff6de45d9ca9ba92f75442b62a4842ad6b68ecd9c9c1af52aa3e01"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"' :
-                                            'id="xs-controllers-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-RespuestasModule-4d40416983406b89c92b9737114a06eb0796b121d93053627f70b38252e24224936b12414bff6de45d9ca9ba92f75442b62a4842ad6b68ecd9c9c1af52aa3e01"' :
+                                            'id="xs-controllers-links-module-RespuestasModule-4d40416983406b89c92b9737114a06eb0796b121d93053627f70b38252e24224936b12414bff6de45d9ca9ba92f75442b62a4842ad6b68ecd9c9c1af52aa3e01"' }>
                                             <li class="link">
                                                 <a href="controllers/RespuestasController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RespuestasController</a>
                                             </li>
@@ -169,13 +169,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#injectables-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"' : 'data-bs-target="#xs-injectables-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"' }>
+                                        'data-bs-target="#injectables-links-module-RespuestasModule-4d40416983406b89c92b9737114a06eb0796b121d93053627f70b38252e24224936b12414bff6de45d9ca9ba92f75442b62a4842ad6b68ecd9c9c1af52aa3e01"' : 'data-bs-target="#xs-injectables-links-module-RespuestasModule-4d40416983406b89c92b9737114a06eb0796b121d93053627f70b38252e24224936b12414bff6de45d9ca9ba92f75442b62a4842ad6b68ecd9c9c1af52aa3e01"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"' :
-                                        'id="xs-injectables-links-module-RespuestasModule-d713c8ab82a543ad58ce0a7b6b6ad49c4975a10a78093c9e96c3681c82107eb02d9de53e6327c68d07a8e6f7baa1d3bdfca5cb6660df7cac41e81e0b1bdff0b2"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-RespuestasModule-4d40416983406b89c92b9737114a06eb0796b121d93053627f70b38252e24224936b12414bff6de45d9ca9ba92f75442b62a4842ad6b68ecd9c9c1af52aa3e01"' :
+                                        'id="xs-injectables-links-module-RespuestasModule-4d40416983406b89c92b9737114a06eb0796b121d93053627f70b38252e24224936b12414bff6de45d9ca9ba92f75442b62a4842ad6b68ecd9c9c1af52aa3e01"' }>
                                         <li class="link">
                                             <a href="injectables/RespuestasService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RespuestasService</a>
                                         </li>

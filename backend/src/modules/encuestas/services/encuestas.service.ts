@@ -19,6 +19,7 @@ import { Respuesta } from '../../respuestas/entities/respuesta.entity';
 import * as QRCode from 'qrcode';
 // Importación de papaparse para generar CSV
 import * as Papa from 'papaparse';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable() // Decorador que marca esta clase como un servicio inyectable
 export class EncuestasService {
@@ -28,6 +29,7 @@ export class EncuestasService {
     private encuestaRepository: Repository<Encuesta>,
     @InjectRepository(Respuesta)
     private respuestaRepository: Repository<Respuesta>,
+    private configService: ConfigService,
   ) {}
 
   // Método para crear una nueva encuesta se le agrega codigo de enlace corto y codigoqr
@@ -81,8 +83,13 @@ export class EncuestasService {
     const encuestaCreada = await this.encuestaRepository.save(encuesta);
 
     // Usamos APP_URL para que sea dinámico con el puerto que esté activo
-    const baseUrl = process.env.APP_URL || 'http://localhost:3000';
-    const apiPrefix = process.env.GLOBAL_PREFIX || 'api';
+    // const baseUrl = process.env.APP_URL || 'http://localhost:3000';
+    const baseUrl = this.configService.get<string>(
+      'APP_URL',
+      'http://localhost:3000',
+    );
+    // const apiPrefix = process.env.GLOBAL_PREFIX || 'api';
+    const apiPrefix = this.configService.get<string>('GLOBAL_PREFIX', 'api');
     const apiVersion = 'v1';
 
     // Formato: /api/v1/respuestas/participar/{id}/{codigoRespuesta}
@@ -180,10 +187,20 @@ export class EncuestasService {
     }
 
     // Se agrega una validación para rechazar el acceso si la encuesta ya está vencida.
-    if (encuesta.fechaVencimiento && encuesta.fechaVencimiento < new Date()) {
-      throw new BadRequestException(
-        'La encuesta ha vencido y ya no está disponible',
-      );
+    if (encuesta.fechaVencimiento) {
+      const ahora = new Date();
+      const fechaVencimiento = new Date(encuesta.fechaVencimiento);
+
+      console.log('Validando fecha de vencimiento (obtenerEncuesta):');
+      console.log('Fecha actual:', ahora.toISOString());
+      console.log('Fecha vencimiento:', fechaVencimiento.toISOString());
+      console.log('¿Está vencida?:', fechaVencimiento < ahora);
+
+      if (fechaVencimiento < ahora) {
+        throw new BadRequestException(
+          'La encuesta ha vencido y ya no está disponible',
+        );
+      }
     }
 
     // Retorna la encuesta encontrada
@@ -311,10 +328,25 @@ export class EncuestasService {
     }
 
     // Se agrega una validación para rechazar el acceso si la encuesta ya está vencida.
-    if (encuesta.fechaVencimiento && encuesta.fechaVencimiento < new Date()) {
-      throw new BadRequestException(
-        'La encuesta ha vencido y ya no está disponible',
-      );
+    if (encuesta.fechaVencimiento) {
+      const ahora = new Date();
+      const fechaVencimiento = new Date(encuesta.fechaVencimiento);
+
+      console.log('=== VALIDACIÓN DE FECHA DE VENCIMIENTO ===');
+      console.log('Fecha actual (ahora):', ahora.toISOString());
+      console.log('Fecha vencimiento BD:', encuesta.fechaVencimiento);
+      console.log('Fecha vencimiento parseada:', fechaVencimiento.toISOString());
+      console.log('Comparación (vencida?):', fechaVencimiento < ahora);
+      console.log('Diferencia en ms:', ahora.getTime() - fechaVencimiento.getTime());
+
+      if (fechaVencimiento < ahora) {
+        console.log('🚫 ENCUESTA VENCIDA - Rechazando acceso');
+        throw new BadRequestException(
+          'La encuesta ha vencido y ya no está disponible',
+        );
+      } else {
+        console.log('✅ ENCUESTA VÁLIDA - Permitiendo acceso');
+      }
     }
 
     // Ordenar las preguntas y opciones

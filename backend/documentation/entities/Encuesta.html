@@ -146,6 +146,11 @@
                             </li>
                             <li>
                                     <span class="modifier"></span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#fechaVencimiento" >fechaVencimiento</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
                                 <a href="#habilitada" >habilitada</a>
                             </li>
                             <li>
@@ -285,6 +290,43 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/modules/encuestas/entities/encuesta.entity.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fechaVencimiento"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>fechaVencimiento</b></span>
+                        <a href="#fechaVencimiento"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({name: &#x27;fecha_vencimiento&#x27;, type: &#x27;timestamptz&#x27;, nullable: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/modules/encuestas/entities/encuesta.entity.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -464,7 +506,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/modules/encuestas/entities/encuesta.entity.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/modules/encuestas/entities/encuesta.entity.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -514,6 +556,10 @@ export class Encuesta {
   // Funcionalidad Extra para deshabilitar una encuesta (MICA)
   @Column({ default: true })
   habilitada: boolean; // Columna que indica si la encuesta está habilitada o no
+
+  // Funcionalidad extra (MAIA): Fecha de vencimiento
+  @Column({ name: &#x27;fecha_vencimiento&#x27;, type: &#x27;timestamptz&#x27;, nullable: true })
+  fechaVencimiento?: Date;
 
   @OneToMany(() &#x3D;&gt; Respuesta, (respuesta) &#x3D;&gt; respuesta.encuesta)
   respuestas: Respuesta[]; // Relación uno a muchos con la entidad &quot;Respuesta&quot;

@@ -154,9 +154,12 @@
                             <code>FormsModule</code>
                                 <code><a href="../components/SeccionComponent.html" target="_self" >SeccionComponent</a></code>
                             <code>ButtonModule</code>
+                            <code>DialogModule</code>
                                 <code><a href="../components/GestionPreguntaDialogComponent.html" target="_self" >GestionPreguntaDialogComponent</a></code>
                             <code>ReactiveFormsModule</code>
                                 <code><a href="../components/TextoErrorComponent.html" target="_self" >TextoErrorComponent</a></code>
+                            <code>RouterModule</code>
+                            <code>MessageModule</code>
                 </td>
             </tr>
 
@@ -200,7 +203,13 @@
                                 <a href="#confirmationService" >confirmationService</a>
                             </li>
                             <li>
+                                <a href="#creandoEncuesta" >creandoEncuesta</a>
+                            </li>
+                            <li>
                                 <a href="#dialogGestionPreguntaVisible" >dialogGestionPreguntaVisible</a>
+                            </li>
+                            <li>
+                                <a href="#dialogSeleccionPreguntaVisible" >dialogSeleccionPreguntaVisible</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -210,8 +219,14 @@
                                 <a href="#form" >form</a>
                             </li>
                             <li>
+                                <a href="#indicePreguntaEditando" >indicePreguntaEditando</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#messageService" >messageService</a>
+                            </li>
+                            <li>
+                                <a href="#modoEdicion" >modoEdicion</a>
                             </li>
                             <li>
                                 <a href="#preguntaSeleccionada" >preguntaSeleccionada</a>
@@ -236,7 +251,13 @@
                                 <a href="#abrirDialog" >abrirDialog</a>
                             </li>
                             <li>
+                                <a href="#abrirDialogEditar" >abrirDialogEditar</a>
+                            </li>
+                            <li>
                                 <a href="#agregarPregunta" >agregarPregunta</a>
+                            </li>
+                            <li>
+                                <a href="#cerrarDialogSeleccion" >cerrarDialogSeleccion</a>
                             </li>
                             <li>
                                 <a href="#confirmarCrearEncuesta" >confirmarCrearEncuesta</a>
@@ -248,10 +269,20 @@
                                 <a href="#crearEncuesta" >crearEncuesta</a>
                             </li>
                             <li>
+                                <a href="#editarPregunta" >editarPregunta</a>
+                            </li>
+                            <li>
                                 <a href="#eliminarPregunta" >eliminarPregunta</a>
                             </li>
                             <li>
+                                <a href="#getFechaMinima" >getFechaMinima</a>
+                            </li>
+                            <li>
                                 <a href="#getTipoPreguntaPresentacion" >getTipoPreguntaPresentacion</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#mostrarErroresValidacion" >mostrarErroresValidacion</a>
                             </li>
                         </ul>
                     </td>
@@ -275,6 +306,9 @@
                                 <li>
                                     <a href="#nombre" >nombre</a>
                                 </li>
+                                <li>
+                                    <a href="#fechaVencimiento" >fechaVencimiento</a>
+                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -293,7 +327,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:70</a></div>
                             </td>
                         </tr>
 
@@ -330,8 +364,45 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="79"
-                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:79</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:113</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="abrirDialogEditar"></a>
+                    <span class="name">
+                        <span ><b>abrirDialogEditar</b></span>
+                        <a href="#abrirDialogEditar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>abrirDialogEditar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:123</a></div>
                         </td>
                     </tr>
 
@@ -367,8 +438,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="84"
-                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:84</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="176"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:176</a></div>
                         </td>
                     </tr>
 
@@ -418,6 +489,43 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="cerrarDialogSeleccion"></a>
+                    <span class="name">
+                        <span ><b>cerrarDialogSeleccion</b></span>
+                        <a href="#cerrarDialogSeleccion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cerrarDialogSeleccion()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="171"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:171</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="confirmarCrearEncuesta"></a>
                     <span class="name">
                         <span ><b>confirmarCrearEncuesta</b></span>
@@ -434,8 +542,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="103"
-                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:103</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="232"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:232</a></div>
                         </td>
                     </tr>
 
@@ -471,8 +579,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="125"
-                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:125</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="300"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:300</a></div>
                         </td>
                     </tr>
 
@@ -538,8 +646,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="147"
-                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:147</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="334"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:334</a></div>
                         </td>
                     </tr>
 
@@ -559,24 +667,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="eliminarPregunta"></a>
+                    <a name="editarPregunta"></a>
                     <span class="name">
-                        <span ><b>eliminarPregunta</b></span>
-                        <a href="#eliminarPregunta"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>editarPregunta</b></span>
+                        <a href="#editarPregunta"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>eliminarPregunta(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>editarPregunta(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="91"
-                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:91</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="139"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:139</a></div>
                         </td>
                     </tr>
 
@@ -626,6 +734,110 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="eliminarPregunta"></a>
+                    <span class="name">
+                        <span ><b>eliminarPregunta</b></span>
+                        <a href="#eliminarPregunta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>eliminarPregunta(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="211"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:211</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFechaMinima"></a>
+                    <span class="name">
+                        <span ><b>getFechaMinima</b></span>
+                        <a href="#getFechaMinima"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFechaMinima()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getTipoPreguntaPresentacion"></a>
                     <span class="name">
                         <span ><b>getTipoPreguntaPresentacion</b></span>
@@ -642,8 +854,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="96"
-                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:96</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="225"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:225</a></div>
                         </td>
                     </tr>
 
@@ -689,6 +901,45 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mostrarErroresValidacion"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>mostrarErroresValidacion</b></span>
+                        <a href="#mostrarErroresValidacion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>mostrarErroresValidacion()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="261"
+                                    class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:261</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
     <section data-compodoc="block-properties">
     
@@ -720,7 +971,32 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="creandoEncuesta"></a>
+                    <span class="name">
+                        <span ><b>creandoEncuesta</b></span>
+                        <a href="#creandoEncuesta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -745,7 +1021,32 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dialogSeleccionPreguntaVisible"></a>
+                    <span class="name">
+                        <span ><b>dialogSeleccionPreguntaVisible</b></span>
+                        <a href="#dialogSeleccionPreguntaVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -777,7 +1078,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -803,7 +1104,32 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="indicePreguntaEditando"></a>
+                    <span class="name">
+                        <span ><b>indicePreguntaEditando</b></span>
+                        <a href="#indicePreguntaEditando"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;number&gt;(-1)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -835,7 +1161,32 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modoEdicion"></a>
+                    <span class="name">
+                        <span ><b>modoEdicion</b></span>
+                        <a href="#modoEdicion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -860,7 +1211,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -892,7 +1243,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -921,7 +1272,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:85</a></div>
                                 </td>
                             </tr>
 
@@ -943,7 +1294,29 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:90</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fechaVencimiento"></a>
+                        <span class="name"><b>fechaVencimiento</b><a href="#fechaVencimiento"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>fechaVencimiento()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/components/creacion-encuesta/creacion-encuesta.component.ts:95</a></div>
                                 </td>
                             </tr>
 
@@ -967,6 +1340,7 @@ import {
 } from &#x27;@angular/forms&#x27;;
 import { SeccionComponent } from &#x27;../seccion/seccion.component&#x27;;
 import { ButtonModule } from &#x27;primeng/button&#x27;;
+import { DialogModule } from &#x27;primeng/dialog&#x27;;
 import { GestionPreguntaDialogComponent } from &#x27;../gestion-pregunta-dialog/gestion-pregunta-dialog.component&#x27;;
 import { PreguntaDTO } from &#x27;../../interfaces/pregunta.dto&#x27;;
 import { ConfirmationService, MessageService } from &#x27;primeng/api&#x27;;
@@ -976,8 +1350,9 @@ import {
 } from &#x27;../../enums/tipos-pregunta.enum&#x27;;
 import { TextoErrorComponent } from &#x27;../texto-error/texto-error.component&#x27;;
 import { EncuestasService } from &#x27;../../services/encuestas.service&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
+import { Router, RouterModule } from &#x27;@angular/router&#x27;;
 import { CreateEncuestaDTO } from &#x27;../../interfaces/create-encuesta.dto&#x27;;
+import { MessageModule } from &#x27;primeng/message&#x27;;
 
 @Component({
   selector: &#x27;app-creacion-encuesta&#x27;,
@@ -987,9 +1362,12 @@ import { CreateEncuestaDTO } from &#x27;../../interfaces/create-encuesta.dto&#x2
     FormsModule,
     SeccionComponent,
     ButtonModule,
+    DialogModule,
     GestionPreguntaDialogComponent,
     ReactiveFormsModule,
     TextoErrorComponent,
+    RouterModule,
+    MessageModule,
   ],
   templateUrl: &#x27;./creacion-encuesta.component.html&#x27;,
   styleUrl: &#x27;./creacion-encuesta.component.css&#x27;,
@@ -1010,10 +1388,21 @@ export class CreacionEncuestaComponent {
   // Almacena la pregunta seleccionada para edición (si corresponde)
   preguntaSeleccionada &#x3D; signal&lt;PreguntaDTO | null&gt;(null);
 
+  // Controla el estado de carga del botón finalizar
+  creandoEncuesta &#x3D; signal&lt;boolean&gt;(false);
+
+  // Controla si estamos en modo edición y qué pregunta se está editando
+  modoEdicion &#x3D; signal&lt;boolean&gt;(false);
+  indicePreguntaEditando &#x3D; signal&lt;number&gt;(-1);
+
+  // Controla la visibilidad del diálogo de selección de preguntas para editar
+  dialogSeleccionPreguntaVisible &#x3D; signal&lt;boolean&gt;(false);
+
   constructor() {
     // Inicializa el formulario con controles y validadores
     this.form &#x3D; new FormGroup({
       nombre: new FormControl&lt;string&gt;(&#x27;&#x27;, Validators.required), // Nombre de la encuesta
+      fechaVencimiento: new FormControl&lt;Date | null&gt;(null), // Fecha de vencimiento incorporada
       preguntas: new FormArray&lt;FormControl&lt;PreguntaDTO&gt;&gt;(
         [],
         [Validators.required, Validators.minLength(1)] // Al menos una pregunta requerida
@@ -1031,21 +1420,134 @@ export class CreacionEncuestaComponent {
     return this.form.get(&#x27;nombre&#x27;) as FormControl&lt;string&gt;;
   }
 
+    // Getter para fecha de vecimiento
+  get fechaVencimiento(): FormControl&lt;Date | null&gt; {
+    return this.form.get(&#x27;fechaVencimiento&#x27;) as FormControl&lt;Date | null&gt;;
+  }
+
+  // Método para obtener la fecha mínima permitida (fecha actual)
+  getFechaMinima(): string {
+    const now &#x3D; new Date();
+    // Formatear la fecha para el input datetime-local (YYYY-MM-DDTHH:MM)
+    const year &#x3D; now.getFullYear();
+    const month &#x3D; String(now.getMonth() + 1).padStart(2, &#x27;0&#x27;);
+    const day &#x3D; String(now.getDate()).padStart(2, &#x27;0&#x27;);
+    const hours &#x3D; String(now.getHours()).padStart(2, &#x27;0&#x27;);
+    const minutes &#x3D; String(now.getMinutes()).padStart(2, &#x27;0&#x27;);
+
+    return &#x60;${year}-${month}-${day}T${hours}:${minutes}&#x60;;
+  }
+
   // Abre el diálogo para agregar una nueva pregunta
   abrirDialog() {
+    // Resetear modo edición
+    this.modoEdicion.set(false);
+    this.indicePreguntaEditando.set(-1);
+    this.preguntaSeleccionada.set(null);
+
     this.dialogGestionPreguntaVisible.set(true);
   }
 
-  // Agrega una nueva pregunta al FormArray de preguntas
+  // Abre el diálogo para editar preguntas existentes
+  abrirDialogEditar() {
+    if (this.preguntas.length &#x3D;&#x3D;&#x3D; 0) {
+      this.messageService.add({
+        severity: &#x27;warn&#x27;,
+        summary: &#x27;No hay preguntas&#x27;,
+        detail: &#x27;Primero agrega una pregunta para poder editarla&#x27;,
+        life: 4000
+      });
+      return;
+    }
+
+    // Abrir diálogo de selección de preguntas
+    this.dialogSeleccionPreguntaVisible.set(true);
+  }
+
+  // Edita una pregunta específica por índice
+  editarPregunta(index: number) {
+    const pregunta &#x3D; this.preguntas.at(index)?.value;
+    if (!pregunta) {
+      this.messageService.add({
+        severity: &#x27;error&#x27;,
+        summary: &#x27;Error&#x27;,
+        detail: &#x27;No se pudo encontrar la pregunta a editar&#x27;,
+        life: 4000
+      });
+      return;
+    }
+
+    // Cerrar diálogo de selección
+    this.dialogSeleccionPreguntaVisible.set(false);
+
+    // Configurar modo edición
+    this.modoEdicion.set(true);
+    this.indicePreguntaEditando.set(index);
+    this.preguntaSeleccionada.set(pregunta);
+
+    // Abrir el diálogo de edición
+    this.dialogGestionPreguntaVisible.set(true);
+
+    this.messageService.add({
+      severity: &#x27;info&#x27;,
+      summary: &#x27;Modo edición&#x27;,
+      detail: &#x60;Editando: &quot;${pregunta.texto}&quot;&#x60;,
+      life: 3000
+    });
+  }
+
+  // Cierra el diálogo de selección de preguntas
+  cerrarDialogSeleccion() {
+    this.dialogSeleccionPreguntaVisible.set(false);
+  }
+
+  // Agrega una nueva pregunta al FormArray de preguntas o actualiza una existente
   agregarPregunta(pregunta: PreguntaDTO) {
-    this.preguntas.push(
-      new FormControl&lt;PreguntaDTO&gt;(pregunta) as FormControl&lt;PreguntaDTO&gt;
-    );
+    if (this.modoEdicion() &amp;&amp; this.indicePreguntaEditando() &gt;&#x3D; 0) {
+      // Modo edición: actualizar pregunta existente
+      const index &#x3D; this.indicePreguntaEditando();
+      this.preguntas.at(index)?.setValue(pregunta);
+
+      // Resetear modo edición
+      this.modoEdicion.set(false);
+      this.indicePreguntaEditando.set(-1);
+      this.preguntaSeleccionada.set(null);
+
+      // Mostrar mensaje de confirmación
+      this.messageService.add({
+        severity: &#x27;success&#x27;,
+        summary: &#x27;Pregunta actualizada&#x27;,
+        detail: &#x60;Se actualizó la pregunta: &quot;${pregunta.texto}&quot;&#x60;,
+        life: 3000
+      });
+    } else {
+      // Modo agregar: nueva pregunta
+      this.preguntas.push(
+        new FormControl&lt;PreguntaDTO&gt;(pregunta) as FormControl&lt;PreguntaDTO&gt;
+      );
+
+      // Mostrar mensaje de confirmación
+      this.messageService.add({
+        severity: &#x27;success&#x27;,
+        summary: &#x27;Pregunta agregada&#x27;,
+        detail: &#x60;Se agregó la pregunta: &quot;${pregunta.texto}&quot;&#x60;,
+        life: 3000
+      });
+    }
   }
 
   // Elimina una pregunta del FormArray por índice
   eliminarPregunta(index: number) {
+    const preguntaEliminada &#x3D; this.preguntas.at(index)?.value;
     this.preguntas.removeAt(index);
+
+    // Mostrar mensaje de confirmación
+    this.messageService.add({
+      severity: &#x27;info&#x27;,
+      summary: &#x27;Pregunta eliminada&#x27;,
+      detail: preguntaEliminada ? &#x60;Se eliminó la pregunta: &quot;${preguntaEliminada.texto}&quot;&#x60; : &#x27;Pregunta eliminada correctamente&#x27;,
+      life: 3000
+    });
   }
 
   // Devuelve la presentación textual del tipo de pregunta
@@ -1057,19 +1559,26 @@ export class CreacionEncuestaComponent {
 
   // Muestra un cuadro de confirmación antes de crear la encuesta
   confirmarCrearEncuesta() {
+    // Validar formulario antes de mostrar confirmación
+    if (!this.form.valid) {
+      this.mostrarErroresValidacion();
+      return;
+    }
+
     this.confirmationService.confirm({
-      message: &#x27;Confirmar creación de encuesta?&#x27;,
-      header: &#x27;Confirmación&#x27;,
+      message: &#x27;¿Estás seguro de que deseas crear esta encuesta?&#x27;,
+      header: &#x27;Confirmar Creación&#x27;,
       closable: true,
       closeOnEscape: true,
-      icon: &#x27;pi pi-exclamation-triangle&#x27;,
+      icon: &#x27;pi pi-question-circle&#x27;,
       rejectButtonProps: {
         label: &#x27;Cancelar&#x27;,
         severity: &#x27;secondary&#x27;,
         outlined: true,
       },
       acceptButtonProps: {
-        label: &#x27;Confirmar&#x27;,
+        label: &#x27;Crear Encuesta&#x27;,
+        severity: &#x27;success&#x27;,
       },
       accept: () &#x3D;&gt; {
         this.crearEncuesta();
@@ -1077,11 +1586,53 @@ export class CreacionEncuestaComponent {
     });
   }
 
+  // Muestra errores específicos de validación
+  private mostrarErroresValidacion() {
+    this.form.markAllAsTouched();
+
+    const errores: string[] &#x3D; [];
+
+    // Validar nombre de encuesta
+    if (this.nombre.invalid) {
+      if (this.nombre.errors?.[&#x27;required&#x27;]) {
+        errores.push(&#x27;El nombre de la encuesta es obligatorio&#x27;);
+      }
+    }
+
+    // Validar preguntas
+    if (this.preguntas.invalid) {
+      if (this.preguntas.errors?.[&#x27;required&#x27;] || this.preguntas.length &#x3D;&#x3D;&#x3D; 0) {
+        errores.push(&#x27;Debe agregar al menos una pregunta&#x27;);
+      }
+    }
+
+    // Mostrar errores específicos
+    if (errores.length &gt; 0) {
+      this.messageService.add({
+        severity: &#x27;warn&#x27;,
+        summary: &#x27;Campos requeridos&#x27;,
+        detail: errores.join(&#x27;. &#x27;) + &#x27;. Complete todos los campos antes de continuar.&#x27;,
+        life: 4000,
+        sticky: false
+      });
+    } else {
+      this.messageService.add({
+        severity: &#x27;error&#x27;,
+        summary: &#x27;Error de validación&#x27;,
+        detail: &#x27;Por favor, revisa los campos del formulario. Si el problema persiste, usa el botón &quot;Probar Conectividad&quot; para verificar la conexión con el servidor.&#x27;,
+        life: 4000
+      });
+    }
+  }
+
   // Muestra un cuadro de confirmación antes de eliminar una pregunta
   confirmarEliminarPregunta(index: number) {
+    const pregunta &#x3D; this.preguntas.at(index)?.value;
+    const nombrePregunta &#x3D; pregunta?.texto || &#x27;esta pregunta&#x27;;
+
     this.confirmationService.confirm({
-      message: &#x27;Confirmar eliminación?&#x27;,
-      header: &#x27;Confirmación&#x27;,
+      message: &#x60;¿Estás seguro de que deseas eliminar &quot;${nombrePregunta}&quot;?&#x60;,
+      header: &#x27;Confirmar Eliminación&#x27;,
       closable: true,
       closeOnEscape: true,
       icon: &#x27;pi pi-exclamation-triangle&#x27;,
@@ -1091,27 +1642,103 @@ export class CreacionEncuestaComponent {
         outlined: true,
       },
       acceptButtonProps: {
-        label: &#x27;Confirmar&#x27;,
+        label: &#x27;Eliminar&#x27;,
+        severity: &#x27;danger&#x27;,
       },
       accept: () &#x3D;&gt; {
         this.eliminarPregunta(index);
       },
+      reject: () &#x3D;&gt; {
+        this.messageService.add({
+          severity: &#x27;info&#x27;,
+          summary: &#x27;Operación cancelada&#x27;,
+          detail: &#x27;La pregunta no fue eliminada&#x27;,
+          life: 2000
+        });
+      }
     });
   }
 
   // Envía la encuesta al backend para su creación
   crearEncuesta() {
+    // Validación adicional antes de enviar
+    console.log(&#x27;🔍 Iniciando creación de encuesta...&#x27;);
+    console.log(&#x27;📋 Estado del formulario:&#x27;, {
+      valid: this.form.valid,
+      value: this.form.value,
+      errors: this.form.errors,
+      fechaVencimiento: this.form.value.fechaVencimiento
+    });
+
+    // Verificar que el formulario sea válido
     if (!this.form.valid) {
-      this.form.markAllAsTouched();
+      console.error(&#x27;❌ Formulario inválido:&#x27;, this.form.errors);
+      this.mostrarErroresValidacion();
+      return;
+    }
+
+    // Activar estado de carga
+    this.creandoEncuesta.set(true);
+
+    // Mostrar mensaje de carga
+    this.messageService.add({
+      severity: &#x27;info&#x27;,
+      summary: &#x27;Creando encuesta...&#x27;,
+      detail: &#x27;Por favor espera mientras procesamos tu encuesta&#x27;,
+      life: 4000
+    });
+
+    // Obtiene los datos del formulario
+
+    const formData &#x3D; this.form.value;
+
+    // Crear el objeto de encuesta con los campos requeridos por el backend
+    const encuesta: CreateEncuestaDTO &#x3D; {
+      ...this.form.value,
+      enlaceCorto: &#x27;&#x27;,
+      codigoQR: &#x27;&#x27;,
+      nombre: formData.nombre,
+      fechaVencimiento: formData.fechaVencimiento,
+      preguntas: formData.preguntas || []
+    };
+
+
+    // Si el backend requiere estos campos, los agregamos como strings vacíos
+    // El backend debería generar los valores reales
+    if (encuesta.enlaceCorto &#x3D;&#x3D;&#x3D; undefined) {
+      encuesta.enlaceCorto &#x3D; &#x27;&#x27;;
+    }
+    if (encuesta.codigoQR &#x3D;&#x3D;&#x3D; undefined) {
+      encuesta.codigoQR &#x3D; &#x27;&#x27;;
+    }
+
+    console.log(&#x27;📝 Datos de la encuesta antes de procesar:&#x27;, encuesta);
+
+    // Validar que tenemos datos básicos
+    if (!encuesta.nombre || !encuesta.preguntas || encuesta.preguntas.length &#x3D;&#x3D;&#x3D; 0) {
+      console.error(&#x27;❌ Datos de encuesta incompletos:&#x27;, {
+        nombre: encuesta.nombre,
+        preguntasLength: encuesta.preguntas?.length || 0
+      });
+
+      if (this.fechaVencimiento.value) { //validar fecha de vencimiento
+        const fechaSeleccionada &#x3D; new Date(this.fechaVencimiento.value);
+        const ahora &#x3D; new Date();
+        
+        if (fechaSeleccionada &lt;&#x3D; ahora) {
+          console.log(&#x27;La fecha de vencimiento debe ser posterior a la fecha actual&#x27;);
+        }
+      }
+
       this.messageService.add({
         severity: &#x27;error&#x27;,
-        summary: &#x27;Hay errores en el formulario&#x27;,
+        summary: &#x27;Datos incompletos&#x27;,
+        detail: &#x27;Faltan datos requeridos para crear la encuesta&#x27;,
+        life: 5000
       });
       return;
     }
 
-    // Obtiene los datos del formulario
-    const encuesta: CreateEncuestaDTO &#x3D; this.form.value;
 
     // Asigna el número de orden a cada pregunta y opción antes de enviar
     for (let i &#x3D; 0; i &lt; encuesta.preguntas.length; i++) {
@@ -1125,30 +1752,109 @@ export class CreacionEncuestaComponent {
       }
     }
 
+    console.log(&#x27;✅ Datos de la encuesta procesados:&#x27;, encuesta);
+    console.log(&#x27;🚀 Enviando petición al backend...&#x27;);
+
     // Llama al servicio para crear la encuesta y maneja la respuesta
     this.encuestasService.crearEncuesta(encuesta).subscribe({
       next: (res) &#x3D;&gt; {
-        this.messageService.add({
-          severity: &#x27;success&#x27;,
-          summary: &#x27;La encuesta se creó con éxito&#x27;,
+        console.log(&#x27;✅ Encuesta creada exitosamente:&#x27;, res);
+        console.log(&#x27;📊 Estructura de la respuesta:&#x27;, {
+          id: res.id,
+          codigoRespuesta: res.codigoRespuesta,
+          codigoResultados: res.codigoResultados,
+          tipoId: typeof res.id,
+          tipoCodResp: typeof res.codigoRespuesta,
+          tipoCodRes: typeof res.codigoResultados
         });
 
-        // Redirige a la pantalla de presentación de enlaces con los códigos generados
-        this.router.navigateByUrl(
-          &#x27;/presentacion-enlaces?id-encuesta&#x3D;&#x27; +
-            res.id +
-            &#x27;&amp;codigo-respuesta&#x3D;&#x27; +
-            res.codigoRespuesta +
-            &#x27;&amp;codigo-resultados&#x3D;&#x27; +
-            res.codigoResultados
-        );
+        // Verificar que tenemos todos los datos necesarios
+        if (!res.id || !res.codigoRespuesta || !res.codigoResultados) {
+          console.error(&#x27;❌ Respuesta incompleta del backend:&#x27;, res);
+          this.messageService.add({
+            severity: &#x27;error&#x27;,
+            summary: &#x27;Error en la respuesta del servidor&#x27;,
+            detail: &#x27;El servidor no devolvió todos los códigos necesarios&#x27;,
+            life: 5000
+          });
+          return;
+        }
+
+        // Cerrar el diálogo de confirmación inmediatamente
+        this.confirmationService.close();
+
+        // Limpiar todos los toasts anteriores (incluyendo el de &quot;Creando encuesta...&quot;)
+        this.messageService.clear();
+
+        // Mensaje de éxito detallado
+        this.messageService.add({
+          severity: &#x27;success&#x27;,
+          summary: &#x27;¡Encuesta creada exitosamente!&#x27;,
+          detail: &#x60;La encuesta &quot;${encuesta.nombre}&quot; se ha creado correctamente con ${encuesta.preguntas.length} pregunta${encuesta.preguntas.length &gt; 1 ? &#x27;s&#x27; : &#x27;&#x27;}&#x60;,
+          life: 4000
+        });
+
+        // Construir la URL de redirección
+        const redirectUrl &#x3D; &#x60;/presentacion-enlaces?id-encuesta&#x3D;${res.id}&amp;codigo-respuesta&#x3D;${res.codigoRespuesta}&amp;codigo-resultados&#x3D;${res.codigoResultados}&#x60;;
+        console.log(&#x27;🔗 URL de redirección:&#x27;, redirectUrl);
+
+        // Pequeño delay para que el usuario vea el mensaje antes de redirigir
+        setTimeout(() &#x3D;&gt; {
+          console.log(&#x27;🚀 Redirigiendo a:&#x27;, redirectUrl);
+          this.router.navigate([&#x27;/presentacion-enlaces&#x27;], {
+            queryParams: {
+              &#x27;id-encuesta&#x27;: res.id,
+              &#x27;codigo-respuesta&#x27;: res.codigoRespuesta,
+              &#x27;codigo-resultados&#x27;: res.codigoResultados
+            }
+          });
+        }, 1500);
       },
       error: (err) &#x3D;&gt; {
+        console.error(&#x27;❌ Error al crear encuesta:&#x27;, err);
+        console.error(&#x27;📊 Detalles del error:&#x27;, {
+          status: err.status,
+          statusText: err.statusText,
+          message: err.message,
+          error: err.error,
+          url: err.url
+        });
+
+        // Cerrar el diálogo de confirmación en caso de error
+        this.confirmationService.close();
+
+        // Mensaje de error detallado
+        let errorDetail &#x3D; &#x27;Verifica tu conexión a internet e intenta nuevamente&#x27;;
+        let errorSummary &#x3D; &#x27;Error al crear la encuesta&#x27;;
+
+        if (err.status &#x3D;&#x3D;&#x3D; 400) {
+          errorDetail &#x3D; &#x27;Los datos de la encuesta no son válidos&#x27;;
+          if (err.error &amp;&amp; err.error.message) {
+            errorDetail +&#x3D; &#x60;: ${err.error.message}&#x60;;
+          }
+        } else if (err.status &#x3D;&#x3D;&#x3D; 500) {
+          errorDetail &#x3D; &#x27;Error interno del servidor. Intenta más tarde&#x27;;
+        } else if (err.status &#x3D;&#x3D;&#x3D; 0) {
+          errorDetail &#x3D; &#x27;No se pudo conectar con el servidor. Verifica que el backend esté ejecutándose&#x27;;
+          errorSummary &#x3D; &#x27;Sin conexión al servidor&#x27;;
+        } else if (err.status &#x3D;&#x3D;&#x3D; 404) {
+          errorDetail &#x3D; &#x27;El endpoint de creación de encuestas no fue encontrado&#x27;;
+          errorSummary &#x3D; &#x27;Servicio no encontrado&#x27;;
+        }
+
         this.messageService.add({
           severity: &#x27;error&#x27;,
-          summary: &#x27;Ha ocurrido un error al crear la encuesta&#x27;,
+          summary: errorSummary,
+          detail: errorDetail,
+          life: 8000,
+          sticky: true
         });
       },
+      complete: () &#x3D;&gt; {
+        // Asegurar que el estado de carga siempre se resetee
+        this.creandoEncuesta.set(false);
+        console.log(&#x27;🔄 Estado de carga reseteado&#x27;);
+      }
     });
   }
 }
@@ -1156,9 +1862,76 @@ export class CreacionEncuestaComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;h1&gt;Creá una encuesta&lt;/h1&gt;
-&lt;form [formGroup]&#x3D;&quot;form&quot; (ngSubmit)&#x3D;&quot;confirmarCrearEncuesta()&quot;&gt;
-  &lt;div id&#x3D;&quot;contenedor-encuesta&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Elementos decorativos de fondo --&gt;
+&lt;div class&#x3D;&quot;background-elements&quot;&gt;
+  &lt;!-- Formas flotantes principales --&gt;
+  &lt;div class&#x3D;&quot;floating-shape shape-1&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;floating-shape shape-2&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;floating-shape shape-3&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;floating-shape shape-4&quot;&gt;&lt;/div&gt;
+
+  &lt;!-- Círculos flotantes adicionales --&gt;
+  &lt;div class&#x3D;&quot;floating-circle circle-1&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;floating-circle circle-2&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;floating-circle circle-3&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;floating-circle circle-4&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;floating-circle circle-5&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;floating-circle circle-6&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;floating-circle circle-7&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;floating-circle circle-8&quot;&gt;&lt;/div&gt;
+
+  &lt;!-- Formas orgánicas adicionales --&gt;
+  &lt;div class&#x3D;&quot;organic-shape blob-1&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;organic-shape blob-2&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;organic-shape blob-3&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;organic-shape blob-4&quot;&gt;&lt;/div&gt;
+
+  &lt;!-- Elementos adicionales para más dinamismo --&gt;
+  &lt;div class&#x3D;&quot;geometric-shape triangle-1&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;geometric-shape triangle-2&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;geometric-shape hexagon-1&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;geometric-shape hexagon-2&quot;&gt;&lt;/div&gt;
+
+  &lt;!-- Círculos con anillos --&gt;
+  &lt;div class&#x3D;&quot;ring-circle ring-1&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;ring-circle ring-2&quot;&gt;&lt;/div&gt;
+
+  &lt;!-- Partículas brillantes --&gt;
+  &lt;div class&#x3D;&quot;sparkle sparkle-1&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;sparkle sparkle-2&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;sparkle sparkle-3&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;sparkle sparkle-4&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;sparkle sparkle-5&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;sparkle sparkle-6&quot;&gt;&lt;/div&gt;
+
+  &lt;!-- Ondas de fondo --&gt;
+  &lt;div class&#x3D;&quot;wave wave-1&quot;&gt;&lt;/div&gt;
+  &lt;div class&#x3D;&quot;wave wave-2&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Contenido principal --&gt;
+&lt;div class&#x3D;&quot;main-content&quot;&gt;
+  &lt;!-- Botón de volver arriba a la izquierda --&gt;
+  &lt;button
+    type&#x3D;&quot;button&quot;
+    class&#x3D;&quot;boton-volver&quot;
+    pButton
+    icon&#x3D;&quot;pi pi-arrow-left&quot;
+    [routerLink]&#x3D;&quot;[&#x27;&#x27;]&quot;
+    aria-label&#x3D;&quot;Volver&quot;
+  &gt;&lt;/button&gt;
+
+  &lt;form [formGroup]&#x3D;&quot;form&quot; (ngSubmit)&#x3D;&quot;confirmarCrearEncuesta()&quot;&gt;
+    &lt;div id&#x3D;&quot;contenedor-encuesta&quot;&gt;
+      &lt;h1 class&#x3D;&quot;page-title&quot;&gt;Creá una encuesta&lt;/h1&gt;
+
+      &lt;!-- Mensaje informativo --&gt;
+      &lt;div class&#x3D;&quot;info-message&quot;&gt;
+        &lt;p&gt;&lt;strong&gt;📝 Instrucciones:&lt;/strong&gt;&lt;/p&gt;
+        &lt;p&gt;1. Ingresa un nombre para tu encuesta&lt;/p&gt;
+        &lt;p&gt;2. Agrega al menos una pregunta usando el botón &quot;Agregar Pregunta&quot;&lt;/p&gt;
+        &lt;p&gt;3. Haz clic en &quot;Finalizar&quot; para crear tu encuesta&lt;/p&gt;
+      &lt;/div&gt;
     &lt;app-seccion&gt;
       &lt;p-floatlabel variant&#x3D;&quot;on&quot; id&#x3D;&quot;float-label-nombre-encuesta&quot;&gt;
         &lt;input
@@ -1201,15 +1974,53 @@ export class CreacionEncuestaComponent {
       &lt;/app-seccion&gt;
     }
     &lt;app-seccion&gt;
-      &lt;p-button
-        label&#x3D;&quot;Agregar Pregunta&quot;
-        (onClick)&#x3D;&quot;abrirDialog()&quot;
-        icon&#x3D;&quot;pi pi-plus&quot;
-      /&gt;
+      &lt;div class&#x3D;&quot;botones-gestion-preguntas&quot;&gt;
+        &lt;p-button
+          label&#x3D;&quot;Agregar Pregunta&quot;
+          (onClick)&#x3D;&quot;abrirDialog()&quot;
+          icon&#x3D;&quot;pi pi-plus&quot;
+        /&gt;
+        @if (preguntas.length &gt; 0) {
+          &lt;p-button
+            label&#x3D;&quot;Editar Pregunta&quot;
+            (onClick)&#x3D;&quot;abrirDialogEditar()&quot;
+            icon&#x3D;&quot;pi pi-pencil&quot;
+            severity&#x3D;&quot;secondary&quot;
+            [outlined]&#x3D;&quot;true&quot;
+          /&gt;
+        }
+      &lt;/div&gt;
       @if (preguntas.invalid &amp;&amp; form.touched) {
-        &lt;app-texto-error&gt;Debe agregar al menos una pregunra&lt;/app-texto-error&gt;
+        &lt;app-texto-error&gt;Debe agregar al menos una pregunta&lt;/app-texto-error&gt;
       }
     &lt;/app-seccion&gt;
+
+    &lt;!-- Campo de fecha de vencimiento --&gt;
+    &lt;app-seccion&gt;
+      &lt;p-floatlabel&gt;
+        &lt;input
+          type&#x3D;&quot;datetime-local&quot;
+          id&#x3D;&quot;fechaVencimiento&quot;
+          pInputText
+          [formControl]&#x3D;&quot;fechaVencimiento&quot;
+          class&#x3D;&quot;w-full&quot;
+          [min]&#x3D;&quot;getFechaMinima()&quot;
+        /&gt;
+        &lt;label for&#x3D;&quot;fechaVencimiento&quot;&gt;Fecha de Vencimiento (Opcional)&lt;/label&gt;
+      &lt;/p-floatlabel&gt;
+      &lt;!-- Mensaje de ayuda --&gt;
+      &lt;small class&#x3D;&quot;text-muted block mt-1&quot;&gt;
+        Si no especificas una fecha, la encuesta estará disponible indefinidamente
+      &lt;/small&gt;
+
+      &lt;!-- Mostrar errores de validación --&gt;
+      &lt;p-message
+        severity&#x3D;&quot;error&quot;
+        text&#x3D;&quot;La fecha de vencimiento debe ser posterior a la fecha actual&quot;
+        *ngIf&#x3D;&quot;form.get(&#x27;fechaVencimiento&#x27;)?.errors?.[&#x27;fechaInvalida&#x27;]&quot;&gt;
+      &lt;/p-message&gt;
+    &lt;/app-seccion&gt;
+
     &lt;button
       id&#x3D;&quot;boton-finalizar&quot;
       pButton
@@ -1217,15 +2028,65 @@ export class CreacionEncuestaComponent {
       type&#x3D;&quot;submit&quot;
       icon&#x3D;&quot;pi pi-check&quot;
       severity&#x3D;&quot;contrast&quot;
+      class&#x3D;&quot;p-button-rounded&quot;
+      [disabled]&#x3D;&quot;creandoEncuesta()&quot;
+      [loading]&#x3D;&quot;creandoEncuesta()&quot;
     &gt;
-      Finalizar
+      {{ creandoEncuesta() ? &#x27;Creando...&#x27; : &#x27;Finalizar&#x27; }}
     &lt;/button&gt;
   &lt;/div&gt;
 &lt;/form&gt;
+&lt;/div&gt;
+
 &lt;app-gestion-pregunta-dialog
   [(visible)]&#x3D;&quot;dialogGestionPreguntaVisible&quot;
+  [(preguntaAEditar)]&#x3D;&quot;preguntaSeleccionada&quot;
   (agregarPregunta)&#x3D;&quot;agregarPregunta($event)&quot;
-/&gt;</code></pre>
+/&gt;
+
+&lt;!-- Diálogo de selección de preguntas para editar --&gt;
+&lt;p-dialog
+  header&#x3D;&quot;Seleccionar Pregunta para Editar&quot;
+  [modal]&#x3D;&quot;true&quot;
+  [(visible)]&#x3D;&quot;dialogSeleccionPreguntaVisible&quot;
+  [style]&#x3D;&quot;{ width: &#x27;35rem&#x27;, maxWidth: &#x27;90vw&#x27; }&quot;
+  resizable&#x3D;&quot;false&quot;
+  (onHide)&#x3D;&quot;cerrarDialogSeleccion()&quot;
+&gt;
+  &lt;div class&#x3D;&quot;dialogo-seleccion-preguntas&quot;&gt;
+    &lt;p class&#x3D;&quot;instruccion-seleccion&quot;&gt;Selecciona la pregunta que deseas editar:&lt;/p&gt;
+
+    @for (pregunta of preguntas.value; track idx; let idx &#x3D; $index) {
+      &lt;div class&#x3D;&quot;item-pregunta-seleccion&quot; (click)&#x3D;&quot;editarPregunta(idx)&quot;&gt;
+        &lt;div class&#x3D;&quot;contenido-pregunta-seleccion&quot;&gt;
+          &lt;h4 class&#x3D;&quot;titulo-pregunta-seleccion&quot;&gt;
+            Pregunta {{ idx + 1 }}: {{ pregunta.texto }}
+          &lt;/h4&gt;
+          &lt;p class&#x3D;&quot;tipo-pregunta-seleccion&quot;&gt;
+            Tipo: {{ getTipoPreguntaPresentacion(pregunta.tipo) }}
+          &lt;/p&gt;
+          @if (pregunta.opciones &amp;&amp; pregunta.opciones.length &gt; 0) {
+            &lt;div class&#x3D;&quot;opciones-preview&quot;&gt;
+              &lt;p class&#x3D;&quot;opciones-titulo&quot;&gt;Opciones:&lt;/p&gt;
+              &lt;ul class&#x3D;&quot;opciones-lista&quot;&gt;
+                @for (opcion of pregunta.opciones; track i; let i &#x3D; $index) {
+                  &lt;li class&#x3D;&quot;opcion-item&quot;&gt;{{ opcion.texto }}&lt;/li&gt;
+                }
+              &lt;/ul&gt;
+            &lt;/div&gt;
+          }
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;icono-editar&quot;&gt;
+          &lt;i class&#x3D;&quot;pi pi-pencil&quot;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    }
+
+    @if (preguntas.length &#x3D;&#x3D;&#x3D; 0) {
+      &lt;p class&#x3D;&quot;sin-preguntas&quot;&gt;No hay preguntas disponibles para editar.&lt;/p&gt;
+    }
+  &lt;/div&gt;
+&lt;/p-dialog&gt;</code></pre>
     </div>
 
 
@@ -1254,8 +2115,8 @@ export class CreacionEncuestaComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><h1>Creá una encuesta</h1><form [formGroup]="form" (ngSubmit)="confirmarCrearEncuesta()">  <div id="contenedor-encuesta">    <app-seccion>      <p-floatlabel variant="on" id="float-label-nombre-encuesta">        <input          pInputText          id="input-nombre"          formControlName="nombre"          autocomplete="off"        />        <label for="input-nombre">Nombre de la encuesta</label>      </p-floatlabel>      @if (nombre.invalid && nombre.touched) {        <app-texto-error>Requerido</app-texto-error>      }    </app-seccion>    @for (pregunta of preguntas.value; track idx; let idx = $index) {      <app-seccion>        <div class="contenedor-pregunta">          <p class="texto-pregunta">            {{ pregunta.texto }} ({{              getTipoPreguntaPresentacion(pregunta.tipo)            }})          </p>          <ul>            @for (opcion of pregunta.opciones; track i; let i = $index) {              <li>                <p class="texto-opcion">{{ opcion.texto }}</p>              </li>            }          </ul>          <div class="botonera-pregunta">            <p-button              (onClick)="confirmarEliminarPregunta(idx)"              id="boton-eliminar-pregunta"              icon="pi pi-times"              label="Eliminar"              severity="danger"            ></p-button>          </div>        </div>      </app-seccion>    }    <app-seccion>      <p-button        label="Agregar Pregunta"        (onClick)="abrirDialog()"        icon="pi pi-plus"      />      @if (preguntas.invalid && form.touched) {        <app-texto-error>Debe agregar al menos una pregunra</app-texto-error>      }    </app-seccion>    <button      id="boton-finalizar"      pButton      pRipple      type="submit"      icon="pi pi-check"      severity="contrast"    >      Finalizar    </button>  </div></form><app-gestion-pregunta-dialog  [(visible)]="dialogGestionPreguntaVisible"  (agregarPregunta)="agregarPregunta($event)"/></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BannerComponent', 'selector': 'app-banner'},{'name': 'ComienzoComponent', 'selector': 'app-comienzo'},{'name': 'CreacionEncuestaComponent', 'selector': 'app-creacion-encuesta'},{'name': 'GestionOpcionDialogComponent', 'selector': 'app-gestion-opcion-dialog'},{'name': 'GestionPreguntaDialogComponent', 'selector': 'app-gestion-pregunta-dialog'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'SeccionComponent', 'selector': 'app-seccion'},{'name': 'TextoErrorComponent', 'selector': 'app-texto-error'}];
+        var COMPONENT_TEMPLATE = '<div><!-- Elementos decorativos de fondo --><div class="background-elements">  <!-- Formas flotantes principales -->  <div class="floating-shape shape-1"></div>  <div class="floating-shape shape-2"></div>  <div class="floating-shape shape-3"></div>  <div class="floating-shape shape-4"></div>  <!-- Círculos flotantes adicionales -->  <div class="floating-circle circle-1"></div>  <div class="floating-circle circle-2"></div>  <div class="floating-circle circle-3"></div>  <div class="floating-circle circle-4"></div>  <div class="floating-circle circle-5"></div>  <div class="floating-circle circle-6"></div>  <div class="floating-circle circle-7"></div>  <div class="floating-circle circle-8"></div>  <!-- Formas orgánicas adicionales -->  <div class="organic-shape blob-1"></div>  <div class="organic-shape blob-2"></div>  <div class="organic-shape blob-3"></div>  <div class="organic-shape blob-4"></div>  <!-- Elementos adicionales para más dinamismo -->  <div class="geometric-shape triangle-1"></div>  <div class="geometric-shape triangle-2"></div>  <div class="geometric-shape hexagon-1"></div>  <div class="geometric-shape hexagon-2"></div>  <!-- Círculos con anillos -->  <div class="ring-circle ring-1"></div>  <div class="ring-circle ring-2"></div>  <!-- Partículas brillantes -->  <div class="sparkle sparkle-1"></div>  <div class="sparkle sparkle-2"></div>  <div class="sparkle sparkle-3"></div>  <div class="sparkle sparkle-4"></div>  <div class="sparkle sparkle-5"></div>  <div class="sparkle sparkle-6"></div>  <!-- Ondas de fondo -->  <div class="wave wave-1"></div>  <div class="wave wave-2"></div></div><!-- Contenido principal --><div class="main-content">  <!-- Botón de volver arriba a la izquierda -->  <button    type="button"    class="boton-volver"    pButton    icon="pi pi-arrow-left"    [routerLink]="[\'\']"    aria-label="Volver"  ></button>  <form [formGroup]="form" (ngSubmit)="confirmarCrearEncuesta()">    <div id="contenedor-encuesta">      <h1 class="page-title">Creá una encuesta</h1>      <!-- Mensaje informativo -->      <div class="info-message">        <p><strong>📝 Instrucciones:</strong></p>        <p>1. Ingresa un nombre para tu encuesta</p>        <p>2. Agrega al menos una pregunta usando el botón "Agregar Pregunta"</p>        <p>3. Haz clic en "Finalizar" para crear tu encuesta</p>      </div>    <app-seccion>      <p-floatlabel variant="on" id="float-label-nombre-encuesta">        <input          pInputText          id="input-nombre"          formControlName="nombre"          autocomplete="off"        />        <label for="input-nombre">Nombre de la encuesta</label>      </p-floatlabel>      @if (nombre.invalid && nombre.touched) {        <app-texto-error>Requerido</app-texto-error>      }    </app-seccion>    @for (pregunta of preguntas.value; track idx; let idx = $index) {      <app-seccion>        <div class="contenedor-pregunta">          <p class="texto-pregunta">            {{ pregunta.texto }} ({{              getTipoPreguntaPresentacion(pregunta.tipo)            }})          </p>          <ul>            @for (opcion of pregunta.opciones; track i; let i = $index) {              <li>                <p class="texto-opcion">{{ opcion.texto }}</p>              </li>            }          </ul>          <div class="botonera-pregunta">            <p-button              (onClick)="confirmarEliminarPregunta(idx)"              id="boton-eliminar-pregunta"              icon="pi pi-times"              label="Eliminar"              severity="danger"            ></p-button>          </div>        </div>      </app-seccion>    }    <app-seccion>      <div class="botones-gestion-preguntas">        <p-button          label="Agregar Pregunta"          (onClick)="abrirDialog()"          icon="pi pi-plus"        />        @if (preguntas.length > 0) {          <p-button            label="Editar Pregunta"            (onClick)="abrirDialogEditar()"            icon="pi pi-pencil"            severity="secondary"            [outlined]="true"          />        }      </div>      @if (preguntas.invalid && form.touched) {        <app-texto-error>Debe agregar al menos una pregunta</app-texto-error>      }    </app-seccion>    <!-- Campo de fecha de vencimiento -->    <app-seccion>      <p-floatlabel>        <input          type="datetime-local"          id="fechaVencimiento"          pInputText          [formControl]="fechaVencimiento"          class="w-full"          [min]="getFechaMinima()"        />        <label for="fechaVencimiento">Fecha de Vencimiento (Opcional)</label>      </p-floatlabel>      <!-- Mensaje de ayuda -->      <small class="text-muted block mt-1">        Si no especificas una fecha, la encuesta estará disponible indefinidamente      </small>      <!-- Mostrar errores de validación -->      <p-message        severity="error"        text="La fecha de vencimiento debe ser posterior a la fecha actual"        *ngIf="form.get(\'fechaVencimiento\')?.errors?.[\'fechaInvalida\']">      </p-message>    </app-seccion>    <button      id="boton-finalizar"      pButton      pRipple      type="submit"      icon="pi pi-check"      severity="contrast"      class="p-button-rounded"      [disabled]="creandoEncuesta()"      [loading]="creandoEncuesta()"    >      {{ creandoEncuesta() ? \'Creando...\' : \'Finalizar\' }}    </button>  </div></form></div><app-gestion-pregunta-dialog  [(visible)]="dialogGestionPreguntaVisible"  [(preguntaAEditar)]="preguntaSeleccionada"  (agregarPregunta)="agregarPregunta($event)"/><!-- Diálogo de selección de preguntas para editar --><p-dialog  header="Seleccionar Pregunta para Editar"  [modal]="true"  [(visible)]="dialogSeleccionPreguntaVisible"  [style]="{ width: \'35rem\', maxWidth: \'90vw\' }"  resizable="false"  (onHide)="cerrarDialogSeleccion()">  <div class="dialogo-seleccion-preguntas">    <p class="instruccion-seleccion">Selecciona la pregunta que deseas editar:</p>    @for (pregunta of preguntas.value; track idx; let idx = $index) {      <div class="item-pregunta-seleccion" (click)="editarPregunta(idx)">        <div class="contenido-pregunta-seleccion">          <h4 class="titulo-pregunta-seleccion">            Pregunta {{ idx + 1 }}: {{ pregunta.texto }}          </h4>          <p class="tipo-pregunta-seleccion">            Tipo: {{ getTipoPreguntaPresentacion(pregunta.tipo) }}          </p>          @if (pregunta.opciones && pregunta.opciones.length > 0) {            <div class="opciones-preview">              <p class="opciones-titulo">Opciones:</p>              <ul class="opciones-lista">                @for (opcion of pregunta.opciones; track i; let i = $index) {                  <li class="opcion-item">{{ opcion.texto }}</li>                }              </ul>            </div>          }        </div>        <div class="icono-editar">          <i class="pi pi-pencil"></i>        </div>      </div>    }    @if (preguntas.length === 0) {      <p class="sin-preguntas">No hay preguntas disponibles para editar.</p>    }  </div></p-dialog></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BannerComponent', 'selector': 'app-banner'},{'name': 'ComienzoComponent', 'selector': 'app-comienzo'},{'name': 'CreacionEncuestaComponent', 'selector': 'app-creacion-encuesta'},{'name': 'GestionOpcionDialogComponent', 'selector': 'app-gestion-opcion-dialog'},{'name': 'GestionPreguntaDialogComponent', 'selector': 'app-gestion-pregunta-dialog'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'PresentacionEnlacesComponent', 'selector': 'app-presentacion-enlaces'},{'name': 'ResponderEncuestaComponent', 'selector': 'app-responder-encuesta'},{'name': 'SeccionComponent', 'selector': 'app-seccion'},{'name': 'TextoErrorComponent', 'selector': 'app-texto-error'},{'name': 'VisualizarResultadosComponent', 'selector': 'app-visualizar-resultados'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CreacionEncuestaComponent'};
 </script>

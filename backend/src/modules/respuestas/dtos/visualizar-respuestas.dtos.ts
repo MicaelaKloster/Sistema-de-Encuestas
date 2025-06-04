@@ -5,6 +5,7 @@ export class VisualizarRespuestasDto {
   nombre: string;
   codigoRespuesta: string;
   codigoResultados: string;
+  habilitada: boolean;
   preguntas: PreguntaConRespuestasDto[];
 }
 //Representa cada pregunta dentro de la encuesta.
