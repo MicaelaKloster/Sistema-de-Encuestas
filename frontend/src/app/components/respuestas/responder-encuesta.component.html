@@ -6,8 +6,49 @@
     <p>Cargando encuesta...</p>
   </div>
 
+  <!-- Alerta para encuesta deshabilitada -->
+  <div *ngIf="encuestaDeshabilitada && !cargando" class="encuesta-deshabilitada-container">
+    <div class="encuesta-deshabilitada-card">
+      <p-message
+        severity="error"
+        [text]="mensajeEncuestaDeshabilitada"
+        styleClass="encuesta-deshabilitada-message">
+      </p-message>
+      <div class="encuesta-deshabilitada-content">
+        <i class="pi pi-exclamation-triangle encuesta-deshabilitada-icon"></i>
+        <h3>Encuesta no disponible</h3>
+        <p>{{ mensajeEncuestaDeshabilitada }}</p>
+        <p class="redirect-message">Serás redirigido al inicio en unos segundos...</p>
+        <p-button
+          label="Ir al inicio ahora"
+          icon="pi pi-home"
+          (click)="router.navigate(['/'])"
+          styleClass="p-button-outlined">
+        </p-button>
+      </div>
+    </div>
+  </div>
+
   <div *ngIf="!cargando && encuesta" class="encuesta-content">
-    <p-card>
+    <!-- Alerta para encuesta deshabilitada durante el llenado -->
+    <div *ngIf="encuestaDeshabilitada" class="encuesta-deshabilitada-overlay">
+      <p-message
+        severity="error"
+        [text]="mensajeEncuestaDeshabilitada"
+        styleClass="encuesta-deshabilitada-alert">
+      </p-message>
+      <div class="encuesta-deshabilitada-actions">
+        <p class="redirect-message">Serás redirigido al inicio en unos segundos...</p>
+        <p-button
+          label="Ir al inicio ahora"
+          icon="pi pi-home"
+          (click)="router.navigate(['/'])"
+          styleClass="p-button-outlined p-button-sm">
+        </p-button>
+      </div>
+    </div>
+
+    <p-card [ngClass]="{'encuesta-disabled': encuestaDeshabilitada}">
       <ng-template pTemplate="header">
         <div class="encuesta-header">
           <h2>{{ encuesta.nombre }}</h2>
@@ -71,28 +112,16 @@
             </div>
 
             <div *ngIf="esPreguntaVerdaderoFalso(pregunta)" class="pregunta-verdadero-falso">
-              <div class="opcion-radio">
+              <div *ngFor="let opcion of pregunta.opciones" class="opcion-radio">
                 <p-radioButton
-                  [inputId]="'radio-' + pregunta.numero + '-verdadero'"
+                  [inputId]="'radio-' + pregunta.numero + '-' + opcion.numero"
                   [name]="'pregunta-' + pregunta.numero"
-                  [value]="1"
+                  [value]="opcion.numero"
                   [(ngModel)]="getRespuestaPorPregunta(pregunta.numero).opciones[0]"
-                  (onChange)="onRadioChange(pregunta, 1)">
+                  (onChange)="onRadioChange(pregunta, opcion.numero)">
                 </p-radioButton>
-                <label [for]="'radio-' + pregunta.numero + '-verdadero'" class="opcion-label">
-                  Verdadero
-                </label>
-              </div>
-              <div class="opcion-radio">
-                <p-radioButton
-                  [inputId]="'radio-' + pregunta.numero + '-falso'"
-                  [name]="'pregunta-' + pregunta.numero"
-                  [value]="0"
-                  [(ngModel)]="getRespuestaPorPregunta(pregunta.numero).opciones[0]"
-                  (onChange)="onRadioChange(pregunta, 0)">
-                </p-radioButton>
-                <label [for]="'radio-' + pregunta.numero + '-falso'" class="opcion-label">
-                  Falso
+                <label [for]="'radio-' + pregunta.numero + '-' + opcion.numero" class="opcion-label">
+                  {{ opcion.texto }}
                 </label>
               </div>
             </div>
@@ -106,17 +135,17 @@
             icon="pi pi-eye"
             severity="secondary"
             (onClick)="abrirVistaPrevia()"
-            [disabled]="enviando"
+            [disabled]="enviando || encuestaDeshabilitada"
             styleClass="p-button-lg mr-2">
           </p-button>
 
           <p-button
             type="submit"
-            label="Enviar Respuestas"
-            icon="pi pi-check"
+            [label]="encuestaDeshabilitada ? 'Encuesta no disponible' : 'Enviar Respuestas'"
+            [icon]="encuestaDeshabilitada ? 'pi pi-ban' : 'pi pi-check'"
             [loading]="enviando"
-            [disabled]="enviando"
-            styleClass="p-button-lg">
+            [disabled]="enviando || encuestaDeshabilitada"
+            [styleClass]="encuestaDeshabilitada ? 'p-button-lg p-button-danger' : 'p-button-lg'">
           </p-button>
         </div>
       </form>
@@ -215,7 +244,8 @@
 
   <p-dialog
     header="Error"
-    [(visible)]="mostrarDialogError"
+    [visible]="mostrarDialogError && !encuestaDeshabilitada"
+    (visibleChange)="mostrarDialogError = $event"
     [modal]="true"
     [style]="{width: '500px'}"
     [closable]="true"

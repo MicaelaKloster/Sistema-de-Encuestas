@@ -187,10 +187,20 @@ export class EncuestasService {
     }
 
     // Se agrega una validación para rechazar el acceso si la encuesta ya está vencida.
-    if (encuesta.fechaVencimiento && encuesta.fechaVencimiento < new Date()) {
-      throw new BadRequestException(
-        'La encuesta ha vencido y ya no está disponible',
-      );
+    if (encuesta.fechaVencimiento) {
+      const ahora = new Date();
+      const fechaVencimiento = new Date(encuesta.fechaVencimiento);
+
+      console.log('Validando fecha de vencimiento (obtenerEncuesta):');
+      console.log('Fecha actual:', ahora.toISOString());
+      console.log('Fecha vencimiento:', fechaVencimiento.toISOString());
+      console.log('¿Está vencida?:', fechaVencimiento < ahora);
+
+      if (fechaVencimiento < ahora) {
+        throw new BadRequestException(
+          'La encuesta ha vencido y ya no está disponible',
+        );
+      }
     }
 
     // Retorna la encuesta encontrada
@@ -318,10 +328,25 @@ export class EncuestasService {
     }
 
     // Se agrega una validación para rechazar el acceso si la encuesta ya está vencida.
-    if (encuesta.fechaVencimiento && encuesta.fechaVencimiento < new Date()) {
-      throw new BadRequestException(
-        'La encuesta ha vencido y ya no está disponible',
-      );
+    if (encuesta.fechaVencimiento) {
+      const ahora = new Date();
+      const fechaVencimiento = new Date(encuesta.fechaVencimiento);
+
+      console.log('=== VALIDACIÓN DE FECHA DE VENCIMIENTO ===');
+      console.log('Fecha actual (ahora):', ahora.toISOString());
+      console.log('Fecha vencimiento BD:', encuesta.fechaVencimiento);
+      console.log('Fecha vencimiento parseada:', fechaVencimiento.toISOString());
+      console.log('Comparación (vencida?):', fechaVencimiento < ahora);
+      console.log('Diferencia en ms:', ahora.getTime() - fechaVencimiento.getTime());
+
+      if (fechaVencimiento < ahora) {
+        console.log('🚫 ENCUESTA VENCIDA - Rechazando acceso');
+        throw new BadRequestException(
+          'La encuesta ha vencido y ya no está disponible',
+        );
+      } else {
+        console.log('✅ ENCUESTA VÁLIDA - Permitiendo acceso');
+      }
     }
 
     // Ordenar las preguntas y opciones

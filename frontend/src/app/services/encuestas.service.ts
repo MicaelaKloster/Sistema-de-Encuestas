@@ -38,8 +38,8 @@ export class EncuestasService {
   // Método para habilitar/deshabilitar una encuesta
   actualizarEstadoEncuesta(id:number, habilitada: boolean){
     return this.httpClient.patch<{mensaje: string}>(
-      'api/v1/encuestas/' + id +'/estado',
-      {habilitada}, // Enviamos el estado de habilitación como parte del cuerpo de la petición 
+      'api/v1/encuestas/' + id +'/habilitar',
+      {habilitada}, // Enviamos el estado de habilitación como parte del cuerpo de la petición
     )
   }
 }

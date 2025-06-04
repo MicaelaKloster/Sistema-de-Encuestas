@@ -111,18 +111,15 @@ export class RespuestasService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'Ha ocurrido un error desconocido';
+    console.error('Error HTTP:', error);
 
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      errorMessage = `Código de error: ${error.status}\nMensaje: ${error.message}`;
-      if (error.error) {
-        console.error('Detalles del error del servidor:', error.error);
-      }
+    // Preservar el error original para mantener el status y otros datos
+    // Solo agregar información adicional si es necesario
+    if (error.error) {
+      console.error('Detalles del error del servidor:', error.error);
     }
 
-    console.error(errorMessage);
-    return throwError(() => new Error(errorMessage));
+    // Retornar el error original para que el componente pueda acceder al status
+    return throwError(() => error);
   }
 }
