@@ -182,9 +182,6 @@ export class ResponderEncuestaComponent implements OnInit {
     }
     this.mostrarDialogConfirmacion = true;
   }
-  validarRespuestas() {
-    throw new Error('Method not implemented.');
-  }
 
   enviarRespuestasFinal() {
     this.mostrarDialogConfirmacion = false;
