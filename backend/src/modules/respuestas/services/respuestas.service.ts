@@ -80,10 +80,20 @@ export class RespuestasService {
     }
 
     // Validar si la encuesta ha vencido
-    if (encuesta.fechaVencimiento && encuesta.fechaVencimiento < new Date()) {
-      throw new BadRequestException(
-        'La encuesta ha vencido y ya no acepta respuestas',
-      );
+    if (encuesta.fechaVencimiento) {
+      const ahora = new Date();
+      const fechaVencimiento = new Date(encuesta.fechaVencimiento);
+
+      console.log('Validando fecha de vencimiento en registrarRespuestas:');
+      console.log('Fecha actual:', ahora.toISOString());
+      console.log('Fecha vencimiento:', fechaVencimiento.toISOString());
+      console.log('¿Está vencida?:', fechaVencimiento < ahora);
+
+      if (fechaVencimiento < ahora) {
+        throw new BadRequestException(
+          'La encuesta ha vencido y ya no acepta respuestas',
+        );
+      }
     }
 
     const preguntasObligatorias = encuesta.preguntas;
@@ -248,6 +258,7 @@ export class RespuestasService {
       nombre: encuesta.nombre,
       codigoRespuesta: encuesta.codigoRespuesta,
       codigoResultados: encuesta.codigoResultados,
+      habilitada: encuesta.habilitada,
       preguntas: [],
     };
     //itera sobre las preguntas de la encuesta
@@ -322,10 +333,20 @@ export class RespuestasService {
     }
 
     // Validar si la encuesta ha vencido
-    if (encuesta.fechaVencimiento && encuesta.fechaVencimiento < new Date()) {
-      throw new BadRequestException(
-        'La encuesta ha vencido y ya no está disponible',
-      );
+    if (encuesta.fechaVencimiento) {
+      const ahora = new Date();
+      const fechaVencimiento = new Date(encuesta.fechaVencimiento);
+
+      console.log('Validando fecha de vencimiento en obtenerEncuestaParaParticipacion:');
+      console.log('Fecha actual:', ahora.toISOString());
+      console.log('Fecha vencimiento:', fechaVencimiento.toISOString());
+      console.log('¿Está vencida?:', fechaVencimiento < ahora);
+
+      if (fechaVencimiento < ahora) {
+        throw new BadRequestException(
+          'La encuesta ha vencido y ya no está disponible',
+        );
+      }
     }
 
     // Convertir la entidad `Encuesta` a `CreateEncuestaDto`

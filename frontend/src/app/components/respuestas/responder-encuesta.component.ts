@@ -12,6 +12,7 @@ import { CardModule } from 'primeng/card';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
+import { MessageModule } from 'primeng/message';
 import {
   RespuestasService,
   Encuesta,
@@ -35,7 +36,8 @@ import {
     CardModule,
     ProgressSpinnerModule,
     DialogModule,
-    DividerModule
+    DividerModule,
+    MessageModule
   ],
   templateUrl: './responder-encuesta.component.html',
   styleUrls: ['./responder-encuesta.component.css'],
@@ -43,7 +45,7 @@ import {
 })
 export class ResponderEncuestaComponent implements OnInit {
   private route = inject(ActivatedRoute);
-  private router = inject(Router);
+  public router = inject(Router);
   private messageService = inject(MessageService);
   private respuestasService = inject(RespuestasService);
 
@@ -59,6 +61,10 @@ export class ResponderEncuestaComponent implements OnInit {
   mostrarDialogVistaPrevia = false;
   mostrarDialogError = false;
   errorDetallado = '';
+
+  // Nueva variable para manejar encuestas deshabilitadas
+  encuestaDeshabilitada = false;
+  mensajeEncuestaDeshabilitada = '';
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
@@ -77,7 +83,13 @@ export class ResponderEncuestaComponent implements OnInit {
   }
 
   cargarEncuesta() {
+    console.log('=== INICIANDO cargarEncuesta() ===');
+    console.log('Estado inicial - mostrarDialogError:', this.mostrarDialogError);
+    console.log('Estado inicial - encuestaDeshabilitada:', this.encuestaDeshabilitada);
+
     this.cargando = true;
+    this.mostrarDialogError = false; // Asegurar que esté en false al inicio
+    this.encuestaDeshabilitada = false; // Reset del estado
 
     this.respuestasService.obtenerEncuestaParaParticipacion(this.id, this.tokenParticipacion)
       .subscribe({
@@ -88,9 +100,48 @@ export class ResponderEncuestaComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error al cargar encuesta:', error);
-          this.errorDetallado = `Error al cargar la encuesta: ${error.message || 'Error desconocido'}`;
-          this.mostrarDialogError = true;
+          console.log('Error status:', error.status);
+          console.log('Error completo:', JSON.stringify(error, null, 2));
           this.cargando = false;
+
+          // Para errores 400 y 404, siempre tratarlos como encuesta deshabilitada
+          if (error.status === 400 || error.status === 404) {
+            console.log('Detectando encuesta deshabilitada...');
+            this.encuestaDeshabilitada = true;
+            this.mostrarDialogError = false;
+
+            // Obtener el mensaje de error del backend
+            const errorMessage = error.error?.message || error.message || '';
+            console.log('Mensaje de error del backend:', errorMessage);
+
+            // Determinar el mensaje según el error
+            if (errorMessage.includes('vencido') || errorMessage.includes('vencida') || errorMessage.includes('vencimiento')) {
+              this.mensajeEncuestaDeshabilitada = 'La fecha de la encuesta ya pasó. Esta encuesta ha vencido y ya no está disponible para responder.';
+
+              // Mostrar toast rojo solo para encuestas vencidas
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Encuesta vencida',
+                detail: 'La fecha de la encuesta ya pasó',
+                life: 5000
+              });
+            } else {
+              // Para cualquier error 400/404, mostrar mensaje simple
+              this.mensajeEncuestaDeshabilitada = 'Encuesta deshabilitada';
+            }
+
+            console.log('Mensaje establecido:', this.mensajeEncuestaDeshabilitada);
+
+            // Redirigir al inicio después de 5 segundos
+            setTimeout(() => {
+              this.router.navigate(['/']);
+            }, 5000);
+          } else {
+            // Error genérico para otros códigos de estado
+            console.log('Error genérico, mostrando diálogo...');
+            this.errorDetallado = `Error al cargar la encuesta: ${error.message || 'Error desconocido'}`;
+            this.mostrarDialogError = true;
+          }
         },
       });
   }
@@ -228,16 +279,43 @@ export class ResponderEncuestaComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error al enviar respuestas:', error);
-          this.errorDetallado = `Error al enviar respuestas: ${error.message || 'Error desconocido'}`;
-          this.mostrarDialogError = true;
           this.enviando = false;
+
+          // Verificar si es una encuesta deshabilitada o vencida
+          if (error.status === 404 || error.status === 400) {
+            this.encuestaDeshabilitada = true;
+
+            // Determinar el mensaje según el error
+            if (error.error?.message?.includes('vencido') || error.error?.message?.includes('vencida')) {
+              this.mensajeEncuestaDeshabilitada = 'La fecha de la encuesta ya pasó. Esta encuesta ha vencido mientras completabas las respuestas.';
+
+              // Mostrar toast rojo solo para encuestas vencidas
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Encuesta vencida',
+                detail: 'La fecha de la encuesta ya pasó mientras completabas las respuestas',
+                life: 5000
+              });
+            } else {
+              this.mensajeEncuestaDeshabilitada = 'Encuesta deshabilitada';
+            }
+
+            // Redirigir al inicio después de 5 segundos
+            setTimeout(() => {
+              this.router.navigate(['/']);
+            }, 5000);
+          } else {
+            // Error genérico
+            this.errorDetallado = `Error al enviar respuestas: ${error.message || 'Error desconocido'}`;
+            this.mostrarDialogError = true;
+          }
         },
       });
   }
 
   reintentarEnvio() {
     this.mostrarDialogError = false;
-    this.confirmarEnvio();
+    this.cargarEncuesta(); // Volver a cargar la encuesta en lugar de confirmar envío
   }
 
   enviarRespuestas() {

@@ -3,4 +3,5 @@ export enum TiposRespuestaEnum {
   ABIERTA = 'ABIERTA', // Respuesta abierta donde el usuario puede escribir libremente
   OPCION_MULTIPLE_SELECCION_SIMPLE = 'OPCION_MULTIPLE_SELECCION_SIMPLE', // Respuesta de opción múltiple con selección única
   OPCION_MULTIPLE_SELECCION_MULTIPLE = 'OPCION_MULTIPLE_SELECCION_MULTIPLE', // Respuesta de opción múltiple con selección múltiple
+  VERDADERO_FALSO = 'VERDADERO_FALSO', // Respuesta de verdadero o falso
 }

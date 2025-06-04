@@ -42,6 +42,129 @@
   margin-bottom: 1rem;
 }
 
+/* Estilos para encuesta deshabilitada */
+.encuesta-deshabilitada-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 2rem;
+}
+
+.encuesta-deshabilitada-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  border: 2px solid #f44336;
+}
+
+.encuesta-deshabilitada-content {
+  margin-top: 1.5rem;
+}
+
+.encuesta-deshabilitada-icon {
+  font-size: 4rem;
+  color: #f44336;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.encuesta-deshabilitada-content h3 {
+  color: #f44336;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.encuesta-deshabilitada-content p {
+  color: #666;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.redirect-message {
+  font-style: italic;
+  color: #888 !important;
+  font-size: 0.9rem !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.encuesta-deshabilitada-message {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.encuesta-deshabilitada-message .p-message {
+  border-radius: 10px;
+  font-size: 1.1rem;
+  padding: 1rem;
+}
+
+/* Estilos para alerta sobre el formulario */
+.encuesta-deshabilitada-overlay {
+  position: relative;
+  z-index: 10;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(244, 67, 54, 0.1);
+  border: 2px solid #f44336;
+  border-radius: 10px;
+  backdrop-filter: blur(2px);
+}
+
+.encuesta-deshabilitada-alert {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.encuesta-deshabilitada-alert .p-message {
+  border-radius: 8px;
+  font-size: 1.1rem;
+  padding: 1rem;
+  font-weight: 500;
+}
+
+.encuesta-deshabilitada-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.encuesta-deshabilitada-actions .redirect-message {
+  font-style: italic;
+  color: #666;
+  margin: 0;
+  flex: 1;
+}
+
+.encuesta-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  filter: grayscale(0.3);
+}
+
+.encuesta-disabled .p-card-content {
+  position: relative;
+}
+
+.encuesta-disabled .p-card-content::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 1;
+  pointer-events: none;
+}
+
 .error-content h3 {
   color: #333;
   font-size: 1.8rem;

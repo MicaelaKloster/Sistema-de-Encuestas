@@ -369,9 +369,15 @@ export class CreacionEncuestaComponent {
       enlaceCorto: '',
       codigoQR: '',
       nombre: formData.nombre,
-      fechaVencimiento: formData.fechaVencimiento,
+      fechaVencimiento: formData.fechaVencimiento ? new Date(formData.fechaVencimiento) : undefined,
       preguntas: formData.preguntas || []
     };
+
+    console.log('📅 Fecha de vencimiento procesada:', {
+      original: formData.fechaVencimiento,
+      procesada: encuesta.fechaVencimiento,
+      tipo: typeof encuesta.fechaVencimiento
+    });
 
 
     // Si el backend requiere estos campos, los agregamos como strings vacíos
@@ -385,6 +391,25 @@ export class CreacionEncuestaComponent {
 
     console.log('📝 Datos de la encuesta antes de procesar:', encuesta);
 
+    // Validar fecha de vencimiento primero
+    if (this.fechaVencimiento.value) {
+      const fechaSeleccionada = new Date(this.fechaVencimiento.value);
+      const ahora = new Date();
+
+      if (fechaSeleccionada <= ahora) {
+        console.log('La fecha de vencimiento debe ser posterior a la fecha actual');
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Fecha de vencimiento inválida',
+          detail: 'La fecha de vencimiento debe ser posterior a la fecha actual',
+          life: 5000
+        });
+        // Resetear el estado de carga antes de salir
+        this.creandoEncuesta.set(false);
+        return;
+      }
+    }
+
     // Validar que tenemos datos básicos
     if (!encuesta.nombre || !encuesta.preguntas || encuesta.preguntas.length === 0) {
       console.error('❌ Datos de encuesta incompletos:', {
@@ -392,21 +417,14 @@ export class CreacionEncuestaComponent {
         preguntasLength: encuesta.preguntas?.length || 0
       });
 
-      if (this.fechaVencimiento.value) { //validar fecha de vencimiento
-        const fechaSeleccionada = new Date(this.fechaVencimiento.value);
-        const ahora = new Date();
-        
-        if (fechaSeleccionada <= ahora) {
-          console.log('La fecha de vencimiento debe ser posterior a la fecha actual');
-        }
-      }
-
       this.messageService.add({
         severity: 'error',
         summary: 'Datos incompletos',
         detail: 'Faltan datos requeridos para crear la encuesta',
         life: 5000
       });
+      // Resetear el estado de carga antes de salir
+      this.creandoEncuesta.set(false);
       return;
     }
 
