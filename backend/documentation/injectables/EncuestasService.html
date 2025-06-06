@@ -279,8 +279,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="277"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:277</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="285"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:285</a></div>
                         </td>
                     </tr>
 
@@ -429,8 +429,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="140"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:140</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="138"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:138</a></div>
                         </td>
                     </tr>
 
@@ -498,8 +498,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="119"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:119</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="117"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:117</a></div>
                         </td>
                     </tr>
 
@@ -567,8 +567,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="154"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:154</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="152"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:152</a></div>
                         </td>
                     </tr>
 
@@ -660,8 +660,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="300"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:300</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="308"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:308</a></div>
                         </td>
                     </tr>
 
@@ -741,8 +741,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="199"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:199</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="207"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:207</a></div>
                         </td>
                     </tr>
 
@@ -822,8 +822,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="340"
-                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:340</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="368"
+                                    class="link-to-prism">src/modules/encuestas/services/encuestas.service.ts:368</a></div>
                         </td>
                     </tr>
 
@@ -971,12 +971,10 @@ export class EncuestasService {
     const encuestaCreada &#x3D; await this.encuestaRepository.save(encuesta);
 
     // Usamos APP_URL para que sea dinámico con el puerto que esté activo
-    // const baseUrl &#x3D; process.env.APP_URL || &#x27;http://localhost:3000&#x27;;
     const baseUrl &#x3D; this.configService.get&lt;string&gt;(
       &#x27;APP_URL&#x27;,
       &#x27;http://localhost:3000&#x27;,
     );
-    // const apiPrefix &#x3D; process.env.GLOBAL_PREFIX || &#x27;api&#x27;;
     const apiPrefix &#x3D; this.configService.get&lt;string&gt;(&#x27;GLOBAL_PREFIX&#x27;, &#x27;api&#x27;);
     const apiVersion &#x3D; &#x27;v1&#x27;;
 
@@ -1075,10 +1073,20 @@ export class EncuestasService {
     }
 
     // Se agrega una validación para rechazar el acceso si la encuesta ya está vencida.
-    if (encuesta.fechaVencimiento &amp;&amp; encuesta.fechaVencimiento &lt; new Date()) {
-      throw new BadRequestException(
-        &#x27;La encuesta ha vencido y ya no está disponible&#x27;,
-      );
+    if (encuesta.fechaVencimiento) {
+      const ahora &#x3D; new Date();
+      const fechaVencimiento &#x3D; new Date(encuesta.fechaVencimiento);
+
+      console.log(&#x27;Validando fecha de vencimiento (obtenerEncuesta):&#x27;);
+      console.log(&#x27;Fecha actual:&#x27;, ahora.toISOString());
+      console.log(&#x27;Fecha vencimiento:&#x27;, fechaVencimiento.toISOString());
+      console.log(&#x27;¿Está vencida?:&#x27;, fechaVencimiento &lt; ahora);
+
+      if (fechaVencimiento &lt; ahora) {
+        throw new BadRequestException(
+          &#x27;La encuesta ha vencido y ya no está disponible&#x27;,
+        );
+      }
     }
 
     // Retorna la encuesta encontrada
@@ -1206,10 +1214,31 @@ export class EncuestasService {
     }
 
     // Se agrega una validación para rechazar el acceso si la encuesta ya está vencida.
-    if (encuesta.fechaVencimiento &amp;&amp; encuesta.fechaVencimiento &lt; new Date()) {
-      throw new BadRequestException(
-        &#x27;La encuesta ha vencido y ya no está disponible&#x27;,
+    if (encuesta.fechaVencimiento) {
+      const ahora &#x3D; new Date();
+      const fechaVencimiento &#x3D; new Date(encuesta.fechaVencimiento);
+
+      console.log(&#x27;&#x3D;&#x3D;&#x3D; VALIDACIÓN DE FECHA DE VENCIMIENTO &#x3D;&#x3D;&#x3D;&#x27;);
+      console.log(&#x27;Fecha actual (ahora):&#x27;, ahora.toISOString());
+      console.log(&#x27;Fecha vencimiento BD:&#x27;, encuesta.fechaVencimiento);
+      console.log(
+        &#x27;Fecha vencimiento parseada:&#x27;,
+        fechaVencimiento.toISOString(),
       );
+      console.log(&#x27;Comparación (vencida?):&#x27;, fechaVencimiento &lt; ahora);
+      console.log(
+        &#x27;Diferencia en ms:&#x27;,
+        ahora.getTime() - fechaVencimiento.getTime(),
+      );
+
+      if (fechaVencimiento &lt; ahora) {
+        console.log(&#x27;🚫 ENCUESTA VENCIDA - Rechazando acceso&#x27;);
+        throw new BadRequestException(
+          &#x27;La encuesta ha vencido y ya no está disponible&#x27;,
+        );
+      } else {
+        console.log(&#x27;✅ ENCUESTA VÁLIDA - Permitiendo acceso&#x27;);
+      }
     }
 
     // Ordenar las preguntas y opciones
@@ -1224,7 +1253,6 @@ export class EncuestasService {
   }
 
   // Funcionalidad extra para generar un CSV (Emilia)
-
   async resultadosCSV(id: number, codigoResultados: string): Promise&lt;string&gt; {
     // Obtiene los resultados de la encuesta validando el código de resultados
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -1237,36 +1265,35 @@ export class EncuestasService {
 
     const filas: any[] &#x3D; []; // Guarda los datos en formato fila para el CSV
 
+    const hayPreguntaAbierta &#x3D; resultados.resultados.some(
+      (pregunta: any) &#x3D;&gt; pregunta.tipo &#x3D;&#x3D;&#x3D; &#x27;ABIERTA&#x27;,
+    );
+
     // Recorre cada pregunta para armar las filas
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     resultados.resultados.forEach((pregunta: any) &#x3D;&gt; {
       // Si la pregunta es abierta, se agregan todas las respuestas individuales como filas
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (pregunta.tipo &#x3D;&#x3D;&#x3D; &#x27;ABIERTA&#x27;) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
         pregunta.respuestas.forEach((textoRespuesta: string) &#x3D;&gt; {
           filas.push({
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             Pregunta: pregunta.pregunta,
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             Tipo: pregunta.tipo,
             Respuesta: textoRespuesta,
           });
         });
       } else {
         // Si la pregunta es de opción, se agregan las opciones con la cantidad de respuestas
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
         pregunta.opciones.forEach((opcion: any) &#x3D;&gt; {
-          filas.push({
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+          const fila: any &#x3D; {
             Pregunta: pregunta.pregunta,
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             Tipo: pregunta.tipo,
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             Opcion: opcion.opcion,
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
             &#x27;Cantidad Respuestas&#x27;: opcion.conteo,
-          });
+          };
+          // Solo agrego si hay preguntas abiertas
+          if (hayPreguntaAbierta) {
+            fila.Respuesta &#x3D; &#x27;&#x27;;
+          }
+          filas.push(fila);
         });
       }
     });

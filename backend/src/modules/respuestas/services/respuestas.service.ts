@@ -337,7 +337,9 @@ export class RespuestasService {
       const ahora = new Date();
       const fechaVencimiento = new Date(encuesta.fechaVencimiento);
 
-      console.log('Validando fecha de vencimiento en obtenerEncuestaParaParticipacion:');
+      console.log(
+        'Validando fecha de vencimiento en obtenerEncuestaParaParticipacion:',
+      );
       console.log('Fecha actual:', ahora.toISOString());
       console.log('Fecha vencimiento:', fechaVencimiento.toISOString());
       console.log('¿Está vencida?:', fechaVencimiento < ahora);

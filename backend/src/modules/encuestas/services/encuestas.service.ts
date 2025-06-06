@@ -83,12 +83,10 @@ export class EncuestasService {
     const encuestaCreada = await this.encuestaRepository.save(encuesta);
 
     // Usamos APP_URL para que sea dinámico con el puerto que esté activo
-    // const baseUrl = process.env.APP_URL || 'http://localhost:3000';
     const baseUrl = this.configService.get<string>(
       'APP_URL',
       'http://localhost:3000',
     );
-    // const apiPrefix = process.env.GLOBAL_PREFIX || 'api';
     const apiPrefix = this.configService.get<string>('GLOBAL_PREFIX', 'api');
     const apiVersion = 'v1';
 
@@ -380,7 +378,7 @@ export class EncuestasService {
     const filas: any[] = []; // Guarda los datos en formato fila para el CSV
 
     const hayPreguntaAbierta = resultados.resultados.some(
-    (pregunta: any) => pregunta.tipo === 'ABIERTA'
+      (pregunta: any) => pregunta.tipo === 'ABIERTA',
     );
 
     // Recorre cada pregunta para armar las filas
@@ -397,19 +395,19 @@ export class EncuestasService {
       } else {
         // Si la pregunta es de opción, se agregan las opciones con la cantidad de respuestas
         pregunta.opciones.forEach((opcion: any) => {
-                const fila: any = {
-                  Pregunta: pregunta.pregunta,
-                  Tipo: pregunta.tipo,
-                  Opcion: opcion.opcion,
-                  'Cantidad Respuestas': opcion.conteo,
-                };
-                // Solo agrego si hay preguntas abiertas
-                if (hayPreguntaAbierta) {
-                  fila.Respuesta = '';
-                }
-                filas.push(fila);
+          const fila: any = {
+            Pregunta: pregunta.pregunta,
+            Tipo: pregunta.tipo,
+            Opcion: opcion.opcion,
+            'Cantidad Respuestas': opcion.conteo,
+          };
+          // Solo agrego si hay preguntas abiertas
+          if (hayPreguntaAbierta) {
+            fila.Respuesta = '';
+          }
+          filas.push(fila);
         });
-       }
+      }
     });
 
     // Convierte las filas a formato csv utilizando papaparse

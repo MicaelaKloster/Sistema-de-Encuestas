@@ -295,8 +295,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="308"
-                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:308</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="319"
+                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:319</a></div>
                         </td>
                     </tr>
 
@@ -506,8 +506,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="232"
-                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:232</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="242"
+                                    class="link-to-prism">src/modules/respuestas/services/respuestas.service.ts:242</a></div>
                         </td>
                     </tr>
 
@@ -651,10 +651,20 @@ export class RespuestasService {
     }
 
     // Validar si la encuesta ha vencido
-    if (encuesta.fechaVencimiento &amp;&amp; encuesta.fechaVencimiento &lt; new Date()) {
-      throw new BadRequestException(
-        &#x27;La encuesta ha vencido y ya no acepta respuestas&#x27;,
-      );
+    if (encuesta.fechaVencimiento) {
+      const ahora &#x3D; new Date();
+      const fechaVencimiento &#x3D; new Date(encuesta.fechaVencimiento);
+
+      console.log(&#x27;Validando fecha de vencimiento en registrarRespuestas:&#x27;);
+      console.log(&#x27;Fecha actual:&#x27;, ahora.toISOString());
+      console.log(&#x27;Fecha vencimiento:&#x27;, fechaVencimiento.toISOString());
+      console.log(&#x27;¿Está vencida?:&#x27;, fechaVencimiento &lt; ahora);
+
+      if (fechaVencimiento &lt; ahora) {
+        throw new BadRequestException(
+          &#x27;La encuesta ha vencido y ya no acepta respuestas&#x27;,
+        );
+      }
     }
 
     const preguntasObligatorias &#x3D; encuesta.preguntas;
@@ -819,6 +829,7 @@ export class RespuestasService {
       nombre: encuesta.nombre,
       codigoRespuesta: encuesta.codigoRespuesta,
       codigoResultados: encuesta.codigoResultados,
+      habilitada: encuesta.habilitada,
       preguntas: [],
     };
     //itera sobre las preguntas de la encuesta
@@ -893,10 +904,22 @@ export class RespuestasService {
     }
 
     // Validar si la encuesta ha vencido
-    if (encuesta.fechaVencimiento &amp;&amp; encuesta.fechaVencimiento &lt; new Date()) {
-      throw new BadRequestException(
-        &#x27;La encuesta ha vencido y ya no está disponible&#x27;,
+    if (encuesta.fechaVencimiento) {
+      const ahora &#x3D; new Date();
+      const fechaVencimiento &#x3D; new Date(encuesta.fechaVencimiento);
+
+      console.log(
+        &#x27;Validando fecha de vencimiento en obtenerEncuestaParaParticipacion:&#x27;,
       );
+      console.log(&#x27;Fecha actual:&#x27;, ahora.toISOString());
+      console.log(&#x27;Fecha vencimiento:&#x27;, fechaVencimiento.toISOString());
+      console.log(&#x27;¿Está vencida?:&#x27;, fechaVencimiento &lt; ahora);
+
+      if (fechaVencimiento &lt; ahora) {
+        throw new BadRequestException(
+          &#x27;La encuesta ha vencido y ya no está disponible&#x27;,
+        );
+      }
     }
 
     // Convertir la entidad &#x60;Encuesta&#x60; a &#x60;CreateEncuestaDto&#x60;

@@ -60,9 +60,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/BannerComponent.html" data-type="entity-link" >BannerComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/ComienzoComponent.html" data-type="entity-link" >ComienzoComponent</a>
-                            </li>
-                            <li class="link">
                                 <a href="components/CreacionEncuestaComponent.html" data-type="entity-link" >CreacionEncuestaComponent</a>
                             </li>
                             <li class="link">
