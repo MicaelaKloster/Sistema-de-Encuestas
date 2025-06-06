@@ -87,6 +87,7 @@ export class RespuestasService {
       nombre: string;
       codigoRespuesta: string;
       codigoResultados: string;
+      habilitada: boolean;
       preguntas: any[];
     };
   }> {
@@ -97,6 +98,7 @@ export class RespuestasService {
         nombre: string;
         codigoRespuesta: string;
         codigoResultados: string;
+        habilitada: boolean;
         preguntas: any[];
       };
     }>(`/api/v1/encuestas/resultados/${codigoResultados}`)
