@@ -335,9 +335,15 @@ export class EncuestasService {
       console.log('=== VALIDACIÓN DE FECHA DE VENCIMIENTO ===');
       console.log('Fecha actual (ahora):', ahora.toISOString());
       console.log('Fecha vencimiento BD:', encuesta.fechaVencimiento);
-      console.log('Fecha vencimiento parseada:', fechaVencimiento.toISOString());
+      console.log(
+        'Fecha vencimiento parseada:',
+        fechaVencimiento.toISOString(),
+      );
       console.log('Comparación (vencida?):', fechaVencimiento < ahora);
-      console.log('Diferencia en ms:', ahora.getTime() - fechaVencimiento.getTime());
+      console.log(
+        'Diferencia en ms:',
+        ahora.getTime() - fechaVencimiento.getTime(),
+      );
 
       if (fechaVencimiento < ahora) {
         console.log('🚫 ENCUESTA VENCIDA - Rechazando acceso');

@@ -95,7 +95,7 @@ export class CreacionEncuestaComponent {
   get fechaVencimiento(): FormControl<Date | null> {
     return this.form.get('fechaVencimiento') as FormControl<Date | null>;
   }
-
+  
   // Método para obtener la fecha mínima permitida (fecha actual)
   getFechaMinima(): string {
     const now = new Date();
@@ -108,7 +108,7 @@ export class CreacionEncuestaComponent {
 
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   }
-
+  
   // Abre el diálogo para agregar una nueva pregunta
   abrirDialog() {
     // Resetear modo edición
@@ -124,7 +124,7 @@ export class CreacionEncuestaComponent {
     if (this.preguntas.length === 0) {
       this.messageService.add({
         severity: 'warn',
-        summary: 'No hay preguntas',
+        summary: 'No se formularon preguntas',
         detail: 'Primero agrega una pregunta para poder editarla',
         life: 4000
       });
@@ -201,7 +201,7 @@ export class CreacionEncuestaComponent {
       this.messageService.add({
         severity: 'success',
         summary: 'Pregunta agregada',
-        detail: `Se agregó la pregunta: "${pregunta.texto}"`,
+        detail: `Se agregó la siguiente pregunta: "${pregunta.texto}"`,
         life: 3000
       });
     }
@@ -216,7 +216,7 @@ export class CreacionEncuestaComponent {
     this.messageService.add({
       severity: 'info',
       summary: 'Pregunta eliminada',
-      detail: preguntaEliminada ? `Se eliminó la pregunta: "${preguntaEliminada.texto}"` : 'Pregunta eliminada correctamente',
+      detail: preguntaEliminada ? `Se eliminó la siguiente pregunta: "${preguntaEliminada.texto}"` : 'Pregunta eliminada correctamente',
       life: 3000
     });
   }
@@ -237,7 +237,7 @@ export class CreacionEncuestaComponent {
     }
 
     this.confirmationService.confirm({
-      message: '¿Estás seguro de que deseas crear esta encuesta?',
+      message: '¿Está seguro de que desea crear esta encuesta?',
       header: 'Confirmar Creación',
       closable: true,
       closeOnEscape: true,
@@ -266,7 +266,7 @@ export class CreacionEncuestaComponent {
     // Validar nombre de encuesta
     if (this.nombre.invalid) {
       if (this.nombre.errors?.['required']) {
-        errores.push('El nombre de la encuesta es obligatorio');
+        errores.push('El campo -Nombre de la encuesta- no puede estar vacío');
       }
     }
 
@@ -302,7 +302,7 @@ export class CreacionEncuestaComponent {
     const nombrePregunta = pregunta?.texto || 'esta pregunta';
 
     this.confirmationService.confirm({
-      message: `¿Estás seguro de que deseas eliminar "${nombrePregunta}"?`,
+      message: `¿Está seguro de que desea eliminar "${nombrePregunta}"?`,
       header: 'Confirmar Eliminación',
       closable: true,
       closeOnEscape: true,
@@ -355,7 +355,7 @@ export class CreacionEncuestaComponent {
     this.messageService.add({
       severity: 'info',
       summary: 'Creando encuesta...',
-      detail: 'Por favor espera mientras procesamos tu encuesta',
+      detail: 'Por favor espera mientras se completa el proceso de creación...',
       life: 4000
     });
 
@@ -397,11 +397,11 @@ export class CreacionEncuestaComponent {
       const ahora = new Date();
 
       if (fechaSeleccionada <= ahora) {
-        console.log('La fecha de vencimiento debe ser posterior a la fecha actual');
+        console.log('Fecha de vencimiento inválida. Ingresó un dato erróneo, ya pasó o está muy próximo a vencer');
         this.messageService.add({
           severity: 'error',
           summary: 'Fecha de vencimiento inválida',
-          detail: 'La fecha de vencimiento debe ser posterior a la fecha actual',
+          detail: 'La fecha ingresada ya ha pasado o es muy cercana al momento actual. Ingrese una fecha válida y futura',
           life: 5000
         });
         // Resetear el estado de carga antes de salir
@@ -513,7 +513,7 @@ export class CreacionEncuestaComponent {
         this.confirmationService.close();
 
         // Mensaje de error detallado
-        let errorDetail = 'Verifica tu conexión a internet e intenta nuevamente';
+        let errorDetail = 'Posible problema de conexión. Intentar nuevamente';
         let errorSummary = 'Error al crear la encuesta';
 
         if (err.status === 400) {
