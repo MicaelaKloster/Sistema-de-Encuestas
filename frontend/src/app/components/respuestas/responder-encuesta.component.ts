@@ -116,13 +116,13 @@ export class ResponderEncuestaComponent implements OnInit {
 
             // Determinar el mensaje según el error
             if (errorMessage.includes('vencido') || errorMessage.includes('vencida') || errorMessage.includes('vencimiento')) {
-              this.mensajeEncuestaDeshabilitada = 'La fecha de la encuesta ya pasó. Esta encuesta ha vencido y ya no está disponible para responder.';
+              this.mensajeEncuestaDeshabilitada = 'Encuesta no disponible o ya no se aceptan más respuestas';
 
               // Mostrar toast rojo solo para encuestas vencidas
               this.messageService.add({
                 severity: 'error',
                 summary: 'Encuesta vencida',
-                detail: 'La fecha de la encuesta ya pasó',
+                detail: 'Esta encuesta ya no está disponible. La fecha límite ha expirado',
                 life: 5000
               });
             } else {
@@ -222,7 +222,7 @@ export class ResponderEncuestaComponent implements OnInit {
       this.messageService.add({
         severity: 'warn',
         summary: 'Validación',
-        detail: 'Por favor, responde todas las preguntas obligatorias antes de enviar',
+        detail: 'Todas las preguntas de carácter obligatorio deben ser respondidas antes de finalizar la encuesta',
       });
       return;
     }
@@ -287,13 +287,13 @@ export class ResponderEncuestaComponent implements OnInit {
 
             // Determinar el mensaje según el error
             if (error.error?.message?.includes('vencido') || error.error?.message?.includes('vencida')) {
-              this.mensajeEncuestaDeshabilitada = 'La fecha de la encuesta ya pasó. Esta encuesta ha vencido mientras completabas las respuestas.';
+              this.mensajeEncuestaDeshabilitada = 'Encuesta no disponible o ya no se aceptan más respuestas';
 
               // Mostrar toast rojo solo para encuestas vencidas
               this.messageService.add({
                 severity: 'error',
                 summary: 'Encuesta vencida',
-                detail: 'La fecha de la encuesta ya pasó mientras completabas las respuestas',
+                detail: 'Encuesta no disponible o ya no se aceptan más respuestas',
                 life: 5000
               });
             } else {
