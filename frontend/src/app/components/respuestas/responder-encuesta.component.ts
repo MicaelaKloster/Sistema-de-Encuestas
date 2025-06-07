@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
-
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -13,14 +12,16 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 import { MessageModule } from 'primeng/message';
+import { RespuestasService } from '../../services/respuestas.service';
 import {
-  RespuestasService,
   Encuesta,
   Pregunta,
   RespuestaUsuario,
+  OpcionRespuesta,
+  EncuestaResponse,
   RespuestaPreguntaDto,
   RegistrarRespuestasDto,
-} from '../../services/respuestas.service';
+} from '../../interfaces/respuesta.dto';;
 
 @Component({
   selector: 'app-responder-encuesta',

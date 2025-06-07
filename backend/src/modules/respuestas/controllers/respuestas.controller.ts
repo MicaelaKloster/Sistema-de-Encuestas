@@ -120,7 +120,6 @@ export class RespuestasController {
 
   /**
    * Obtiene la estructura de una encuesta para participación
-   *
    * Este endpoint devuelve la estructura completa de una encuesta para que
    * un usuario pueda participar en ella, incluyendo todas sus preguntas y opciones.
    */
