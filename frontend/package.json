@@ -8,7 +8,7 @@
     "build": "ng build",
     "nginx:limpiar": "rm -rf /opt/homebrew/var/www/*",
     "nginx:llenar": "cp -R dist/frontend/browser/* /opt/homebrew/var/www/",
-    "deploy": "npm run build && npm run nginx:limpiar && npm run nginx:llenar",
+    "deploy": "npm run build && npm run nginx:limpiar:mac && npm run nginx:llenar:mac",
     "deploy:windows": "npm run build && npm run nginx:limpiar:windows && npm run nginx:llenar:windows",
     "deploy:linux": "npm run build && npm run nginx:limpiar:linux && npm run nginx:llenar:linux",
     "nginx:limpiar:windows": "del /F /Q C:\\nginx-1.28.0\\html\\* && for /d %x in (C:\\nginx-1.28.0\\html\\*) do rmdir /S /Q \"%x\"",
