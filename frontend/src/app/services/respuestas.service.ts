@@ -2,7 +2,16 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { OpcionRespuesta } from '../interfaces/respuesta.dto';
+import { Pregunta } from '../interfaces/respuesta.dto';
+import { Encuesta } from '../interfaces/respuesta.dto';
+import { RespuestaUsuario } from '../interfaces/respuesta.dto';
+import { RespuestaPreguntaDto } from '../interfaces/respuesta.dto';
+import { RegistrarRespuestasDto } from '../interfaces/respuesta.dto';
+import { EncuestaResponse } from '../interfaces/respuesta.dto';
 
+
+/*
 export type TipoRespuesta = 'ABIERTA' | 'OPCION_MULTIPLE_SELECCION_SIMPLE' | 'OPCION_MULTIPLE_SELECCION_MULTIPLE' | 'VERDADERO_FALSO';
 
 export interface OpcionRespuesta {
@@ -48,6 +57,7 @@ export interface EncuestaResponse {
   message: string;
   data: Encuesta;
 }
+  */
 
 @Injectable({ providedIn: 'root' })
 export class RespuestasService {

@@ -97,11 +97,11 @@
     <!-- Acciones -->
     <div class="acciones-container">
       <p-button
-        [label]="estadoEncuesta ? 'Deshabilitar encuesta' : 'Habilitar encuesta'"
-        [icon]="estadoEncuesta ? 'pi pi-lock' : 'pi pi-unlock'"
-        [styleClass]="estadoEncuesta ? 'p-button-warning accion-button' : 'p-button-success accion-button'"
-        (click)="cambiarEstadoEncuesta()"
-        *ngIf="estadoEncuesta !== null">
+      [label]="estadoEncuesta ? 'Deshabilitar encuesta' : 'Habilitar encuesta'"
+      [icon]="estadoEncuesta ? 'pi pi-lock' : 'pi pi-unlock'"
+      [styleClass]="estadoEncuesta ? 'p-button-warning accion-button' : 'p-button-success accion-button'"
+      (click)="cambiarEstadoEncuesta()"
+      *ngIf="estadoEncuesta !== null">
       </p-button>
       <p-button
         label="Exportar CSV"

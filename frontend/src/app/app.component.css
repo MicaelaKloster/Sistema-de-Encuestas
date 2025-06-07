@@ -21,7 +21,7 @@ body {
   flex-direction: column;
 }
 
-/* Header elegante con gradiente mejorado */
+/* Header elegante */
 .app-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
   background-size: 200% 200%;
@@ -184,15 +184,11 @@ body {
   border: none;
 }
 
-
-
 @keyframes footerGradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
-
 
 .footer-container {
   max-width: 1200px;
