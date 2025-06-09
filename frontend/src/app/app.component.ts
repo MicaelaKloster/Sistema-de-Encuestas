@@ -59,7 +59,8 @@ export class AppComponent {
   shouldShowHeaderFooter(): boolean {
     return !this.isPresentacionEnlacesPage() &&
            !this.isResponderEncuestaPage() &&
-           !this.isResultadosPage();
+           !this.isResultadosPage() &&
+           !this.isCreationPage();
   }
 
   // Método para navegar a una ruta específica
