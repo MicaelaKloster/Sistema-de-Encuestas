@@ -1,5 +1,5 @@
 ::ng-deep .p-dialog{
-  background-color: rgb(199, 199, 199) !important;
+  background-color: rgb(255, 255, 255) !important;
   color: #333 !important;
 }
 
@@ -7,12 +7,13 @@
   margin-top: 0.3rem;
   display: flex;
   flex-direction: column;
-  background-color: rgb(199, 199, 199);
+  background-color: rgb(255, 255, 255);
   color: #333;
 }
 
 #dropdown-tipos-pregunta {
   margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 #contenedor-boton-finalizar-gestion {
@@ -27,7 +28,7 @@
   align-items: center;
   justify-content: space-between;
   max-width: 100%;
-  margin: 1rem;
+  margin: 5px;
 }
 
 ul {
@@ -37,6 +38,8 @@ ul {
 
 #heading-opciones {
   margin: 0;
+  font-size: 24px;
+  color:#333;
 }
 
 #opciones-vacio {
@@ -49,24 +52,26 @@ ul {
   word-wrap: break-word;
   overflow-wrap: break-word;
   color: #333;
+  margin-left: 0.5rem;
 }
 
 #boton-eliminar-opcion {
   margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 
 ul {
   max-height: 8rem;
   overflow: auto;
-  border-style: solid;
-  border-width: 1px;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  padding-left: 0;
+  list-style: none;
+  border: 1px solid #a3c8f2; /* borde celeste claro */
+  background-color: #ffffff;
+  border-radius: 6px;
 }
 
 #botonera-opciones{
-  margin-left: 1rem;
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
