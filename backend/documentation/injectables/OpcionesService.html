@@ -172,6 +172,8 @@
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Inyecta los repositorios de Opcion y Pregunta para interactuar con la base de datos.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -243,14 +245,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/modules/opciones/services/opciones.service.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/modules/opciones/services/opciones.service.ts:26</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Crea una nueva opción asociada a una pregunta específica.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -261,6 +265,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -275,6 +280,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>ID de la pregunta a la que se asocia la opción.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>createOpcionDto</td>
@@ -287,6 +296,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Datos de la opción a crear.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -296,7 +309,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Un mensaje de éxito y la opción creada.</p>
+
                             </div>
                 </td>
             </tr>
@@ -324,14 +338,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/modules/opciones/services/opciones.service.ts:41</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/modules/opciones/services/opciones.service.ts:60</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Elimina una opción por su ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -342,6 +358,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -356,6 +373,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>ID de la opción a eliminar.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -365,7 +386,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Un mensaje de éxito.</p>
+
                             </div>
                 </td>
             </tr>
@@ -386,6 +408,9 @@ import { CreateOpcionDto } from &#x27;../../encuestas/dtos/create-opcion.dto&#x2
 
 @Injectable()
 export class OpcionesService {
+  /**
+   * Inyecta los repositorios de Opcion y Pregunta para interactuar con la base de datos.
+   */
   constructor(
     @InjectRepository(Opcion)
     private opcionRepository: Repository&lt;Opcion&gt;,
@@ -393,36 +418,55 @@ export class OpcionesService {
     private preguntaRepository: Repository&lt;Pregunta&gt;,
   ) {}
 
+  /**
+   * Crea una nueva opción asociada a una pregunta específica.
+   * @param preguntaId ID de la pregunta a la que se asocia la opción.
+   * @param createOpcionDto Datos de la opción a crear.
+   * @returns Un mensaje de éxito y la opción creada.
+   */
   async crearOpcion(
     preguntaId: number,
     createOpcionDto: CreateOpcionDto,
   ): Promise&lt;{ mensaje: string; opcion: Opcion }&gt; {
+    // Busca la pregunta por su ID
     const pregunta &#x3D; await this.preguntaRepository.findOneBy({
       id: preguntaId,
     });
+    // Si no existe la pregunta, lanza una excepción
     if (!pregunta) {
       throw new NotFoundException(&#x27;Pregunta no encontrada&#x27;);
     }
 
+    // Crea la nueva opción asociada a la pregunta encontrada
     const opcion &#x3D; this.opcionRepository.create({
       ...createOpcionDto,
       pregunta,
     });
 
+    // Guarda la opción en la base de datos
     const opcionGuardada &#x3D; await this.opcionRepository.save(opcion);
 
+    // Retorna un mensaje de éxito y la opción creada
     return {
       mensaje: &#x27;Opción creada correctamente&#x27;,
       opcion: opcionGuardada,
     };
   }
 
+  /**
+   * Elimina una opción por su ID.
+   * @param id ID de la opción a eliminar.
+   * @returns Un mensaje de éxito.
+   */
   async eliminarOpcion(id: number): Promise&lt;{ mensaje: string }&gt; {
+    // Busca la opción por su ID
     const opcion &#x3D; await this.opcionRepository.findOneBy({ id });
+    // Si no existe la opción, lanza una excepción
     if (!opcion) {
       throw new NotFoundException(&#x27;Opción no encontrada&#x27;);
     }
 
+    // Elimina la opción de la base de datos
     await this.opcionRepository.delete(id);
     return { mensaje: &#x27;Opción eliminada correctamente&#x27; };
   }

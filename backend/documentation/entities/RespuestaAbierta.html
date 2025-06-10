@@ -117,6 +117,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Entidad que representa una respuesta abierta (texto libre) a una pregunta de una encuesta.</p>
+
+            </p>
 
 
             <section data-compodoc="block-index">
@@ -204,10 +211,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/modules/respuestas/entities/respuesta-abierta.entity.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/respuestas/entities/respuesta-abierta.entity.ts:19</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Identificador único de la respuesta abierta</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -240,10 +253,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/modules/respuestas/entities/respuesta-abierta.entity.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/modules/respuestas/entities/respuesta-abierta.entity.ts:27</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ID de la pregunta a la que corresponde esta respuesta abierta</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -276,10 +295,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/modules/respuestas/entities/respuesta-abierta.entity.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/modules/respuestas/entities/respuesta-abierta.entity.ts:31</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ID de la respuesta general (agrupadora) a la que pertenece esta respuesta abierta</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -313,10 +338,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modules/respuestas/entities/respuesta-abierta.entity.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/modules/respuestas/entities/respuesta-abierta.entity.ts:39</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Relación muchos-a-uno con la entidad Pregunta.
+Permite acceder a los datos de la pregunta asociada.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -350,10 +382,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/modules/respuestas/entities/respuesta-abierta.entity.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/modules/respuestas/entities/respuesta-abierta.entity.ts:47</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Relación muchos-a-uno con la entidad Respuesta.
+Permite acceder a la respuesta general a la que pertenece esta respuesta abierta.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -386,10 +425,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/modules/respuestas/entities/respuesta-abierta.entity.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/modules/respuestas/entities/respuesta-abierta.entity.ts:23</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Texto ingresado por el usuario como respuesta</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -409,24 +454,39 @@ import {
 import { Pregunta } from &#x27;../../encuestas/entities/pregunta.entity&#x27;;
 import { Respuesta } from &#x27;./respuesta.entity&#x27;;
 
+/**
+ * Entidad que representa una respuesta abierta (texto libre) a una pregunta de una encuesta.
+ */
 @Entity(&#x27;respuestas_abiertas&#x27;)
 export class RespuestaAbierta {
+  /** Identificador único de la respuesta abierta */
   @PrimaryGeneratedColumn()
   id: number;
 
+  /** Texto ingresado por el usuario como respuesta */
   @Column({ type: &#x27;text&#x27;, nullable: true })
   texto: string;
 
+  /** ID de la pregunta a la que corresponde esta respuesta abierta */
   @Column(&#x27;int&#x27;, { nullable: true })
   id_pregunta: number;
 
+  /** ID de la respuesta general (agrupadora) a la que pertenece esta respuesta abierta */
   @Column(&#x27;int&#x27;, { nullable: true })
   id_respuesta: number;
 
+  /**
+   * Relación muchos-a-uno con la entidad Pregunta.
+   * Permite acceder a los datos de la pregunta asociada.
+   */
   @ManyToOne(() &#x3D;&gt; Pregunta)
   @JoinColumn({ name: &#x27;id_pregunta&#x27; })
   pregunta: Pregunta;
 
+  /**
+   * Relación muchos-a-uno con la entidad Respuesta.
+   * Permite acceder a la respuesta general a la que pertenece esta respuesta abierta.
+   */
   @ManyToOne(() &#x3D;&gt; Respuesta)
   @JoinColumn({ name: &#x27;id_respuesta&#x27; })
   respuesta: Respuesta;

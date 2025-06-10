@@ -180,6 +180,16 @@
 
 
 
+        <p class="comment">
+            <h3>Description</h3>
+        </p>
+        <p class="comment">
+            <p>Módulo de Opciones.
+Este módulo gestiona las opciones asociadas a las preguntas de las encuestas.
+Importa las entidades Opcion y Pregunta para interactuar con la base de datos.
+Provee el servicio y el controlador de opciones.</p>
+
+        </p>
 
 
         <div class="container-fluid module">
@@ -218,9 +228,18 @@ import { Pregunta } from &#x27;../encuestas/entities/pregunta.entity&#x27;;
 import { OpcionesService } from &#x27;./services/opciones.service&#x27;;
 import { OpcionesController } from &#x27;./controllers/opciones.controller&#x27;;
 
+/**
+ * Módulo de Opciones.
+ * Este módulo gestiona las opciones asociadas a las preguntas de las encuestas.
+ * Importa las entidades Opcion y Pregunta para interactuar con la base de datos.
+ * Provee el servicio y el controlador de opciones.
+ */
 @Module({
+  // Importa los repositorios de Opcion y Pregunta para su uso en el servicio
   imports: [TypeOrmModule.forFeature([Opcion, Pregunta])],
+  // Declara el controlador que maneja las rutas HTTP relacionadas con opciones
   controllers: [OpcionesController],
+  // Provee el servicio que contiene la lógica de negocio para las opciones
   providers: [OpcionesService],
 })
 export class OpcionesModule {}

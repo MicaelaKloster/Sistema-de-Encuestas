@@ -287,7 +287,7 @@ export class RespuestasService {
           // cuenta cuantas veces fue seleccionada cada opcion
           const cantidadRespuestas = await this.respuestaOpcionRepository.count(
             {
-              where: { id_opcion: opcion.id }, // Ajusta esto a tu esquema si es diferente
+              where: { id_opcion: opcion.id }, 
             },
           );
 
@@ -302,7 +302,7 @@ export class RespuestasService {
         }
       }
 
-      resultado.preguntas.push(preguntaConRespuestas); //Añade la pregunta con sus respuestas al resultado fina
+      resultado.preguntas.push(preguntaConRespuestas); //Añade la pregunta con sus respuestas al resultado final
     }
 
     return resultado;

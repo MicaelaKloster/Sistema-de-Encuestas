@@ -5,7 +5,6 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
-// import { NavbarComponent } from './components/navbar/navbar.component';
 
 // Decorador que define los metadatos del componente principal de la aplicación
 @Component({

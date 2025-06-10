@@ -120,6 +120,15 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente Navbar.
+Muestra la barra de navegación principal de la aplicación,
+permitiendo la navegación entre las diferentes secciones.</p>
+
+    </p>
 
 
 
@@ -193,14 +202,20 @@
 import { RouterModule } from &#x27;@angular/router&#x27;;
 import { ButtonModule } from &#x27;primeng/button&#x27;;
 
+/**
+ * Componente Navbar.
+ * Muestra la barra de navegación principal de la aplicación,
+ * permitiendo la navegación entre las diferentes secciones.
+ */
 @Component({
   selector: &#x27;app-navbar&#x27;,
+  // Importa los módulos necesarios para los botones y la navegación por rutas
   imports: [ButtonModule, RouterModule],
   templateUrl: &#x27;./navbar.component.html&#x27;,
   styleUrl: &#x27;./navbar.component.css&#x27;
 })
 export class NavbarComponent {
-
+  // Este componente no tiene lógica adicional, solo muestra la barra de navegación.
 }
 </code></pre>
     </div>

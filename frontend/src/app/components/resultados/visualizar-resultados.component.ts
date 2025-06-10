@@ -6,7 +6,6 @@ import { CardModule } from 'primeng/card';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-// import { ChartModule } from 'primeng/chart';
 import { RespuestasService } from '../../services/respuestas.service';
 import { TiposRespuestaEnum } from '../../enums/tipos-pregunta.enum';
 import { EncuestasService } from '../../services/encuestas.service';
@@ -20,7 +19,6 @@ import { EncuestasService } from '../../services/encuestas.service';
     CardModule,
     ProgressSpinnerModule,
     ToastModule
-    // ChartModule
   ],
   templateUrl: './visualizar-resultados.component.html',
   styleUrls: ['./visualizar-resultados.component.css'],

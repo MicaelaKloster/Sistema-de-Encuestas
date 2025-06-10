@@ -120,6 +120,15 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente Seccion.
+Permite definir un contenedor con anchos y márgenes configurables,
+útil para estructurar secciones de la interfaz con estilos consistentes.</p>
+
+    </p>
 
 
 
@@ -239,7 +248,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/seccion/seccion.component.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/seccion/seccion.component.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -264,7 +273,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/components/seccion/seccion.component.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/components/seccion/seccion.component.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -289,7 +298,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/components/seccion/seccion.component.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/seccion/seccion.component.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -314,7 +323,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/components/seccion/seccion.component.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/seccion/seccion.component.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -346,10 +355,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/seccion/seccion.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/seccion/seccion.component.ts:25</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Computa el objeto de estilos CSS a aplicar al contenedor,
+utilizando los valores de entrada definidos.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -361,6 +377,11 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, computed, input, signal } from &#x27;@angular/core&#x27;;
 
+/**
+ * Componente Seccion.
+ * Permite definir un contenedor con anchos y márgenes configurables,
+ * útil para estructurar secciones de la interfaz con estilos consistentes.
+ */
 @Component({
   selector: &#x27;app-seccion&#x27;,
   imports: [],
@@ -368,11 +389,16 @@
   styleUrl: &#x27;./seccion.component.css&#x27;
 })
 export class SeccionComponent {
+  // Propiedades de entrada para configurar el ancho mínimo, máximo y los márgenes laterales
   minWidth &#x3D; input&lt;string&gt;(&#x27;40vw&#x27;);
   maxWidth &#x3D; input&lt;string&gt;(&#x27;70vw&#x27;);
   leftMargin &#x3D; input&lt;string&gt;(&#x27;15vw&#x27;);
   rightMargin &#x3D; input&lt;string&gt;(&#x27;15vw&#x27;);
 
+  /**
+   * Computa el objeto de estilos CSS a aplicar al contenedor,
+   * utilizando los valores de entrada definidos.
+   */
   style &#x3D; computed(() &#x3D;&gt; {
     return {
       &#x27;min-width&#x27;: this.minWidth(),

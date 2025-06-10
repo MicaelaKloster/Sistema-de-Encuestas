@@ -24,7 +24,7 @@ import { GestionOpcionDialogComponent } from '../gestion-opcion-dialog/gestion-o
 import { CreateOpcionDTO } from '../../interfaces/create-opcion.dto';
 import { opcionesNoVacias } from '../../validators/opciones-no-vacias.validator';
 
-// Componente para gestionar el diálogo de creación/edición de preguntas
+// Componente para gestionar el dialog de creación/edición de preguntas
 @Component({
   selector: 'app-gestion-pregunta-dialog',
   imports: [
@@ -45,13 +45,13 @@ export class GestionPreguntaDialogComponent {
   // Formulario reactivo para la pregunta
   readonly form: FormGroup;
 
-  // Controla la visibilidad del diálogo
+  // Controla la visibilidad del dialog
   visible = model.required<boolean>();
 
   // Pregunta a editar (opcional)
   preguntaAEditar = model<PreguntaDTO | null>(null);
 
-  // Controla la visibilidad del diálogo para agregar opciones
+  // Controla la visibilidad del dialog para agregar opciones
   dialogGestionOpcionVisible = signal<boolean>(false);
 
   // Evento de salida para agregar una pregunta
@@ -80,7 +80,7 @@ export class GestionPreguntaDialogComponent {
       { validators: [opcionesNoVacias] }, // Validador personalizado para opciones
     );
 
-    // Efecto que resetea el formulario cuando el diálogo se hace visible
+    // Efecto que resetea el formulario cuando el dialog se hace visible
     effect(() => {
       if (this.visible()) {
         const preguntaAEditar = this.preguntaAEditar();
@@ -175,7 +175,7 @@ export class GestionPreguntaDialogComponent {
     this.cerrar();
   }
 
-  // Cierra el diálogo
+  // Cierra el dialog
   cerrar() {
     this.visible.set(false);
   }
@@ -188,7 +188,7 @@ export class GestionPreguntaDialogComponent {
     ].includes(tipo);
   }
 
-  // Abre el diálogo para agregar una nueva opción
+  // Abre el dialog para agregar una nueva opción
   abrirAgregarOpcion() {
     this.dialogGestionOpcionVisible.set(true);
   }

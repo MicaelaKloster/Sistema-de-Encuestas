@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 
+/**
+ * Componente TextoError.
+ * Muestra mensajes de error personalizados en los formularios o vistas donde se requiera.
+ * El contenido y el estilo se definen en el archivo de plantilla y CSS asociados.
+ */
 @Component({
   selector: 'app-texto-error',
   imports: [],
@@ -7,5 +12,5 @@ import { Component } from '@angular/core';
   styleUrl: './texto-error.component.css'
 })
 export class TextoErrorComponent {
-
+  
 }

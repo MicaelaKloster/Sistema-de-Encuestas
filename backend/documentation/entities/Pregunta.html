@@ -206,7 +206,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -242,7 +242,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -278,7 +278,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -314,7 +314,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -350,7 +350,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -386,7 +386,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/modules/encuestas/entities/pregunta.entity.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -415,7 +415,6 @@ import { Exclude } from &#x27;class-transformer&#x27;;
 import { Encuesta } from &#x27;./encuesta.entity&#x27;;
 // Importación de la entidad relacionada &quot;Opcion&quot;
 import { Opcion } from &#x27;./opcion.entity&#x27;;
-//import { RespuestaAbierta } from &#x27;src/modules/respuestas/entities/respuesta-abierta.entity&#x27;;
 
 @Entity({ name: &#x27;preguntas&#x27; }) // Define la clase como una entidad de la base de datos con el nombre &quot;preguntas&quot;
 export class Pregunta {
@@ -444,11 +443,6 @@ export class Pregunta {
 
   @OneToMany(() &#x3D;&gt; Opcion, (opcion) &#x3D;&gt; opcion.pregunta, { cascade: [&#x27;insert&#x27;] }) // Relación uno a muchos con la entidad &quot;Opcion&quot;
   opciones: Opcion[]; // Lista de opciones asociadas a la pregunta
-
-  // EXTRA POR EL MÓDULO DE RESPUESTAS
-  // @Exclude() // Excluye esta propiedad al serializar la entidad (por ejemplo, al devolverla en una API)
-  // @OneToMany(() &#x3D;&gt; RespuestaAbierta, (r) &#x3D;&gt; r.pregunta)
-  // respuestasAbiertas: RespuestaAbierta[];
 }
 </code></pre>
     </div>

@@ -120,6 +120,15 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente Banner.
+Muestra la pantalla de bienvenida o portada de la aplicación,
+con botones de navegación principales.</p>
+
+    </p>
 
 
 
@@ -193,14 +202,20 @@
 import { RouterModule } from &#x27;@angular/router&#x27;;
 import { ButtonModule } from &#x27;primeng/button&#x27;;
 
+/**
+ * Componente Banner.
+ * Muestra la pantalla de bienvenida o portada de la aplicación,
+ * con botones de navegación principales.
+ */
 @Component({
   selector: &#x27;app-banner&#x27;,
+  // Importa los módulos necesarios para los botones y la navegación por rutas
   imports: [ButtonModule, RouterModule],
   templateUrl: &#x27;./banner.component.html&#x27;,
   styleUrl: &#x27;./banner.component.css&#x27;
 })
 export class BannerComponent {
-
+  // Este componente no tiene lógica adicional, solo muestra la vista del banner.
 }
 </code></pre>
     </div>
@@ -291,23 +306,6 @@ export class BannerComponent {
         Diseña encuestas personalizadas, recopila respuestas de manera eficiente
         y obtén insights valiosos para tomar mejores decisiones.
       &lt;/p&gt;
-      
-      &lt;!-- Características destacadas 
-      &lt;div class&#x3D;&quot;features-grid&quot;&gt;
-        &lt;div class&#x3D;&quot;feature-item&quot;&gt;
-          &lt;div class&#x3D;&quot;feature-icon&quot;&gt;⚡&lt;/div&gt;
-          &lt;span&gt;Rápido&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;feature-item&quot;&gt;
-          &lt;div class&#x3D;&quot;feature-icon&quot;&gt;🔒&lt;/div&gt;
-          &lt;span&gt;Anónimo&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;feature-item&quot;&gt;
-          &lt;div class&#x3D;&quot;feature-icon&quot;&gt;🎯&lt;/div&gt;
-          &lt;span&gt;Preciso&lt;/span&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-      --&gt;
 
       &lt;!-- Información adicional --&gt;
       &lt;div class&#x3D;&quot;info-section&quot;&gt;
@@ -365,7 +363,7 @@ export class BannerComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="banner-container">  <!-- Elementos decorativos de fondo -->  <div class="background-elements">    <!-- Formas flotantes principales -->    <div class="floating-shape shape-1"></div>    <div class="floating-shape shape-2"></div>    <div class="floating-shape shape-3"></div>    <div class="floating-shape shape-4"></div>    <!-- Círculos flotantes adicionales -->    <div class="floating-circle circle-1"></div>    <div class="floating-circle circle-2"></div>    <div class="floating-circle circle-3"></div>    <div class="floating-circle circle-4"></div>    <div class="floating-circle circle-5"></div>    <div class="floating-circle circle-6"></div>    <div class="floating-circle circle-7"></div>    <div class="floating-circle circle-8"></div>    <div class="floating-circle circle-9"></div>    <div class="floating-circle circle-10"></div>    <div class="floating-circle circle-11"></div>    <div class="floating-circle circle-12"></div>    <!-- Formas orgánicas adicionales -->    <div class="organic-shape blob-1"></div>    <div class="organic-shape blob-2"></div>    <div class="organic-shape blob-3"></div>    <div class="organic-shape blob-4"></div>    <div class="organic-shape blob-5"></div>    <div class="organic-shape blob-6"></div>    <!-- Elementos adicionales para más dinamismo -->    <div class="geometric-shape triangle-1"></div>    <div class="geometric-shape triangle-2"></div>    <div class="geometric-shape triangle-3"></div>    <div class="geometric-shape triangle-4"></div>    <div class="geometric-shape hexagon-1"></div>    <div class="geometric-shape hexagon-2"></div>    <div class="geometric-shape hexagon-3"></div>    <!-- Círculos con anillos -->    <div class="ring-circle ring-1"></div>    <div class="ring-circle ring-2"></div>    <div class="ring-circle ring-3"></div>    <div class="ring-circle ring-4"></div>    <!-- Partículas brillantes -->    <div class="sparkle sparkle-1"></div>    <div class="sparkle sparkle-2"></div>    <div class="sparkle sparkle-3"></div>    <div class="sparkle sparkle-4"></div>    <div class="sparkle sparkle-5"></div>    <div class="sparkle sparkle-6"></div>    <div class="sparkle sparkle-7"></div>    <div class="sparkle sparkle-8"></div>    <div class="sparkle sparkle-9"></div>    <div class="sparkle sparkle-10"></div>    <!-- Ondas de fondo -->    <div class="wave wave-1"></div>    <div class="wave wave-2"></div>    <div class="wave wave-3"></div>  </div>  <!-- Contenido principal -->  <div class="banner-content">    <div class="content-wrapper">      <!-- Icono principal -->      <div class="main-icon">        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">          <path d="M9 11H15M9 15H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L19.7071 9.70711C19.8946 9.89464 20 10.149 20 10.4142V19C20 20.1046 19.1054 21 18 21H17ZM17 21V11H13V7H7V19H17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>        </svg>      </div>      <!-- Título principal -->      <h1 class="banner-title">        <span class="title-line-1">Creá tus encuestas</span>        <span class="title-line-2">de forma simple y anónima</span>      </h1>      <!-- Descripción -->      <p class="banner-description">        Diseña encuestas personalizadas, recopila respuestas de manera eficiente        y obtén insights valiosos para tomar mejores decisiones.      </p>            <!-- Características destacadas       <div class="features-grid">        <div class="feature-item">          <div class="feature-icon">⚡</div>          <span>Rápido</span>        </div>        <div class="feature-item">          <div class="feature-icon">🔒</div>          <span>Anónimo</span>        </div>        <div class="feature-item">          <div class="feature-icon">🎯</div>          <span>Preciso</span>        </div>      </div>      -->      <!-- Información adicional -->      <div class="info-section">        <div class="info-cards">          <div class="info-card">            <div class="info-icon">📊</div>            <h3>Análisis Detallado</h3>            <p>Obtén insights valiosos con gráficos y estadísticas en tiempo real</p>          </div>          <div class="info-card">            <div class="info-icon">🔒</div>            <h3>Totalmente Seguro</h3>            <p>Tus datos y respuestas están protegidos con la máxima seguridad</p>          </div>          <div class="info-card">            <div class="info-icon">⚡</div>            <h3>Súper Rápido</h3>            <p>Crea y comparte encuestas en cuestión de minutos</p>          </div>        </div>        <p class="info-subtitle">¡Comienza creando tu primera encuesta!</p>      </div>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="banner-container">  <!-- Elementos decorativos de fondo -->  <div class="background-elements">    <!-- Formas flotantes principales -->    <div class="floating-shape shape-1"></div>    <div class="floating-shape shape-2"></div>    <div class="floating-shape shape-3"></div>    <div class="floating-shape shape-4"></div>    <!-- Círculos flotantes adicionales -->    <div class="floating-circle circle-1"></div>    <div class="floating-circle circle-2"></div>    <div class="floating-circle circle-3"></div>    <div class="floating-circle circle-4"></div>    <div class="floating-circle circle-5"></div>    <div class="floating-circle circle-6"></div>    <div class="floating-circle circle-7"></div>    <div class="floating-circle circle-8"></div>    <div class="floating-circle circle-9"></div>    <div class="floating-circle circle-10"></div>    <div class="floating-circle circle-11"></div>    <div class="floating-circle circle-12"></div>    <!-- Formas orgánicas adicionales -->    <div class="organic-shape blob-1"></div>    <div class="organic-shape blob-2"></div>    <div class="organic-shape blob-3"></div>    <div class="organic-shape blob-4"></div>    <div class="organic-shape blob-5"></div>    <div class="organic-shape blob-6"></div>    <!-- Elementos adicionales para más dinamismo -->    <div class="geometric-shape triangle-1"></div>    <div class="geometric-shape triangle-2"></div>    <div class="geometric-shape triangle-3"></div>    <div class="geometric-shape triangle-4"></div>    <div class="geometric-shape hexagon-1"></div>    <div class="geometric-shape hexagon-2"></div>    <div class="geometric-shape hexagon-3"></div>    <!-- Círculos con anillos -->    <div class="ring-circle ring-1"></div>    <div class="ring-circle ring-2"></div>    <div class="ring-circle ring-3"></div>    <div class="ring-circle ring-4"></div>    <!-- Partículas brillantes -->    <div class="sparkle sparkle-1"></div>    <div class="sparkle sparkle-2"></div>    <div class="sparkle sparkle-3"></div>    <div class="sparkle sparkle-4"></div>    <div class="sparkle sparkle-5"></div>    <div class="sparkle sparkle-6"></div>    <div class="sparkle sparkle-7"></div>    <div class="sparkle sparkle-8"></div>    <div class="sparkle sparkle-9"></div>    <div class="sparkle sparkle-10"></div>    <!-- Ondas de fondo -->    <div class="wave wave-1"></div>    <div class="wave wave-2"></div>    <div class="wave wave-3"></div>  </div>  <!-- Contenido principal -->  <div class="banner-content">    <div class="content-wrapper">      <!-- Icono principal -->      <div class="main-icon">        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">          <path d="M9 11H15M9 15H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L19.7071 9.70711C19.8946 9.89464 20 10.149 20 10.4142V19C20 20.1046 19.1054 21 18 21H17ZM17 21V11H13V7H7V19H17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>        </svg>      </div>      <!-- Título principal -->      <h1 class="banner-title">        <span class="title-line-1">Creá tus encuestas</span>        <span class="title-line-2">de forma simple y anónima</span>      </h1>      <!-- Descripción -->      <p class="banner-description">        Diseña encuestas personalizadas, recopila respuestas de manera eficiente        y obtén insights valiosos para tomar mejores decisiones.      </p>      <!-- Información adicional -->      <div class="info-section">        <div class="info-cards">          <div class="info-card">            <div class="info-icon">📊</div>            <h3>Análisis Detallado</h3>            <p>Obtén insights valiosos con gráficos y estadísticas en tiempo real</p>          </div>          <div class="info-card">            <div class="info-icon">🔒</div>            <h3>Totalmente Seguro</h3>            <p>Tus datos y respuestas están protegidos con la máxima seguridad</p>          </div>          <div class="info-card">            <div class="info-icon">⚡</div>            <h3>Súper Rápido</h3>            <p>Crea y comparte encuestas en cuestión de minutos</p>          </div>        </div>        <p class="info-subtitle">¡Comienza creando tu primera encuesta!</p>      </div>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BannerComponent', 'selector': 'app-banner'},{'name': 'CreacionEncuestaComponent', 'selector': 'app-creacion-encuesta'},{'name': 'GestionOpcionDialogComponent', 'selector': 'app-gestion-opcion-dialog'},{'name': 'GestionPreguntaDialogComponent', 'selector': 'app-gestion-pregunta-dialog'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'PresentacionEnlacesComponent', 'selector': 'app-presentacion-enlaces'},{'name': 'ResponderEncuestaComponent', 'selector': 'app-responder-encuesta'},{'name': 'SeccionComponent', 'selector': 'app-seccion'},{'name': 'TextoErrorComponent', 'selector': 'app-texto-error'},{'name': 'VisualizarResultadosComponent', 'selector': 'app-visualizar-resultados'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'BannerComponent'};

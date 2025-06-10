@@ -361,7 +361,6 @@ export class ResponderEncuestaComponent implements OnInit {
     }
 
     const opcionesTexto = respuesta.opciones.map(numeroOpcion => {
-      //const opcion = pregunta.opciones?.find(o => o.numero === numeroOpcion);
       const opcion = pregunta.opciones?.find(o => o.id === numeroOpcion);
       return opcion?.texto || `Opción ${numeroOpcion}`;
     });

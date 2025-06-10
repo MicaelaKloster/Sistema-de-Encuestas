@@ -123,6 +123,14 @@
             </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Controlador para gestionar las opciones de una pregunta.
+Permite crear y eliminar opciones asociadas a una pregunta específica.</p>
+
+            </p>
 
 
 
@@ -197,14 +205,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/modules/opciones/controllers/opciones.controller.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/modules/opciones/controllers/opciones.controller.ts:30</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Crea una nueva opción para una pregunta específica.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -215,6 +225,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -229,6 +240,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>ID de la pregunta a la que se asocia la opción.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>createOpcionDto</td>
@@ -241,6 +256,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Datos de la opción a crear.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -250,7 +269,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Un mensaje de éxito y la opción creada.</p>
+
                             </div>
                 </td>
             </tr>
@@ -286,14 +306,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="25"
-                                    class="link-to-prism">src/modules/opciones/controllers/opciones.controller.ts:25</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/modules/opciones/controllers/opciones.controller.ts:43</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Elimina una opción por su ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -304,6 +326,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -318,6 +341,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>ID de la opción a eliminar.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -327,7 +354,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Un mensaje de éxito.</p>
+
                             </div>
                 </td>
             </tr>
@@ -348,10 +376,23 @@
 import { OpcionesService } from &#x27;../services/opciones.service&#x27;;
 import { CreateOpcionDto } from &#x27;../../encuestas/dtos/create-opcion.dto&#x27;;
 
+/**
+ * Controlador para gestionar las opciones de una pregunta.
+ * Permite crear y eliminar opciones asociadas a una pregunta específica.
+ */
 @Controller(&#x27;preguntas/:preguntaId/opciones&#x27;)
 export class OpcionesController {
+  /**
+   * Inyecta el servicio de opciones para manejar la lógica de negocio.
+   */
   constructor(private readonly opcionesService: OpcionesService) {}
 
+  /**
+   * Crea una nueva opción para una pregunta específica.
+   * @param preguntaId ID de la pregunta a la que se asocia la opción.
+   * @param createOpcionDto Datos de la opción a crear.
+   * @returns Un mensaje de éxito y la opción creada.
+   */
   @Post()
   async crearOpcion(
     @Param(&#x27;preguntaId&#x27;, ParseIntPipe) preguntaId: number,
@@ -360,6 +401,11 @@ export class OpcionesController {
     return this.opcionesService.crearOpcion(preguntaId, createOpcionDto);
   }
 
+  /**
+   * Elimina una opción por su ID.
+   * @param id ID de la opción a eliminar.
+   * @returns Un mensaje de éxito.
+   */
   @Delete(&#x27;:id&#x27;)
   async eliminarOpcion(
     @Param(&#x27;id&#x27;, ParseIntPipe) id: number,
