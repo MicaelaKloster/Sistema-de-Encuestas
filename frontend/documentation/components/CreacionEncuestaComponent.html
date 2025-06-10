@@ -1438,7 +1438,7 @@ export class CreacionEncuestaComponent {
     return &#x60;${year}-${month}-${day}T${hours}:${minutes}&#x60;;
   }
   
-  // Abre el diálogo para agregar una nueva pregunta
+  // Abre el dialog para agregar una nueva pregunta
   abrirDialog() {
     // Resetear modo edición
     this.modoEdicion.set(false);
@@ -1448,7 +1448,7 @@ export class CreacionEncuestaComponent {
     this.dialogGestionPreguntaVisible.set(true);
   }
 
-  // Abre el diálogo para editar preguntas existentes
+  // Abre el dialog para editar preguntas existentes
   abrirDialogEditar() {
     if (this.preguntas.length &#x3D;&#x3D;&#x3D; 0) {
       this.messageService.add({
@@ -1460,7 +1460,7 @@ export class CreacionEncuestaComponent {
       return;
     }
 
-    // Abrir diálogo de selección de preguntas
+    // Abrir dialog de selección de preguntas
     this.dialogSeleccionPreguntaVisible.set(true);
   }
 
@@ -1477,7 +1477,7 @@ export class CreacionEncuestaComponent {
       return;
     }
 
-    // Cerrar diálogo de selección
+    // Cerrar dialog de selección
     this.dialogSeleccionPreguntaVisible.set(false);
 
     // Configurar modo edición
@@ -1485,7 +1485,7 @@ export class CreacionEncuestaComponent {
     this.indicePreguntaEditando.set(index);
     this.preguntaSeleccionada.set(pregunta);
 
-    // Abrir el diálogo de edición
+    // Abrir el dialog de edición
     this.dialogGestionPreguntaVisible.set(true);
 
     this.messageService.add({
@@ -1496,7 +1496,7 @@ export class CreacionEncuestaComponent {
     });
   }
 
-  // Cierra el diálogo de selección de preguntas
+  // Cierra el dialog de selección de preguntas
   cerrarDialogSeleccion() {
     this.dialogSeleccionPreguntaVisible.set(false);
   }
@@ -1798,7 +1798,7 @@ export class CreacionEncuestaComponent {
           return;
         }
 
-        // Cerrar el diálogo de confirmación inmediatamente
+        // Cerrar el dialog de confirmación inmediatamente
         this.confirmationService.close();
 
         // Limpiar todos los toasts anteriores (incluyendo el de &quot;Creando encuesta...&quot;)
@@ -1838,7 +1838,7 @@ export class CreacionEncuestaComponent {
           url: err.url
         });
 
-        // Cerrar el diálogo de confirmación en caso de error
+        // Cerrar el dialog de confirmación en caso de error
         this.confirmationService.close();
 
         // Mensaje de error detallado
@@ -1967,11 +1967,7 @@ export class CreacionEncuestaComponent {
     @for (pregunta of preguntas.value; track idx; let idx &#x3D; $index) {
       &lt;app-seccion&gt;
         &lt;div class&#x3D;&quot;contenedor-pregunta&quot;&gt;
-          &lt;p class&#x3D;&quot;texto-pregunta&quot;&gt;
-            {{ pregunta.texto }} ({{
-              getTipoPreguntaPresentacion(pregunta.tipo)
-            }})
-          &lt;/p&gt;
+          &lt;p class&#x3D;&quot;texto-pregunta&quot;&gt;{{ pregunta.texto }}&lt;/p&gt;
           &lt;ul&gt;
             @for (opcion of pregunta.opciones; track i; let i &#x3D; $index) {
               &lt;li&gt;
@@ -2028,10 +2024,10 @@ export class CreacionEncuestaComponent {
       &lt;/p-floatlabel&gt;
       &lt;!-- Mensaje de ayuda --&gt;
       &lt;small class&#x3D;&quot;text-muted block mt-1&quot;&gt;
-        Si no especificas una fecha, la encuesta estará disponible indefinidamente
+        En caso de no establecer una fecha, la encuesta quedará habilitada de forma indefinida.
       &lt;/small&gt;
 
-      &lt;!-- Mostrar errores de validación --&gt;
+      &lt;!-- Validaciones --&gt;
       &lt;p-message
         severity&#x3D;&quot;error&quot;
         text&#x3D;&quot;La fecha de vencimiento debe ser posterior a la fecha actual&quot;
@@ -2133,7 +2129,7 @@ export class CreacionEncuestaComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Elementos decorativos de fondo --><div class="background-elements">  <!-- Formas flotantes principales -->  <div class="floating-shape shape-1"></div>  <div class="floating-shape shape-2"></div>  <div class="floating-shape shape-3"></div>  <div class="floating-shape shape-4"></div>  <!-- Círculos flotantes adicionales -->  <div class="floating-circle circle-1"></div>  <div class="floating-circle circle-2"></div>  <div class="floating-circle circle-3"></div>  <div class="floating-circle circle-4"></div>  <div class="floating-circle circle-5"></div>  <div class="floating-circle circle-6"></div>  <div class="floating-circle circle-7"></div>  <div class="floating-circle circle-8"></div>  <!-- Formas orgánicas adicionales -->  <div class="organic-shape blob-1"></div>  <div class="organic-shape blob-2"></div>  <div class="organic-shape blob-3"></div>  <div class="organic-shape blob-4"></div>  <!-- Elementos adicionales para más dinamismo -->  <div class="geometric-shape triangle-1"></div>  <div class="geometric-shape triangle-2"></div>  <div class="geometric-shape hexagon-1"></div>  <div class="geometric-shape hexagon-2"></div>  <!-- Círculos con anillos -->  <div class="ring-circle ring-1"></div>  <div class="ring-circle ring-2"></div>  <!-- Partículas brillantes -->  <div class="sparkle sparkle-1"></div>  <div class="sparkle sparkle-2"></div>  <div class="sparkle sparkle-3"></div>  <div class="sparkle sparkle-4"></div>  <div class="sparkle sparkle-5"></div>  <div class="sparkle sparkle-6"></div>  <!-- Ondas de fondo -->  <div class="wave wave-1"></div>  <div class="wave wave-2"></div></div><!-- Contenido principal --><div class="main-content">  <!-- Botón de volver arriba a la izquierda -->  <button    type="button"    class="boton-volver"    pButton    icon="pi pi-arrow-left"    [routerLink]="[\'\']"    aria-label="Volver"  ></button>  <form [formGroup]="form" (ngSubmit)="confirmarCrearEncuesta()">    <div id="contenedor-encuesta">      <h1 class="page-title">Creá una encuesta</h1>      <!-- Mensaje informativo -->      <div class="info-message">        <p><strong>📝 Instrucciones:</strong></p>        <p>1. Ingresa un nombre para tu encuesta</p>        <p>2. Agrega al menos una pregunta usando el botón "Agregar Pregunta"</p>        <p>3. Haz clic en "Finalizar" para crear tu encuesta</p>      </div>    <app-seccion>      <p-floatlabel variant="on" id="float-label-nombre-encuesta">        <input          pInputText          id="input-nombre"          formControlName="nombre"          autocomplete="off"        />        <label for="input-nombre">Nombre de la encuesta</label>      </p-floatlabel>      @if (nombre.invalid && nombre.touched) {        <app-texto-error>Requerido</app-texto-error>      }    </app-seccion>    @for (pregunta of preguntas.value; track idx; let idx = $index) {      <app-seccion>        <div class="contenedor-pregunta">          <p class="texto-pregunta">            {{ pregunta.texto }} ({{              getTipoPreguntaPresentacion(pregunta.tipo)            }})          </p>          <ul>            @for (opcion of pregunta.opciones; track i; let i = $index) {              <li>                <p class="texto-opcion">{{ opcion.texto }}</p>              </li>            }          </ul>          <div class="botonera-pregunta">            <p-button              (onClick)="confirmarEliminarPregunta(idx)"              id="boton-eliminar-pregunta"              icon="pi pi-times"              label="Eliminar"              severity="danger"            ></p-button>          </div>        </div>      </app-seccion>    }    <app-seccion>      <div class="botones-gestion-preguntas">        <p-button          label="Agregar Pregunta"          (onClick)="abrirDialog()"          icon="pi pi-plus"        />        @if (preguntas.length > 0) {          <p-button            label="Editar Pregunta"            (onClick)="abrirDialogEditar()"            icon="pi pi-pencil"            severity="secondary"            [outlined]="true"          />        }      </div>      @if (preguntas.invalid && form.touched) {        <app-texto-error>Debe agregar al menos una pregunta</app-texto-error>      }    </app-seccion>    <!-- Campo de fecha de vencimiento -->    <app-seccion>      <p-floatlabel>        <input          type="datetime-local"          id="fechaVencimiento"          pInputText          [formControl]="fechaVencimiento"          class="w-full"          [min]="getFechaMinima()"        />        <label for="fechaVencimiento">Fecha de Vencimiento (Opcional)</label>      </p-floatlabel>      <!-- Mensaje de ayuda -->      <small class="text-muted block mt-1">        Si no especificas una fecha, la encuesta estará disponible indefinidamente      </small>      <!-- Mostrar errores de validación -->      <p-message        severity="error"        text="La fecha de vencimiento debe ser posterior a la fecha actual"        *ngIf="form.get(\'fechaVencimiento\')?.errors?.[\'fechaInvalida\']">      </p-message>    </app-seccion>    <button      id="boton-finalizar"      pButton      pRipple      type="submit"      icon="pi pi-check"      severity="contrast"      class="p-button-rounded"      [disabled]="creandoEncuesta()"      [loading]="creandoEncuesta()"    >      {{ creandoEncuesta() ? \'Creando...\' : \'Finalizar\' }}    </button>  </div></form></div><app-gestion-pregunta-dialog  [(visible)]="dialogGestionPreguntaVisible"  [(preguntaAEditar)]="preguntaSeleccionada"  (agregarPregunta)="agregarPregunta($event)"/><!-- Diálogo de selección de preguntas para editar --><p-dialog  header="Seleccionar Pregunta para Editar"  [modal]="true"  [(visible)]="dialogSeleccionPreguntaVisible"  [style]="{ width: \'35rem\', maxWidth: \'90vw\' }"  resizable="false"  (onHide)="cerrarDialogSeleccion()">  <div class="dialogo-seleccion-preguntas">    <p class="instruccion-seleccion">Selecciona la pregunta que deseas editar:</p>    @for (pregunta of preguntas.value; track idx; let idx = $index) {      <div class="item-pregunta-seleccion" (click)="editarPregunta(idx)">        <div class="contenido-pregunta-seleccion">          <h4 class="titulo-pregunta-seleccion">            Pregunta {{ idx + 1 }}: {{ pregunta.texto }}          </h4>          <p class="tipo-pregunta-seleccion">            Tipo: {{ getTipoPreguntaPresentacion(pregunta.tipo) }}          </p>          @if (pregunta.opciones && pregunta.opciones.length > 0) {            <div class="opciones-preview">              <p class="opciones-titulo">Opciones:</p>              <ul class="opciones-lista">                @for (opcion of pregunta.opciones; track i; let i = $index) {                  <li class="opcion-item">{{ opcion.texto }}</li>                }              </ul>            </div>          }        </div>        <div class="icono-editar">          <i class="pi pi-pencil"></i>        </div>      </div>    }    @if (preguntas.length === 0) {      <p class="sin-preguntas">No hay preguntas disponibles para editar.</p>    }  </div></p-dialog></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- Elementos decorativos de fondo --><div class="background-elements">  <!-- Formas flotantes principales -->  <div class="floating-shape shape-1"></div>  <div class="floating-shape shape-2"></div>  <div class="floating-shape shape-3"></div>  <div class="floating-shape shape-4"></div>  <!-- Círculos flotantes adicionales -->  <div class="floating-circle circle-1"></div>  <div class="floating-circle circle-2"></div>  <div class="floating-circle circle-3"></div>  <div class="floating-circle circle-4"></div>  <div class="floating-circle circle-5"></div>  <div class="floating-circle circle-6"></div>  <div class="floating-circle circle-7"></div>  <div class="floating-circle circle-8"></div>  <!-- Formas orgánicas adicionales -->  <div class="organic-shape blob-1"></div>  <div class="organic-shape blob-2"></div>  <div class="organic-shape blob-3"></div>  <div class="organic-shape blob-4"></div>  <!-- Elementos adicionales para más dinamismo -->  <div class="geometric-shape triangle-1"></div>  <div class="geometric-shape triangle-2"></div>  <div class="geometric-shape hexagon-1"></div>  <div class="geometric-shape hexagon-2"></div>  <!-- Círculos con anillos -->  <div class="ring-circle ring-1"></div>  <div class="ring-circle ring-2"></div>  <!-- Partículas brillantes -->  <div class="sparkle sparkle-1"></div>  <div class="sparkle sparkle-2"></div>  <div class="sparkle sparkle-3"></div>  <div class="sparkle sparkle-4"></div>  <div class="sparkle sparkle-5"></div>  <div class="sparkle sparkle-6"></div>  <!-- Ondas de fondo -->  <div class="wave wave-1"></div>  <div class="wave wave-2"></div></div><!-- Contenido principal --><div class="main-content">  <!-- Botón de volver arriba a la izquierda -->  <button    type="button"    class="boton-volver"    pButton    icon="pi pi-arrow-left"    [routerLink]="[\'\']"    aria-label="Volver"  ></button>  <form [formGroup]="form" (ngSubmit)="confirmarCrearEncuesta()">    <div id="contenedor-encuesta">      <h1 class="page-title">Creá una encuesta</h1>      <!-- Mensaje informativo -->      <div class="info-message">        <p><strong>📝 Instrucciones:</strong></p>        <p>1. Ingresa un nombre para tu encuesta</p>        <p>2. Agrega al menos una pregunta usando el botón "Agregar Pregunta"</p>        <p>3. Haz clic en "Finalizar" para crear tu encuesta</p>      </div>    <app-seccion>      <p-floatlabel variant="on" id="float-label-nombre-encuesta">        <input          pInputText          id="input-nombre"          formControlName="nombre"          autocomplete="off"        />        <label for="input-nombre">Nombre de la encuesta</label>      </p-floatlabel>      @if (nombre.invalid && nombre.touched) {        <app-texto-error>Requerido</app-texto-error>      }    </app-seccion>    @for (pregunta of preguntas.value; track idx; let idx = $index) {      <app-seccion>        <div class="contenedor-pregunta">          <p class="texto-pregunta">{{ pregunta.texto }}</p>          <ul>            @for (opcion of pregunta.opciones; track i; let i = $index) {              <li>                <p class="texto-opcion">{{ opcion.texto }}</p>              </li>            }          </ul>          <div class="botonera-pregunta">            <p-button              (onClick)="confirmarEliminarPregunta(idx)"              id="boton-eliminar-pregunta"              icon="pi pi-times"              label="Eliminar"              severity="danger"            ></p-button>          </div>        </div>      </app-seccion>    }    <app-seccion>      <div class="botones-gestion-preguntas">        <p-button          label="Agregar Pregunta"          (onClick)="abrirDialog()"          icon="pi pi-plus"        />        @if (preguntas.length > 0) {          <p-button            label="Editar Pregunta"            (onClick)="abrirDialogEditar()"            icon="pi pi-pencil"            severity="secondary"            [outlined]="true"          />        }      </div>      @if (preguntas.invalid && form.touched) {        <app-texto-error>Debe agregar al menos una pregunta</app-texto-error>      }    </app-seccion>    <!-- Campo de fecha de vencimiento -->    <app-seccion>      <p-floatlabel>        <input          type="datetime-local"          id="fechaVencimiento"          pInputText          [formControl]="fechaVencimiento"          class="w-full"          [min]="getFechaMinima()"        />        <label for="fechaVencimiento">Fecha de Vencimiento (Opcional)</label>      </p-floatlabel>      <!-- Mensaje de ayuda -->      <small class="text-muted block mt-1">        En caso de no establecer una fecha, la encuesta quedará habilitada de forma indefinida.      </small>      <!-- Validaciones -->      <p-message        severity="error"        text="La fecha de vencimiento debe ser posterior a la fecha actual"        *ngIf="form.get(\'fechaVencimiento\')?.errors?.[\'fechaInvalida\']">      </p-message>    </app-seccion>    <button      id="boton-finalizar"      pButton      pRipple      type="submit"      icon="pi pi-check"      severity="contrast"      class="p-button-rounded"      [disabled]="creandoEncuesta()"      [loading]="creandoEncuesta()"    >      {{ creandoEncuesta() ? \'Creando...\' : \'Finalizar\' }}    </button>  </div></form></div><app-gestion-pregunta-dialog  [(visible)]="dialogGestionPreguntaVisible"  [(preguntaAEditar)]="preguntaSeleccionada"  (agregarPregunta)="agregarPregunta($event)"/><!-- Diálogo de selección de preguntas para editar --><p-dialog  header="Seleccionar Pregunta para Editar"  [modal]="true"  [(visible)]="dialogSeleccionPreguntaVisible"  [style]="{ width: \'35rem\', maxWidth: \'90vw\' }"  resizable="false"  (onHide)="cerrarDialogSeleccion()">  <div class="dialogo-seleccion-preguntas">    <p class="instruccion-seleccion">Selecciona la pregunta que deseas editar:</p>    @for (pregunta of preguntas.value; track idx; let idx = $index) {      <div class="item-pregunta-seleccion" (click)="editarPregunta(idx)">        <div class="contenido-pregunta-seleccion">          <h4 class="titulo-pregunta-seleccion">            Pregunta {{ idx + 1 }}: {{ pregunta.texto }}          </h4>          <p class="tipo-pregunta-seleccion">            Tipo: {{ getTipoPreguntaPresentacion(pregunta.tipo) }}          </p>          @if (pregunta.opciones && pregunta.opciones.length > 0) {            <div class="opciones-preview">              <p class="opciones-titulo">Opciones:</p>              <ul class="opciones-lista">                @for (opcion of pregunta.opciones; track i; let i = $index) {                  <li class="opcion-item">{{ opcion.texto }}</li>                }              </ul>            </div>          }        </div>        <div class="icono-editar">          <i class="pi pi-pencil"></i>        </div>      </div>    }    @if (preguntas.length === 0) {      <p class="sin-preguntas">No hay preguntas disponibles para editar.</p>    }  </div></p-dialog></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BannerComponent', 'selector': 'app-banner'},{'name': 'CreacionEncuestaComponent', 'selector': 'app-creacion-encuesta'},{'name': 'GestionOpcionDialogComponent', 'selector': 'app-gestion-opcion-dialog'},{'name': 'GestionPreguntaDialogComponent', 'selector': 'app-gestion-pregunta-dialog'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'PresentacionEnlacesComponent', 'selector': 'app-presentacion-enlaces'},{'name': 'ResponderEncuestaComponent', 'selector': 'app-responder-encuesta'},{'name': 'SeccionComponent', 'selector': 'app-seccion'},{'name': 'TextoErrorComponent', 'selector': 'app-texto-error'},{'name': 'VisualizarResultadosComponent', 'selector': 'app-visualizar-resultados'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CreacionEncuestaComponent'};

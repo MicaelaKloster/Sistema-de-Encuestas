@@ -117,6 +117,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Entidad que representa una respuesta de opción seleccionada por un usuario en una encuesta.
+Relaciona una respuesta general con una opción específica de una pregunta.</p>
+
+            </p>
 
 
             <section data-compodoc="block-index">
@@ -200,10 +208,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/modules/respuestas/entities/respuesta-opcion.entity.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/respuestas/entities/respuesta-opcion.entity.ts:19</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Identificador único de la respuesta de opción</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -236,10 +250,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/modules/respuestas/entities/respuesta-opcion.entity.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/modules/respuestas/entities/respuesta-opcion.entity.ts:27</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ID de la opción seleccionada</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -272,10 +292,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/modules/respuestas/entities/respuesta-opcion.entity.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/modules/respuestas/entities/respuesta-opcion.entity.ts:23</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ID de la respuesta general a la que pertenece esta respuesta de opción</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -309,10 +335,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modules/respuestas/entities/respuesta-opcion.entity.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/modules/respuestas/entities/respuesta-opcion.entity.ts:43</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Relación muchos-a-uno con la entidad Opcion.
+Permite acceder a la opción seleccionada por el usuario.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -346,10 +379,17 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/modules/respuestas/entities/respuesta-opcion.entity.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/modules/respuestas/entities/respuesta-opcion.entity.ts:35</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Relación muchos-a-uno con la entidad Respuesta.
+Permite acceder a la respuesta general asociada.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -368,21 +408,36 @@
 import { Respuesta } from &#x27;./respuesta.entity&#x27;;
 import { Opcion } from &#x27;../../encuestas/entities/opcion.entity&#x27;;
 
+/**
+ * Entidad que representa una respuesta de opción seleccionada por un usuario en una encuesta.
+ * Relaciona una respuesta general con una opción específica de una pregunta.
+ */
 @Entity(&#x27;respuestas_opciones&#x27;)
 export class RespuestaOpcion {
+  /** Identificador único de la respuesta de opción */
   @PrimaryGeneratedColumn()
   id: number;
 
+  /** ID de la respuesta general a la que pertenece esta respuesta de opción */
   @Column(&#x27;int&#x27;, { nullable: true })
   id_respuesta: number;
 
+  /** ID de la opción seleccionada */
   @Column(&#x27;int&#x27;, { nullable: true })
   id_opcion: number;
 
+  /**
+   * Relación muchos-a-uno con la entidad Respuesta.
+   * Permite acceder a la respuesta general asociada.
+   */
   @ManyToOne(() &#x3D;&gt; Respuesta)
   @JoinColumn({ name: &#x27;id_respuesta&#x27; })
   respuesta: Respuesta;
 
+  /**
+   * Relación muchos-a-uno con la entidad Opcion.
+   * Permite acceder a la opción seleccionada por el usuario.
+   */
   @ManyToOne(() &#x3D;&gt; Opcion)
   @JoinColumn({ name: &#x27;id_opcion&#x27; })
   opcion: Opcion;

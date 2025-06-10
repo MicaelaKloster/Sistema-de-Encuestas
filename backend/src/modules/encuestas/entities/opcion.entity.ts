@@ -28,8 +28,4 @@ export class Opcion {
   @JoinColumn({ name: 'id_pregunta' }) // Define la columna "id_pregunta" como la clave foránea
   @Exclude() // Excluye esta propiedad al serializar la entidad (por ejemplo, al devolverla en una API)
   pregunta: Pregunta; // Referencia a la pregunta a la que pertenece esta opción
-
-  // EXTRA POR MÓDULO RESPUESTAS
-  // @OneToMany(() => RespuestaOpcion, (r) => r.opcion)
-  // respuestas: RespuestaOpcion[];
 }

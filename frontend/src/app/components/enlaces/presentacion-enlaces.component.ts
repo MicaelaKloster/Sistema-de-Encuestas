@@ -68,7 +68,7 @@ export class PresentacionEnlacesComponent implements OnInit {
       // Activar la animación de confeti festivo después de un pequeño delay
       setTimeout(() => {
         this.startConfettiAnimation();
-      }, 500);
+      }, 400);
     });
   }
 

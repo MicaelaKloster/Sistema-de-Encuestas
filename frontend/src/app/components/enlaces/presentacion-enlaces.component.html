@@ -5,85 +5,132 @@
     <div class="enlace">
       <label>Enlace de participación:</label>
       <input type="text" [value]="enlaceParticipacion" readonly />
-      <button pButton type="button" label="Copiar" (click)="copiar(enlaceParticipacion)"></button>
+      <button
+        pButton
+        type="button"
+        label="Copiar"
+        (click)="copiar(enlaceParticipacion)"
+      ></button>
     </div>
 
     <div class="qr">
       <label>Código QR para participar:</label>
-      <qrcode [qrdata]="enlaceParticipacion" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+      <qrcode
+        [qrdata]="enlaceParticipacion"
+        [width]="200"
+        [errorCorrectionLevel]="'M'"
+      ></qrcode>
     </div>
 
     <div class="enlace">
       <label>Enlace para ver resultados:</label>
       <input type="text" [value]="enlaceResultados" readonly />
-      <button pButton type="button" label="Copiar" (click)="copiar(enlaceResultados)"></button>
+      <button
+        pButton
+        type="button"
+        label="Copiar"
+        (click)="copiar(enlaceResultados)"
+      ></button>
     </div>
-    <button pButton type="button" label="Volver al Inicio" (click)="volverInicio()"></button>
+    <button
+      pButton
+      type="button"
+      label="Volver al Inicio"
+      (click)="volverInicio()"
+    ></button>
   </div>
 
   <!-- Animación de confeti festivo MASIVO con ondas graduales -->
   <div class="celebration-animation" *ngIf="showAnimation">
     <!-- ESTRELLITAS ALEATORIAS ⭐ -->
-    <div class="confetti-item star fluid-particle"
-         *ngFor="let star of getAllWaveStars(); let i = index"
-         [style.left.%]="star.left"
-         [style.top.%]="star.top"
-         [style.animation-delay.s]="star.delay"
-         [style.animation-duration.s]="star.duration"
-         [style.--velocity]="star.velocity"
-         [style.--swing.deg]="star.swing"
-         [style.--fade-start]="star.fadeOut"
-         [style.transform]="'rotate(' + star.rotation + 'deg) scale(' + star.scale + ')'">⭐</div>
+    <div
+      class="confetti-item star fluid-particle"
+      *ngFor="let star of getAllWaveStars(); let i = index"
+      [style.left.%]="star.left"
+      [style.top.%]="star.top"
+      [style.animation-delay.s]="star.delay"
+      [style.animation-duration.s]="star.duration"
+      [style.--velocity]="star.velocity"
+      [style.--swing.deg]="star.swing"
+      [style.--fade-start]="star.fadeOut"
+      [style.transform]="
+        'rotate(' + star.rotation + 'deg) scale(' + star.scale + ')'
+      "
+    >
+      ⭐
+    </div>
 
     <!-- CORAZONES ALEATORIOS 💖 -->
-    <div class="confetti-item heart fluid-particle"
-         *ngFor="let heart of getAllWaveHearts(); let i = index"
-         [style.left.%]="heart.left"
-         [style.top.%]="heart.top"
-         [style.animation-delay.s]="heart.delay"
-         [style.animation-duration.s]="heart.duration"
-         [style.--velocity]="heart.velocity"
-         [style.--swing.deg]="heart.swing"
-         [style.--fade-start]="heart.fadeOut"
-         [style.transform]="'rotate(' + heart.rotation + 'deg) scale(' + heart.scale + ')'">💖</div>
+    <div
+      class="confetti-item heart fluid-particle"
+      *ngFor="let heart of getAllWaveHearts(); let i = index"
+      [style.left.%]="heart.left"
+      [style.top.%]="heart.top"
+      [style.animation-delay.s]="heart.delay"
+      [style.animation-duration.s]="heart.duration"
+      [style.--velocity]="heart.velocity"
+      [style.--swing.deg]="heart.swing"
+      [style.--fade-start]="heart.fadeOut"
+      [style.transform]="
+        'rotate(' + heart.rotation + 'deg) scale(' + heart.scale + ')'
+      "
+    >
+      💖
+    </div>
 
     <!-- CELEBRACIÓN ALEATORIA 🎉🎊 -->
-    <div class="confetti-item celebration fluid-particle"
-         *ngFor="let cel of getAllWaveCelebration(); let i = index"
-         [style.left.%]="cel.left"
-         [style.top.%]="cel.top"
-         [style.animation-delay.s]="cel.delay"
-         [style.animation-duration.s]="cel.duration"
-         [style.--velocity]="cel.velocity"
-         [style.--swing.deg]="cel.swing"
-         [style.--fade-start]="cel.fadeOut"
-         [style.transform]="'rotate(' + cel.rotation + 'deg) scale(' + cel.scale + ')'">{{ i % 2 === 0 ? '🎉' : '🎊' }}</div>
+    <div
+      class="confetti-item celebration fluid-particle"
+      *ngFor="let cel of getAllWaveCelebration(); let i = index"
+      [style.left.%]="cel.left"
+      [style.top.%]="cel.top"
+      [style.animation-delay.s]="cel.delay"
+      [style.animation-duration.s]="cel.duration"
+      [style.--velocity]="cel.velocity"
+      [style.--swing.deg]="cel.swing"
+      [style.--fade-start]="cel.fadeOut"
+      [style.transform]="
+        'rotate(' + cel.rotation + 'deg) scale(' + cel.scale + ')'
+      "
+    >
+      {{ i % 2 === 0 ? "🎉" : "🎊" }}
+    </div>
 
     <!-- BRILLITOS ALEATORIOS ✨ -->
-    <div class="confetti-item sparkle fluid-particle"
-         *ngFor="let sparkle of getAllWaveSparkles(); let i = index"
-         [style.left.%]="sparkle.left"
-         [style.top.%]="sparkle.top"
-         [style.animation-delay.s]="sparkle.delay"
-         [style.animation-duration.s]="sparkle.duration"
-         [style.--velocity]="sparkle.velocity"
-         [style.--swing.deg]="sparkle.swing"
-         [style.--fade-start]="sparkle.fadeOut"
-         [style.transform]="'rotate(' + sparkle.rotation + 'deg) scale(' + sparkle.scale + ')'">✨</div>
+    <div
+      class="confetti-item sparkle fluid-particle"
+      *ngFor="let sparkle of getAllWaveSparkles(); let i = index"
+      [style.left.%]="sparkle.left"
+      [style.top.%]="sparkle.top"
+      [style.animation-delay.s]="sparkle.delay"
+      [style.animation-duration.s]="sparkle.duration"
+      [style.--velocity]="sparkle.velocity"
+      [style.--swing.deg]="sparkle.swing"
+      [style.--fade-start]="sparkle.fadeOut"
+      [style.transform]="
+        'rotate(' + sparkle.rotation + 'deg) scale(' + sparkle.scale + ')'
+      "
+    >
+      ✨
+    </div>
 
     <!-- CONFETI GEOMÉTRICO ALEATORIO -->
-    <div class="confetti-item geometric fluid-particle"
-         *ngFor="let geo of getAllWaveGeometric(); let i = index"
-         [style.left.%]="geo.left"
-         [style.top.%]="geo.top"
-         [style.animation-delay.s]="geo.delay"
-         [style.animation-duration.s]="geo.duration"
-         [style.--velocity]="geo.velocity"
-         [style.--swing.deg]="geo.swing"
-         [style.--fade-start]="geo.fadeOut"
-         [style.background-color]="geo.color"
-         [style.transform]="'rotate(' + geo.rotation + 'deg) scale(' + geo.scale + ')'"
-         [class]="getGeometricClass(i)"></div>
+    <div
+      class="confetti-item geometric fluid-particle"
+      *ngFor="let geo of getAllWaveGeometric(); let i = index"
+      [style.left.%]="geo.left"
+      [style.top.%]="geo.top"
+      [style.animation-delay.s]="geo.delay"
+      [style.animation-duration.s]="geo.duration"
+      [style.--velocity]="geo.velocity"
+      [style.--swing.deg]="geo.swing"
+      [style.--fade-start]="geo.fadeOut"
+      [style.background-color]="geo.color"
+      [style.transform]="
+        'rotate(' + geo.rotation + 'deg) scale(' + geo.scale + ')'
+      "
+      [class]="getGeometricClass(i)"
+    ></div>
 
     <!-- RAYOS DE LUZ MASIVOS -->
     <div class="light-ray ray-1"></div>

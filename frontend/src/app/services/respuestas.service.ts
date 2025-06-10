@@ -10,55 +10,6 @@ import { RespuestaPreguntaDto } from '../interfaces/respuesta.dto';
 import { RegistrarRespuestasDto } from '../interfaces/respuesta.dto';
 import { EncuestaResponse } from '../interfaces/respuesta.dto';
 
-
-/*
-export type TipoRespuesta = 'ABIERTA' | 'OPCION_MULTIPLE_SELECCION_SIMPLE' | 'OPCION_MULTIPLE_SELECCION_MULTIPLE' | 'VERDADERO_FALSO';
-
-export interface OpcionRespuesta {
-  id: number;
-  numero: number;
-  texto: string;
-}
-
-export interface Pregunta {
-  id: number;
-  numero: number;
-  texto: string;
-  tipo: TipoRespuesta;
-  obligatoria: boolean;
-  opciones?: OpcionRespuesta[];
-}
-
-export interface Encuesta {
-  id: number;
-  nombre: string;
-  descripcion?: string;
-  preguntas: Pregunta[];
-}
-
-export interface RespuestaUsuario {
-  numeroPregunta: number;
-  opciones: number[];
-  texto: string;
-}
-
-export interface RespuestaPreguntaDto {
-  id_pregunta: number;
-  tipo: TipoRespuesta;
-  texto?: string;
-  opciones?: number[];
-}
-
-export interface RegistrarRespuestasDto {
-  respuestas: RespuestaPreguntaDto[];
-}
-
-export interface EncuestaResponse {
-  message: string;
-  data: Encuesta;
-}
-  */
-
 @Injectable({ providedIn: 'root' })
 export class RespuestasService {
   private httpClient = inject(HttpClient);

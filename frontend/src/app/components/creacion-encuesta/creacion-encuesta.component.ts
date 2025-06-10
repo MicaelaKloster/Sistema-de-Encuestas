@@ -109,7 +109,7 @@ export class CreacionEncuestaComponent {
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   }
   
-  // Abre el diálogo para agregar una nueva pregunta
+  // Abre el dialog para agregar una nueva pregunta
   abrirDialog() {
     // Resetear modo edición
     this.modoEdicion.set(false);
@@ -119,7 +119,7 @@ export class CreacionEncuestaComponent {
     this.dialogGestionPreguntaVisible.set(true);
   }
 
-  // Abre el diálogo para editar preguntas existentes
+  // Abre el dialog para editar preguntas existentes
   abrirDialogEditar() {
     if (this.preguntas.length === 0) {
       this.messageService.add({
@@ -131,7 +131,7 @@ export class CreacionEncuestaComponent {
       return;
     }
 
-    // Abrir diálogo de selección de preguntas
+    // Abrir dialog de selección de preguntas
     this.dialogSeleccionPreguntaVisible.set(true);
   }
 
@@ -148,7 +148,7 @@ export class CreacionEncuestaComponent {
       return;
     }
 
-    // Cerrar diálogo de selección
+    // Cerrar dialog de selección
     this.dialogSeleccionPreguntaVisible.set(false);
 
     // Configurar modo edición
@@ -156,7 +156,7 @@ export class CreacionEncuestaComponent {
     this.indicePreguntaEditando.set(index);
     this.preguntaSeleccionada.set(pregunta);
 
-    // Abrir el diálogo de edición
+    // Abrir el dialog de edición
     this.dialogGestionPreguntaVisible.set(true);
 
     this.messageService.add({
@@ -167,7 +167,7 @@ export class CreacionEncuestaComponent {
     });
   }
 
-  // Cierra el diálogo de selección de preguntas
+  // Cierra el dialog de selección de preguntas
   cerrarDialogSeleccion() {
     this.dialogSeleccionPreguntaVisible.set(false);
   }
@@ -469,7 +469,7 @@ export class CreacionEncuestaComponent {
           return;
         }
 
-        // Cerrar el diálogo de confirmación inmediatamente
+        // Cerrar el dialog de confirmación inmediatamente
         this.confirmationService.close();
 
         // Limpiar todos los toasts anteriores (incluyendo el de "Creando encuesta...")
@@ -509,7 +509,7 @@ export class CreacionEncuestaComponent {
           url: err.url
         });
 
-        // Cerrar el diálogo de confirmación en caso de error
+        // Cerrar el dialog de confirmación en caso de error
         this.confirmationService.close();
 
         // Mensaje de error detallado

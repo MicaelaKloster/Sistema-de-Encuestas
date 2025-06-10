@@ -198,6 +198,11 @@ export class ResponderEncuestaComponent implements OnInit {
     return respuesta.opciones.length > 0 ? respuesta.opciones[0] : null;
   }
 
+  getTextoOpcion(pregunta: Pregunta, idOpcion: number): string {
+    const opcion = pregunta.opciones?.find(op => op.id === idOpcion);
+    return opcion ? opcion.texto : `Opción ${idOpcion}`;
+  }
+
   esPreguntaAbierta(pregunta: Pregunta): boolean {
     return pregunta.tipo === 'ABIERTA';
   }
@@ -356,7 +361,7 @@ export class ResponderEncuestaComponent implements OnInit {
     }
 
     const opcionesTexto = respuesta.opciones.map(numeroOpcion => {
-      const opcion = pregunta.opciones?.find(o => o.numero === numeroOpcion);
+      const opcion = pregunta.opciones?.find(o => o.id === numeroOpcion);
       return opcion?.texto || `Opción ${numeroOpcion}`;
     });
 

@@ -85,11 +85,7 @@
     @for (pregunta of preguntas.value; track idx; let idx = $index) {
       <app-seccion>
         <div class="contenedor-pregunta">
-          <p class="texto-pregunta">
-            {{ pregunta.texto }} ({{
-              getTipoPreguntaPresentacion(pregunta.tipo)
-            }})
-          </p>
+          <p class="texto-pregunta">{{ pregunta.texto }}</p>
           <ul>
             @for (opcion of pregunta.opciones; track i; let i = $index) {
               <li>
