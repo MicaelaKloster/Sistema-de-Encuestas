@@ -79,9 +79,63 @@ Este proyecto lo hicimos como parte del trabajo final de la materia Desarrollo d
    npm install
    ```
 
-3. Configurar la base de datos PostgreSQL en `.env`y `ecosystem.config`.
+3. Configurar dentro de la carpeta Backend la base de datos PostgreSQL en `.env`y `ecosystem.config.js` con lo siguiente:
+   
+   - Archivo `.env`:
+   
+   ```PORT=3000
+   
+   DB_HOST=localhost
+   
+   DB_PORT=5432
+   
+   DB_USER=(USUARIO BD)
+   
+   DB_PASSWORD=(CONTRASEÑA BD)
+   
+   DB_NAME=(NOMBRE BD)
+   
+   DB_LOGGING=true
+   
+   DB_LOGGER=advanced-console
+   
+   GLOBAL_PREFIX=api
+   
+   SWAGGER_HABILITADO=true
+   ```
+
+   
+   - Archivo `ecosystem.config.js`:
+     
+
+   ```module.exports = {
+   
+    apps: [
+  
+    {
+      name: 'encuestas',
+      script: 'dist/main.js',
+      env: {
+        NODE_ENV: 'production',
+        PORT: 4000,
+        CORS_ORIGIN:'localhost',
+        DB_HOST: 'localhost',
+        DB_PORT: 5432,
+        DB_USER: '(USUARIO BD)',
+        DB_PASSWORD: '(CONTRASEÑA BD)',
+        DB_NAME: '(NOMBRE BD)',
+        DB_LOGGING: 'false',
+        GLOBAL_PREFIX: 'api',
+        SWAGGER_HABILITADO: false,
+      },
+      time: true,
+        },
+      ],
+    };
+ 
 
 4. Ejecutar backend:
+
    ```bash
    npm run deploy
    ```
