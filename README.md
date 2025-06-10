@@ -79,7 +79,7 @@ Este proyecto lo hicimos como parte del trabajo final de la materia Desarrollo d
    npm install
    ```
 
-3. Configurar la base de datos PostgreSQL en `.env`.
+3. Configurar la base de datos PostgreSQL en `.env`y `ecosystem.config`.
 
 4. Ejecutar backend:
    ```bash
