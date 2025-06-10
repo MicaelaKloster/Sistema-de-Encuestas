@@ -116,7 +116,7 @@
                 <p-radioButton
                   [inputId]="'radio-' + pregunta.numero + '-' + opcion.numero"
                   [name]="'pregunta-' + pregunta.numero"
-                  [value]="opcion.numero"
+                  [value]="opcion.id"
                   [(ngModel)]="getRespuestaPorPregunta(pregunta.numero).opciones[0]"
                   (onChange)="onRadioChange(pregunta, opcion.numero)">
                 </p-radioButton>
