@@ -328,7 +328,7 @@
   background-color: #f8fafc;
   padding: 0.75rem;
   border-radius: 0.5rem;
-  border-left: 4px solid #3b82f6;
+  border-left: 4px solid #764ba2;
   font-size: 0.9rem;
   color: #4b5563;
 }
@@ -420,4 +420,24 @@
   .opcion-checkbox {
     padding: 0.6rem;
   }
+}
+
+.encuesta-container ::ng-deep .p-button {
+  margin: 2rem 0 1rem 0;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3) !important;
+}
+
+.encuesta-container ::ng-deep .p-button:hover {
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
 }
