@@ -1,18 +1,30 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .contenedor-wrapper {
-  position: relative;
+  min-height: 100vh;
   max-width: 700px;
-  margin: 2rem auto;
+  margin: 0 auto;
+  padding: 2rem 2rem; /* más padding arriba */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  box-sizing: border-box;
 }
 
 .contenedor {
   padding: 2rem;
-  background: #fefefe;
+  background: #fff; 
   border-radius: 1rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  color: #000000;
+  box-shadow: 0 6px 25px rgba(106, 13, 173, 0.3);
+  color: #230063; 
   text-align: center;
   position: relative;
   z-index: 10;
+  user-select: none;
+  font-weight: 600;
 }
 
 .contenedor.animate-success {
@@ -21,12 +33,22 @@
 
 .contenedor h2 {
   font-weight: 700;
-  color: #000000;
+  color: #230063;
   margin-bottom: 1.6rem;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  user-select: text;
+
+  /* Degradado en el texto */
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .enlace, .qr {
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.8rem;
   text-align: left;
 }
 
@@ -34,8 +56,8 @@
   display: block;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #000000;
-  font-size: 0.95rem;
+  color: #333;
+  font-size: 1rem;
 }
 
 .enlace {
@@ -47,40 +69,45 @@
 .enlace input[type="text"] {
   flex-grow: 1;
   min-width: 0;
-  padding: 0.5rem 0.75rem;
-  font-size: 1rem;
-  border: 1.8px solid #ddd;
-  border-radius: 6px;
+  padding: 0.6rem 0.85rem;
+  font-size: 1.05rem;
+  border: 2px solid #764ba2;
+  border-radius: 12px;
   background-color: #fafafa;
   color: #464646;
   user-select: all;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
 }
 
 .enlace input[type="text"]:focus {
   outline: none;
-  border-color: #008cff;
+  border-color: #5a387c;
   background-color: #fff;
 }
 
 .enlace button[pButton] {
   flex-shrink: 0;
   white-space: nowrap;
-  background-color: #008cff;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   border: none;
-  padding: 0.45rem 1rem;
-  border-radius: 6px;
+  padding: 0.5rem 1.1rem;
+  border-radius: 12px;
   cursor: pointer;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: background-color 0.3s ease;
-  max-width: 100px;  
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background 0.3s ease, box-shadow 0.2s ease;
+  max-width: 110px;
   box-sizing: border-box;
+  user-select: none;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
 }
 
-.enlace button[pButton]:hover {
-  background-color: #006ec7;
+.enlace button[pButton]:hover,
+.enlace button[pButton]:focus {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
 }
 
 .qr {
@@ -88,21 +115,25 @@
 }
 
 button[pButton][label="Volver al Inicio"] {
-  margin-top: 1.8rem;
-  background-color: #008cff;
+  margin-top: 2rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   border: none;
-  padding: 0.75rem 1.6rem;
+  padding: 0.85rem 1.8rem;
   font-weight: 700;
-  font-size: 1rem;
-  border-radius: 8px;
+  font-size: 1.1rem;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
   display: inline-block;
+  user-select: none;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
 }
 
-button[pButton][label="Volver al Inicio"]:hover {
-  background-color: #006ec7;
+button[pButton][label="Volver al Inicio"]:hover,
+button[pButton][label="Volver al Inicio"]:focus {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
 }
 
 /* Estilos para la animación de confeti festivo - EN EL ÁREA GRIS FUERA DEL CUADRO */
