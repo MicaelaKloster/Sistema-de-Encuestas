@@ -24,7 +24,7 @@ Este proyecto lo hicimos como parte del trabajo final de la materia Desarrollo d
 
 ## ▶️ Video de Presentación
 
-🔗 Link al video  
+🔗 [https://drive.google.com/drive/folders/1VRjajDIaqw-VR24wyGBFIcUUXUvPjWe8?usp=drive_link]
 
 ---
 
